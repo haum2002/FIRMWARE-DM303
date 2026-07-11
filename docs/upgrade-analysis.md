@@ -24,6 +24,7 @@ Load base ini disokong oleh vector table:
 - Initial stack pointer: `0x200126e0`
 - Reset vector: `0x0801754d`, mapping to file offset `0x0754c`
 - Sasaran reset boleh didisassemble sebagai kod startup Thumb yang sah di offset tersebut
+- Reset stub memuatkan target `0x08017339` dan kemudian melompat ke `0x08010199`. Redirect fault terus ke reset stub tidak boleh dianggap sama seperti hardware reset kerana CPU tidak semestinya mengulang set stack/peripheral seperti reset sebenar.
 
 ## Hipotesis freeze semasa
 
@@ -38,6 +39,7 @@ Ini sepadan dengan corak simptom yang dilaporkan, tetapi belum membuktikan semua
 - `SCB_AIRCR` muncul sebagai literal, tetapi nilai terus `SYSRESETREQ` belum ditemui dalam scan semasa.
 - Perkataan 32-bit dalam julat peripheral memberi petunjuk kepada laluan timer, GPIO, CAN, RCC, FLASH, SCB, dan DMA-related, tetapi ini bukti statik dan belum menjadi bukti data-flow penuh.
 - Binari mengandungi string ASCII berkaitan device/version termasuk `MT100MM V4.0` dan `BT100MM V4.0`.
+- Binari merujuk 64 path `\system\...`; hanya `\system\DM30XDB1.dat` hilang daripada folder `DM303-V4.0/system/`.
 - Binari dan readme yang dibekalkan merujuk `DM30XDB1.dat`, tetapi `DM303-V4.0/system/DM30XDB1.dat` tidak wujud dalam snapshot rasmi yang dibekalkan. Fail yang tiada ini tidak boleh diisi daripada pakej awam atau versi lama.
 - Ada julat kosong berisi `0x00`, tetapi ia tidak boleh dianggap sebagai code cave selamat sehingga pemilikannya dibuktikan. Ia mungkin data table, aset paparan, buffer, atau alignment region.
 

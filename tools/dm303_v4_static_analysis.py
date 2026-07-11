@@ -19,7 +19,7 @@ from pathlib import Path
 
 try:
     from capstone import Cs, CS_ARCH_ARM, CS_MODE_THUMB
-    from capstone.arm_const import ARM_OP_IMM, ARM_OP_REG
+    from capstone.arm_const import ARM_OP_IMM, ARM_OP_MEM, ARM_OP_REG
 except ImportError as exc:  # pragma: no cover - dependency guard
     raise SystemExit(
         "Missing dependency: capstone. Install with "
@@ -345,6 +345,89 @@ def print_vector_summary(vectors: list[VectorEntry]) -> None:
         print(f"  {vector.name:12s} vector {vector.index:02d} -> off 0x{vector.offset:05x}")
 
 
+def pc_relative_literals(buf: bytes, start: int, max_insns: int = 4) -> list[tuple[int, int, int]]:
+    md = Cs(CS_ARCH_ARM, CS_MODE_THUMB)
+    md.detail = True
+    offset = addr_to_offset(start, len(buf))
+    if offset is None:
+        return []
+
+    literals: list[tuple[int, int, int]] = []
+    for insn in md.disasm(buf[offset : offset + 16], start, count=max_insns):
+        if insn.mnemonic.lower() != "ldr":
+            continue
+        if len(insn.operands) < 2:
+            continue
+        mem = insn.operands[1]
+        if mem.type != ARM_OP_MEM or reg_name(insn, mem.mem.base) != "pc":
+            continue
+        literal_addr = ((insn.address + 4) & ~3) + mem.mem.disp
+        literal_offset = addr_to_offset(literal_addr, len(buf))
+        if literal_offset is None or literal_offset + 4 > len(buf):
+            continue
+        literal_value = u32_at(buf, literal_offset)
+        literals.append((insn.address, literal_addr, literal_value))
+    return literals
+
+
+def print_reset_stub_summary(buf: bytes, vectors: list[VectorEntry]) -> None:
+    if len(vectors) < 2 or vectors[1].offset is None:
+        return
+
+    reset_start = vectors[1].value & ~1
+    literals = pc_relative_literals(buf, reset_start)
+    if not literals:
+        return
+
+    print()
+    print("Reset stub PC-relative targets")
+    for insn_addr, literal_addr, literal_value in literals:
+        target = literal_value & ~1
+        if addr_to_offset(target, len(buf)) is not None:
+            target_text = f"target 0x{target:08x}"
+        else:
+            target_text = "target outside image"
+        print(
+            f"  insn 0x{insn_addr:08x} -> literal 0x{literal_addr:08x} "
+            f"= 0x{literal_value:08x} ({target_text})"
+        )
+    print("  note: jumping here from a fault is not the same as hardware reset")
+
+
+def system_references(strings: list[tuple[int, str]]) -> list[str]:
+    refs: set[str] = set()
+    pattern = re.compile(r"\\system\\[A-Za-z0-9_.-]+", re.IGNORECASE)
+    for _, text in strings:
+        refs.update(match.group(0) for match in pattern.finditer(text))
+    return sorted(refs, key=str.lower)
+
+
+def print_system_reference_summary(image_path: Path, strings: list[tuple[int, str]]) -> None:
+    refs = system_references(strings)
+    if not refs:
+        return
+
+    system_dir = image_path.parent / "system"
+    existing: set[str] = set()
+    if system_dir.exists():
+        existing = {path.name.lower() for path in system_dir.iterdir() if path.is_file()}
+
+    missing = []
+    for ref in refs:
+        filename = ref.rsplit("\\", 1)[-1].lower()
+        if filename not in existing:
+            missing.append(ref)
+
+    print()
+    print("System asset references")
+    print(f"  referenced paths in firmware: {len(refs)}")
+    print(f"  missing from supplied system folder: {len(missing)}")
+    for ref in missing[:24]:
+        print(f"    {ref}")
+    if len(missing) > 24:
+        print(f"    ... {len(missing) - 24} more")
+
+
 def print_literal_summary(buf: bytes) -> None:
     counts = scan_u32_literals(buf)
 
@@ -364,7 +447,7 @@ def print_literal_summary(buf: bytes) -> None:
         print(f"  {count:3d} {label}")
 
 
-def print_string_summary(buf: bytes) -> None:
+def print_string_summary(buf: bytes) -> list[tuple[int, str]]:
     strings = extract_ascii_strings(buf)
     matches = version_like_strings(strings)
 
@@ -372,9 +455,10 @@ def print_string_summary(buf: bytes) -> None:
     print("Version/device-like ASCII strings")
     if not matches:
         print("  none")
-        return
+        return strings
     for offset, text in matches[:24]:
         print(f"  off 0x{offset:05x}: {text}")
+    return strings
 
 
 def print_run_summary(buf: bytes) -> None:
@@ -424,7 +508,9 @@ def main(argv: list[str]) -> int:
     print()
 
     print_vector_summary(vectors)
-    print_string_summary(buf)
+    print_reset_stub_summary(buf, vectors)
+    strings = print_string_summary(buf)
+    print_system_reference_summary(args.image, strings)
     print_literal_summary(buf)
     print_run_summary(buf)
 
