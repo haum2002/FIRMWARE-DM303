@@ -39,8 +39,9 @@ Ini sepadan dengan corak simptom yang dilaporkan, tetapi belum membuktikan semua
 - `SCB_AIRCR` muncul sebagai literal, tetapi nilai terus `SYSRESETREQ` belum ditemui dalam scan semasa.
 - Perkataan 32-bit dalam julat peripheral memberi petunjuk kepada laluan timer, GPIO, CAN, RCC, FLASH, SCB, dan DMA-related, tetapi ini bukti statik dan belum menjadi bukti data-flow penuh.
 - Binari mengandungi string ASCII berkaitan device/version termasuk `MT100MM V4.0` dan `BT100MM V4.0`.
+- Perbandingan dengan `C:\Users\Administrator\Downloads\Compressed\DM303-V4.0\DM303-V4.0-read only` menunjukkan 68/68 fail adalah byte-for-byte sama dengan folder repo semasa. Tiada fail hilang atau berbeza antara dua salinan ini.
 - Binari merujuk 64 path `\system\...`; hanya `\system\DM30XDB1.dat` hilang daripada folder `DM303-V4.0/system/`.
-- Binari dan readme yang dibekalkan merujuk `DM30XDB1.dat`, tetapi `DM303-V4.0/system/DM30XDB1.dat` tidak wujud dalam snapshot rasmi yang dibekalkan. Fail yang tiada ini tidak boleh diisi daripada pakej awam atau versi lama.
+- Binari dan readme yang dibekalkan merujuk `DM30XDB1.dat`, tetapi `DM303-V4.0/system/DM30XDB1.dat` tidak wujud dalam kedua-dua salinan rasmi yang dibekalkan. Fail yang tiada ini tidak boleh diisi daripada pakej awam atau versi lama.
 - Ada julat kosong berisi `0x00`, tetapi ia tidak boleh dianggap sebagai code cave selamat sehingga pemilikannya dibuktikan. Ia mungkin data table, aset paparan, buffer, atau alignment region.
 
 ## Arah naik taraf v4.0.1 beta
