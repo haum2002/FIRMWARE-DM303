@@ -29,3 +29,9 @@ SHA-256 firmware utama:
 - Simpan salinan firmware asal daripada peranti sendiri jika boleh.
 - Buat kerja eksperimen pada branch berasingan supaya snapshot asal kekal bersih.
 - Catat versi hardware, kaedah flash, dan pilihan recovery sebelum mencuba naik taraf.
+
+## Kerja naik taraf
+
+Analisis upgrade dalaman bermula di [docs/upgrade-analysis.md](docs/upgrade-analysis.md).
+Skrip awal yang digunakan adalah read-only dan tidak menghasilkan firmware
+flashable: [tools/dm303_v4_static_analysis.py](tools/dm303_v4_static_analysis.py).
