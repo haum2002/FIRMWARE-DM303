@@ -1,0 +1,4 @@
+.gitattributes text eol=lf
+README.md text eol=lf
+CHECKSUMS-SHA256.txt text eol=lf
+DM303-V4.0/** binary
