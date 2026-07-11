@@ -12,9 +12,15 @@ menimpa baseline firmware.
 - `DM303-V4.0/DM303V4.004.bin` - firmware utama.
 - `DM303-V4.0/system/` - aset sistem seperti font, ikon, logo, dan fail teks bahasa.
 - `CHECKSUMS-SHA256.txt` - hash SHA-256 untuk semua fail dalam snapshot ini.
+- `docs/upgrade-analysis.md` - nota analisis dan pelan ujian awal.
+- `tools/analyze_dm303_package.py` - pemeriksa read-only untuk path sistem dan metadata firmware.
 
 Folder `DM303-V4.0/` ditandakan sebagai binari dalam `.gitattributes` supaya
 Git tidak menukar byte asal firmware semasa checkout atau commit.
+
+Branch analisis awal menambah `DM303-V4.0/system/DM30xDB1.dat` daripada pakej
+rasmi AUTOOL `US240104` kerana firmware dan nota vendor merujuk fail data ini.
+Firmware executable `DM303V4.004.bin` tidak diubah.
 
 SHA-256 firmware utama:
 
