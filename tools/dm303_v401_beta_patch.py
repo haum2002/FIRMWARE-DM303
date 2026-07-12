@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE = Path("DM303-V4.0/DM303V4.004.bin")
+SOURCE = Path("backup/DM303 V4.0-read only/DM303V4.004.bin")
 MS_TEXT = Path("localization/ms_MY/TEXT_MS.DAT")
 OUT_DIR = Path("firmware-candidates/v4.0.1-beta")
 OUT_BIN = OUT_DIR / "DM303V4.0.1-beta.bin"

@@ -1,7 +1,8 @@
-# DM303 V4.0.1 beta candidate
+# DM303 V4.0.1 beta staging
 
-This folder contains a direct firmware candidate generated from the official
-V4.0 snapshot in this repository.
+This folder contains staged artifacts generated from the official V4.0 backup
+reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
+`tools/dm303_merge_final_package.py`.
 
 ## Contents
 
@@ -9,6 +10,8 @@ V4.0 snapshot in this repository.
 - `system/TEXT_MS.DAT` - added Bahasa Melayu text resource candidate.
 - `PATCH-REPORT.md` - byte-level patch report.
 - `SHA256SUMS.txt` - hashes for generated candidate files.
+- `FINAL-PACKAGE-REPORT.md` - validation report for the merged final folder.
+- `FINAL-PACKAGE-SHA256.txt` - hashes for the merged final folder.
 
 ## Direct firmware changes
 
@@ -26,6 +29,6 @@ language slot would be easier, but that is not the requested add-only behavior.
 
 ## Safety status
 
-This is a candidate for bench validation. The updater/SD upgrade procedure was
-not patched. Do not treat this as fully validated production firmware until
-recovery, rollback, and device-side behavior are confirmed.
+The updater/SD upgrade procedure was not patched. Treat `DM303-V4.0.1-beta/`
+as the final merged package, but still confirm recovery, rollback, checksum,
+and device-side behavior before relying on it on hardware that cannot be risked.

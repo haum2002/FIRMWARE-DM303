@@ -8,7 +8,7 @@ import hashlib
 from pathlib import Path
 
 
-DEFAULT_CURRENT = Path("DM303-V4.0")
+DEFAULT_CURRENT = Path("DM303-V4.0.1-beta")
 DEFAULT_BACKUP = Path("backup")
 
 
@@ -126,7 +126,7 @@ def main() -> int:
         print_comparison("current", current, f"backup/{path.name}", files)
 
     print("Safety note")
-    print("  This tool is read-only and does not copy backup files into V4.0.")
+    print("  This tool is read-only and does not copy backup files into the final package.")
     return 0
 
 

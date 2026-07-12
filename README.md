@@ -1,44 +1,73 @@
 # FIRMWARE-DM303
 
-Arkib komuniti untuk snapshot firmware AUTool DM303 V4.0.
+Arkib komuniti untuk kerja naik taraf AUTool DM303 daripada firmware rasmi
+V4.0 yang dibekalkan oleh pengguna kepada pakej `v4.0.1 beta`.
 
-Vendor telah menyatakan bahawa peranti ini tidak lagi menerima sokongan
-kemas kini firmware rasmi. Repo ini menyimpan salinan asal supaya analisis,
-backup, dan kerja naik taraf komuniti boleh dibuat secara telus tanpa
-menimpa baseline firmware.
+Vendor telah menyatakan bahawa peranti ini tidak lagi menerima sokongan kemas
+kini firmware rasmi. Repo ini menyimpan hasil analisis, skrip bina semula, dan
+pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
 
-## Kandungan
+## Aliran kerja folder
 
-- `DM303-V4.0/DM303V4.004.bin` - firmware utama.
-- `DM303-V4.0/system/` - aset sistem seperti font, ikon, logo, dan fail teks bahasa.
-- `CHECKSUMS-SHA256.txt` - hash SHA-256 untuk semua fail dalam snapshot ini.
+- `backup/` - rujukan rasmi tempatan sahaja. Folder ini tidak dijejak dalam git,
+  tidak diubah, dan digunakan sebagai input read-only oleh skrip.
+- `firmware-candidates/v4.0.1-beta/` - staging untuk hasil modifikasi, laporan
+  patch, resource Bahasa Melayu, dan checksum candidate.
+- `DM303-V4.0.1-beta/` - folder akhir yang telah digabungkan semula sebagai
+  pakej upgrade/flash.
+- `CHECKSUMS-SHA256.txt` - checksum SHA-256 untuk semua fail dalam folder akhir.
 
-Folder `DM303-V4.0/` ditandakan sebagai binari dalam `.gitattributes` supaya
-Git tidak menukar byte asal firmware semasa checkout atau commit.
+## Pakej akhir
 
-SHA-256 firmware utama:
+Firmware akhir:
 
 ```text
-64faaffb5fb65bdd0057d4fce1d9a2ac93e9229f118fba0a84d758c0ff926158  DM303-V4.0/DM303V4.004.bin
+8ba7a3bc14ad30485d12b6fa4c7acb5c18dbb3dd29d2eda34fa32d83f6a2daf8  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
 ```
+
+Resource Bahasa Melayu:
+
+```text
+7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  DM303-V4.0.1-beta/system/TEXT_MS.DAT
+```
+
+Folder `DM303-V4.0.1-beta/` ditandakan sebagai binari dalam `.gitattributes`
+supaya Git tidak menukar byte firmware, font, ikon, logo, atau resource semasa
+checkout dan commit.
 
 ## Nota keselamatan
 
-- Jangan flash firmware yang telah diubah tanpa checksum, changelog, dan ujian
-  pada unit yang sanggup menanggung risiko.
+- Jangan flash tanpa menyemak checksum, laporan patch, dan kaedah recovery.
+- Bootloader/updater dan prosedur SD upgrade tidak dipatch.
+- Perubahan firmware dibuat melalui skrip, bukan edit binari manual.
 - Simpan salinan firmware asal daripada peranti sendiri jika boleh.
-- Buat kerja eksperimen pada branch berasingan supaya snapshot asal kekal bersih.
-- Catat versi hardware, kaedah flash, dan pilihan recovery sebelum mencuba naik taraf.
+- Catat versi hardware, kaedah flash, dan pilihan rollback sebelum mencuba.
 
-## Kerja naik taraf
+## Arahan ringkas
 
-Analisis upgrade dalaman bermula di [docs/upgrade-analysis.md](docs/upgrade-analysis.md).
-Skrip awal yang digunakan adalah read-only dan tidak menghasilkan firmware
-flashable: [tools/dm303_v4_static_analysis.py](tools/dm303_v4_static_analysis.py).
+Jana semula resource Bahasa Melayu:
 
-Calon resource Bahasa Melayu UI berada di `localization/ms_MY/`. Ia belum
-diintegrasi ke firmware dan tidak boleh dianggap sebagai update flashable.
+```powershell
+python tools/dm303_make_ms_pack.py
+```
 
-Firmware candidate v4.0.1 beta berada di `firmware-candidates/v4.0.1-beta/`.
-Ia mengubah binari candidate sahaja; firmware asal dalam `DM303-V4.0/` kekal
-byte-identical.
+Jana semula firmware candidate:
+
+```powershell
+python tools/dm303_v401_beta_patch.py
+```
+
+Gabungkan staging ke folder akhir:
+
+```powershell
+python tools/dm303_merge_final_package.py
+```
+
+Sahkan binari dan resource:
+
+```powershell
+python tools/dm303_v4_static_analysis.py --no-walk
+python tools/dm303_text_resource.py --input DM303-V4.0.1-beta/system/TEXT_MS.DAT --verify-rebuild
+```
+
+Analisis penuh berada di [docs/upgrade-analysis.md](docs/upgrade-analysis.md).

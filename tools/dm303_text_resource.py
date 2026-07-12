@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DEFAULT_TEXT = Path("DM303-V4.0/system/TEXT_EN.DAT")
+DEFAULT_TEXT = Path("backup/DM303 V4.0-read only/system/TEXT_EN.DAT")
 
 
 @dataclass(frozen=True)

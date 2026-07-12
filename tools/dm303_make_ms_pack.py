@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Build a Malay (ms-MY) UI text resource candidate for DM303.
+"""Build a Malay (ms-MY) UI text resource for DM303.
 
-The generated resource is intentionally kept outside DM303-V4.0/system. It is
-not integrated into the firmware image and is not a flashable update package.
+The generated resource is reviewed in localization/ms_MY and then copied into
+the staging/final packages by the firmware build workflow.
 """
 
 from __future__ import annotations
@@ -15,7 +15,7 @@ from pathlib import Path
 from dm303_text_resource import parse_text_dat, rebuild, sha256
 
 
-DEFAULT_SOURCE = Path("DM303-V4.0/system/TEXT_EN.DAT")
+DEFAULT_SOURCE = Path("backup/DM303 V4.0-read only/system/TEXT_EN.DAT")
 DEFAULT_OUTPUT_DIR = Path("localization/ms_MY")
 
 
@@ -496,7 +496,7 @@ def main() -> int:
     print(f"text_ms={text_ms} size={len(rebuilt)} sha256={sha256(rebuilt)}")
     print(f"slot_candidate={slot_candidate}")
     print(f"translations_csv={csv_path}")
-    print("safety_note=not integrated; firmware binary and upgrade system untouched")
+    print("safety_note=text resource only; firmware binary and upgrade system untouched")
     return 0
 
 
