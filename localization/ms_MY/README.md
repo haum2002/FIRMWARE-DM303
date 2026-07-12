@@ -15,7 +15,7 @@ Files in this folder are generated from
 `TEXT_MS.DAT` is copied into:
 
 - `firmware-candidates/v4.0.1-beta/system/TEXT_MS.DAT`
-- `DM303-V4.0.1-beta/system/TEXT_MS.DAT`
+- `dm303_firmware/DM303-V4.0.1-beta/system/TEXT_MS.DAT`
 
 The firmware binary does not yet activate a new Malay menu entry. True add-only
 language activation still needs a confirmed spare slot in the hardcoded language

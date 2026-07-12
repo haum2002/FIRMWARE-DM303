@@ -30,25 +30,31 @@ FAULT_BLOCK_SIZE = 20
 FAULT_STUB_VECTOR = 0x08017555
 VECTOR_WORDS = 80
 
-DEFAULT_PROFILE = "relay-settle-exp1"
+DEFAULT_PROFILE = "force-stable-exp2"
 PROFILES = {
     "boot-acceptance": {
         "fault_reset": False,
         "runtime_patches": False,
-        "relay_settle_patches": False,
+        "relay_settle_profile": None,
         "description": "minimal beta identity and resource build",
     },
     "anti-freeze-exp1": {
         "fault_reset": True,
         "runtime_patches": True,
-        "relay_settle_patches": False,
+        "relay_settle_profile": None,
         "description": "reset on fault/default handler and return from known fail-stop loops",
     },
     "relay-settle-exp1": {
         "fault_reset": True,
         "runtime_patches": True,
-        "relay_settle_patches": True,
+        "relay_settle_profile": "exp1",
         "description": "anti-freeze plus longer relay/range settling delays for zeroing and mode changes",
+    },
+    "force-stable-exp2": {
+        "fault_reset": True,
+        "runtime_patches": True,
+        "relay_settle_profile": "exp2",
+        "description": "exp1 plus stronger relay/range settling for unstable AC/DC current switching",
     },
 }
 
@@ -91,25 +97,47 @@ RUNTIME_ANTI_FREEZE_PATCHES = {
 }
 
 RELAY_SETTLE_PATCHES = {
-    # Function 0x0801f0f2 is a GPIO/timing relay or range-selector candidate.
-    # It is called repeatedly by 0x0801f19a when the active measurement path is
-    # changed. The patch only extends waits that already exist in the official
-    # firmware; it does not alter pin order or final pin states.
-    0x0F10A: (
-        bytes.fromhex("02 20"),
-        bytes.fromhex("05 20"),
-        "increase relay selector pre-switch settle wait from 2 to 5 ticks",
-    ),
-    0x0F146: (
-        bytes.fromhex("03 20"),
-        bytes.fromhex("08 20"),
-        "increase relay selector bit-settle wait from 3 to 8 ticks",
-    ),
-    0x0F192: (
-        bytes.fromhex("0a 20"),
-        bytes.fromhex("32 20"),
-        "increase final post-relay settle wait from 10 to 50 ticks",
-    ),
+    "exp1": {
+        # Function 0x0801f0f2 is a GPIO/timing relay or range-selector candidate.
+        # It is called repeatedly by 0x0801f19a when the active measurement path is
+        # changed. The patch only extends waits that already exist in the official
+        # firmware; it does not alter pin order or final pin states.
+        0x0F10A: (
+            bytes.fromhex("02 20"),
+            bytes.fromhex("05 20"),
+            "increase relay selector pre-switch settle wait from 2 to 5 ticks",
+        ),
+        0x0F146: (
+            bytes.fromhex("03 20"),
+            bytes.fromhex("08 20"),
+            "increase relay selector bit-settle wait from 3 to 8 ticks",
+        ),
+        0x0F192: (
+            bytes.fromhex("0a 20"),
+            bytes.fromhex("32 20"),
+            "increase final post-relay settle wait from 10 to 50 ticks",
+        ),
+    },
+    "exp2": {
+        # Stronger wait profile requested after hardware feedback that exp1 still
+        # leaves blanking/instability after DC -> AC -> DC current switching.
+        # This remains a timing-only patch at proven wait instructions.
+        0x0F10A: (
+            bytes.fromhex("02 20"),
+            bytes.fromhex("08 20"),
+            "force-stable: increase relay selector pre-switch settle wait from 2 to 8 ticks",
+        ),
+        0x0F146: (
+            bytes.fromhex("03 20"),
+            bytes.fromhex("0c 20"),
+            "force-stable: increase relay selector bit-settle wait from 3 to 12 ticks",
+        ),
+        0x0F192: (
+            bytes.fromhex("0a 20"),
+            bytes.fromhex("64 20"),
+            "force-stable: increase final post-relay settle wait from 10 to 100 ticks",
+        ),
+    },
 }
 
 
@@ -170,7 +198,7 @@ def write_report(
     profile: str,
     fault_reset: bool,
     runtime_patches: bool,
-    relay_settle_patches: bool,
+    relay_settle_profile: str | None,
     vector_count: int,
 ) -> None:
     fault_scope = (
@@ -183,11 +211,12 @@ def write_report(
         if runtime_patches
         else "- Flashable profile keeps runtime fail-stop loops unchanged."
     )
-    relay_scope = (
-        "- Relay/range selector waits in function `0x0801f0f2` are extended to improve settling after zeroing and mode changes."
-        if relay_settle_patches
-        else "- Relay/range selector timing is kept unchanged."
-    )
+    if relay_settle_profile == "exp1":
+        relay_scope = "- Relay/range selector waits in function `0x0801f0f2` are extended to `5/8/50` ticks."
+    elif relay_settle_profile == "exp2":
+        relay_scope = "- Relay/range selector waits in function `0x0801f0f2` are extended to `8/12/100` ticks for stronger AC/DC switching recovery."
+    else:
+        relay_scope = "- Relay/range selector timing is kept unchanged."
     lines = [
         "# DM303 V4.0.1 beta patch report",
         "",
@@ -245,7 +274,7 @@ def main() -> int:
     profile = args.profile
     fault_reset = bool(PROFILES[profile]["fault_reset"])
     runtime_patches = bool(PROFILES[profile]["runtime_patches"])
-    relay_settle_patches = bool(PROFILES[profile]["relay_settle_patches"])
+    relay_settle_profile = PROFILES[profile]["relay_settle_profile"]
 
     source_data = SOURCE.read_bytes()
     source_hash = sha256_bytes(source_data)
@@ -312,8 +341,8 @@ def main() -> int:
                 )
             records.append(patch_bytes(image, offset, replacement, reason))
 
-    if relay_settle_patches:
-        for offset, (expected, replacement, reason) in RELAY_SETTLE_PATCHES.items():
+    if relay_settle_profile is not None:
+        for offset, (expected, replacement, reason) in RELAY_SETTLE_PATCHES[relay_settle_profile].items():
             before = bytes(image[offset : offset + len(expected)])
             if before != expected:
                 raise SystemExit(
@@ -335,7 +364,7 @@ def main() -> int:
         profile,
         fault_reset,
         runtime_patches,
-        relay_settle_patches,
+        relay_settle_profile,
         len(vector_offsets),
     )
 

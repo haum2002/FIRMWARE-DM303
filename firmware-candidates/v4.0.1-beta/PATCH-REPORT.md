@@ -2,7 +2,7 @@
 
 Status: candidate firmware only. Bench validation is still required before flashing.
 
-Profile: `relay-settle-exp1` - anti-freeze plus longer relay/range settling delays for zeroing and mode changes.
+Profile: `force-stable-exp2` - exp1 plus stronger relay/range settling for unstable AC/DC current switching.
 
 ## Safety scope
 
@@ -11,7 +11,7 @@ Profile: `relay-settle-exp1` - anti-freeze plus longer relay/range settling dela
 - Bootloader/updater code and SD update procedure are not patched.
 - Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ recovery stub.
 - Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever.
-- Relay/range selector waits in function `0x0801f0f2` are extended to improve settling after zeroing and mode changes.
+- Relay/range selector waits in function `0x0801f0f2` are extended to `8/12/100` ticks for stronger AC/DC switching recovery.
 - Patched self-loop vector entries: `56`.
 - Bahasa Melayu resource is added to the candidate folder as `system/TEXT_MS.DAT`.
 - True add-only language menu activation is not patched yet because the hardcoded language table has no confirmed spare slot.
@@ -19,7 +19,7 @@ Profile: `relay-settle-exp1` - anti-freeze plus longer relay/range settling dela
 ## Hashes
 
 - Source SHA-256: `64faaffb5fb65bdd0057d4fce1d9a2ac93e9229f118fba0a84d758c0ff926158`
-- Output SHA-256: `a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0`
+- Output SHA-256: `c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be`
 - Source size: `203260` bytes
 - Output size: `203260` bytes
 
@@ -88,6 +88,6 @@ Profile: `relay-settle-exp1` - anti-freeze plus longer relay/range settling dela
 | `0x09ca0` | 2 | `fe e7` | `ff e7` | convert runtime fail-stop loop after integrity check into fall-through return |
 | `0x0c6c8` | 2 | `fe e7` | `ff e7` | convert UI/render fail-stop loop into fall-through return |
 | `0x2c4ea` | 2 | `fe e7` | `70 47` | return from semihosting/debug fail-stop instead of looping forever |
-| `0x0f10a` | 2 | `02 20` | `05 20` | increase relay selector pre-switch settle wait from 2 to 5 ticks |
-| `0x0f146` | 2 | `03 20` | `08 20` | increase relay selector bit-settle wait from 3 to 8 ticks |
-| `0x0f192` | 2 | `0a 20` | `32 20` | increase final post-relay settle wait from 10 to 50 ticks |
+| `0x0f10a` | 2 | `02 20` | `08 20` | force-stable: increase relay selector pre-switch settle wait from 2 to 8 ticks |
+| `0x0f146` | 2 | `03 20` | `0c 20` | force-stable: increase relay selector bit-settle wait from 3 to 12 ticks |
+| `0x0f192` | 2 | `0a 20` | `64 20` | force-stable: increase final post-relay settle wait from 10 to 100 ticks |

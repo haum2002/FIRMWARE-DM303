@@ -1,6 +1,7 @@
 # Analisis naik taraf dalaman DM303 V4.0.1 beta
 
-Status: pakej akhir `v4.0.1 beta` telah dijana di `DM303-V4.0.1-beta/`.
+Status: pakej akhir `v4.0.1 beta` telah dijana di
+`dm303_firmware/DM303-V4.0.1-beta/`.
 Validasi yang dibuat ialah validasi statik dan rebuild resource; ujian pada
 device sebenar, recovery, dan rollback masih perlu dibuat sebelum penggunaan
 berisiko rendah boleh disahkan.
@@ -11,7 +12,7 @@ Kerja ini hanya menggunakan firmware rasmi yang dibekalkan di workspace ini:
 
 - `backup/DM303 V4.0-read only/` sebagai rujukan read-only.
 - `firmware-candidates/v4.0.1-beta/` sebagai staging hasil modifikasi.
-- `DM303-V4.0.1-beta/` sebagai folder akhir yang digabungkan.
+- `dm303_firmware/DM303-V4.0.1-beta/` sebagai folder akhir yang digabungkan.
 
 Pakej firmware luar, muat turun awam, dan fail update yang beredar di luar
 tidak digunakan untuk perbandingan, patch, atau gabungan. Fail lama daripada
@@ -42,9 +43,10 @@ ke handler ini, device boleh kelihatan hang kerana handler tidak pernah return.
 
 Selepas pengguna mengesahkan fallback sebelumnya berpunca daripada susunan fail
 SD card, patch anti-freeze dimasukkan semula dan kini dibina bersama profil
-`relay-settle-exp1`. Profil ini menukar laluan exception/default kepada
+`force-stable-exp2`. Profil ini menukar laluan exception/default kepada
 permintaan reset sistem, menukar tiga fail-stop runtime supaya keluar/return
-daripada loop kekal, dan memanjangkan masa settling relay/range selector.
+daripada loop kekal, dan memanjangkan masa settling relay/range selector
+kepada profil konservatif `8/12/100` ticks.
 
 Ini belum menyelesaikan semua punca bacaan tidak stabil seperti DMA/state
 acquisition, filtering, kalibrasi ADC, atau display-update blocking. Ia ialah
@@ -67,8 +69,8 @@ Perubahan yang dibuat:
 - Fail-stop runtime pada offset `0x09ca0`, `0x0c6c8`, dan `0x2c4ea`
   ditukar supaya fall-through/return dan tidak loop selama-lamanya.
 - Delay dalam calon relay/range selector `0x0801f0f2` dipanjangkan:
-  offset `0x0f10a` daripada `2` ke `5`, offset `0x0f146` daripada `3` ke
-  `8`, dan offset `0x0f192` daripada `10` ke `50`.
+  offset `0x0f10a` daripada `2` ke `8`, offset `0x0f146` daripada `3` ke
+  `12`, dan offset `0x0f192` daripada `10` ke `100`.
 - String versi di offset `0x02ca0` dan `0x02cb0` mengekalkan identiti model
   asal dan ditukar kepada `MT100MM V4.0.1b` / `BT100MM V4.0.1b`.
 - Bootloader/updater dan prosedur SD upgrade tidak dipatch.
@@ -76,7 +78,7 @@ Perubahan yang dibuat:
 Hash candidate:
 
 ```text
-a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0  DM303V4.0.1-beta.bin
+c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be  DM303V4.0.1-beta.bin
 ```
 
 Dalam folder flash akhir, fail root juga kekal bernama
@@ -94,7 +96,7 @@ Resource Bahasa Melayu:
 - Source binaan: `backup/DM303 V4.0-read only/system/TEXT_EN.DAT`
 - Candidate: `localization/ms_MY/TEXT_MS.DAT`
 - Staging: `firmware-candidates/v4.0.1-beta/system/TEXT_MS.DAT`
-- Final: belum dimasukkan ke `relay-settle-exp1` build.
+- Final: `dm303_firmware/DM303-V4.0.1-beta/system/TEXT_MS.DAT`.
 
 Validasi semasa:
 
@@ -104,11 +106,10 @@ Validasi semasa:
 - Tiada aksara bukan ASCII untuk mengurangkan risiko font/rendering.
 - SHA-256: `7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd`
 
-Bahasa Melayu ditambah sebagai resource staging baru. Aktivasi menu Bahasa
-Melayu secara add-only belum dipatch kerana jadual nama bahasa hardcoded sekitar
-`0x08035be4` belum mempunyai spare slot yang disahkan. Resource ini sengaja
-belum dioverlay ke folder akhir semasa supaya ujian hardware seterusnya
-menumpukan profil runtime `relay-settle-exp1` dan ikon navmenu sahaja.
+Bahasa Melayu ditambah sebagai resource staging dan dioverlay ke folder akhir
+sebagai fail tambahan `system/TEXT_MS.DAT`. Aktivasi menu Bahasa Melayu secara
+add-only belum dipatch kerana jadual nama bahasa hardcoded sekitar
+`0x08035be4` belum mempunyai spare slot yang disahkan.
 
 ## UI navmenu
 
@@ -116,7 +117,7 @@ Tema gelap navmenu dibuat pada lapisan resource:
 
 - Source asset: `backup/DM303 V4.0-read only/system/icon-*.bmp`
 - Staging: `firmware-candidates/v4.0.1-beta/system/icon-*.bmp`
-- Final: `DM303-V4.0.1-beta/system/icon-*.bmp`
+- Final: `dm303_firmware/DM303-V4.0.1-beta/system/icon-*.bmp`
 - 34 ikon BMP menu final ditukar latar daripada biru kepada gelap.
 - Penjana baru hanya menukar connected menu-card background, bukan semua piksel
   biru secara kasar.
@@ -145,14 +146,15 @@ Peraturan gabungan:
 
 - `backup/` dibaca sahaja dan tidak diubah.
 - `firmware-candidates/v4.0.1-beta/` menjadi input staging.
-- `DM303-V4.0.1-beta/` dibina semula bersih daripada rujukan V4.0 rasmi.
+- `dm303_firmware/DM303-V4.0.1-beta/` dibina semula bersih daripada rujukan
+  V4.0 rasmi.
 - Nama root firmware akhir ialah `DM303V4.0.1-beta.bin`.
 - `DM303V4.004.bin` asal dibuang daripada folder akhir.
 - Kandungan `DM303V4.0.1-beta.bin` akhir mempunyai hash
-  `a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0`.
+  `c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be`.
 - Resource `system/` akhir diambil daripada rujukan V4.0 rasmi dan 34 ikon
   navmenu gelap daripada staging dioverlay.
-- `system/TEXT_MS.DAT` belum dioverlay dalam `relay-settle-exp1` build.
+- `system/TEXT_MS.DAT` dioverlay sebagai resource tambahan Bahasa Melayu.
 - Nested tree tidak sah seperti `system/system/` ditolak.
 
 ## Pembetulan selepas ujian device menolak upgrade
@@ -169,8 +171,10 @@ kepada bentuk yang muat dalam slot 16-byte: `MT100MM V4.0.1b` dan
 `BT100MM V4.0.1b`. Build minimal dan build navmenu gelap sudah diterima oleh
 device. Selepas pengguna mengesahkan masalah fallback lama berpunca daripada
 fail firmware diletakkan dalam folder SD card, profil `anti-freeze-exp1`
-dimasukkan semula dan kemudian dikembangkan kepada `relay-settle-exp1` untuk
-eksperimen settling relay/range. Bahasa Melayu UI masih belum diaktifkan.
+dimasukkan semula, dikembangkan kepada `relay-settle-exp1`, dan kini
+ditingkatkan kepada `force-stable-exp2` untuk eksperimen settling relay/range
+yang lebih konservatif. Bahasa Melayu resource sudah disertakan, tetapi menu
+Bahasa Melayu add-only masih belum diaktifkan.
 
 Laporan akhir:
 

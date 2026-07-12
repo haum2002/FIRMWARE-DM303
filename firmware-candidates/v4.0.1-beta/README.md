@@ -1,7 +1,8 @@
 # DM303 V4.0.1 beta staging
 
 This folder contains staged artifacts generated from the official V4.0 backup
-reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
+reference. The clean flash package is rebuilt into
+`dm303_firmware/DM303-V4.0.1-beta/` with
 `tools/dm303_merge_final_package.py`.
 
 ## Contents
@@ -20,13 +21,13 @@ reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
 ## Direct firmware changes
 
 - The firmware size remains unchanged at `203260` bytes.
-- The flashable profile is now `relay-settle-exp1`.
+- The flashable profile is now `force-stable-exp2`.
 - Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ
   recovery stub.
 - Three known runtime fail-stop loops are changed to return/fall through instead
   of hanging forever.
 - Relay/range selector waits in function `0x0801f0f2` are extended from
-  `2/3/10` ticks to `5/8/50` ticks while preserving GPIO order and final pin
+  `2/3/10` ticks to `8/12/100` ticks while preserving GPIO order and final pin
   states.
 - Version strings at offsets `0x02ca0` and `0x02cb0` preserve the original
   model IDs and are marked `MT100MM V4.0.1b` / `BT100MM V4.0.1b`.
@@ -47,16 +48,18 @@ rendering hooks and storage/state mapping, not only BMP resource changes.
 
 ## Bahasa Melayu status
 
-Bahasa Melayu has been added as a resource file in this candidate folder.
-The hardcoded language-name table in the firmware has no confirmed spare slot,
-so true add-only menu activation is not patched yet. Replacing an existing
-language slot would be easier, but that is not the requested add-only behavior.
+Bahasa Melayu has been added as a resource file in this candidate folder and
+is copied into the final package as `system/TEXT_MS.DAT`. The hardcoded
+language-name table in the firmware has no confirmed spare slot, so true
+add-only menu activation is not patched yet. Replacing an existing language
+slot would be easier, but that is not the requested add-only behavior.
 
 ## Safety status
 
-The updater/SD upgrade procedure was not patched. Treat `DM303-V4.0.1-beta/`
-as the final merged package; its root firmware filename is intentionally
-`DM303V4.0.1-beta.bin`. The current final package includes the
-`relay-settle-exp1` runtime patch profile and dark navmenu BMP resources. Still
-confirm recovery, rollback, checksum, and device-side behavior before relying on
-it on hardware that cannot be risked.
+The updater/SD upgrade procedure was not patched. Treat
+`dm303_firmware/DM303-V4.0.1-beta/` as the final merged package; its root
+firmware filename is intentionally `DM303V4.0.1-beta.bin`. The current final
+package includes the `force-stable-exp2` runtime patch profile, Malay text
+resource, and dark navmenu BMP resources. Still confirm recovery, rollback,
+checksum, and device-side behavior before relying on it on hardware that cannot
+be risked.

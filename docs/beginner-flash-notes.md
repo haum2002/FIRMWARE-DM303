@@ -4,8 +4,8 @@ Nota ini untuk orang yang baru pertama kali melihat pakej DM303.
 
 ## Fail yang perlu masuk SD card
 
-Salin isi folder `DM303-V4.0.1-beta/` terus ke root SD card, bukan ke dalam
-folder tambahan.
+Salin isi folder `dm303_firmware/DM303-V4.0.1-beta/` terus ke root SD card,
+bukan ke dalam folder tambahan.
 
 Root SD card sepatutnya kelihatan begini:
 
@@ -31,13 +31,14 @@ boot semula ke firmware asal.
 - Nama fail update yang dipilih ialah `DM303V4.0.1-beta.bin`.
 - Navmenu patut menggunakan ikon berlatar gelap yang lebih kemas, dengan border
   pada kad ikon. Ikon dan tulisan asal tidak diskala semula.
-- Build ini menggunakan profil `relay-settle-exp1`.
+- Build ini menggunakan profil `force-stable-exp2`.
 - Semasa zeroing atau tukar DC/AC, relay mungkin terasa sedikit lebih lambat
-  kerana masa settling sengaja dipanjangkan.
+  kerana masa settling sengaja dipanjangkan kepada profil `8/12/100` ticks.
 
 ## Apa yang belum aktif
 
-- Bahasa Melayu UI belum aktif dalam menu bahasa.
+- Resource Bahasa Melayu `system/TEXT_MS.DAT` sudah disertakan, tetapi pilihan
+  Bahasa Melayu belum aktif dalam menu bahasa.
 - Patch ini belum menjamin akurasi bacaan penuh; ia mengurangkan risiko hang
   kekal dan menambah masa settling relay/range sebelum bacaan disambung semula.
 - Jam/tarikh header, pilihan 12/24 jam, dan pilihan paparan bateri belum
@@ -48,7 +49,7 @@ boot semula ke firmware asal.
 Sahkan hash firmware:
 
 ```text
-a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0  DM303V4.0.1-beta.bin
+c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be  DM303V4.0.1-beta.bin
 ```
 
 Skrip validasi utama:
@@ -79,8 +80,8 @@ python tools/dm303_merge_final_package.py --profile anti-freeze-exp1
 Untuk kembali kepada build semasa selepas diagnosis:
 
 ```powershell
-python tools/dm303_v401_beta_patch.py --profile relay-settle-exp1
-python tools/dm303_merge_final_package.py --profile relay-settle-exp1
+python tools/dm303_v401_beta_patch.py --profile force-stable-exp2
+python tools/dm303_merge_final_package.py --profile force-stable-exp2
 ```
 
 ## Ujian selepas flash untuk isu bacaan

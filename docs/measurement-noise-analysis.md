@@ -1,6 +1,6 @@
 # DM303 measurement noise and zeroing analysis
 
-Status: first conservative firmware experiment added in `relay-settle-exp1`.
+Status: second conservative firmware experiment added in `force-stable-exp2`.
 This document records current evidence and safe next steps so the firmware is
 not falsely marked as fully optimized.
 
@@ -81,19 +81,22 @@ Static inspection found a strong relay/range-selector candidate:
 - The mode routine contains groups of three selector calls, matching the
   reported multiple relay clicks during zeroing or mode changes.
 
-The `relay-settle-exp1` profile extends only existing waits in
-`0x0801f0f2`. It does not change GPIO order, pin masks, updater code, or
-measurement math:
+The earlier `relay-settle-exp1` profile extended only existing waits in
+`0x0801f0f2`. After user feedback that instability remained, the current
+`force-stable-exp2` profile keeps the same patch points but uses a more
+conservative timing set. It does not change GPIO order, pin masks, updater
+code, or measurement math:
 
 | Offset | Official wait | Patched wait | Purpose |
 |---:|---:|---:|---|
-| `0x0f10a` | `2` ticks | `5` ticks | pre-switch settle |
-| `0x0f146` | `3` ticks | `8` ticks | selector bit settle |
-| `0x0f192` | `10` ticks | `50` ticks | final post-relay settle before acquisition resumes |
+| `0x0f10a` | `2` ticks | `8` ticks | pre-switch settle |
+| `0x0f146` | `3` ticks | `12` ticks | selector bit settle |
+| `0x0f192` | `10` ticks | `100` ticks | final post-relay settle before acquisition resumes |
 
 This patch is intended to reduce blank/freeze after DC -> AC -> DC switching
-and prevent zeroing from capturing a bad offset too early. It is not a complete
-analog noise or RMS accuracy fix.
+and prevent zeroing from capturing a bad offset too early. It is expected to
+increase switching/zeroing latency. It is not a complete analog noise or RMS
+accuracy fix.
 
 ## Most likely root causes
 
@@ -132,8 +135,9 @@ analog noise or RMS accuracy fix.
   reference.
 - Capture injector output with an external oscilloscope across the real load or
   a safe dummy load.
-- Compare official V4.0, `boot-acceptance`, `anti-freeze-exp1`, and current
-  `relay-settle-exp1` with the same test sequence.
+- Compare official V4.0, `boot-acceptance`, `anti-freeze-exp1`,
+  `relay-settle-exp1`, and current `force-stable-exp2` with the same test
+  sequence.
 
 ## Patch direction
 

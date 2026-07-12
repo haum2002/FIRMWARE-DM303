@@ -13,8 +13,8 @@ pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
   tidak diubah, dan digunakan sebagai input read-only oleh skrip.
 - `firmware-candidates/v4.0.1-beta/` - staging untuk hasil modifikasi, laporan
   patch, resource Bahasa Melayu, dan checksum candidate.
-- `DM303-V4.0.1-beta/` - folder akhir yang telah digabungkan semula sebagai
-  pakej upgrade/flash.
+- `dm303_firmware/DM303-V4.0.1-beta/` - folder akhir yang telah digabungkan
+  semula sebagai pakej upgrade/flash.
 - `CHECKSUMS-SHA256.txt` - checksum SHA-256 untuk semua fail dalam folder akhir.
 
 ## Pakej akhir
@@ -22,28 +22,29 @@ pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
 Firmware akhir:
 
 ```text
-a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
+c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be  dm303_firmware/DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
 ```
 
 Nama fail root `DM303V4.0.1-beta.bin` digunakan supaya updater dan pengguna
 dapat melihat identiti beta secara terus. String model dalaman masih mengekalkan
 prefix asal `MT100MM`/`BT100MM` dengan versi ringkas `V4.0.1b`.
 
-Pakej akhir semasa ialah **relay-settle-exp1 build**. Firmware mengekalkan
-identiti `V4.0.1b`, memasukkan 34 ikon navmenu gelap, mengalih fault/default
-self-loop handler kepada permintaan reset sistem, menukar tiga runtime
-fail-stop loop supaya tidak mengunci peranti selama-lamanya, dan memanjangkan
-masa settling relay/range selector sebelum bacaan disambung semula.
+Pakej akhir semasa ialah **force-stable-exp2 build**. Firmware mengekalkan
+identiti `V4.0.1b`, memasukkan 34 ikon navmenu gelap, menambah resource Bahasa
+Melayu, mengalih fault/default self-loop handler kepada permintaan reset
+sistem, menukar tiga runtime fail-stop loop supaya tidak mengunci peranti
+selama-lamanya, dan memanjangkan masa settling relay/range selector kepada
+profil lebih konservatif `8/12/100` ticks sebelum bacaan disambung semula.
 
 Resource Bahasa Melayu staging:
 
 ```text
-7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  firmware-candidates/v4.0.1-beta/system/TEXT_MS.DAT
+7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  dm303_firmware/DM303-V4.0.1-beta/system/TEXT_MS.DAT
 ```
 
-Folder `DM303-V4.0.1-beta/` ditandakan sebagai binari dalam `.gitattributes`
-supaya Git tidak menukar byte firmware, font, ikon, logo, atau resource semasa
-checkout dan commit.
+Folder `dm303_firmware/DM303-V4.0.1-beta/` ditandakan sebagai binari dalam
+`.gitattributes` supaya Git tidak menukar byte firmware, font, ikon, logo, atau
+resource semasa checkout dan commit.
 
 ## Nota keselamatan
 
@@ -52,9 +53,12 @@ checkout dan commit.
 - Perubahan firmware dibuat melalui skrip, bukan edit binari manual.
 - Patch anti-freeze kod sudah dimasukkan ke folder akhir semasa, tetapi ini
   masih perlu diuji pada device kerana ia mengubah laluan fault/runtime.
-- Patch relay-settle hanya memanjangkan delay sedia ada dalam fungsi
+- Patch force-stable hanya memanjangkan delay sedia ada dalam fungsi
   `0x0801f0f2`; ia belum membuktikan akurasi analog, true RMS, atau noise
   oscilloscope sudah selesai tanpa ujian bench.
+- Bahasa Melayu sudah disertakan sebagai `system/TEXT_MS.DAT`, tetapi menu
+  bahasa add-only belum dipatch kerana slot runtime yang selamat belum
+  disahkan.
 - Simpan salinan firmware asal daripada peranti sendiri jika boleh.
 - Catat versi hardware, kaedah flash, dan pilihan rollback sebelum mencuba.
 
@@ -72,11 +76,11 @@ Jana semula firmware candidate:
 python tools/dm303_v401_beta_patch.py
 ```
 
-Jana semula profil relay-settle semasa secara eksplisit:
+Jana semula profil force-stable semasa secara eksplisit:
 
 ```powershell
-python tools/dm303_v401_beta_patch.py --profile relay-settle-exp1
-python tools/dm303_merge_final_package.py --profile relay-settle-exp1
+python tools/dm303_v401_beta_patch.py --profile force-stable-exp2
+python tools/dm303_merge_final_package.py --profile force-stable-exp2
 ```
 
 Jana semula profil minimal untuk rollback/diagnostik:

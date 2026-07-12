@@ -4,7 +4,7 @@
 Workflow:
 1. Treat backup/ as read-only reference input.
 2. Treat firmware-candidates/v4.0.1-beta/ as staging output.
-3. Rebuild DM303-V4.0.1-beta/ as the clean final flash package.
+3. Rebuild dm303_firmware/DM303-V4.0.1-beta/ as the clean final flash package.
 """
 
 from __future__ import annotations
@@ -18,7 +18,7 @@ from pathlib import Path
 WORKSPACE = Path(__file__).resolve().parents[1]
 BACKUP_V4 = WORKSPACE / "backup" / "DM303 V4.0-read only"
 CANDIDATE = WORKSPACE / "firmware-candidates" / "v4.0.1-beta"
-FINAL = WORKSPACE / "DM303-V4.0.1-beta"
+FINAL = WORKSPACE / "dm303_firmware" / "DM303-V4.0.1-beta"
 
 CANDIDATE_BIN = CANDIDATE / "DM303V4.0.1-beta.bin"
 CANDIDATE_MS = CANDIDATE / "system" / "TEXT_MS.DAT"
@@ -26,16 +26,18 @@ FINAL_BIN = FINAL / "DM303V4.0.1-beta.bin"
 FINAL_MS = FINAL / "system" / "TEXT_MS.DAT"
 FINAL_REPORT = CANDIDATE / "FINAL-PACKAGE-REPORT.md"
 FINAL_SUMS = CANDIDATE / "FINAL-PACKAGE-SHA256.txt"
+WORKSPACE_SUMS = WORKSPACE / "CHECKSUMS-SHA256.txt"
 
-DEFAULT_PROFILE = "relay-settle-exp1"
+DEFAULT_PROFILE = "force-stable-exp2"
 EXPECTED_CANDIDATE_SHA256_BY_PROFILE = {
     "anti-freeze-exp1": "9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112",
     "boot-acceptance": "211cf722a13cab09ba0244eb1b9e919bcc40b6b2dcaf0e4f1756675a353edaa4",
     "relay-settle-exp1": "a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0",
+    "force-stable-exp2": "c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be",
 }
 EXPECTED_MS_SHA256 = "7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd"
 INCLUDE_DARK_MENU_ICONS = True
-INCLUDE_MS_RESOURCE = False
+INCLUDE_MS_RESOURCE = True
 
 
 def sha256_file(path: Path) -> str:
@@ -90,6 +92,14 @@ def profile_report_lines(profile: str) -> list[str]:
             "- Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ recovery stub.",
             "- Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever.",
             "- Relay/range selector waits in function `0x0801f0f2` are extended without changing GPIO order or final pin states.",
+        ]
+    if profile == "force-stable-exp2":
+        return [
+            "- Firmware code uses the `force-stable-exp2` profile.",
+            "- Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ recovery stub.",
+            "- Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever.",
+            "- Relay/range selector waits in function `0x0801f0f2` are extended to `8/12/100` ticks without changing GPIO order or final pin states.",
+            "- This is a stability-first timing profile; switching and zeroing may feel slower by design.",
         ]
     return [
         "- Firmware code uses the `boot-acceptance` rollback/diagnostic profile.",
@@ -176,24 +186,29 @@ def validate_final(expected_candidate_sha256: str) -> list[tuple[str, int, str]]
 
 def write_reports(rows: list[tuple[str, int, str]], profile: str) -> None:
     write_text_lf(FINAL_SUMS, "".join(f"{digest}  {rel}\n" for rel, _, digest in rows))
+    prefix = FINAL.relative_to(WORKSPACE).as_posix()
+    write_text_lf(
+        WORKSPACE_SUMS,
+        "".join(f"{digest}  {prefix}/{rel}\n" for rel, _, digest in rows),
+    )
 
     lines = [
         "# DM303 V4.0.1 beta final package report",
         "",
-        "Final folder: `DM303-V4.0.1-beta/`",
+        "Final folder: `dm303_firmware/DM303-V4.0.1-beta/`",
         "",
         "## Source rules",
         "",
         "- `backup/` is read-only reference input.",
         "- `firmware-candidates/v4.0.1-beta/` is staging output.",
-        "- `DM303-V4.0.1-beta/` is rebuilt as the clean flash package.",
+        "- `dm303_firmware/DM303-V4.0.1-beta/` is rebuilt as the clean flash package.",
         "",
         "## Final package checks",
         "",
         f"- File count: `{len(rows)}`",
         f"- Firmware: `DM303V4.0.1-beta.bin`",
         f"- Firmware SHA-256: `{sha256_file(FINAL_BIN)}`",
-        f"- Malay UI resource SHA-256: `not included in this {profile} package`",
+        f"- Malay UI resource SHA-256: `{sha256_file(FINAL_MS) if INCLUDE_MS_RESOURCE else f'not included in this {profile} package'}`",
         f"- Staged system overlays copied: `{len(staged_system_overlays())}`",
         "- Dark navmenu overlays use a connected-background mask, preserve original glyph and label pixels, and add a card border inside each 92x92 icon asset.",
         *profile_report_lines(profile),
@@ -243,6 +258,7 @@ def main() -> int:
     else:
         print("final_text_ms_sha256=not-included")
     print(f"report={FINAL_REPORT}")
+    print(f"workspace_checksums={WORKSPACE_SUMS}")
     return 0
 
 
