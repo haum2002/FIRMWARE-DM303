@@ -7,6 +7,8 @@ reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
 ## Contents
 
 - `DM303V4.0.1-beta.bin` - patched firmware candidate.
+- Final flash package stores this same candidate content as `DM303V4.004.bin`
+  for updater compatibility.
 - `system/TEXT_MS.DAT` - added Bahasa Melayu text resource candidate.
 - `system/icon-*.bmp` - dark nav-menu icon resources.
 - `PATCH-REPORT.md` - byte-level patch report.
@@ -40,5 +42,7 @@ language slot would be easier, but that is not the requested add-only behavior.
 ## Safety status
 
 The updater/SD upgrade procedure was not patched. Treat `DM303-V4.0.1-beta/`
-as the final merged package, but still confirm recovery, rollback, checksum,
-and device-side behavior before relying on it on hardware that cannot be risked.
+as the final merged package; its root firmware filename is intentionally kept
+as `DM303V4.004.bin` even though the content is the `V4.0.1 beta` candidate.
+Still confirm recovery, rollback, checksum, and device-side behavior before
+relying on it on hardware that cannot be risked.

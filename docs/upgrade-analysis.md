@@ -82,6 +82,10 @@ Hash candidate:
 05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1  DM303V4.0.1-beta.bin
 ```
 
+Dalam folder flash akhir, kandungan candidate hash yang sama disimpan dengan
+nama root rasmi `DM303V4.004.bin` supaya updater SD tidak menolak pakej kerana
+nama fail firmware berubah.
+
 ## Bahasa Melayu UI
 
 Format `TEXT_*.DAT` telah diparse dan boleh dibina semula byte-identical.
@@ -135,11 +139,32 @@ Peraturan gabungan:
 - `backup/` dibaca sahaja dan tidak diubah.
 - `firmware-candidates/v4.0.1-beta/` menjadi input staging.
 - `DM303-V4.0.1-beta/` dibina semula bersih daripada rujukan V4.0 rasmi.
-- `DM303V4.004.bin` asal dibuang daripada folder akhir.
-- `DM303V4.0.1-beta.bin` dimasukkan sebagai firmware utama.
+- Nama root firmware akhir dikekalkan sebagai `DM303V4.004.bin` untuk
+  keserasian updater SD.
+- Kandungan `DM303V4.004.bin` akhir diganti dengan candidate `v4.0.1 beta`
+  yang mempunyai hash `05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1`.
+- `DM303V4.0.1-beta.bin` tidak dibenarkan berada di root folder akhir kerana
+  ujian device menunjukkan pakej dengan nama root beta ditolak dan device boot
+  semula seperti biasa.
 - `system/TEXT_MS.DAT` dimasukkan sebagai resource Bahasa Melayu tambahan.
 - Ikon navmenu gelap daripada staging dioverlay ke folder final.
 - Nested tree tidak sah seperti `system/system/` ditolak.
+
+## Pembetulan selepas ujian device menolak upgrade
+
+Ujian pada device menunjukkan pakej akhir sebelumnya tidak masuk proses update:
+fungsi upgrade tertutup dan device boot seperti biasa. Punca yang boleh
+dibuktikan daripada set fail ialah mismatch nama firmware root: pakej rasmi
+V4.0 menggunakan `DM303V4.004.bin`, manakala pakej modifikasi sebelumnya
+meletakkan firmware utama sebagai `DM303V4.0.1-beta.bin`.
+
+Skrip gabungan kini membina semula folder akhir dengan bentuk updater rasmi:
+`DM303V4.004.bin`, `QBtest.txt`, `readme.txt`, dan `system/`. Hash
+`DM303V4.004.bin` akhir sama dengan candidate `v4.0.1 beta`, jadi pembetulan
+ini tidak membuang patch anti-freeze, versi, Bahasa Melayu resource, atau ikon
+navmenu gelap. Semakan checksum biasa pada ekor fail tidak menunjukkan medan
+CRC/sum standard yang jelas; jika device masih menolak pakej bernama rasmi ini,
+langkah seterusnya ialah memetakan rutin validator updater dalam firmware.
 
 Laporan akhir:
 

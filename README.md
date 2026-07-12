@@ -22,8 +22,11 @@ pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
 Firmware akhir:
 
 ```text
-05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
+05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1  DM303-V4.0.1-beta/DM303V4.004.bin
 ```
+
+Nama fail root `DM303V4.004.bin` dikekalkan untuk keserasian updater SD.
+Kandungannya ialah firmware candidate `v4.0.1 beta` yang telah dipatch.
 
 Resource Bahasa Melayu:
 

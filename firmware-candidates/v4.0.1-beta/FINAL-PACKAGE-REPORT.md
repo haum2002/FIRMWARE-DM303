@@ -11,18 +11,20 @@ Final folder: `DM303-V4.0.1-beta/`
 ## Final package checks
 
 - File count: `69`
-- Firmware: `DM303V4.0.1-beta.bin`
+- Firmware: `DM303V4.004.bin`
 - Firmware SHA-256: `05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1`
 - Malay UI resource SHA-256: `7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd`
 - Staged system overlays copied: `35`
-- Original `DM303V4.004.bin` is not present in final package.
+- Root firmware filename is kept as `DM303V4.004.bin` for updater compatibility.
+- The `DM303V4.004.bin` content hash matches the staged V4.0.1 beta candidate.
+- Updater-incompatible root name `DM303V4.0.1-beta.bin` is not present.
 - Invalid nested `system/system/` tree is not present.
 
 ## Files
 
 | Path | Size | SHA-256 |
 |---|---:|---|
-| `DM303V4.0.1-beta.bin` | 203260 | `05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1` |
+| `DM303V4.004.bin` | 203260 | `05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1` |
 | `QBtest.txt` | 206 | `f5dbf843a66f86919a7a0c9084069dcf48145270c7f87273894cbfe1bf74a287` |
 | `readme.txt` | 115 | `9cd641f93c673b447cc3855f21b9299a510950beed17e37fb073c9db60424fdc` |
 | `system/ASCII64.dat` | 24320 | `e82995fad4c4227d97aef5db2befa7dda23397d71d8277f8ab2842a9ec5c6018` |

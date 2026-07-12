@@ -21,7 +21,7 @@ FINAL = WORKSPACE / "DM303-V4.0.1-beta"
 
 CANDIDATE_BIN = CANDIDATE / "DM303V4.0.1-beta.bin"
 CANDIDATE_MS = CANDIDATE / "system" / "TEXT_MS.DAT"
-FINAL_BIN = FINAL / "DM303V4.0.1-beta.bin"
+FINAL_BIN = FINAL / "DM303V4.004.bin"
 FINAL_MS = FINAL / "system" / "TEXT_MS.DAT"
 FINAL_REPORT = CANDIDATE / "FINAL-PACKAGE-REPORT.md"
 FINAL_SUMS = CANDIDATE / "FINAL-PACKAGE-SHA256.txt"
@@ -94,10 +94,6 @@ def rebuild_final() -> None:
 
     copy_tree_contents(backup_resolved, final_resolved)
 
-    original_bin = final_resolved / "DM303V4.004.bin"
-    if original_bin.exists():
-        original_bin.unlink()
-
     shutil.copy2(CANDIDATE_BIN, FINAL_BIN)
     for source in staged_system_overlays():
         rel = source.relative_to(CANDIDATE)
@@ -118,12 +114,12 @@ def inventory(root: Path) -> list[tuple[str, int, str]]:
 def validate_final() -> list[tuple[str, int, str]]:
     rows = inventory(FINAL)
     rels = {rel for rel, _, _ in rows}
-    if "DM303V4.004.bin" in rels:
-        raise SystemExit("Final folder still contains original DM303V4.004.bin")
+    if "DM303V4.0.1-beta.bin" in rels:
+        raise SystemExit("Final folder contains updater-incompatible beta filename")
     if "system/system/ASCII64.dat" in rels:
         raise SystemExit("Final folder contains invalid nested system/system tree")
-    if "DM303V4.0.1-beta.bin" not in rels:
-        raise SystemExit("Final folder is missing DM303V4.0.1-beta.bin")
+    if "DM303V4.004.bin" not in rels:
+        raise SystemExit("Final folder is missing updater-compatible DM303V4.004.bin")
     if "system/TEXT_MS.DAT" not in rels:
         raise SystemExit("Final folder is missing system/TEXT_MS.DAT")
 
@@ -154,11 +150,13 @@ def write_reports(rows: list[tuple[str, int, str]]) -> None:
         "## Final package checks",
         "",
         f"- File count: `{len(rows)}`",
-        f"- Firmware: `DM303V4.0.1-beta.bin`",
+        f"- Firmware: `DM303V4.004.bin`",
         f"- Firmware SHA-256: `{sha256_file(FINAL_BIN)}`",
         f"- Malay UI resource SHA-256: `{sha256_file(FINAL_MS)}`",
         f"- Staged system overlays copied: `{len(staged_system_overlays())}`",
-        "- Original `DM303V4.004.bin` is not present in final package.",
+        "- Root firmware filename is kept as `DM303V4.004.bin` for updater compatibility.",
+        "- The `DM303V4.004.bin` content hash matches the staged V4.0.1 beta candidate.",
+        "- Updater-incompatible root name `DM303V4.0.1-beta.bin` is not present.",
         "- Invalid nested `system/system/` tree is not present.",
         "",
         "## Files",
