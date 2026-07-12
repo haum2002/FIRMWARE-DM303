@@ -1,4 +1,13 @@
 .gitattributes text eol=lf
+.gitignore text eol=lf
 README.md text eol=lf
 CHECKSUMS-SHA256.txt text eol=lf
-DM303-V4.0/** binary
+*.md text eol=lf
+*.py text eol=lf
+*.txt text eol=lf
+DM303-V4.0.1-beta/** binary
+backup/** binary
+localization/**/*.DAT binary
+firmware-candidates/**/*.bin binary
+firmware-candidates/**/*.DAT binary
+firmware-candidates/**/*.bmp binary
