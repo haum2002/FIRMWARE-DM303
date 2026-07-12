@@ -9,6 +9,7 @@ Workflow:
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import shutil
 from pathlib import Path
@@ -26,7 +27,11 @@ FINAL_MS = FINAL / "system" / "TEXT_MS.DAT"
 FINAL_REPORT = CANDIDATE / "FINAL-PACKAGE-REPORT.md"
 FINAL_SUMS = CANDIDATE / "FINAL-PACKAGE-SHA256.txt"
 
-EXPECTED_CANDIDATE_SHA256 = "211cf722a13cab09ba0244eb1b9e919bcc40b6b2dcaf0e4f1756675a353edaa4"
+DEFAULT_PROFILE = "anti-freeze-exp1"
+EXPECTED_CANDIDATE_SHA256_BY_PROFILE = {
+    "anti-freeze-exp1": "9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112",
+    "boot-acceptance": "211cf722a13cab09ba0244eb1b9e919bcc40b6b2dcaf0e4f1756675a353edaa4",
+}
 EXPECTED_MS_SHA256 = "7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd"
 INCLUDE_DARK_MENU_ICONS = True
 INCLUDE_MS_RESOURCE = False
@@ -71,7 +76,21 @@ def staged_system_overlays() -> list[Path]:
     return sorted({path for path in overlays if path.exists()})
 
 
-def validate_inputs() -> None:
+def profile_report_lines(profile: str) -> list[str]:
+    if profile == "anti-freeze-exp1":
+        return [
+            "- Firmware code uses the `anti-freeze-exp1` profile.",
+            "- Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ recovery stub.",
+            "- Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever.",
+        ]
+    return [
+        "- Firmware code uses the `boot-acceptance` rollback/diagnostic profile.",
+        "- Fault/default handlers are kept unchanged.",
+        "- Runtime fail-stop loops are kept unchanged.",
+    ]
+
+
+def validate_inputs(expected_candidate_sha256: str) -> None:
     required = [BACKUP_V4, CANDIDATE, CANDIDATE_BIN]
     if INCLUDE_MS_RESOURCE:
         required.append(CANDIDATE_MS)
@@ -80,7 +99,7 @@ def validate_inputs() -> None:
             raise SystemExit(f"Missing required input: {path}")
 
     candidate_hash = sha256_file(CANDIDATE_BIN)
-    if candidate_hash != EXPECTED_CANDIDATE_SHA256:
+    if candidate_hash != expected_candidate_sha256:
         raise SystemExit(f"Unexpected candidate firmware hash: {candidate_hash}")
 
     if INCLUDE_MS_RESOURCE:
@@ -124,7 +143,7 @@ def inventory(root: Path) -> list[tuple[str, int, str]]:
     return rows
 
 
-def validate_final() -> list[tuple[str, int, str]]:
+def validate_final(expected_candidate_sha256: str) -> list[tuple[str, int, str]]:
     rows = inventory(FINAL)
     rels = {rel for rel, _, _ in rows}
     if "DM303V4.004.bin" in rels:
@@ -137,7 +156,7 @@ def validate_final() -> list[tuple[str, int, str]]:
         raise SystemExit("Final folder is missing system/TEXT_MS.DAT")
 
     final_bin_hash = sha256_file(FINAL_BIN)
-    if final_bin_hash != EXPECTED_CANDIDATE_SHA256:
+    if final_bin_hash != expected_candidate_sha256:
         raise SystemExit(f"Final firmware hash mismatch: {final_bin_hash}")
     if INCLUDE_MS_RESOURCE:
         final_ms_hash = sha256_file(FINAL_MS)
@@ -147,7 +166,7 @@ def validate_final() -> list[tuple[str, int, str]]:
     return rows
 
 
-def write_reports(rows: list[tuple[str, int, str]]) -> None:
+def write_reports(rows: list[tuple[str, int, str]], profile: str) -> None:
     write_text_lf(FINAL_SUMS, "".join(f"{digest}  {rel}\n" for rel, _, digest in rows))
 
     lines = [
@@ -166,10 +185,11 @@ def write_reports(rows: list[tuple[str, int, str]]) -> None:
         f"- File count: `{len(rows)}`",
         f"- Firmware: `DM303V4.0.1-beta.bin`",
         f"- Firmware SHA-256: `{sha256_file(FINAL_BIN)}`",
-        "- Malay UI resource SHA-256: `not included in this visible-resource package`",
+        f"- Malay UI resource SHA-256: `not included in this {profile} package`",
         f"- Staged system overlays copied: `{len(staged_system_overlays())}`",
-        "- Final package includes only dark navmenu BMP overlays as the visible proof step.",
-        "- Firmware code still stays on the minimal boot-acceptance profile.",
+        "- Dark navmenu overlays use a connected-background mask, preserve original glyph and label pixels, and add a card border inside each 92x92 icon asset.",
+        *profile_report_lines(profile),
+        "- Header clock/date, 12/24 hour setting, and battery percent/bar display are not included because no safe runtime header hook has been confirmed.",
         "- Root firmware filename is intentionally `DM303V4.0.1-beta.bin` so the updater must display the beta identity.",
         "- The `DM303V4.0.1-beta.bin` content hash matches the staged V4.0.1 beta candidate.",
         "- Original root name `DM303V4.004.bin` is not present in the final package.",
@@ -185,15 +205,29 @@ def write_reports(rows: list[tuple[str, int, str]]) -> None:
     write_text_lf(FINAL_REPORT, "\n".join(lines) + "\n")
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--profile",
+        choices=sorted(EXPECTED_CANDIDATE_SHA256_BY_PROFILE),
+        default=DEFAULT_PROFILE,
+        help="expected candidate profile to merge",
+    )
+    return parser.parse_args()
+
+
 def main() -> int:
-    validate_inputs()
+    args = parse_args()
+    expected_candidate_sha256 = EXPECTED_CANDIDATE_SHA256_BY_PROFILE[args.profile]
+    validate_inputs(expected_candidate_sha256)
     rebuild_final()
-    rows = validate_final()
-    write_reports(rows)
+    rows = validate_final(expected_candidate_sha256)
+    write_reports(rows, args.profile)
 
     print(f"backup_reference={BACKUP_V4}")
     print(f"candidate={CANDIDATE}")
     print(f"final={FINAL}")
+    print(f"profile={args.profile}")
     print(f"final_files={len(rows)}")
     print(f"final_firmware_sha256={sha256_file(FINAL_BIN)}")
     if INCLUDE_MS_RESOURCE:

@@ -22,16 +22,17 @@ pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
 Firmware akhir:
 
 ```text
-211cf722a13cab09ba0244eb1b9e919bcc40b6b2dcaf0e4f1756675a353edaa4  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
+9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
 ```
 
 Nama fail root `DM303V4.0.1-beta.bin` digunakan supaya updater dan pengguna
 dapat melihat identiti beta secara terus. String model dalaman masih mengekalkan
 prefix asal `MT100MM`/`BT100MM` dengan versi ringkas `V4.0.1b`.
 
-Pakej akhir semasa ialah **visible-resource build**. Firmware kod masih profil
-minimal yang sudah diterima device, tetapi 34 ikon navmenu gelap dimasukkan
-semula sebagai bukti visual rendah risiko.
+Pakej akhir semasa ialah **anti-freeze-exp1 build**. Firmware mengekalkan
+identiti `V4.0.1b`, memasukkan 34 ikon navmenu gelap, mengalih fault/default
+self-loop handler kepada permintaan reset sistem, dan menukar tiga runtime
+fail-stop loop supaya tidak mengunci peranti selama-lamanya.
 
 Resource Bahasa Melayu staging:
 
@@ -48,8 +49,8 @@ checkout dan commit.
 - Jangan flash tanpa menyemak checksum, laporan patch, dan kaedah recovery.
 - Bootloader/updater dan prosedur SD upgrade tidak dipatch.
 - Perubahan firmware dibuat melalui skrip, bukan edit binari manual.
-- Patch anti-freeze kod belum dimasukkan ke folder akhir semasa; perubahan
-  visible sekarang hanya firmware versi minimal dan ikon navmenu gelap.
+- Patch anti-freeze kod sudah dimasukkan ke folder akhir semasa, tetapi ini
+  masih perlu diuji pada device kerana ia mengubah laluan fault/runtime.
 - Simpan salinan firmware asal daripada peranti sendiri jika boleh.
 - Catat versi hardware, kaedah flash, dan pilihan rollback sebelum mencuba.
 
@@ -65,6 +66,13 @@ Jana semula firmware candidate:
 
 ```powershell
 python tools/dm303_v401_beta_patch.py
+```
+
+Jana semula profil minimal untuk rollback/diagnostik:
+
+```powershell
+python tools/dm303_v401_beta_patch.py --profile boot-acceptance
+python tools/dm303_merge_final_package.py --profile boot-acceptance
 ```
 
 Jana tema gelap ikon navmenu:

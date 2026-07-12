@@ -40,19 +40,15 @@ UsageFault, dan banyak default vector. Jika spike isyarat, overload, akses
 memori tidak sah, peripheral state rosak, atau interrupt tidak dijangka masuk
 ke handler ini, device boleh kelihatan hang kerana handler tidak pernah return.
 
-Patch anti-freeze eksperimen pernah menukar laluan exception/default kepada
-permintaan reset dan menukar beberapa fail-stop runtime kepada return. Ujian
-hardware selepas itu menunjukkan white-screen/loading fallback ke firmware asal.
-Selepas identiti beta minimal disahkan berjaya pada device, folder akhir semasa
-dinaikkan kepada visible-resource build: firmware kod masih minimal, tetapi
-ikon navmenu gelap dioverlay sebagai bukti visual rendah risiko. Patch
-anti-freeze kod masih disimpan sebagai calon eksperimen sehingga punca fallback
-dipetakan dengan lebih tepat.
+Selepas pengguna mengesahkan fallback sebelumnya berpunca daripada susunan fail
+SD card, patch anti-freeze dimasukkan semula sebagai profil `anti-freeze-exp1`.
+Profil ini menukar laluan exception/default kepada permintaan reset sistem dan
+menukar tiga fail-stop runtime supaya keluar/return daripada loop kekal.
 
 Ini belum menyelesaikan semua punca bacaan tidak stabil seperti DMA/state
-acquisition, filtering, atau display-update blocking. Langkah semasa ialah
-memastikan device menerima identiti beta yang paling minimal sebelum patch
-fungsi dimasukkan semula secara satu-per-satu.
+acquisition, filtering, kalibrasi ADC, atau display-update blocking. Ia ialah
+patch reliability/recovery untuk mengurangkan keadaan hang kekal apabila fault
+atau fail-stop path tercetus.
 
 ## Perubahan firmware candidate
 
@@ -65,10 +61,10 @@ firmware-candidates/v4.0.1-beta/DM303V4.0.1-beta.bin
 Perubahan yang dibuat:
 
 - Saiz binari kekal `203260` bytes.
-- Vector exception/default dikekalkan seperti firmware asal dalam
-  visible-resource build.
+- Vector exception/default self-loop dialihkan kepada stub recovery yang menulis
+  `SCB_AIRCR SYSRESETREQ`.
 - Fail-stop runtime pada offset `0x09ca0`, `0x0c6c8`, dan `0x2c4ea`
-  dikekalkan seperti firmware asal dalam visible-resource build.
+  ditukar supaya fall-through/return dan tidak loop selama-lamanya.
 - String versi di offset `0x02ca0` dan `0x02cb0` mengekalkan identiti model
   asal dan ditukar kepada `MT100MM V4.0.1b` / `BT100MM V4.0.1b`.
 - Bootloader/updater dan prosedur SD upgrade tidak dipatch.
@@ -76,7 +72,7 @@ Perubahan yang dibuat:
 Hash candidate:
 
 ```text
-211cf722a13cab09ba0244eb1b9e919bcc40b6b2dcaf0e4f1756675a353edaa4  DM303V4.0.1-beta.bin
+9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112  DM303V4.0.1-beta.bin
 ```
 
 Dalam folder flash akhir, fail root juga kekal bernama
@@ -94,7 +90,7 @@ Resource Bahasa Melayu:
 - Source binaan: `backup/DM303 V4.0-read only/system/TEXT_EN.DAT`
 - Candidate: `localization/ms_MY/TEXT_MS.DAT`
 - Staging: `firmware-candidates/v4.0.1-beta/system/TEXT_MS.DAT`
-- Final: belum dimasukkan ke visible-resource build.
+- Final: belum dimasukkan ke `anti-freeze-exp1` build.
 
 Validasi semasa:
 
@@ -107,8 +103,8 @@ Validasi semasa:
 Bahasa Melayu ditambah sebagai resource staging baru. Aktivasi menu Bahasa
 Melayu secara add-only belum dipatch kerana jadual nama bahasa hardcoded sekitar
 `0x08035be4` belum mempunyai spare slot yang disahkan. Resource ini sengaja
-belum dioverlay ke folder akhir semasa supaya ujian hardware seterusnya hanya
-menguji ikon navmenu gelap sebagai perubahan visual.
+belum dioverlay ke folder akhir semasa supaya ujian hardware seterusnya
+menumpukan profil runtime `anti-freeze-exp1` dan ikon navmenu sahaja.
 
 ## UI navmenu
 
@@ -149,10 +145,10 @@ Peraturan gabungan:
 - Nama root firmware akhir ialah `DM303V4.0.1-beta.bin`.
 - `DM303V4.004.bin` asal dibuang daripada folder akhir.
 - Kandungan `DM303V4.0.1-beta.bin` akhir mempunyai hash
-  `211cf722a13cab09ba0244eb1b9e919bcc40b6b2dcaf0e4f1756675a353edaa4`.
+  `9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112`.
 - Resource `system/` akhir diambil daripada rujukan V4.0 rasmi dan 34 ikon
   navmenu gelap daripada staging dioverlay.
-- `system/TEXT_MS.DAT` belum dioverlay dalam visible-resource build.
+- `system/TEXT_MS.DAT` belum dioverlay dalam `anti-freeze-exp1` build.
 - Nested tree tidak sah seperti `system/system/` ditolak.
 
 ## Pembetulan selepas ujian device menolak upgrade
@@ -166,10 +162,10 @@ fail dianggap bukan firmware yang sesuai.
 
 Patch seterusnya masih mengekalkan prefix model dan hanya menaikkan versi
 kepada bentuk yang muat dalam slot 16-byte: `MT100MM V4.0.1b` dan
-`BT100MM V4.0.1b`. Build minimal itu sudah diterima oleh device. Folder akhir
-kini hanya menambah ikon navmenu gelap tanpa patch anti-freeze kod dan tanpa
-Bahasa Melayu UI. Jika build ini stabil, perubahan resource asas boleh dianggap
-selamat dan langkah seterusnya ialah aktifkan perubahan lain satu demi satu.
+`BT100MM V4.0.1b`. Build minimal dan build navmenu gelap sudah diterima oleh
+device. Selepas pengguna mengesahkan masalah fallback lama berpunca daripada
+fail firmware diletakkan dalam folder SD card, profil `anti-freeze-exp1`
+dimasukkan semula ke folder akhir. Bahasa Melayu UI masih belum diaktifkan.
 
 Laporan akhir:
 

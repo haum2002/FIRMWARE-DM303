@@ -8,6 +8,7 @@ any device-side test.
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import shutil
 from dataclasses import dataclass
@@ -29,11 +30,19 @@ FAULT_BLOCK_SIZE = 20
 FAULT_STUB_VECTOR = 0x08017555
 VECTOR_WORDS = 80
 
-# Hardware testing showed the full anti-freeze candidate reaches the loading
-# screen and then falls back to the original firmware. Keep the flashable
-# default profile minimal until the beta identity itself is accepted.
-ENABLE_EXPERIMENTAL_FAULT_RESET_PATCH = False
-ENABLE_EXPERIMENTAL_RUNTIME_PATCHES = False
+DEFAULT_PROFILE = "anti-freeze-exp1"
+PROFILES = {
+    "boot-acceptance": {
+        "fault_reset": False,
+        "runtime_patches": False,
+        "description": "minimal beta identity and resource build",
+    },
+    "anti-freeze-exp1": {
+        "fault_reset": True,
+        "runtime_patches": True,
+        "description": "reset on fault/default handler and return from known fail-stop loops",
+    },
+}
 
 ORIGINAL_FAULT_BLOCK = bytes.fromhex("fe e7 " * 10)
 
@@ -124,19 +133,40 @@ def find_self_loop_vectors(data: bytes) -> list[int]:
     return vector_offsets
 
 
-def write_report(records: list[PatchRecord], source_data: bytes, output_data: bytes) -> None:
+def write_report(
+    records: list[PatchRecord],
+    source_data: bytes,
+    output_data: bytes,
+    profile: str,
+    fault_reset: bool,
+    runtime_patches: bool,
+    vector_count: int,
+) -> None:
+    fault_scope = (
+        "- Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ recovery stub."
+        if fault_reset
+        else "- Flashable profile keeps fault/default handlers unchanged."
+    )
+    runtime_scope = (
+        "- Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever."
+        if runtime_patches
+        else "- Flashable profile keeps runtime fail-stop loops unchanged."
+    )
     lines = [
         "# DM303 V4.0.1 beta patch report",
         "",
         "Status: candidate firmware only. Bench validation is still required before flashing.",
+        "",
+        f"Profile: `{profile}` - {PROFILES[profile]['description']}.",
         "",
         "## Safety scope",
         "",
         "- Source firmware is not modified in place.",
         "- Output binary size is unchanged.",
         "- Bootloader/updater code and SD update procedure are not patched.",
-        "- Flashable default profile keeps fault/default handlers unchanged.",
-        "- Flashable default profile keeps runtime fail-stop loops unchanged.",
+        fault_scope,
+        runtime_scope,
+        f"- Patched self-loop vector entries: `{vector_count}`.",
         "- Bahasa Melayu resource is added to the candidate folder as `system/TEXT_MS.DAT`.",
         "- True add-only language menu activation is not patched yet because the hardcoded language table has no confirmed spare slot.",
         "",
@@ -162,7 +192,23 @@ def write_report(records: list[PatchRecord], source_data: bytes, output_data: by
     write_text_lf(OUT_REPORT, "\n".join(lines) + "\n")
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--profile",
+        choices=sorted(PROFILES),
+        default=DEFAULT_PROFILE,
+        help="patch profile to generate",
+    )
+    return parser.parse_args()
+
+
 def main() -> int:
+    args = parse_args()
+    profile = args.profile
+    fault_reset = bool(PROFILES[profile]["fault_reset"])
+    runtime_patches = bool(PROFILES[profile]["runtime_patches"])
+
     source_data = SOURCE.read_bytes()
     source_hash = sha256_bytes(source_data)
     if source_hash != SOURCE_SHA256:
@@ -170,7 +216,7 @@ def main() -> int:
             f"Refusing to patch unexpected source hash: {source_hash}"
         )
 
-    if ENABLE_EXPERIMENTAL_FAULT_RESET_PATCH:
+    if fault_reset:
         if source_data[FAULT_BLOCK_OFFSET : FAULT_BLOCK_OFFSET + FAULT_BLOCK_SIZE] != ORIGINAL_FAULT_BLOCK:
             raise SystemExit("Refusing to patch: fault handler block does not match expected V4.0 bytes")
 
@@ -181,7 +227,7 @@ def main() -> int:
     records: list[PatchRecord] = []
 
     vector_offsets: list[int] = []
-    if ENABLE_EXPERIMENTAL_FAULT_RESET_PATCH:
+    if fault_reset:
         vector_offsets = find_self_loop_vectors(source_data)
         if not vector_offsets:
             raise SystemExit("No self-loop vectors found; refusing to patch")
@@ -218,7 +264,7 @@ def main() -> int:
             )
         )
 
-    if ENABLE_EXPERIMENTAL_RUNTIME_PATCHES:
+    if runtime_patches:
         for offset, (replacement, reason) in RUNTIME_ANTI_FREEZE_PATCHES.items():
             before = bytes(image[offset : offset + len(replacement)])
             if before != b"\xfe\xe7":
@@ -234,7 +280,7 @@ def main() -> int:
     if MS_TEXT.exists():
         shutil.copy2(MS_TEXT, OUT_SYSTEM / "TEXT_MS.DAT")
 
-    write_report(records, source_data, output_data)
+    write_report(records, source_data, output_data, profile, fault_reset, runtime_patches, len(vector_offsets))
 
     sums = [
         f"{sha256_file(OUT_BIN)}  {OUT_BIN.name}",
@@ -247,7 +293,7 @@ def main() -> int:
     print(f"source={SOURCE}")
     print(f"source_sha256={source_hash}")
     print(f"output={OUT_BIN}")
-    print("profile=boot_acceptance")
+    print(f"profile={profile}")
     print(f"output_size={len(output_data)}")
     print(f"output_sha256={sha256_file(OUT_BIN)}")
     print(f"patched_vectors={len(vector_offsets)}")
