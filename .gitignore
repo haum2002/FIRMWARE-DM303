@@ -6,12 +6,12 @@ venv/
 __pycache__/
 .mypy_cache/
 .pytest_cache/
-dist/
-build/
 target/
 .gradle/
 
-# Compiled files
+# Build artifacts
+dist/
+build/
 *.pyc
 *.class
 *.o
