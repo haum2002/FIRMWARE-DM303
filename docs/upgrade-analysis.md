@@ -67,6 +67,25 @@ Validasi semasa:
 
 Calon ini belum dimasukkan ke `DM303-V4.0/system/` dan belum boleh dianggap flashable. Firmware semasa juga belum merujuk filename `TEXT_MS.DAT`; paparan sebenar di device memerlukan ujian slot bahasa sedia ada atau patch firmware yang lebih berisiko, jadi ia ditangguhkan sehingga rollback dan checksum update jelas.
 
+## Candidate v4.0.1 beta
+
+Firmware candidate langsung telah dijana di `firmware-candidates/v4.0.1-beta/`.
+
+Perubahan pada `DM303V4.0.1-beta.bin`:
+
+- Saiz binari kekal `203260` bytes.
+- 56 vector exception/default yang sebelum ini menuju ke self-loop `FE E7` kini menuju ke satu stub recovery di `0x08017554`.
+- Stub recovery menulis `0x05FA0004` ke `SCB_AIRCR` (`0xE000ED0C`) untuk meminta hardware reset.
+- Tiada vector self-loop dikesan selepas patch.
+- String versi di offset `0x02ca0` dan `0x02cb0` ditukar kepada `V4.0.1 beta`.
+- `system/TEXT_MS.DAT` ditambah dalam folder candidate sebagai resource Bahasa Melayu.
+
+Had yang masih perlu diselesaikan:
+
+- Aktivasi menu Bahasa Melayu secara add-only belum dipatch. Jadual nama bahasa hardcoded berada sekitar `0x08035be4` dan tiada spare slot yang disahkan. Mengganti slot bahasa sedia ada lebih mudah, tetapi itu bukan arahan yang diminta.
+- Patch ini mengubah behavior freeze daripada hang kekal kepada reset apabila exception/default IRQ berlaku. Ia belum membetulkan semua kemungkinan punca bacaan tidak stabil seperti DMA/state acquisition/display blocking.
+- Candidate ini belum diuji pada device sebenar dan belum disahkan oleh recovery/rollback hardware.
+
 ## Arah naik taraf v4.0.1 beta
 
 1. Kekalkan firmware v4.0 asal byte-identical dan boleh disahkan semula.
@@ -110,4 +129,12 @@ Bina calon Bahasa Melayu:
 python tools/dm303_make_ms_pack.py
 ```
 
-Skrip ini read-only. Ia tidak menghasilkan firmware yang telah dipatch.
+Bina firmware candidate v4.0.1 beta:
+
+```powershell
+python tools/dm303_v401_beta_patch.py
+```
+
+Skrip analisis dan compare adalah read-only. `tools/dm303_v401_beta_patch.py`
+menjana firmware candidate baharu di `firmware-candidates/v4.0.1-beta/` tanpa
+menimpa firmware asal.

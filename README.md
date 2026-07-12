@@ -38,3 +38,7 @@ flashable: [tools/dm303_v4_static_analysis.py](tools/dm303_v4_static_analysis.py
 
 Calon resource Bahasa Melayu UI berada di `localization/ms_MY/`. Ia belum
 diintegrasi ke firmware dan tidak boleh dianggap sebagai update flashable.
+
+Firmware candidate v4.0.1 beta berada di `firmware-candidates/v4.0.1-beta/`.
+Ia mengubah binari candidate sahaja; firmware asal dalam `DM303-V4.0/` kekal
+byte-identical.
