@@ -28,8 +28,8 @@ reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
 ## Navmenu UI status
 
 The menu icon BMP resources are staged with a dark background, yellow icons,
-and preserved 92x92 16-bit BMP layout. They are not copied into the current
-boot-acceptance final package.
+and preserved 92x92 16-bit BMP layout. They are copied into the current final
+package as the visible proof step.
 
 ## Bahasa Melayu status
 
@@ -42,7 +42,7 @@ language slot would be easier, but that is not the requested add-only behavior.
 
 The updater/SD upgrade procedure was not patched. Treat `DM303-V4.0.1-beta/`
 as the final merged package; its root firmware filename is intentionally
-`DM303V4.0.1-beta.bin`. The current final package uses stock V4.0 system
-resources to isolate the fallback cause seen on hardware. Still confirm
-recovery, rollback, checksum, and device-side behavior before relying on it on
-hardware that cannot be risked.
+`DM303V4.0.1-beta.bin`. The current final package keeps firmware code minimal
+and adds only dark navmenu BMP resources. Still confirm recovery, rollback,
+checksum, and device-side behavior before relying on it on hardware that cannot
+be risked.

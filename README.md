@@ -29,9 +29,9 @@ Nama fail root `DM303V4.0.1-beta.bin` digunakan supaya updater dan pengguna
 dapat melihat identiti beta secara terus. String model dalaman masih mengekalkan
 prefix asal `MT100MM`/`BT100MM` dengan versi ringkas `V4.0.1b`.
 
-Pakej akhir semasa ialah **boot-acceptance build**. Ia menggunakan resource
-`system/` rasmi V4.0 tanpa overlay Bahasa Melayu atau ikon gelap supaya punca
-fallback hardware boleh diasingkan dahulu.
+Pakej akhir semasa ialah **visible-resource build**. Firmware kod masih profil
+minimal yang sudah diterima device, tetapi 34 ikon navmenu gelap dimasukkan
+semula sebagai bukti visual rendah risiko.
 
 Resource Bahasa Melayu staging:
 
@@ -48,8 +48,8 @@ checkout dan commit.
 - Jangan flash tanpa menyemak checksum, laporan patch, dan kaedah recovery.
 - Bootloader/updater dan prosedur SD upgrade tidak dipatch.
 - Perubahan firmware dibuat melalui skrip, bukan edit binari manual.
-- Patch anti-freeze kod belum dimasukkan ke folder akhir semasa kerana build
-  penuh sebelumnya menyebabkan white-screen/loading fallback pada device.
+- Patch anti-freeze kod belum dimasukkan ke folder akhir semasa; perubahan
+  visible sekarang hanya firmware versi minimal dan ikon navmenu gelap.
 - Simpan salinan firmware asal daripada peranti sendiri jika boleh.
 - Catat versi hardware, kaedah flash, dan pilihan rollback sebelum mencuba.
 
@@ -87,3 +87,5 @@ python tools/dm303_text_resource.py --input firmware-candidates/v4.0.1-beta/syst
 ```
 
 Analisis penuh berada di [docs/upgrade-analysis.md](docs/upgrade-analysis.md).
+
+Nota flash untuk pemula berada di [docs/beginner-flash-notes.md](docs/beginner-flash-notes.md).
