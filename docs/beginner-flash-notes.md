@@ -29,14 +29,15 @@ boot semula ke firmware asal.
 
 - Versi firmware menunjukkan `V4.0.1b`.
 - Nama fail update yang dipilih ialah `DM303V4.0.1-beta.bin`.
-- Navmenu patut menggunakan ikon berlatar gelap.
+- Navmenu patut menggunakan ikon berlatar gelap yang lebih kemas, dengan border
+  pada kad ikon. Ikon dan tulisan asal tidak diskala semula.
 
 ## Apa yang belum aktif
 
 - Bahasa Melayu UI belum aktif dalam menu bahasa.
 - Patch anti-freeze kod belum dimasukkan ke final semasa.
 - Jam/tarikh header, pilihan 12/24 jam, dan pilihan paparan bateri belum
-  dipatch.
+  dipatch. Jika paparan itu belum muncul, itu normal untuk build ini.
 
 ## Cara semak pakej
 

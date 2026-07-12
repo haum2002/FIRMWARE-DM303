@@ -118,12 +118,20 @@ Tema gelap navmenu dibuat pada lapisan resource:
 - Staging: `firmware-candidates/v4.0.1-beta/system/icon-*.bmp`
 - Final: `DM303-V4.0.1-beta/system/icon-*.bmp`
 - 34 ikon BMP menu final ditukar latar daripada biru kepada gelap.
+- Penjana baru hanya menukar connected menu-card background, bukan semua piksel
+  biru secara kasar.
+- Ikon dan label asal tidak diskala semula, jadi ketajaman asal dikekalkan.
+- Border kad ikon ditambah di dalam setiap aset `92x92`.
 - Header BMP, dimensi `92x92`, row layout, dan saiz fail dikekalkan.
 - Laporan: `firmware-candidates/v4.0.1-beta/DARK-MENU-ASSETS.md`
 
 Fungsi UI runtime seperti jam/tarikh di header, pilihan 12/24 jam, pilihan
 bateri peratus/bar, dan border header antara navmenu/bateri belum dipatch
 kerana titik fungsi render/header dan storage setting belum disahkan selamat.
+Carian statik menunjukkan string format masa seperti `Year-Mon-Day Hour:Min:Sec`,
+tetapi belum menjumpai literal RTC `0x40002800` atau laluan render header yang
+boleh dipatch tanpa risiko fallback/brick. Ini masih tugas runtime berikutnya,
+bukan resource-only patch.
 
 ## Pakej akhir
 

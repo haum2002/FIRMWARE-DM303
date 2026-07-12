@@ -27,9 +27,17 @@ reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
 
 ## Navmenu UI status
 
-The menu icon BMP resources are staged with a dark background, yellow icons,
-and preserved 92x92 16-bit BMP layout. They are copied into the current final
-package as the visible proof step.
+The menu icon BMP resources are staged with a cleaner dark background,
+preserved yellow/white glyph pixels, and a card border on each icon asset.
+The dark conversion now recolors only the connected menu-card background so
+the original icon and label sharpness is not rescaled or softened. The 92x92
+16-bit BMP layout is preserved, and the assets are copied into the current
+final package as the visible proof step.
+
+Header-level items requested for the navmenu, including a top divider/border,
+clock/date display, 12/24 hour option, and battery percent/bar option, are not
+patched in this flashable package yet. Those items require confirmed runtime
+rendering hooks and storage/state mapping, not only BMP resource changes.
 
 ## Bahasa Melayu status
 

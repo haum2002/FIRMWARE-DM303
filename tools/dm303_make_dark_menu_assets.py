@@ -3,7 +3,7 @@
 
 The firmware loads fixed 92x92 16-bit BMP files by filename. This tool keeps
 the original BMP headers, dimensions, row layout, and file sizes intact while
-recoloring only the blue menu-card background to a dark theme.
+recoloring only the connected menu-card background to a cleaner dark theme.
 """
 
 from __future__ import annotations
@@ -47,10 +47,15 @@ def is_blue_menu_background(red: int, green: int, blue: int) -> bool:
     )
 
 
-def darken_background(red: int, green: int, blue: int) -> tuple[int, int, int]:
-    luma = (red * 30 + green * 59 + blue * 11) // 100
-    lift = min(22, luma // 8)
-    return 12 + lift, 14 + lift, 17 + lift
+def dark_background_color(x: int, y: int, width: int, height: int) -> tuple[int, int, int]:
+    # Subtle vertical + center lift keeps the card from looking flat while
+    # preserving the original low-resolution icon pixels untouched.
+    vertical = int(10 * y / max(1, height - 1))
+    cx = abs(x - (width - 1) / 2) / max(1, width / 2)
+    cy = abs(y - (height - 1) / 2) / max(1, height / 2)
+    center = max(0, int(9 * (1.0 - min(1.0, (cx * cx + cy * cy) ** 0.5))))
+    lift = vertical + center
+    return 10 + lift, 13 + lift, 16 + lift
 
 
 def read_bmp_geometry(data: bytes, path: Path) -> tuple[int, int, int, int]:
@@ -74,33 +79,76 @@ def set_pixel(data: bytearray, pixel_offset: int, width: int, height: int, x: in
     struct.pack_into("<H", data, offset, value)
 
 
+def get_pixel(data: bytes | bytearray, pixel_offset: int, width: int, height: int, x: int, y: int) -> int:
+    row_size = ((width * 16 + 31) // 32) * 4
+    source_y = y if height < 0 else abs(height) - 1 - y
+    offset = pixel_offset + source_y * row_size + x * 2
+    return struct.unpack_from("<H", data, offset)[0]
+
+
+def connected_background_mask(data: bytes, pixel_offset: int, width: int, height: int) -> set[tuple[int, int]]:
+    abs_height = abs(height)
+    mask: set[tuple[int, int]] = set()
+    queue: list[tuple[int, int]] = []
+
+    def maybe_add(x: int, y: int) -> None:
+        if not (0 <= x < width and 0 <= y < abs_height) or (x, y) in mask:
+            return
+        red, green, blue = rgb565_to_rgb(get_pixel(data, pixel_offset, width, height, x, y))
+        if is_blue_menu_background(red, green, blue):
+            mask.add((x, y))
+            queue.append((x, y))
+
+    for x in range(width):
+        maybe_add(x, 0)
+        maybe_add(x, abs_height - 1)
+    for y in range(abs_height):
+        maybe_add(0, y)
+        maybe_add(width - 1, y)
+
+    index = 0
+    while index < len(queue):
+        x, y = queue[index]
+        index += 1
+        maybe_add(x + 1, y)
+        maybe_add(x - 1, y)
+        maybe_add(x, y + 1)
+        maybe_add(x, y - 1)
+    return mask
+
+
 def transform_bmp(source: Path, destination: Path) -> tuple[int, str, str]:
     original = source.read_bytes()
     data = bytearray(original)
     pixel_offset, width, height, _ = read_bmp_geometry(original, source)
-    row_size = ((width * 16 + 31) // 32) * 4
     changed_pixels = 0
+    bg_mask = connected_background_mask(original, pixel_offset, width, height)
 
-    for y in range(abs(height)):
-        row_offset = pixel_offset + y * row_size
-        for x in range(width):
-            offset = row_offset + x * 2
-            value = struct.unpack_from("<H", data, offset)[0]
-            red, green, blue = rgb565_to_rgb(value)
-            if not is_blue_menu_background(red, green, blue):
-                continue
-            replacement = rgb_to_rgb565(*darken_background(red, green, blue))
-            if replacement != value:
-                struct.pack_into("<H", data, offset, replacement)
-                changed_pixels += 1
+    for x, y in bg_mask:
+        value = get_pixel(data, pixel_offset, width, height, x, y)
+        replacement = rgb_to_rgb565(*dark_background_color(x, y, width, abs(height)))
+        if replacement != value:
+            set_pixel(data, pixel_offset, width, height, x, y, replacement)
+            changed_pixels += 1
 
-    border = rgb_to_rgb565(42, 46, 52)
+    outer = rgb_to_rgb565(5, 7, 9)
+    inner = rgb_to_rgb565(44, 51, 57)
+    highlight = rgb_to_rgb565(70, 76, 80)
+    shadow = rgb_to_rgb565(20, 24, 28)
+    max_y = abs(height) - 1
+    max_x = width - 1
     for x in range(width):
-        set_pixel(data, pixel_offset, width, height, x, 0, border)
-        set_pixel(data, pixel_offset, width, height, x, abs(height) - 1, border)
+        for y, color in [(0, outer), (1, highlight), (max_y - 1, shadow), (max_y, outer)]:
+            before = get_pixel(data, pixel_offset, width, height, x, y)
+            set_pixel(data, pixel_offset, width, height, x, y, color)
+            if before != color:
+                changed_pixels += 1
     for y in range(abs(height)):
-        set_pixel(data, pixel_offset, width, height, 0, y, border)
-        set_pixel(data, pixel_offset, width, height, width - 1, y, border)
+        for x, color in [(0, outer), (1, inner), (max_x - 1, shadow), (max_x, outer)]:
+            before = get_pixel(data, pixel_offset, width, height, x, y)
+            set_pixel(data, pixel_offset, width, height, x, y, color)
+            if before != color:
+                changed_pixels += 1
 
     if len(data) != len(original):
         raise ValueError(f"size changed unexpectedly: {source}")
@@ -151,7 +199,8 @@ def main() -> int:
         "",
         "- Source assets in `backup/` are read-only.",
         "- BMP dimensions, headers, row layout, and file sizes are preserved.",
-        "- Only blue menu-card background pixels are recolored.",
+        "- Only connected menu-card background pixels and the card border are recolored.",
+        "- Icon glyphs and label pixels are not rescaled.",
         "- Firmware code, bootloader, and updater are not touched by this tool.",
         "",
         "## Files",
