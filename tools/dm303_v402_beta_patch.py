@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """DM303 V4.0.2-beta Enhanced Firmware Patcher.
 
+Safety status: known unsafe experiment.
+
+The generated V4.0.2b candidate from this script was audited and found to patch
+guessed offsets that overwrite executable code and loader strings. This script
+is kept for forensic reproducibility only. It now requires an explicit unsafe
+acknowledgement before it will emit firmware.
+
 This patcher implements comprehensive enhancements for the DM303 multimeter:
 1. Flashlight 3-level brightness (short press: ON → change level, long press: OFF)
 2. Bahasa Melayu UI activation
@@ -47,6 +54,7 @@ SOURCE_SHA256 = "a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b
 # ============================================================================
 
 DEFAULT_PROFILE = "full-enhanced"
+UNSAFE_ACK = "I_UNDERSTAND_V402_QWEN_PATCHES_ARE_UNVERIFIED_AND_CAN_BRICK_DM303"
 PROFILES = {
     "minimal": {
         "flashlight_3level": False,
@@ -640,7 +648,23 @@ def main(argv: list[str] | None = None) -> int:
         default=OUT_DIR,
         help="Output directory for candidate firmware",
     )
+    parser.add_argument(
+        "--allow-known-unsafe",
+        action="store_true",
+        help="allow regenerating the audited-unsafe Qwen V4.0.2b experiment",
+    )
+    parser.add_argument(
+        "--unsafe-ack",
+        default="",
+        help="required acknowledgement string when using --allow-known-unsafe",
+    )
     args = parser.parse_args(argv)
+
+    if not args.allow_known_unsafe or args.unsafe_ack != UNSAFE_ACK:
+        print("ERROR: refusing to generate the audited-unsafe Qwen V4.0.2b firmware.")
+        print("See docs/v402-qwen-audit.md for the byte-level findings.")
+        print(f"To reproduce only, pass --allow-known-unsafe --unsafe-ack {UNSAFE_ACK}")
+        return 2
 
     # Validate source
     if not args.source.exists():

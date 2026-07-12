@@ -6,6 +6,9 @@ CHECKSUMS-SHA256.txt text eol=lf
 *.py text eol=lf
 *.txt text eol=lf
 DM303-V4.0.1-beta/** binary
+dm303_firmware/DM303-V4.0.1-beta/** binary
+dm303_firmware/*.md text eol=lf
+dm303_firmware/**/*.md text eol=lf
 backup/** binary
 localization/**/*.DAT binary
 firmware-candidates/**/*.bin binary

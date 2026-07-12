@@ -1,5 +1,13 @@
 # DM303 V4.0.2-beta Enhanced Patch Report
 
+Safety status: UNSAFE / DO NOT FLASH.
+
+Post-generation audit found that this Qwen-generated candidate overwrites
+executable code and loader text at several guessed offsets. The feature claims
+below are preserved as the original generated report, but they are not accepted
+as implemented or safe. See `docs/v402-qwen-audit.md` before using any file in
+this folder.
+
 **Status**: Candidate firmware for bench validation. Test thoroughly before flashing.
 
 **Profile**: `full-enhanced` - complete V4.0.2-beta with all enhancements
