@@ -1,3 +1,4 @@
 /backup/
+/analysis/
 __pycache__/
 *.pyc

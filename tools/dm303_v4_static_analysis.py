@@ -345,6 +345,29 @@ def print_vector_summary(vectors: list[VectorEntry]) -> None:
         print(f"  {vector.name:12s} vector {vector.index:02d} -> off 0x{vector.offset:05x}")
 
 
+def print_runtime_self_loop_summary(buf: bytes) -> None:
+    hits: list[int] = []
+    start = 0
+    while True:
+        offset = buf.find(b"\xfe\xe7", start)
+        if offset < 0:
+            break
+        hits.append(offset)
+        start = offset + 1
+
+    print()
+    print("Runtime self-loop opcodes")
+    if not hits:
+        print("  none")
+        return
+    for offset in hits:
+        addr = offset_to_addr(offset)
+        note = ""
+        if offset == 0x755E:
+            note = " post-SYSRESETREQ recovery stub hold"
+        print(f"  off 0x{offset:05x} addr 0x{addr:08x}{note}")
+
+
 def pc_relative_literals(buf: bytes, start: int, max_insns: int = 4) -> list[tuple[int, int, int]]:
     md = Cs(CS_ARCH_ARM, CS_MODE_THUMB)
     md.detail = True
@@ -508,6 +531,7 @@ def main(argv: list[str]) -> int:
     print()
 
     print_vector_summary(vectors)
+    print_runtime_self_loop_summary(buf)
     print_reset_stub_summary(buf, vectors)
     strings = print_string_summary(buf)
     print_system_reference_summary(args.image, strings)

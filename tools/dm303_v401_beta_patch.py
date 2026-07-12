@@ -50,6 +50,23 @@ VERSION_PATCHES = {
     0x02CB0: b"V4.0.1 beta\x00\x00\x00\x00\x00",
 }
 
+RUNTIME_ANTI_FREEZE_PATCHES = {
+    # These are fail-stop/assertion paths outside the vector table. Normal
+    # successful execution already returns before reaching these bytes.
+    0x09CA0: (
+        bytes.fromhex("ff e7"),
+        "convert runtime fail-stop loop after integrity check into fall-through return",
+    ),
+    0x0C6C8: (
+        bytes.fromhex("ff e7"),
+        "convert UI/render fail-stop loop into fall-through return",
+    ),
+    0x2C4EA: (
+        bytes.fromhex("70 47"),
+        "return from semihosting/debug fail-stop instead of looping forever",
+    ),
+}
+
 
 @dataclass(frozen=True)
 class PatchRecord:
@@ -69,6 +86,11 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def write_text_lf(path: Path, text: str) -> None:
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(text)
 
 
 def u32_at(data: bytes, offset: int) -> int:
@@ -108,6 +130,7 @@ def write_report(records: list[PatchRecord], source_data: bytes, output_data: by
         "- Output binary size is unchanged.",
         "- Bootloader/updater code and SD update procedure are not patched.",
         "- Fault/default self-loop handlers are redirected to a hardware reset request.",
+        "- Runtime fail-stop loops are converted to return/fall-through paths.",
         "- Bahasa Melayu resource is added to the candidate folder as `system/TEXT_MS.DAT`.",
         "- True add-only language menu activation is not patched yet because the hardcoded language table has no confirmed spare slot.",
         "",
@@ -130,7 +153,7 @@ def write_report(records: list[PatchRecord], source_data: bytes, output_data: by
             f"{record.reason} |"
         )
 
-    OUT_REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    write_text_lf(OUT_REPORT, "\n".join(lines) + "\n")
 
 
 def main() -> int:
@@ -186,6 +209,15 @@ def main() -> int:
             )
         )
 
+    for offset, (replacement, reason) in RUNTIME_ANTI_FREEZE_PATCHES.items():
+        before = bytes(image[offset : offset + len(replacement)])
+        if before != b"\xfe\xe7":
+            raise SystemExit(
+                f"Refusing to patch anti-freeze guard at 0x{offset:05x}: "
+                f"unexpected bytes {before.hex(' ')}"
+            )
+        records.append(patch_bytes(image, offset, replacement, reason))
+
     output_data = bytes(image)
     OUT_BIN.write_bytes(output_data)
 
@@ -200,7 +232,7 @@ def main() -> int:
     ms_candidate = OUT_SYSTEM / "TEXT_MS.DAT"
     if ms_candidate.exists():
         sums.append(f"{sha256_file(ms_candidate)}  system/TEXT_MS.DAT")
-    OUT_SUMS.write_text("\n".join(sums) + "\n", encoding="utf-8")
+    write_text_lf(OUT_SUMS, "\n".join(sums) + "\n")
 
     print(f"source={SOURCE}")
     print(f"source_sha256={source_hash}")

@@ -8,13 +8,14 @@ Status: candidate firmware only. Bench validation is still required before flash
 - Output binary size is unchanged.
 - Bootloader/updater code and SD update procedure are not patched.
 - Fault/default self-loop handlers are redirected to a hardware reset request.
+- Runtime fail-stop loops are converted to return/fall-through paths.
 - Bahasa Melayu resource is added to the candidate folder as `system/TEXT_MS.DAT`.
 - True add-only language menu activation is not patched yet because the hardcoded language table has no confirmed spare slot.
 
 ## Hashes
 
 - Source SHA-256: `64faaffb5fb65bdd0057d4fce1d9a2ac93e9229f118fba0a84d758c0ff926158`
-- Output SHA-256: `8ba7a3bc14ad30485d12b6fa4c7acb5c18dbb3dd29d2eda34fa32d83f6a2daf8`
+- Output SHA-256: `05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1`
 - Source size: `203260` bytes
 - Output size: `203260` bytes
 
@@ -80,3 +81,6 @@ Status: candidate firmware only. Bench validation is still required before flash
 | `0x07554` | 20 | `fe e7 fe e7 fe e7 fe e7 fe e7 fe e7 fe e7 fe e7 fe e7 fe e7` | `02 48 02 49 01 60 bf f3 4f 8f fe e7 0c ed 00 e0 04 00 fa 05` | replace permanent fault/default loops with SCB_AIRCR SYSRESETREQ stub |
 | `0x02ca0` | 16 | `4d 54 31 30 30 4d 4d 20 56 34 2e 30 20 00 00 00` | `56 34 2e 30 2e 31 20 62 65 74 61 00 00 00 00 00` | mark candidate UI/version string as V4.0.1 beta |
 | `0x02cb0` | 16 | `42 54 31 30 30 4d 4d 20 56 34 2e 30 20 00 00 00` | `56 34 2e 30 2e 31 20 62 65 74 61 00 00 00 00 00` | mark candidate UI/version string as V4.0.1 beta |
+| `0x09ca0` | 2 | `fe e7` | `ff e7` | convert runtime fail-stop loop after integrity check into fall-through return |
+| `0x0c6c8` | 2 | `fe e7` | `ff e7` | convert UI/render fail-stop loop into fall-through return |
+| `0x2c4ea` | 2 | `fe e7` | `70 47` | return from semihosting/debug fail-stop instead of looping forever |

@@ -26,7 +26,7 @@ FINAL_MS = FINAL / "system" / "TEXT_MS.DAT"
 FINAL_REPORT = CANDIDATE / "FINAL-PACKAGE-REPORT.md"
 FINAL_SUMS = CANDIDATE / "FINAL-PACKAGE-SHA256.txt"
 
-EXPECTED_CANDIDATE_SHA256 = "8ba7a3bc14ad30485d12b6fa4c7acb5c18dbb3dd29d2eda34fa32d83f6a2daf8"
+EXPECTED_CANDIDATE_SHA256 = "05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1"
 EXPECTED_MS_SHA256 = "7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd"
 
 
@@ -56,6 +56,14 @@ def copy_tree_contents(source: Path, destination: Path) -> None:
             shutil.copytree(item, target)
         else:
             shutil.copy2(item, target)
+
+
+def staged_system_overlays() -> list[Path]:
+    system = CANDIDATE / "system"
+    overlays = [CANDIDATE_MS]
+    overlays.extend(sorted(system.glob("icon-E*.bmp")))
+    overlays.extend(sorted(system.glob("icon-C*.bmp")))
+    return sorted({path for path in overlays if path.exists()})
 
 
 def validate_inputs() -> None:
@@ -91,7 +99,11 @@ def rebuild_final() -> None:
         original_bin.unlink()
 
     shutil.copy2(CANDIDATE_BIN, FINAL_BIN)
-    shutil.copy2(CANDIDATE_MS, FINAL_MS)
+    for source in staged_system_overlays():
+        rel = source.relative_to(CANDIDATE)
+        destination = FINAL / rel
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, destination)
 
 
 def inventory(root: Path) -> list[tuple[str, int, str]]:
@@ -145,6 +157,7 @@ def write_reports(rows: list[tuple[str, int, str]]) -> None:
         f"- Firmware: `DM303V4.0.1-beta.bin`",
         f"- Firmware SHA-256: `{sha256_file(FINAL_BIN)}`",
         f"- Malay UI resource SHA-256: `{sha256_file(FINAL_MS)}`",
+        f"- Staged system overlays copied: `{len(staged_system_overlays())}`",
         "- Original `DM303V4.004.bin` is not present in final package.",
         "- Invalid nested `system/system/` tree is not present.",
         "",

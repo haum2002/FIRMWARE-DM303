@@ -22,7 +22,7 @@ pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
 Firmware akhir:
 
 ```text
-8ba7a3bc14ad30485d12b6fa4c7acb5c18dbb3dd29d2eda34fa32d83f6a2daf8  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
+05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
 ```
 
 Resource Bahasa Melayu:
@@ -40,6 +40,8 @@ checkout dan commit.
 - Jangan flash tanpa menyemak checksum, laporan patch, dan kaedah recovery.
 - Bootloader/updater dan prosedur SD upgrade tidak dipatch.
 - Perubahan firmware dibuat melalui skrip, bukan edit binari manual.
+- Patch anti-freeze hanya menukar laluan fail-stop/self-loop yang dikenal pasti;
+  laluan normal fungsi bacaan tidak dirombak tanpa pemetaan kod yang cukup.
 - Simpan salinan firmware asal daripada peranti sendiri jika boleh.
 - Catat versi hardware, kaedah flash, dan pilihan rollback sebelum mencuba.
 
@@ -55,6 +57,12 @@ Jana semula firmware candidate:
 
 ```powershell
 python tools/dm303_v401_beta_patch.py
+```
+
+Jana tema gelap ikon navmenu:
+
+```powershell
+python tools/dm303_make_dark_menu_assets.py
 ```
 
 Gabungkan staging ke folder akhir:

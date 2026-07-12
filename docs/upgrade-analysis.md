@@ -40,10 +40,14 @@ UsageFault, dan banyak default vector. Jika spike isyarat, overload, akses
 memori tidak sah, peripheral state rosak, atau interrupt tidak dijangka masuk
 ke handler ini, device boleh kelihatan hang kerana handler tidak pernah return.
 
-Patch `v4.0.1 beta` menukar laluan tersebut daripada self-loop kekal kepada
-permintaan hardware reset melalui `SCB_AIRCR`. Ini mengurangkan risiko freeze
-kekal pada exception/default IRQ, tetapi ia belum membetulkan semua kemungkinan
-punca bacaan tidak stabil seperti DMA/state acquisition, filtering, atau
+Patch `v4.0.1 beta` menukar laluan exception/default daripada self-loop kekal
+kepada permintaan hardware reset melalui `SCB_AIRCR`. Patch tambahan menukar
+laluan fail-stop runtime yang dikenal pasti kepada return/fall-through supaya
+UI tidak terkunci selama-lamanya apabila semakan dalaman gagal.
+
+Ini mengurangkan risiko freeze kekal pada exception/default IRQ dan beberapa
+assert/fail-stop runtime, tetapi ia belum membetulkan semua kemungkinan punca
+bacaan tidak stabil seperti DMA/state acquisition, filtering, atau
 display-update blocking.
 
 ## Perubahan firmware candidate
@@ -62,6 +66,12 @@ Perubahan yang dibuat:
 - Stub recovery menulis `0x05FA0004` ke `SCB_AIRCR` (`0xE000ED0C`) untuk
   meminta hardware reset.
 - Tiada vector target yang masih menunjuk ke self-loop handler selepas patch.
+- Fail-stop loop runtime pada offset `0x09ca0` dan `0x0c6c8` ditukar kepada
+  fall-through return.
+- Semihosting/debug fail-stop loop pada offset `0x2c4ea` ditukar kepada
+  `bx lr`.
+- Selepas patch, opcode `FE E7` tinggal satu sahaja pada offset `0x0755e`,
+  iaitu hold selepas permintaan `SYSRESETREQ` dalam recovery stub.
 - String versi di offset `0x02ca0` dan `0x02cb0` ditukar kepada
   `V4.0.1 beta`.
 - Bootloader/updater dan prosedur SD upgrade tidak dipatch.
@@ -69,7 +79,7 @@ Perubahan yang dibuat:
 Hash candidate:
 
 ```text
-8ba7a3bc14ad30485d12b6fa4c7acb5c18dbb3dd29d2eda34fa32d83f6a2daf8  DM303V4.0.1-beta.bin
+05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1  DM303V4.0.1-beta.bin
 ```
 
 ## Bahasa Melayu UI
@@ -97,6 +107,21 @@ secara add-only belum dipatch kerana jadual nama bahasa hardcoded sekitar
 `0x08035be4` belum mempunyai spare slot yang disahkan. Mengganti slot bahasa
 sedia ada lebih mudah, tetapi itu bukan arahan yang diminta.
 
+## UI navmenu
+
+Tema gelap navmenu dibuat pada lapisan resource:
+
+- Source asset: `backup/DM303 V4.0-read only/system/icon-*.bmp`
+- Staging: `firmware-candidates/v4.0.1-beta/system/icon-*.bmp`
+- Final: `DM303-V4.0.1-beta/system/icon-*.bmp`
+- 34 ikon BMP menu ditukar latar daripada biru kepada gelap.
+- Header BMP, dimensi `92x92`, row layout, dan saiz fail dikekalkan.
+- Laporan: `firmware-candidates/v4.0.1-beta/DARK-MENU-ASSETS.md`
+
+Fungsi UI runtime seperti jam/tarikh di header, pilihan 12/24 jam, pilihan
+bateri peratus/bar, dan border header antara navmenu/bateri belum dipatch
+kerana titik fungsi render/header dan storage setting belum disahkan selamat.
+
 ## Pakej akhir
 
 Skrip gabungan:
@@ -113,6 +138,7 @@ Peraturan gabungan:
 - `DM303V4.004.bin` asal dibuang daripada folder akhir.
 - `DM303V4.0.1-beta.bin` dimasukkan sebagai firmware utama.
 - `system/TEXT_MS.DAT` dimasukkan sebagai resource Bahasa Melayu tambahan.
+- Ikon navmenu gelap daripada staging dioverlay ke folder final.
 - Nested tree tidak sah seperti `system/system/` ditolak.
 
 Laporan akhir:
@@ -153,6 +179,12 @@ Jana firmware candidate:
 
 ```powershell
 python tools/dm303_v401_beta_patch.py
+```
+
+Jana tema gelap ikon navmenu:
+
+```powershell
+python tools/dm303_make_dark_menu_assets.py
 ```
 
 Gabungkan ke folder akhir:

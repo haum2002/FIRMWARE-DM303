@@ -10,3 +10,4 @@ backup/** binary
 localization/**/*.DAT binary
 firmware-candidates/**/*.bin binary
 firmware-candidates/**/*.DAT binary
+firmware-candidates/**/*.bmp binary
