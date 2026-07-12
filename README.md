@@ -96,4 +96,7 @@ python tools/dm303_text_resource.py --input firmware-candidates/v4.0.1-beta/syst
 
 Analisis penuh berada di [docs/upgrade-analysis.md](docs/upgrade-analysis.md).
 
+Analisis isu noise/zeroing/acquisition berada di
+[docs/measurement-noise-analysis.md](docs/measurement-noise-analysis.md).
+
 Nota flash untuk pemula berada di [docs/beginner-flash-notes.md](docs/beginner-flash-notes.md).
