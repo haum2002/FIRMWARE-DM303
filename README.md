@@ -35,3 +35,6 @@ SHA-256 firmware utama:
 Analisis upgrade dalaman bermula di [docs/upgrade-analysis.md](docs/upgrade-analysis.md).
 Skrip awal yang digunakan adalah read-only dan tidak menghasilkan firmware
 flashable: [tools/dm303_v4_static_analysis.py](tools/dm303_v4_static_analysis.py).
+
+Calon resource Bahasa Melayu UI berada di `localization/ms_MY/`. Ia belum
+diintegrasi ke firmware dan tidak boleh dianggap sebagai update flashable.

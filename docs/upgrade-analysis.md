@@ -47,6 +47,26 @@ Ini sepadan dengan corak simptom yang dilaporkan, tetapi belum membuktikan semua
 - Binari dan readme yang dibekalkan merujuk `DM30XDB1.dat`, tetapi `DM303-V4.0/system/DM30XDB1.dat` tidak wujud dalam set V4.0 kerja atau backup V4.0 rasmi. Fail daripada set versi lain tidak boleh disalin masuk ke V4.0 tanpa bukti format, alamat flash, dan compatibility.
 - Ada julat kosong berisi `0x00`, tetapi ia tidak boleh dianggap sebagai code cave selamat sehingga pemilikannya dibuktikan. Ia mungkin data table, aset paparan, buffer, atau alignment region.
 
+## Bahasa Melayu UI
+
+Format `TEXT_*.DAT` telah diparse dan boleh dibina semula secara byte-identical untuk fail asal seperti `TEXT_EN.DAT`, `TEXT_CN.DAT`, dan `TEXT_PO.DAT`. Setiap entri teks mempunyai record panjang 2-byte dan jadual offset di awal fail.
+
+Calon Bahasa Melayu berada di `localization/ms_MY/`:
+
+- `TEXT_MS.DAT` - resource Bahasa Melayu berdiri sendiri.
+- `TEXT_PO.ms-slot-candidate.DAT` - fail yang sama, dinamakan sebagai calon slot Portugis untuk ujian terkawal kemudian.
+- `translations_ms.csv` - sumber semakan teks dan terjemahan.
+
+Validasi semasa:
+
+- 815 entri boleh diparse.
+- 781 entri diterjemah atau diwrap semula.
+- Hasil `TEXT_MS.DAT` boleh rebuild byte-identical.
+- Tiada aksara bukan ASCII dalam calon Melayu untuk mengurangkan risiko font/rendering.
+- Firmware binari dan sistem upgrade tidak diubah.
+
+Calon ini belum dimasukkan ke `DM303-V4.0/system/` dan belum boleh dianggap flashable. Firmware semasa juga belum merujuk filename `TEXT_MS.DAT`; paparan sebenar di device memerlukan ujian slot bahasa sedia ada atau patch firmware yang lebih berisiko, jadi ia ditangguhkan sehingga rollback dan checksum update jelas.
+
 ## Arah naik taraf v4.0.1 beta
 
 1. Kekalkan firmware v4.0 asal byte-identical dan boleh disahkan semula.
@@ -55,7 +75,8 @@ Ini sepadan dengan corak simptom yang dilaporkan, tetapi belum membuktikan semua
 4. Selepas itu sahaja, cipta patch generator dan elakkan edit binari secara manual.
 5. Calon patch pertama perlu minimal dan berorientasikan recovery, contohnya mengganti fault loop kekal dengan laluan recovery terkawal, hanya jika format update membenarkannya dengan selamat.
 6. Perubahan algoritma bacaan perlu tunggu sehingga fungsi acquisition dan RAM buffer dikenal pasti dengan lebih tepat.
-7. Teks versi hanya patut berubah kepada `v4.0.1 beta` selepas patch disahkan dan boleh diulang bina.
+7. Integrasi Bahasa Melayu ke slot UI perlu dibuat sebagai resource-only candidate dahulu, bukan patch firmware.
+8. Teks versi hanya patut berubah kepada `v4.0.1 beta` selepas patch disahkan dan boleh diulang bina.
 
 ## Arahan
 
@@ -75,6 +96,18 @@ Bandingkan folder kerja dengan set rasmi tambahan di `backup/`:
 
 ```powershell
 python tools/dm303_compare_sets.py
+```
+
+Validasi dan rebuild resource teks UI:
+
+```powershell
+python tools/dm303_text_resource.py --input DM303-V4.0/system/TEXT_EN.DAT --verify-rebuild
+```
+
+Bina calon Bahasa Melayu:
+
+```powershell
+python tools/dm303_make_ms_pack.py
 ```
 
 Skrip ini read-only. Ia tidak menghasilkan firmware yang telah dipatch.

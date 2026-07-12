@@ -1,0 +1,816 @@
+index,source_length,source,translation
+1,13,Loading......,Memuat......
+2,28,Press any button to continue,Tekan mana-mana butang
+3,3,ON,ON
+4,3,OFF,OFF
+5,11,User Manual,Manual
+6,19,VERSION INFORMATION,MAKLUMAT VERSI
+7,10,Hardware:,Hardware:
+8,10,Software:,Software:
+9,10,Device ID:,ID Alat:
+10,28,Press any button to continue,Tekan mana-mana butang
+11,17,Check the display,Semak paparan
+12,11,Button Test,Uji Butang
+13,30,Note:displays the key pressed.,Nota:papar butang ditekan.
+14,30,Press <ESC> twice to exit the,Tekan <ESC> dua kali untuk
+15,30,test.,keluar ujian.
+16,15,<ESC>means exit,<ESC> keluar
+17,12,Key pressed:,Butang:
+18,1,%,%
+19,1,V,V
+20,11,Voltage(AC),Voltan(AC)
+21,11,Voltage(DC),Voltan(DC)
+22,35,   Min:       V     Max:       V,   Min:       V     Maks:      V
+23,35, <HOLD> Hold        <F1> Zeroing, <HOLD> Tahan       <F1> Sifar
+24,35, <Fn> Function Mode, <Fn> Mod Fungsi
+25,9,PD Resis.,Rint. PD
+26,5,HOLD,TAHAN
+27,2,AC,AC
+28,2,DC,DC
+29,11,20A(Yellow),20A(Kuning)
+30,11,mA(Green),mA(Hijau)
+31,35,   Min:       A     Max:       A,   Min:       A     Maks:      A
+32,35, <HOLD> Hold         <F1> Zeroing, <HOLD> Tahan        <F1> Sifar
+33,35, <Fn> Function Mode  <F2> 20A/mA, <Fn> Mod Fungsi   <F2> 20A/mA
+34,11,Resistance,Rintangan
+35,20, Diode:, Diod:
+36,20,Diode/Low Resistance,Diod/Rint. Rendah
+37,23, Resistance:, Rintangan:
+38,35, <HOLD> Hold        <F1> Zeroing, <HOLD> Tahan       <F1> Sifar
+39,5,Trig.,Trig.
+40,3,div,div
+41,33,U:      V Min:      V Max:      V,U:      V Min:      V Maks:     V
+42,21,Frequency Measurement,Ukur Frekuensi
+43,28,<Fn>to signal detec.(f<6000),<Fn> kesan isyarat(f<6000)
+44,3,rpm,rpm
+45,23,<Fn>to signal detection,<Fn> ke kesan isyarat
+46,29,Contact Resistance:,Rintangan Sentuh:
+47,28,Sine wave/square wave output,Output sinus/petak
+48,21,Frequency:         Hz,Frekuensi:        Hz
+49,21,Duty Cycle:        %,Duty Cycle:       %
+50,27,<F1><F2> Duty Cycle Setting,<F1><F2> Tetap Duty Cycle
+51,33,Sensor:   Min:      V Max:      V,Sensor:   Min:      V Maks:     V
+52,12,rpm 2Stroke,rpm 2Lejang
+53,12,rpm 4Stroke,rpm 4Lejang
+54,12,Distributor,Distributor
+55,12,K/Lin data:,Data K/Lin:
+56,35,<F1>Clear  <Fn><LEFT><RIGHT>set BPS,<F1>Padam <Fn><LEFT><RIGHT> BPS
+57,13,CANBUS data:,Data CANBUS:
+58,35,<F1>Clear  <Fn><LEFT><RIGHT>set BPS,<F1>Padam <Fn><LEFT><RIGHT> BPS
+59,22, <Fn> Function Mode, <Fn> Mod Fungsi
+60,22,Calendar/Time Settings,Tetapan Kalendar/Masa
+61,15,System Settings,Tetapan Sistem
+62,14,Basic Settings,Tetapan Asas
+63,13,Time Settings,Tetapan Masa
+64,9,Language,Bahasa
+65,8,Key Tone,Bunyi
+66,10,Brightness,Kecerahan
+67,33,Calibrate the voltage with probe.,Tentukur voltan dengan probe.
+68,29,Connect probe to the battery.,Sambung probe ke bateri.
+69,33, <UP> <Down> Adjust actual value, <UP> <Down> Laras nilai sebenar
+70,34, <ESC> Exit             <OK> SAVE, <ESC> Keluar          <OK> SIMPAN
+71,11,Sleep time,Masa tidur
+72,5, Min, min
+73,24, Press <OK> to continue, Tekan <OK> untuk terus
+74,22,Supply Voltage:      V,Voltan Bekal:       V
+75,35, <UP>Short to B+  <DOWN>Short to B-, <UP>Pintas B+ <DOWN>Pintas B-
+76,18,Wrong Connection!!,Sambungan salah!!
+77,30,Calibration Voltage of Battery,Tentukur Voltan Bateri
+78,26,Conect to Vehicle battery!,Sambung bateri kenderaan!
+79,28,Calibration the current(mA),Tentukur arus(mA)
+80,29,Conect to Signal current(mA)!,Sambung ke isyarat arus(mA)!
+81,35,Calibration Vehicle Circuit Voltage,Tentukur Voltan Litar Kenderaan
+82,26,Conect to Signal Voltage !,Sambung ke isyarat voltan!
+83,23,Calibration current(A),Tentukur arus(A)
+84,28,Conect to Signal current(A)!,Sambung ke isyarat arus(A)!
+85,3,ON,ON
+86,3,OFF,OFF
+87,20,Function Description,Huraian Fungsi
+88,22,Remote Key(3V)Leakage,Bocor Kunci Jauh(3V)
+89,13,Voltage:,Voltan:
+90,21,Voltage Signal Output,Output Isyarat Voltan
+91,18,(Terminal: C01-S1),(Terminal: C01-S1)
+92,18,(Terminal: C01-S2),(Terminal: C01-S2)
+93,21,square wave：,gelombang petak:
+94,21,Adj. Voltage：,Laras Voltan:
+95,26,<F1><F2> Frequency Setting,<F1><F2> Tetap Frekuensi
+96,32,,
+97,32,Please turn off the engine first,"Matikan enjin dahulu, pilih"
+98,32,", choose the C01 line + C02 line","kabel C01 dan C02, kemudian"
+99,32,", and connect the two poles of",sambungkan kedua-dua terminal
+100,32,the car battery.,bateri kenderaan.
+101,32,,
+102,32,,
+103,32,,
+104,32,Drive the fuel injector: Choose,Pacu penyuntik bahan api: pilih
+105,32,the C01 line to connect the fuel,kabel C01 untuk sambung ke
+106,32,"injector, and then connect the","penyuntik, kemudian sambungkan"
+107,32,car battery.,bateri kenderaan. Untuk kesan
+108,32,Detect fuel injection signal: co,"isyarat suntikan, probe hitam ke"
+109,32,nnect the black probe to the veh,ground kenderaan dan probe merah
+110,32,"icle ground, and the red probe","ke pin penyuntik, lalu tekan"
+111,32,"to the fuel injector pin, press",<Fn>.
+112,32,<Fn> to enter the test.,
+113,32,,
+114,32,Drive the relay coil: Choose the,Pacu gegelung relay: pilih kabel
+115,32, C01 line to connect to the rela,"C01 ke relay, sambungkan bateri,"
+116,32," y, then connect the car battery",kemudian tekan <OK> untuk
+117,32," , press <OK> to drive the relay",mengaktifkan relay.
+118,32, to work.,
+119,32,,
+120,32,,
+121,32,,
+122,32,Analog signal output: square wav,Output isyarat analog: gelombang
+123,32,"e is output from C01-K line, the",petak keluar dari talian C01-K.
+124,32,normal output signal voltage is,Voltan isyarat biasa kira-kira
+125,32,"about 4.5V, the max.output frequ",4.5V dan frekuensi maksimum
+126,32,"ency is 10KHz, when it is lower","10KHz. Di bawah 5KHz, probe"
+127,32,"than 5KHz, you can use the probe",boleh digunakan untuk menyemak
+128,32," to detect the signal waveform,",bentuk gelombang; tekan <Fn>
+129,32, press the <Fn> to check the sig,untuk semak isyarat.
+130,32, nal.,
+131,32,Choose the C04 special line for,Pilih kabel khas C04 untuk
+132,32,"automotive circuit detection, an",pemeriksaan litar automotif dan
+133,32,d connect the two poles of the,sambungkan terminal bateri
+134,32,car battery correctly. See the,dengan betul. Rujuk paparan
+135,32,"voltage display, press up button",voltan. Tekan UP untuk output
+136,32,for positive output through the,"positif melalui probe, dan DOWN"
+137,32,"probe,and press down button for",untuk output negatif. Merah
+138,32,negative output. Red means the,bermaksud voltan probe hampir
+139,32,probe voltage is close to the ba,dengan voltan bateri; biru
+140,32,"ttery voltage, blue means the pr",bermaksud voltan terlalu rendah
+141,32,obe voltage is too low and there,atau ada kebocoran.
+142,32, is leakage.,
+143,32,,
+144,32,,
+145,32,,
+146,32,Please disconnect the power supp,Putus kuasa dan sambung semula
+147,32,ly and reconnect the positive an,terminal + dan - dengan betul.
+148,32,d negative poles correctly.,
+149,32,,
+150,32,,
+151,32,,
+152,32,电压信号输出：电压从C01-S1线输出,Output voltan dari C01-S1. Julat
+153,32,",可设置输出信号电压0--4.5V，同时",0-4.5V. Gunakan probe untuk
+154,32,可以使用表笔检测电路波形，按<Fn>,semak gelombang. Tekan <Fn>
+155,32,键检查信。,semak isyarat.
+156,32,,
+157,32,,
+158,32,,
+159,18,LANGUAGE SELECTION,PILIHAN BAHASA
+160,27,Please start the engine and,Hidupkan enjin dan
+161,27,run for 15 seconds,biar 15 saat
+162,13,Start-up Test,Ujian Mula
+163,16,start the engine,hidupkan enjin
+164,24,Min.voltage value > 9.6V,Voltan min > 9.6V
+165,25,Min.voltage value > 19.2V,Voltan min > 19.2V
+166,18,Fuel Injector Test,Ujian Penyuntik
+167,21,Automotive Relay Test,Ujian Relay Auto
+168,20,Simulated Engine RPM,RPM Enjin Simulasi
+169,22, Press <OK> to output, Tekan <OK> output
+170,22, Press <OK> to stop, Tekan <OK> henti
+171,13,Output Status,Status Output
+172,18,Real-time voltage:,Voltan masa nyata:
+173,16,Minimum Voltage:,Voltan Minimum:
+174,19,       Normal,       Normal
+175,19,Voltage is too low.,Voltan rendah.
+176,27,Car Circuit Inspection Test,Ujian Litar Kenderaan
+177,14,1.Boot Screen,1.Skrin Mula
+178,21,2.Voltage Measurement,2.Ukur Voltan
+179,21,3.Current Measurement,3.Ukur Arus
+180,24,4.Resistance Measurement,4.Ukur Rintangan
+181,14,5.Oscilloscope,5.Osiloskop
+182,30,6.Automotive circuit detection,6.Kesan litar auto
+183,23,7.Battery cranking test,7.Ujian cranking bateri
+184,15,8.Injector test,8.Uji injektor
+185,12,9.Relay test,9.Uji relay
+186,21,10.Analog signal test,10.Uji isyarat analog
+187,22,11.Ignition Pulse Test,11.Ujian nadi nyalaan
+188,23,12.K/Lin Data Detection,12.Kesan Data K/Lin
+189,26,13.CAN Line Data Detection,13.Kesan Data CAN
+190,24,14.Frequency Measurement,14.Ukur Frekuensi
+191,14,1.Boot Screen,1.Skrin Mula
+192,21,2.Voltage Measurement,2.Ukur Voltan
+193,21,3.Current Measurement,3.Ukur Arus
+194,24,4.Resistance Measurement,4.Ukur Rintangan
+195,14,5.Oscilloscope,5.Osiloskop
+196,21,6.Ignition Pulse Test,6.Ujian nadi nyalaan
+197,23,7.Frequency Measurement,7.Ukur Frekuensi
+198,14,1.Boot Screen,1.Skrin Mula
+199,21,2.Voltage Measurement,2.Ukur Voltan
+200,21,3.Current Measurement,3.Ukur Arus
+201,24,4.Resistance Measurement,4.Ukur Rintangan
+202,14,5.Oscilloscope,5.Osiloskop
+203,26,6.Adj. Voltage signal Test,6.Ujian isyarat voltan
+204,20,7.Analog signal test,7.Uji isyarat analog
+205,13,1.Boot Screen,1.Skrin Mula
+206,34,"Power on, enter the boot screen, p",Hidupkan peranti dan tunggu skrin
+207,34,ress any key to enter the main men,mula. Tekan mana-mana butang untuk
+208,34,"u, the battery and charging status",masuk ke menu utama. Status bateri
+209,34, are displayed in the upper right,dan pengecasan dipaparkan di
+210,34,corner of the screen.Press the dir,penjuru kanan atas. Gunakan butang
+211,34,"ection keys to move the cursor,pre","arah untuk gerak kursor, <OK>"
+212,34,"ss <OK>to enter functions,<ESC>to","untuk masuk fungsi, dan <ESC>"
+213,34,exit.Press light key to turn on/of,untuk keluar. Butang lampu
+214,34,"f the light,<HOLD> key to lock the","hidup/matikan lampu, <HOLD>"
+215,34," display value during the test,<F1","mengunci nilai bacaan, <F1><F2>"
+216,34, ><F2>to operate according to the,"ikut arahan paparan, dan <Fn>"
+217,34," prompts, <Fn> to switch the funct",menukar mod fungsi.
+218,34, ion mode in the function items.,
+219,34,2.Voltage Measurement,2.Ukur Voltan
+220,34,Enter the voltage measurement func,Masuk fungsi ukur voltan untuk
+221,34,"tion,the current measurement value",melihat bacaan semasa. Tekan
+222,34," is displayed,press<HOLD>to lock t",<HOLD> untuk mengunci bacaan dan
+223,34,"he measurement value,press<F1>for","<F1> untuk sifar. Semasa guna,"
+224,34,"zeroing.When using, short connecte","pintaskan probe merah dan hitam,"
+225,34,"d the red and black probe,and hold","tahan, kemudian tekan <F1>. Tekan"
+226,34," it, and then press <F1>. <Fn>for",<Fn> untuk tukar mod DC/AC/bentuk
+227,34,"switching function mode,press <Fn>",gelombang. Julat voltan hingga
+228,34,to switch DC voltage/AC voltage/wa,"1000V; DC maks 1000V, AC maks"
+229,34,veform display. The voltage measur,"700V, dan julat bertukar"
+230,34,"ement range is up to 1000V, the ma",automatik.
+231,34,"x.DC voltage is 1000V, the max.AC",
+232,34,"voltage is 700V, and the range is",
+233,34,automatically converted.,
+234,34,3.Current Measurement,3.Ukur Arus
+235,34,Enter the current measurement func,Masuk fungsi ukur arus untuk
+236,34,"tion,the current measurement value",melihat bacaan semasa. Tekan
+237,34," is displayed,press<HOLD>to lock t",<HOLD> untuk mengunci bacaan dan
+238,34,"he measurement value,press<F1>for",<F1> untuk sifar. Pintaskan probe
+239,34,"zeroing.When using, short connecte","merah dan hitam, tahan, kemudian"
+240,34,"d the red and black probe,and hold",tekan <F1>. Tekan <Fn> untuk tukar
+241,34," it, and then press <F1>. <Fn>for",DC/AC. Tekan <F2> untuk tukar jack
+242,34,"switching function mode,press <Fn>",ukur. mA hijau bermaksud probe
+243,34,to switch DC voltage/AC voltage.,merah pada jack mA; 20A kuning
+244,34,Press <F2> to switch the measureme,bermaksud probe merah pada jack
+245,34,"nt jack.If it shows mA (green), it",20A. Julat arus 0-200mA.
+246,34, means that the red probe is inser,
+247,34,ted from the mA jack for measureme,
+248,34,"nt, if it shows 20A (yellow), whic",
+249,34,h means that the red probe is inse,
+250,34,rted from the 20A jack for measure,
+251,34,ment. Current measurement range is,
+252,34, 0-200mA.,
+253,34,4.Resistance Measurement,4.Ukur Rintangan
+254,34,Enter the resistance measurement f,Masuk fungsi ukur rintangan untuk
+255,34,"unction,the current measurement va",melihat bacaan semasa. Tekan
+256,34,"lue is displayed,press<HOLD>to loc",<HOLD> untuk mengunci bacaan dan
+257,34,"k the measurement value,press<F1>f",<F1> untuk sifar. Pintaskan probe
+258,34,"or zeroing.When using, short conne","merah dan hitam, tahan, kemudian"
+259,34,"cted the red and black probe,and h",tekan <F1>. Tekan <Fn> untuk tukar
+260,34,"old it, and then press <F1>. <Fn>f",paparan rintangan atau voltan
+261,34,"or switching function mode,press <",diod. Fungsi ini mengukur
+262,34,Fn> to switch resistance display/,rintangan dan jatuhan voltan
+263,34,diode voltage display. This functi,hadapan diod tanpa penukaran
+264,34,on item simultaneously measures th,manual. Rintangan maks 5MOhm dan
+265,34,e resistance value and the forward,julat bertukar automatik. Jatuhan
+266,34, voltage drop of the diode without,hadapan diod maks 2.4V. Jika
+267,34, conversion.The max.measuring resi,"rintangan di bawah 20 Ohm, bunyi"
+268,34,"sance is up to 5MΩ,and the range",amaran menandakan keadaan
+269,34,is automatically converted. The ma,"rintangan rendah, berguna untuk"
+270,34,x.forward voltage drop of the diod,memeriksa litar pintas.
+271,34,e is 2.4V. When the measured resis,
+272,34,"tance is lower than 20 Ω,a prompt",
+273,34, tone will sound to indicate the,
+274,34,"low-resistance status,which is con",
+275,34,venient for judging whether the ci,
+276,34,rcuit is short-out during circuit,
+277,34,inspection.,
+278,34,5.Oscilloscope,5.Osiloskop
+279,34,"Enter the oscilloscope function,th",Masuk fungsi osiloskop untuk
+280,34,e waveform of current measured val,melihat bentuk gelombang nilai
+281,34,ue  is displayed.Press<HOLD>to loc,yang diukur. Tekan <HOLD> untuk
+282,34,"k the current status,<↑>/<↓>/<←",kunci keadaan semasa.
+283,34,">/<→>makes the waveform move up,",<UP>/<DOWN>/<LEFT>/<RIGHT>
+284,34,"down, left and right respectively.",menggerakkan bentuk gelombang.
+285,34,Under normal measurement status:,"Dalam keadaan normal, <UP>"
+286,34,<↑> means the voltage division va,mengecilkan nilai pembahagi
+287,34,"lue decreases, <down> means the vo","voltan, <DOWN> membesarkan nilai"
+288,34,"ltage division value increases, <l","itu, <LEFT> menambah masa imbasan,"
+289,34,eft> means the detection time incr,dan <RIGHT> mengurangkan masa
+290,34,"eases, <right> means the detection",imbasan. <F1> mengalih aras
+291,34," time decreases, <F1>means positiv","trigger positif, <F2> negatif."
+292,34,"e shift of trigger level, while<F2",Julat bentuk gelombang hingga
+293,34,>means negative shift. The voltage,1000V dan julat bertukar
+294,34,"waveform range is up to 1000V, and",automatik.
+295,34, the range is automatically conver,
+296,34,ted.,
+297,34,6.Automotive circuit detection,6.Kesan litar auto
+298,34,Enter the automotive circuit detec,Masuk fungsi kesan litar
+299,34,"tion function,the current measurem",automotif. Bacaan semasa
+300,34,"ent value is displayed,press<HOLD>",dipaparkan; <HOLD> mengunci bacaan
+301,34,"to lock the measurement value,pres",dan <F1> untuk sifar. Sambungkan
+302,34,"s<F1>for zeroing.When using, short",probe merah ke terminal negatif
+303,34, connected the red probe to the ne,"bateri, tahan, kemudian tekan"
+304,34,"gative pole of the battery,and hol",<F1>. Tekan <Fn> untuk tukar
+305,34,"d it, and then press <F1>. <Fn>for",voltan/bentuk gelombang. <UP>
+306,34,"switching function mode,press <Fn>",memacu output voltan positif untuk
+307,34,to switch voltage measurement/wave,beban kecil seperti lampu atau
+308,34,form display.<↑>Drive voltage out,relay. <DOWN> memintas ke terminal
+309,34,put.Press it to connect the red pr,negatif untuk memacu beban kecil
+310,34,obe to the positive pole of the po,seperti solenoid atau relay. Jika
+311,34,"wer supply,which is used to drive","voltan hampir voltan bekalan,"
+312,34,"low-power devices on the car, such",paparan memberi amaran merah. Jika
+313,34,"as lights, relays, etc. <↓>is to","voltan di bawah 0.7V, pulse kesan"
+314,34,short-circuit the negative pole of,kebocoran dihantar. Jika rintangan
+315,34,the power supply. Press it to conn,"talian bawah 10K, paparan memberi"
+316,34,ect the red probe to the negative,amaran hijau.
+317,34,pole of the power supply，which is,
+318,34,used to drive low-power devices on,
+319,34,"the car,such as solenoid valves,",
+320,34,"relays, etc. On the display interf",
+321,34,"ace, when the detection voltage is",
+322,34,close to the power supply voltage,
+323,34,(greater than the actual voltage,
+324,34,"value of the battery minus 0.7),",
+325,34,it will be prompted in red. when,
+326,34,the detection voltage is lower tha,
+327,34,"n 0.7V, a leakage detection pulse",
+328,34,will be automatically sent out. wh,
+329,34,en the line resistance is lower th,
+330,34,"an 10K, it will be prompted in gre",
+331,34,en .,
+332,34,7.Battery cranking test,7.Ujian cranking bateri
+333,34,This function is applicable to the,Fungsi ini untuk ujian cranking
+334,34,cranking test of automobiles and m,"kereta dan motosikal, bagi menilai"
+335,34,"otorcycles, and detects whether th",sama ada keadaan bateri memenuhi
+336,34,e battery status of the vehicle me,"keperluan mula enjin. Ikut arahan,"
+337,34,ets the cranking requirements. Ent,"matikan enjin, sambungkan kabel"
+338,34,"er this function item, follow the","utama dan klip bateri, tekan <OK>"
+339,34,"prompts, turn off the vehicle engi","untuk masuk mod pemantauan,"
+340,34,"ne, connect the main detection lin","hidupkan enjin, kemudian baca"
+341,34,"e and battery clamp, press <OK> to",keputusan. Voltan minimum melebihi
+342,34,"enter the monitoring state, start",9.6V semasa mula adalah normal.
+343,34,the vehicle engine according to th,"Jika lebih rendah, semak punca"
+344,34,"e prompt, and display the test res","seperti bateri uzur, arus starter"
+345,34,ult by the measured value. It is n,"terlalu tinggi, atau bateri tidak"
+346,34,ormal for the minimum voltage to b,cukup cas. Ganti bateri jika sudah
+347,34,e greater than 9.6V during vehicle,uzur.
+348,34,start-up. If it is lower than this,
+349,34,"value, it is necessary to determin",
+350,34,e the cause of the fault. It may b,
+351,34,e that the battery is aging/the st,
+352,34,arter current is too high/the batt,
+353,34,ery is not fully charged. If the b,
+354,34,"attery is aging, the battery needs",
+355,34,to be replaced in time.,
+356,34,8.Injector test,8.Ujian injektor
+357,34,This function is applicable to fue,Fungsi ini untuk pacu dan uji
+358,34,l injector signal drive and signal,isyarat penyuntik bahan api.
+359,34,test. Connect the main detection,"Sambungkan kabel utama, gunakan"
+360,34,"line, use the battery clamp to con","klip bateri ke bekalan 12V,"
+361,34,nect the 12V battery for power sup,kemudian sambungkan penyuntik
+362,34,"ply, and then connect the fuel inj",untuk memacu penyuntik 12V terus.
+363,34,ector to directly drive the 12V fu,Ia memberi isyarat kerja simulasi
+364,34,el injector to work. It can provid,500 hingga 6000 rpm dengan lebar
+365,34,e the analog working signal of the,pulse 3mS. Gunakan probe untuk
+366,34,"injector between 500 and 6000 rpm,",semak prestasi penyuntik. Tekan
+367,34,and the injection pulse width is,"<OK> untuk masuk antara muka pacu,"
+368,34,3mS. Use the probe to check the op,butang arah melaras kelajuan
+369,34,erating performance of the fuel in,"simulasi, <OK> hidup/matikan"
+370,34,jector. When entering the function,"isyarat pacu, dan <Fn> masuk kesan"
+371,34,"item, a prompt message will be dis",isyarat. Output pacu tidak
+372,34,played. Press <OK> to enter the si,dimatikan ketika masuk kesan
+373,34,"gnal drive interface, the directio",isyarat.
+374,34,n key to adjust the analog signal,
+375,34,"speed, press <OK> to turn on/off",
+376,34,"the analog drive signal, and press",
+377,34,<Fn> to enter the signal detection,
+378,34,. When entering the signal detecti,
+379,34,"on, the drive signal output will n",
+380,34,ot be turned off.,
+381,34,9.Relay test,9.Ujian relay
+382,34,This function is applicable to aut,Fungsi ini untuk ujian relay
+383,34,omotive relay test. Connect the ma,automotif. Sambungkan kabel utama
+384,34,"in detection line, use the battery","dan klip bateri ke bekalan 12V,"
+385,34,clamp to connect the 12V battery,kemudian sambungkan kabel khas
+386,34,"for power supply, and then connect",relay untuk memacu relay 12V.
+387,34,"to the special line of the relay,",Gunakan kabel khas ke pin gegelung
+388,34,which can directly drive the 12V,"relay, dan probe merah/hitam untuk"
+389,34,relay to operate. Use the special,mengukur rintangan sentuh.
+390,34,wire of the relay to connect the,Rintangan kecil bermaksud sentuhan
+391,34,"coil pin of the relay, and use the",tersambung; rintangan besar
+392,34,red and black probes to detect the,bermaksud terputus. Tekan <OK>
+393,34,contact resistance of the relay.If,"untuk masuk antara muka, <OK>"
+394,34,"the resistance is small, the conta","hidup/matikan pacu relay, dan"
+395,34,"ct is connected, and if the resist",probe mengukur rintangan sentuh.
+396,34,"ance is large, the contact is disc",
+397,34,onnected. When entering the functi,
+398,34,"on item, a prompt message will be",
+399,34,displayed.Press <OK> to enter the,
+400,34,"detection interface,press  <OK> to",
+401,34,turn on/off the relay drive signal,
+402,34,", and use the probe to measure the",
+403,34,contact resistance.,
+404,34,10.Analog signal test,10.Ujian isyarat analog
+405,34,This function can simulate and out,Fungsi ini mensimulasi output
+406,34,put square wave and sine wave. It,gelombang petak dan sinus. Ia
+407,34,is suitable for vehicle line detec,sesuai untuk ujian talian
+408,34,tion or ECU analog signal input te,kenderaan atau input isyarat
+409,34,st. Connect the main detection lin,analog ECU. Sambungkan kabel utama
+410,34,"e, use battery clamps to connect",dan klip bateri ke bekalan 12V
+411,34,"12V battery power supply, and out",untuk output gelombang petak 12V.
+412,34,put 12V square wave signals. With,"Tanpa bekalan luar, ia boleh"
+413,34,"out external power supply, it can",output gelombang petak 4.5V.
+414,34,output 4.5V square wave signal. T,Gelombang petak keluar dari
+415,34,he square wave signal is output f,"terminal [K line], gelombang sinus"
+416,34,"rom the [K line] terminal, the si","dari talian isyarat, dan talian 5V"
+417,34,ne wave signal is output from the,mengeluarkan sinus 0-4.5V. Tekan
+418,34,"signal line, and the 5V signal li","<OK> untuk hidup/matikan output,"
+419,34,ne outputs a sine wave of 0-4.5V.,"butang arah melaras frekuensi,"
+420,34,"When entering the function items,","<F1><F2> melaras duty cycle, dan"
+421,34,a prompt message will be displayed,<Fn> masuk kesan isyarat. Output
+422,34,".Press <OK> to control,turn on/off",analog tidak dimatikan ketika
+423,34,"signal output,the direction keys",masuk kesan isyarat.
+424,34,to adjust the frequency of the ana,
+425,34,"log signal, <F1><F2> to adjust the",
+426,34,"duty cycle of the square wave,pres",
+427,34,s the <Fn> key to enter the signal,
+428,34,"detection, the analog signal outpu",
+429,34,t will not be turned off when ente,
+430,34,ring the signal detection.,
+431,34,11.Ignition Pulse Test,11.Ujian nadi nyalaan
+432,34,This function is applicable to the,Fungsi ini untuk ujian isyarat
+433,34,high-voltage signal test of gasoli,voltan tinggi nyalaan enjin petrol
+434,34,ne engine ignition of automobiles,pada kereta dan motosikal.
+435,34,"and motorcycles,and detects the hi","Sambungkan sensor isyarat nyalaan,"
+436,34,gh-voltage signal of vehicle ignit,"masuk antara muka ujian, dan"
+437,34,ion. connects the ignition signal,dekatkan kepala sensor ke wayar
+438,34,"sensor, enters the test interface,",voltan tinggi nyalaan. Bentuk
+439,34,and puts the sensor head (signal s,gelombang nyalaan akan dipaparkan.
+440,34,ensing area) close to the high-vol,Jika kenderaan tiada wayar voltan
+441,34,tage wire of vehicle ignition sign,"tinggi luaran, dekatkan sensor ke"
+442,34,"al,then the waveform of the igniti",gegelung nyalaan; isyarat mungkin
+443,34,on signal will be displayed. If it,lebih kecil. Tekan <F1> untuk
+444,34,is a vehicle that can be ignited d,"tukar mod enjin 4-lejang, 2-lejang"
+445,34,irectly and there is no external h,atau distributor. <HOLD> mengunci
+446,34,"igh-voltage wire, you can put the",keadaan semasa. Dalam bacaan
+447,34,sensor head close to the ignition,"normal, <UP> mengecilkan pembahagi"
+448,34,"high-voltage coil, and the wavefor","voltan, <DOWN> membesarkan, <LEFT>"
+449,34,m of the ignition signal will be d,"menambah masa imbasan, dan <RIGHT>"
+450,34,"isplayed. At this time, the signal",mengurangkannya.
+451,34,"strength will be relatively small,",
+452,34,so take care of it. Press<F1> to s,
+453,34,"witch the engine mode, which can",
+454,34,be switched to 4-stroke/2-stroke/d,
+455,34,istributor mode. The common car en,
+456,34,"gine is 4-stroke, and some motorcy",
+457,34,cle engines are 2-stroke. Old engi,
+458,34,nes will use the distributor to di,
+459,34,stribute high-voltage signals. Eng,
+460,34,ine speed can be displayed in 4-st,
+461,34,roke/2-stroke mode. <HOLD> is to,
+462,34,"lock the current state, under norm",
+463,34,al measurement state: <↑> means t,
+464,34,he voltage division value decrease,
+465,34,"s, <↓> means the voltage division",
+466,34,"value increases,<←>means increase",
+467,34,"s the scan time,<→> means the sca",
+468,34,n time decreases.,
+469,33,12.K/Lin Data Detection,12.Kesan Data K/Lin
+470,34,This function can be used to detec,Fungsi ini mengesan data
+471,34,t the communication data of the ve,komunikasi K/Lin kenderaan dan
+472,34,"hicle K/lin, and is suitable for",sesuai untuk menyemak sama ada ada
+473,34,detecting whether there is signal,penghantaran isyarat pada talian
+474,34,transmission on the vehicle commun,komunikasi. Sambungkan kabel
+475,34,ication line. Connect the main det,"utama, talian ground isyarat ke"
+476,34,"ection line, connect the signal gr",pin ground kenderaan (contoh
+477,34,ounding line to the grounding pin,lubang 5 OBD-II) atau ground
+478,34,of the vehicle（e.g No. 5 hole of,"badan, dan talian K ke pin"
+479,34,"OBD-II),when it is inconvenient to",berkaitan (contoh lubang 7
+480,34,"access, it can be connected to the",OBD-II). Data diterima dipaparkan
+481,34,"ground of the car body, and the si",sebagai nilai heks. Tekan <F1>
+482,34,gnal line for K line is connected,untuk padam paparan dan laras baud
+483,34,to the relevant pin.(e.g the No. 7,rate dengan <LEFT>/<RIGHT>. Data
+484,34,hole of OBD-II). Enter the functio,betul hanya diterima apabila baud
+485,34,n item to display the currently re,rate isyarat sama dengan tetapan.
+486,34,"ceived data, and it is a hexadecim",
+487,34,al value. Press <F1> to clear the,
+488,34,"displayed data, and adjust the com",
+489,34,munication baud rate with the <lef,
+490,34,t> and <right> keys.Only when the,
+491,34,signal baud rate is consistent wit,
+492,34,h the set baud rate can the correc,
+493,34,t data be received. This function,
+494,34,is used with a professional decode,
+495,34,"r, and can check communication lin",
+496,34,e failures.,
+497,34,13.CAN Line Data Detection,13.Kesan Data CAN
+498,34,This function can be used to detec,Fungsi ini mengesan data
+499,34,t the data communication of the ve,komunikasi CAN bus kenderaan.
+500,34,hicle CAN bus. It is suitable for,"Sambungkan kabel utama, ground"
+501,34,detecting whether there is signal,isyarat ke pin ground kenderaan
+502,34,transmission in the vehicle commun,(contoh lubang 5 OBD-II) atau
+503,34,"ication line, connecting the main","ground badan, CAN+ ke pin CAN+"
+504,34,"detection line, and connecting the","(contoh lubang 6 OBD-II), dan CAN-"
+505,34,signal grounding line to the groun,ke pin CAN- (contoh lubang 14
+506,34,ding pin of the vehicle (e.g. the,OBD-II). Data diterima dipaparkan
+507,34,No. 5 hole of OBD-II).When it is,sebagai nilai heks. Tekan <F1>
+508,34,"inconvenient to access, it can be",untuk padam paparan dan laras baud
+509,34,"connected to the body ground, conn",rate dengan <LEFT>/<RIGHT>. Data
+510,34,ect the CAN+ signal line to the CA,betul hanya diterima apabila baud
+511,34,N+ signal pin(e.g. the No. 6 hole,rate sama dengan tetapan. Fungsi
+512,34,"of OBD-II),and connect the CAN- si",ini boleh membantu semak kerosakan
+513,34,gnal line to the CAN-signal pin(e.,talian komunikasi bersama decoder
+514,34,g. the No. 14 hole of OBD-II).,profesional.
+515,34,Enter the function item to display,
+516,34,"the currently received data, and",
+517,34,it is a hexadecimal value. Press <,
+518,34,"F1> to clear the displayed data,",
+519,34,and adjust the communication baud,
+520,34,rate with the <←>and<→> keys.Onl,
+521,34,y when the signal baud rate is con,
+522,34,sistent with the set baud rate can,
+523,34,the correct data be received. This,
+524,34,function is used with a profession,
+525,34,"al decoder, and can check communic",
+526,34,ation line failures.,
+527,34,14.Frequency Measurement,14.Ukur Frekuensi
+528,34,"Enter the frequency measurement,th",Masuk fungsi ukur frekuensi untuk
+529,34,e current measurement value is dis,melihat nilai semasa. Tekan <HOLD>
+530,34,"played,press <HOLD> to lock the cu","untuk mengunci keadaan semasa, dan"
+531,34,"rrent state, press <Fn>to switch",<Fn> untuk tukar ke mod osiloskop.
+532,34,to the oscilloscope mode. The freq,Julat frekuensi hingga 1MHz dan
+533,34,uency measurement range is up to,voltan isyarat dikawal secara
+534,34,"1MHz, and the signal voltage is ad",adaptif.
+535,34,aptively controlled.,
+536,13,1.Boot Screen,1.Skrin Mula
+537,34,"Power on, enter the boot screen, p",Hidupkan peranti dan tunggu skrin
+538,34,ress any key to enter the main men,mula. Tekan mana-mana butang untuk
+539,34,"u, the battery and charging status",masuk ke menu utama. Status bateri
+540,34, are displayed in the upper right,dan pengecasan dipaparkan di
+541,34,corner of the screen.Press the dir,penjuru kanan atas. Gunakan butang
+542,34,"ection keys to move the cursor,pre","arah untuk gerak kursor, <OK>"
+543,34,"ss <OK>to enter functions,<ESC>to","untuk masuk fungsi, dan <ESC>"
+544,34,exit.Press light key to turn on/of,untuk keluar. Butang lampu
+545,34,"f the light,<HOLD> key to lock the","hidup/matikan lampu, <HOLD>"
+546,34," display value during the test,<F1","mengunci nilai bacaan, <F1><F2>"
+547,34, ><F2>to operate according to the,"ikut arahan paparan, dan <Fn>"
+548,34," prompts, <Fn> to switch the funct",menukar mod fungsi.
+549,34, ion mode in the function items.,
+550,34,2.Voltage Measurement,2.Ukur Voltan
+551,34,Enter the voltage measurement func,Masuk fungsi ukur voltan untuk
+552,34,"tion,the current measurement value",melihat bacaan semasa. Tekan
+553,34," is displayed,press<HOLD>to lock t",<HOLD> untuk mengunci bacaan dan
+554,34,"he measurement value,press<F1>for","<F1> untuk sifar. Semasa guna,"
+555,34,"zeroing.When using, short connecte","pintaskan probe merah dan hitam,"
+556,34,"d the red and black probe,and hold","tahan, kemudian tekan <F1>. Tekan"
+557,34," it, and then press <F1>. <Fn>for",<Fn> untuk tukar mod DC/AC/bentuk
+558,34,"switching function mode,press <Fn>",gelombang. Julat voltan hingga
+559,34,to switch DC voltage/AC voltage/wa,"1000V; DC maks 1000V, AC maks"
+560,34,veform display. The voltage measur,"700V, dan julat bertukar"
+561,34,"ement range is up to 1000V, the ma",automatik.
+562,34,"x.DC voltage is 1000V, the max.AC",
+563,34,"voltage is 700V, and the range is",
+564,34,automatically converted.,
+565,34,3.Current Measurement,3.Ukur Arus
+566,34,Enter the current measurement func,Masuk fungsi ukur arus untuk
+567,34,"tion,the current measurement value",melihat bacaan semasa. Tekan
+568,34," is displayed,press<HOLD>to lock t",<HOLD> untuk mengunci bacaan dan
+569,34,"he measurement value,press<F1>for",<F1> untuk sifar. Pintaskan probe
+570,34,"zeroing.When using, short connecte","merah dan hitam, tahan, kemudian"
+571,34,"d the red and black probe,and hold",tekan <F1>. Tekan <Fn> untuk tukar
+572,34," it, and then press <F1>. <Fn>for",DC/AC. Tekan <F2> untuk tukar jack
+573,34,"switching function mode,press <Fn>",ukur. mA hijau bermaksud probe
+574,34,to switch DC voltage/AC voltage.,merah pada jack mA; 20A kuning
+575,34,Press <F2> to switch the measureme,bermaksud probe merah pada jack
+576,34,"nt jack.If it shows mA (green), it",20A. Julat arus 0-200mA.
+577,34, means that the red probe is inser,
+578,34,ted from the mA jack for measureme,
+579,34,"nt, if it shows 20A (yellow), whic",
+580,34,h means that the red probe is inse,
+581,34,rted from the 20A jack for measure,
+582,34,ment. Current measurement range is,
+583,34, 0-200mA.,
+584,34,4.Resistance Measurement,4.Ukur Rintangan
+585,34,Enter the resistance measurement f,Masuk fungsi ukur rintangan untuk
+586,34,"unction,the current measurement va",melihat bacaan semasa. Tekan
+587,34,"lue is displayed,press<HOLD>to loc",<HOLD> untuk mengunci bacaan dan
+588,34,"k the measurement value,press<F1>f",<F1> untuk sifar. Pintaskan probe
+589,34,"or zeroing.When using, short conne","merah dan hitam, tahan, kemudian"
+590,34,"cted the red and black probe,and h",tekan <F1>. Tekan <Fn> untuk tukar
+591,34,"old it, and then press <F1>. <Fn>f",paparan rintangan atau voltan
+592,34,"or switching function mode,press <",diod. Fungsi ini mengukur
+593,34,Fn> to switch resistance display/,rintangan dan jatuhan voltan
+594,34,diode voltage display. This functi,hadapan diod tanpa penukaran
+595,34,on item simultaneously measures th,manual. Rintangan maks 5MOhm dan
+596,34,e resistance value and the forward,julat bertukar automatik. Jatuhan
+597,34, voltage drop of the diode without,hadapan diod maks 2.4V. Jika
+598,34, conversion.The max.measuring resi,"rintangan di bawah 20 Ohm, bunyi"
+599,34,"sance is up to 5MΩ,and the range",amaran menandakan keadaan
+600,34,is automatically converted. The ma,"rintangan rendah, berguna untuk"
+601,34,x.forward voltage drop of the diod,memeriksa litar pintas.
+602,34,e is 2.4V. When the measured resis,
+603,34,"tance is lower than 20 Ω,a prompt",
+604,34, tone will sound to indicate the,
+605,34,"low-resistance status,which is con",
+606,34,venient for judging whether the ci,
+607,34,rcuit is short-out during circuit,
+608,34,inspection.,
+609,34,5.Oscilloscope,5.Osiloskop
+610,34,"Enter the oscilloscope function,th",Masuk fungsi osiloskop untuk
+611,34,e waveform of current measured val,melihat bentuk gelombang nilai
+612,34,ue  is displayed.Press<HOLD>to loc,yang diukur. Tekan <HOLD> untuk
+613,34,"k the current status,<↑>/<↓>/<←",kunci keadaan semasa.
+614,34,">/<→>makes the waveform move up,",<UP>/<DOWN>/<LEFT>/<RIGHT>
+615,34,"down, left and right respectively.",menggerakkan bentuk gelombang.
+616,34,Under normal measurement status:,"Dalam keadaan normal, <UP>"
+617,34,<↑> means the voltage division va,mengecilkan nilai pembahagi
+618,34,"lue decreases, <down> means the vo","voltan, <DOWN> membesarkan nilai"
+619,34,"ltage division value increases, <l","itu, <LEFT> menambah masa imbasan,"
+620,34,eft> means the detection time incr,dan <RIGHT> mengurangkan masa
+621,34,"eases, <right> means the detection",imbasan. <F1> mengalih aras
+622,34," time decreases, <F1>means positiv","trigger positif, <F2> negatif."
+623,34,"e shift of trigger level, while<F2",Julat bentuk gelombang hingga
+624,34,>means negative shift. The voltage,1000V dan julat bertukar
+625,34,"waveform range is up to 1000V, and",automatik.
+626,34, the range is automatically conver,
+627,34,ted.,
+628,34,6.Ignition Pulse Test,6.Ujian nadi nyalaan
+629,34,This function is applicable to the,Fungsi ini untuk ujian isyarat
+630,34,high-voltage signal test of gasoli,voltan tinggi nyalaan enjin petrol
+631,34,ne engine ignition of automobiles,pada kereta dan motosikal.
+632,34,"and motorcycles,and detects the hi","Sambungkan sensor isyarat nyalaan,"
+633,34,gh-voltage signal of vehicle ignit,"masuk antara muka ujian, dan"
+634,34,ion. connects the ignition signal,dekatkan kepala sensor ke wayar
+635,34,"sensor, enters the test interface,",voltan tinggi nyalaan. Bentuk
+636,34,and puts the sensor head (signal s,gelombang nyalaan akan dipaparkan.
+637,34,ensing area) close to the high-vol,Jika kenderaan tiada wayar voltan
+638,34,tage wire of vehicle ignition sign,"tinggi luaran, dekatkan sensor ke"
+639,34,"al,then the waveform of the igniti",gegelung nyalaan; isyarat mungkin
+640,34,on signal will be displayed. If it,lebih kecil. Tekan <F1> untuk
+641,34,is a vehicle that can be ignited d,"tukar mod enjin 4-lejang, 2-lejang"
+642,34,irectly and there is no external h,atau distributor. <HOLD> mengunci
+643,34,"igh-voltage wire, you can put the",keadaan semasa. Dalam bacaan
+644,34,sensor head close to the ignition,"normal, <UP> mengecilkan pembahagi"
+645,34,"high-voltage coil, and the wavefor","voltan, <DOWN> membesarkan, <LEFT>"
+646,34,m of the ignition signal will be d,"menambah masa imbasan, dan <RIGHT>"
+647,34,"isplayed. At this time, the signal",mengurangkannya.
+648,34,"strength will be relatively small,",
+649,34,so take care of it. Press<F1> to s,
+650,34,"witch the engine mode, which can",
+651,34,be switched to 4-stroke/2-stroke/d,
+652,34,istributor mode. The common car en,
+653,34,"gine is 4-stroke, and some motorcy",
+654,34,cle engines are 2-stroke. Old engi,
+655,34,nes will use the distributor to di,
+656,34,stribute high-voltage signals. Eng,
+657,34,ine speed can be displayed in 4-st,
+658,34,roke/2-stroke mode. <HOLD> is to,
+659,34,"lock the current state, under norm",
+660,34,al measurement state: <↑> means t,
+661,34,he voltage division value decrease,
+662,34,"s, <↓> means the voltage division",
+663,34,"value increases,<←>means increase",
+664,34,"s the scan time,<→> means the sca",
+665,33,n time decreases.,
+666,34,7.Frequency Measurement,7.Ukur Frekuensi
+667,34,"Enter the frequency measurement,th",Masuk fungsi ukur frekuensi untuk
+668,34,e current measurement value is dis,melihat nilai semasa. Tekan <HOLD>
+669,34,"played,press <HOLD> to lock the cu","untuk mengunci keadaan semasa, dan"
+670,34,"rrent state, press <Fn>to switch",<Fn> untuk tukar ke mod osiloskop.
+671,34,to the oscilloscope mode. The freq,Julat frekuensi hingga 1MHz dan
+672,34,uency measurement range is up to,voltan isyarat dikawal secara
+673,34,"1MHz, and the signal voltage is ad",adaptif.
+674,34,aptively controlled.,
+675,13,1.Boot Screen,1.Skrin Mula
+676,34,"Power on, enter the boot screen, p",Hidupkan peranti dan tunggu skrin
+677,34,ress any key to enter the main men,mula. Tekan mana-mana butang untuk
+678,34,"u, the battery and charging status",masuk ke menu utama. Status bateri
+679,34, are displayed in the upper right,dan pengecasan dipaparkan di
+680,34,corner of the screen.Press the dir,penjuru kanan atas. Gunakan butang
+681,34,"ection keys to move the cursor,pre","arah untuk gerak kursor, <OK>"
+682,34,"ss <OK>to enter functions,<ESC>to","untuk masuk fungsi, dan <ESC>"
+683,34,exit.Press light key to turn on/of,untuk keluar. Butang lampu
+684,34,"f the light,<HOLD> key to lock the","hidup/matikan lampu, <HOLD>"
+685,34," display value during the test,<F1","mengunci nilai bacaan, <F1><F2>"
+686,34, ><F2>to operate according to the,"ikut arahan paparan, dan <Fn>"
+687,34," prompts, <Fn> to switch the funct",menukar mod fungsi.
+688,34, ion mode in the function items.,
+689,34,2.Voltage Measurement,2.Ukur Voltan
+690,34,Enter the voltage measurement func,Masuk fungsi ukur voltan untuk
+691,34,"tion,the current measurement value",melihat bacaan semasa. Tekan
+692,34," is displayed,press<HOLD>to lock t",<HOLD> untuk mengunci bacaan dan
+693,34,"he measurement value,press<F1>for","<F1> untuk sifar. Semasa guna,"
+694,34,"zeroing.When using, short connecte","pintaskan probe merah dan hitam,"
+695,34,"d the red and black probe,and hold","tahan, kemudian tekan <F1>. Tekan"
+696,34," it, and then press <F1>. <Fn>for",<Fn> untuk tukar mod DC/AC/bentuk
+697,34,"switching function mode,press <Fn>",gelombang. Julat voltan hingga
+698,34,to switch DC voltage/AC voltage/wa,"1000V; DC maks 1000V, AC maks"
+699,34,veform display. The voltage measur,"700V, dan julat bertukar"
+700,34,"ement range is up to 1000V, the ma",automatik.
+701,34,"x.DC voltage is 1000V, the max.AC",
+702,34,"voltage is 700V, and the range is",
+703,34,automatically converted.,
+704,34,3.Current Measurement,3.Ukur Arus
+705,34,Enter the current measurement func,Masuk fungsi ukur arus untuk
+706,34,"tion,the current measurement value",melihat bacaan semasa. Tekan
+707,34," is displayed,press<HOLD>to lock t",<HOLD> untuk mengunci bacaan dan
+708,34,"he measurement value,press<F1>for",<F1> untuk sifar. Pintaskan probe
+709,34,"zeroing.When using, short connecte","merah dan hitam, tahan, kemudian"
+710,34,"d the red and black probe,and hold",tekan <F1>. Tekan <Fn> untuk tukar
+711,34," it, and then press <F1>. <Fn>for",DC/AC. Tekan <F2> untuk tukar jack
+712,34,"switching function mode,press <Fn>",ukur. mA hijau bermaksud probe
+713,34,to switch DC voltage/AC voltage.,merah pada jack mA; 20A kuning
+714,34,Press <F2> to switch the measureme,bermaksud probe merah pada jack
+715,34,"nt jack.If it shows mA (green), it",20A. Julat arus 0-200mA.
+716,34, means that the red probe is inser,
+717,34,ted from the mA jack for measureme,
+718,34,"nt, if it shows 20A (yellow), whic",
+719,34,h means that the red probe is inse,
+720,34,rted from the 20A jack for measure,
+721,34,ment. Current measurement range is,
+722,34, 0-200mA.,
+723,34,4.Resistance Measurement,4.Ukur Rintangan
+724,34,Enter the resistance measurement f,Masuk fungsi ukur rintangan untuk
+725,34,"unction,the current measurement va",melihat bacaan semasa. Tekan
+726,34,"lue is displayed,press<HOLD>to loc",<HOLD> untuk mengunci bacaan dan
+727,34,"k the measurement value,press<F1>f",<F1> untuk sifar. Pintaskan probe
+728,34,"or zeroing.When using, short conne","merah dan hitam, tahan, kemudian"
+729,34,"cted the red and black probe,and h",tekan <F1>. Tekan <Fn> untuk tukar
+730,34,"old it, and then press <F1>. <Fn>f",paparan rintangan atau voltan
+731,34,"or switching function mode,press <",diod. Fungsi ini mengukur
+732,34,Fn> to switch resistance display/,rintangan dan jatuhan voltan
+733,34,diode voltage display. This functi,hadapan diod tanpa penukaran
+734,34,on item simultaneously measures th,manual. Rintangan maks 5MOhm dan
+735,34,e resistance value and the forward,julat bertukar automatik. Jatuhan
+736,34, voltage drop of the diode without,hadapan diod maks 2.4V. Jika
+737,34, conversion.The max.measuring resi,"rintangan di bawah 20 Ohm, bunyi"
+738,34,"sance is up to 5MΩ,and the range",amaran menandakan keadaan
+739,34,is automatically converted. The ma,"rintangan rendah, berguna untuk"
+740,34,x.forward voltage drop of the diod,memeriksa litar pintas.
+741,34,e is 2.4V. When the measured resis,
+742,34,"tance is lower than 20 Ω,a prompt",
+743,34, tone will sound to indicate the,
+744,34,"low-resistance status,which is con",
+745,34,venient for judging whether the ci,
+746,34,rcuit is short-out during circuit,
+747,34,inspection.,
+748,34,5.Oscilloscope,5.Osiloskop
+749,34,"Enter the oscilloscope function,th",Masuk fungsi osiloskop untuk
+750,34,e waveform of current measured val,melihat bentuk gelombang nilai
+751,34,ue  is displayed.Press<HOLD>to loc,yang diukur. Tekan <HOLD> untuk
+752,34,"k the current status,<↑>/<↓>/<←",kunci keadaan semasa.
+753,34,">/<→>makes the waveform move up,",<UP>/<DOWN>/<LEFT>/<RIGHT>
+754,34,"down, left and right respectively.",menggerakkan bentuk gelombang.
+755,34,Under normal measurement status:,"Dalam keadaan normal, <UP>"
+756,34,<↑> means the voltage division va,mengecilkan nilai pembahagi
+757,34,"lue decreases, <down> means the vo","voltan, <DOWN> membesarkan nilai"
+758,34,"ltage division value increases, <l","itu, <LEFT> menambah masa imbasan,"
+759,34,eft> means the detection time incr,dan <RIGHT> mengurangkan masa
+760,34,"eases, <right> means the detection",imbasan. <F1> mengalih aras
+761,34," time decreases, <F1>means positiv","trigger positif, <F2> negatif."
+762,34,"e shift of trigger level, while<F2",Julat bentuk gelombang hingga
+763,34,>means negative shift. The voltage,1000V dan julat bertukar
+764,34,"waveform range is up to 1000V, and",automatik.
+765,34, the range is automatically conver,
+766,34,ted.,
+767,33,7.Analog signal test,7.Ujian isyarat analog
+768,34,This function can simulate and out,Fungsi ini mensimulasi output
+769,34,put square wave and sine wave. It,gelombang petak dan sinus. Ia
+770,34,is suitable for vehicle line detec,sesuai untuk ujian talian
+771,34,tion or ECU analog signal input te,kenderaan atau input isyarat
+772,34,st. Connect the main detection lin,analog ECU. Sambungkan kabel utama
+773,34,"e, use battery clamps to connect",dan klip bateri ke bekalan 12V
+774,34,"12V battery power supply, and out",untuk output gelombang petak 12V.
+775,34,put 12V square wave signals. With,"Tanpa bekalan luar, ia boleh"
+776,34,"out external power supply, it can",output gelombang petak 4.5V.
+777,34,output 4.5V square wave signal. T,Gelombang petak keluar dari
+778,34,he square wave signal is output f,"terminal [K line], gelombang sinus"
+779,34,"rom the [K line] terminal, the si","dari talian isyarat, dan talian 5V"
+780,34,ne wave signal is output from the,mengeluarkan sinus 0-4.5V. Tekan
+781,34,"signal line, and the 5V signal li","<OK> untuk hidup/matikan output,"
+782,34,ne outputs a sine wave of 0-4.5V.,"butang arah melaras frekuensi,"
+783,34,"When entering the function items,","<F1><F2> melaras duty cycle, dan"
+784,34,a prompt message will be displayed,<Fn> masuk kesan isyarat. Output
+785,34,".Press <OK> to control,turn on/off",analog tidak dimatikan ketika
+786,34,"signal output,the direction keys",masuk kesan isyarat.
+787,34,to adjust the frequency of the ana,
+788,34,"log signal, <F1><F2> to adjust the",
+789,34,"duty cycle of the square wave,pres",
+790,34,s the <Fn> key to enter the signal,
+791,34,"detection, the analog signal outpu",
+792,34,t will not be turned off when ente,
+793,34,ring the signal detection.,
+794,34,6.Adjustable voltage signal test.,6.Ujian isyarat voltan
+795,34,This function can simulate the out,Fungsi ini mensimulasi voltan
+796,34,put sensor's voltage and square wa,"sensor dan gelombang petak, sesuai"
+797,34,"ve, which is suitable for simulati",untuk simulasi isyarat sensor
+798,34,"ng sensor signals on vehicles,such",kenderaan seperti sensor suhu dan
+799,34," as temperature sensors, throttle",throttle position. Voltan output
+800,34,position sensors. The simulated ou,simulasi 0V-4.5V dan gelombang
+801,34,"tput signal voltage is 0V-4.5V,and",petak 4.5V boleh dikeluarkan.
+802,34, the 4.5V square wave signal can,Gelombang petak keluar dari
+803,34,be outputted. The square wave sign,"terminal [C01-K], manakala voltan"
+804,34,al is outputted from [C01-K] termi,boleh laras dari terminal
+805,34,"nal, and the adjustable voltage si",[C01-S1]. Gunakan butang arah
+806,34,gnal from [C01-S1] terminal. Enter,"untuk melaras voltan simulasi,"
+807,34," the function interface, use the",<F1><F2> untuk frekuensi gelombang
+808,34,direction key to adjust the simula,"petak, dan <Fn> untuk masuk kesan"
+809,34,"ted voltage signal, and use <F1><",isyarat. Output simulasi tidak
+810,34,F2> to adjust the frequency of the,dimatikan ketika masuk kesan
+811,34, square wave. Press <Fn>key to ent,isyarat.
+812,34,er the signal detection. In case,
+813,34,"of entering the signal detection,",
+814,34,the simulated signal output will,
+815,34,not be turned off.,
