@@ -22,11 +22,12 @@ pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
 Firmware akhir:
 
 ```text
-05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1  DM303-V4.0.1-beta/DM303V4.004.bin
+9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
 ```
 
-Nama fail root `DM303V4.004.bin` dikekalkan untuk keserasian updater SD.
-Kandungannya ialah firmware candidate `v4.0.1 beta` yang telah dipatch.
+Nama fail root `DM303V4.0.1-beta.bin` digunakan supaya updater dan pengguna
+dapat melihat identiti beta secara terus. String model dalaman masih mengekalkan
+prefix asal `MT100MM`/`BT100MM` dengan versi ringkas `V4.0.1b`.
 
 Resource Bahasa Melayu:
 

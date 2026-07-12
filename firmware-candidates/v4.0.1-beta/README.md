@@ -7,8 +7,8 @@ reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
 ## Contents
 
 - `DM303V4.0.1-beta.bin` - patched firmware candidate.
-- Final flash package stores this same candidate content as `DM303V4.004.bin`
-  for updater compatibility.
+- Final flash package also uses `DM303V4.0.1-beta.bin` as the root firmware
+  filename so the updater must display the beta identity.
 - `system/TEXT_MS.DAT` - added Bahasa Melayu text resource candidate.
 - `system/icon-*.bmp` - dark nav-menu icon resources.
 - `PATCH-REPORT.md` - byte-level patch report.
@@ -23,7 +23,8 @@ reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
 - Self-loop exception/default vectors now point to a shared recovery stub.
 - The recovery stub writes `0x05FA0004` to `SCB_AIRCR` (`0xE000ED0C`) to request hardware reset.
 - Runtime fail-stop loops at `0x09ca0`, `0x0c6c8`, and `0x2c4ea` no longer loop forever.
-- Version strings at offsets `0x02ca0` and `0x02cb0` are marked `V4.0.1 beta`.
+- Version strings at offsets `0x02ca0` and `0x02cb0` preserve the original
+  model IDs and are marked `MT100MM V4.0.1b` / `BT100MM V4.0.1b`.
 
 ## Navmenu UI status
 
@@ -42,7 +43,6 @@ language slot would be easier, but that is not the requested add-only behavior.
 ## Safety status
 
 The updater/SD upgrade procedure was not patched. Treat `DM303-V4.0.1-beta/`
-as the final merged package; its root firmware filename is intentionally kept
-as `DM303V4.004.bin` even though the content is the `V4.0.1 beta` candidate.
-Still confirm recovery, rollback, checksum, and device-side behavior before
-relying on it on hardware that cannot be risked.
+as the final merged package; its root firmware filename is intentionally
+`DM303V4.0.1-beta.bin`. Still confirm recovery, rollback, checksum, and
+device-side behavior before relying on it on hardware that cannot be risked.

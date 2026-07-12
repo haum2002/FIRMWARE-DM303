@@ -46,8 +46,8 @@ FAULT_RESET_STUB = (
 )
 
 VERSION_PATCHES = {
-    0x02CA0: b"V4.0.1 beta\x00\x00\x00\x00\x00",
-    0x02CB0: b"V4.0.1 beta\x00\x00\x00\x00\x00",
+    0x02CA0: b"MT100MM V4.0.1b\x00",
+    0x02CB0: b"BT100MM V4.0.1b\x00",
 }
 
 RUNTIME_ANTI_FREEZE_PATCHES = {
@@ -205,7 +205,7 @@ def main() -> int:
                 image,
                 offset,
                 replacement,
-                "mark candidate UI/version string as V4.0.1 beta",
+                "preserve model ID and mark candidate version as V4.0.1 beta",
             )
         )
 

@@ -72,19 +72,20 @@ Perubahan yang dibuat:
   `bx lr`.
 - Selepas patch, opcode `FE E7` tinggal satu sahaja pada offset `0x0755e`,
   iaitu hold selepas permintaan `SYSRESETREQ` dalam recovery stub.
-- String versi di offset `0x02ca0` dan `0x02cb0` ditukar kepada
-  `V4.0.1 beta`.
+- String versi di offset `0x02ca0` dan `0x02cb0` mengekalkan identiti model
+  asal dan ditukar kepada `MT100MM V4.0.1b` / `BT100MM V4.0.1b`.
 - Bootloader/updater dan prosedur SD upgrade tidak dipatch.
 
 Hash candidate:
 
 ```text
-05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1  DM303V4.0.1-beta.bin
+9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112  DM303V4.0.1-beta.bin
 ```
 
-Dalam folder flash akhir, kandungan candidate hash yang sama disimpan dengan
-nama root rasmi `DM303V4.004.bin` supaya updater SD tidak menolak pakej kerana
-nama fail firmware berubah.
+Dalam folder flash akhir, fail root juga kekal bernama
+`DM303V4.0.1-beta.bin`. Ini disengajakan supaya menu updater perlu memaparkan
+identiti beta; nama rasmi lama `DM303V4.004.bin` tidak digunakan sebagai
+penutup atau alias.
 
 ## Bahasa Melayu UI
 
@@ -139,13 +140,10 @@ Peraturan gabungan:
 - `backup/` dibaca sahaja dan tidak diubah.
 - `firmware-candidates/v4.0.1-beta/` menjadi input staging.
 - `DM303-V4.0.1-beta/` dibina semula bersih daripada rujukan V4.0 rasmi.
-- Nama root firmware akhir dikekalkan sebagai `DM303V4.004.bin` untuk
-  keserasian updater SD.
-- Kandungan `DM303V4.004.bin` akhir diganti dengan candidate `v4.0.1 beta`
-  yang mempunyai hash `05cc815fe003e49db3673d3c99f8a585d9744a0e90317e5c3ba5094b52bdeda1`.
-- `DM303V4.0.1-beta.bin` tidak dibenarkan berada di root folder akhir kerana
-  ujian device menunjukkan pakej dengan nama root beta ditolak dan device boot
-  semula seperti biasa.
+- Nama root firmware akhir ialah `DM303V4.0.1-beta.bin`.
+- `DM303V4.004.bin` asal dibuang daripada folder akhir.
+- Kandungan `DM303V4.0.1-beta.bin` akhir mempunyai hash
+  `9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112`.
 - `system/TEXT_MS.DAT` dimasukkan sebagai resource Bahasa Melayu tambahan.
 - Ikon navmenu gelap daripada staging dioverlay ke folder final.
 - Nested tree tidak sah seperti `system/system/` ditolak.
@@ -153,18 +151,20 @@ Peraturan gabungan:
 ## Pembetulan selepas ujian device menolak upgrade
 
 Ujian pada device menunjukkan pakej akhir sebelumnya tidak masuk proses update:
-fungsi upgrade tertutup dan device boot seperti biasa. Punca yang boleh
-dibuktikan daripada set fail ialah mismatch nama firmware root: pakej rasmi
-V4.0 menggunakan `DM303V4.004.bin`, manakala pakej modifikasi sebelumnya
-meletakkan firmware utama sebagai `DM303V4.0.1-beta.bin`.
+fungsi upgrade tertutup dan device boot seperti biasa. Semakan lanjut
+menunjukkan patch lama membuang prefix model dalam slot versi: string asal
+`MT100MM V4.0` dan `BT100MM V4.0` telah diganti kepada `V4.0.1 beta`. Jika
+updater menyemak identiti model sebelum flash, perubahan itu boleh menyebabkan
+fail dianggap bukan firmware yang sesuai.
 
-Skrip gabungan kini membina semula folder akhir dengan bentuk updater rasmi:
-`DM303V4.004.bin`, `QBtest.txt`, `readme.txt`, dan `system/`. Hash
-`DM303V4.004.bin` akhir sama dengan candidate `v4.0.1 beta`, jadi pembetulan
-ini tidak membuang patch anti-freeze, versi, Bahasa Melayu resource, atau ikon
-navmenu gelap. Semakan checksum biasa pada ekor fail tidak menunjukkan medan
-CRC/sum standard yang jelas; jika device masih menolak pakej bernama rasmi ini,
-langkah seterusnya ialah memetakan rutin validator updater dalam firmware.
+Patch semasa mengekalkan prefix model dan hanya menaikkan versi kepada bentuk
+yang muat dalam slot 16-byte: `MT100MM V4.0.1b` dan `BT100MM V4.0.1b`.
+Nama fail akhir tetap `DM303V4.0.1-beta.bin`, jadi kejayaan ujian device nanti
+akan membuktikan updater menerima identiti beta sebenar, bukan sekadar fail
+yang disembunyikan di bawah nama V4.0 rasmi. Semakan checksum biasa pada ekor
+fail tidak menunjukkan medan CRC/sum standard yang jelas; jika device masih
+menolak pakej ini, langkah seterusnya ialah memetakan rutin validator updater
+dalam firmware.
 
 Laporan akhir:
 
