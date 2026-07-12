@@ -1,27 +1,27 @@
 ```
-# Binary/compiled files
+# Compiled and build artifacts
+*.bin
+*.hex
+*.elf
 *.o
 *.obj
-*.exe
-*.dll
-*.so
-*.a
 *.out
+build/
+dist/
+output/
 
 # Dependencies
 node_modules/
 venv/
 .venv/
 __pycache__/
-.mypy_cache/
-.pytest_cache/
-target/
-.gradle/
+*.egg-info/
 
-# Build artifacts
-build/
-dist/
-*.pyc
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
 
 # Environment
 .env
@@ -33,17 +33,23 @@ dist/
 .idea/
 *.swp
 *.swo
-*.tmp
 
-# Logs
-*.log
+# OS specific
+.DS_Store
+Thumbs.db
 
-# Coverage
+# Coverage reports
 coverage/
 htmlcov/
 .coverage
 
-# System
-.DS_Store
-Thumbs.db
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
 ```
