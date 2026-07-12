@@ -30,17 +30,25 @@ FAULT_BLOCK_SIZE = 20
 FAULT_STUB_VECTOR = 0x08017555
 VECTOR_WORDS = 80
 
-DEFAULT_PROFILE = "anti-freeze-exp1"
+DEFAULT_PROFILE = "relay-settle-exp1"
 PROFILES = {
     "boot-acceptance": {
         "fault_reset": False,
         "runtime_patches": False,
+        "relay_settle_patches": False,
         "description": "minimal beta identity and resource build",
     },
     "anti-freeze-exp1": {
         "fault_reset": True,
         "runtime_patches": True,
+        "relay_settle_patches": False,
         "description": "reset on fault/default handler and return from known fail-stop loops",
+    },
+    "relay-settle-exp1": {
+        "fault_reset": True,
+        "runtime_patches": True,
+        "relay_settle_patches": True,
+        "description": "anti-freeze plus longer relay/range settling delays for zeroing and mode changes",
     },
 }
 
@@ -79,6 +87,28 @@ RUNTIME_ANTI_FREEZE_PATCHES = {
     0x2C4EA: (
         bytes.fromhex("70 47"),
         "return from semihosting/debug fail-stop instead of looping forever",
+    ),
+}
+
+RELAY_SETTLE_PATCHES = {
+    # Function 0x0801f0f2 is a GPIO/timing relay or range-selector candidate.
+    # It is called repeatedly by 0x0801f19a when the active measurement path is
+    # changed. The patch only extends waits that already exist in the official
+    # firmware; it does not alter pin order or final pin states.
+    0x0F10A: (
+        bytes.fromhex("02 20"),
+        bytes.fromhex("05 20"),
+        "increase relay selector pre-switch settle wait from 2 to 5 ticks",
+    ),
+    0x0F146: (
+        bytes.fromhex("03 20"),
+        bytes.fromhex("08 20"),
+        "increase relay selector bit-settle wait from 3 to 8 ticks",
+    ),
+    0x0F192: (
+        bytes.fromhex("0a 20"),
+        bytes.fromhex("32 20"),
+        "increase final post-relay settle wait from 10 to 50 ticks",
     ),
 }
 
@@ -140,6 +170,7 @@ def write_report(
     profile: str,
     fault_reset: bool,
     runtime_patches: bool,
+    relay_settle_patches: bool,
     vector_count: int,
 ) -> None:
     fault_scope = (
@@ -151,6 +182,11 @@ def write_report(
         "- Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever."
         if runtime_patches
         else "- Flashable profile keeps runtime fail-stop loops unchanged."
+    )
+    relay_scope = (
+        "- Relay/range selector waits in function `0x0801f0f2` are extended to improve settling after zeroing and mode changes."
+        if relay_settle_patches
+        else "- Relay/range selector timing is kept unchanged."
     )
     lines = [
         "# DM303 V4.0.1 beta patch report",
@@ -166,6 +202,7 @@ def write_report(
         "- Bootloader/updater code and SD update procedure are not patched.",
         fault_scope,
         runtime_scope,
+        relay_scope,
         f"- Patched self-loop vector entries: `{vector_count}`.",
         "- Bahasa Melayu resource is added to the candidate folder as `system/TEXT_MS.DAT`.",
         "- True add-only language menu activation is not patched yet because the hardcoded language table has no confirmed spare slot.",
@@ -208,6 +245,7 @@ def main() -> int:
     profile = args.profile
     fault_reset = bool(PROFILES[profile]["fault_reset"])
     runtime_patches = bool(PROFILES[profile]["runtime_patches"])
+    relay_settle_patches = bool(PROFILES[profile]["relay_settle_patches"])
 
     source_data = SOURCE.read_bytes()
     source_hash = sha256_bytes(source_data)
@@ -274,13 +312,32 @@ def main() -> int:
                 )
             records.append(patch_bytes(image, offset, replacement, reason))
 
+    if relay_settle_patches:
+        for offset, (expected, replacement, reason) in RELAY_SETTLE_PATCHES.items():
+            before = bytes(image[offset : offset + len(expected)])
+            if before != expected:
+                raise SystemExit(
+                    f"Refusing to patch relay-settle guard at 0x{offset:05x}: "
+                    f"expected {expected.hex(' ')}, got {before.hex(' ')}"
+                )
+            records.append(patch_bytes(image, offset, replacement, reason))
+
     output_data = bytes(image)
     OUT_BIN.write_bytes(output_data)
 
     if MS_TEXT.exists():
         shutil.copy2(MS_TEXT, OUT_SYSTEM / "TEXT_MS.DAT")
 
-    write_report(records, source_data, output_data, profile, fault_reset, runtime_patches, len(vector_offsets))
+    write_report(
+        records,
+        source_data,
+        output_data,
+        profile,
+        fault_reset,
+        runtime_patches,
+        relay_settle_patches,
+        len(vector_offsets),
+    )
 
     sums = [
         f"{sha256_file(OUT_BIN)}  {OUT_BIN.name}",

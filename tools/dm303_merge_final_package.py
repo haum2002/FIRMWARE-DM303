@@ -27,10 +27,11 @@ FINAL_MS = FINAL / "system" / "TEXT_MS.DAT"
 FINAL_REPORT = CANDIDATE / "FINAL-PACKAGE-REPORT.md"
 FINAL_SUMS = CANDIDATE / "FINAL-PACKAGE-SHA256.txt"
 
-DEFAULT_PROFILE = "anti-freeze-exp1"
+DEFAULT_PROFILE = "relay-settle-exp1"
 EXPECTED_CANDIDATE_SHA256_BY_PROFILE = {
     "anti-freeze-exp1": "9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112",
     "boot-acceptance": "211cf722a13cab09ba0244eb1b9e919bcc40b6b2dcaf0e4f1756675a353edaa4",
+    "relay-settle-exp1": "a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0",
 }
 EXPECTED_MS_SHA256 = "7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd"
 INCLUDE_DARK_MENU_ICONS = True
@@ -82,6 +83,13 @@ def profile_report_lines(profile: str) -> list[str]:
             "- Firmware code uses the `anti-freeze-exp1` profile.",
             "- Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ recovery stub.",
             "- Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever.",
+        ]
+    if profile == "relay-settle-exp1":
+        return [
+            "- Firmware code uses the `relay-settle-exp1` profile.",
+            "- Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ recovery stub.",
+            "- Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever.",
+            "- Relay/range selector waits in function `0x0801f0f2` are extended without changing GPIO order or final pin states.",
         ]
     return [
         "- Firmware code uses the `boot-acceptance` rollback/diagnostic profile.",

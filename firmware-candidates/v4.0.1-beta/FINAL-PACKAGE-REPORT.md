@@ -12,13 +12,14 @@ Final folder: `DM303-V4.0.1-beta/`
 
 - File count: `68`
 - Firmware: `DM303V4.0.1-beta.bin`
-- Firmware SHA-256: `9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112`
-- Malay UI resource SHA-256: `not included in this anti-freeze-exp1 package`
+- Firmware SHA-256: `a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0`
+- Malay UI resource SHA-256: `not included in this relay-settle-exp1 package`
 - Staged system overlays copied: `34`
 - Dark navmenu overlays use a connected-background mask, preserve original glyph and label pixels, and add a card border inside each 92x92 icon asset.
-- Firmware code uses the `anti-freeze-exp1` profile.
+- Firmware code uses the `relay-settle-exp1` profile.
 - Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ recovery stub.
 - Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever.
+- Relay/range selector waits in function `0x0801f0f2` are extended without changing GPIO order or final pin states.
 - Header clock/date, 12/24 hour setting, and battery percent/bar display are not included because no safe runtime header hook has been confirmed.
 - Root firmware filename is intentionally `DM303V4.0.1-beta.bin` so the updater must display the beta identity.
 - The `DM303V4.0.1-beta.bin` content hash matches the staged V4.0.1 beta candidate.
@@ -29,7 +30,7 @@ Final folder: `DM303-V4.0.1-beta/`
 
 | Path | Size | SHA-256 |
 |---|---:|---|
-| `DM303V4.0.1-beta.bin` | 203260 | `9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112` |
+| `DM303V4.0.1-beta.bin` | 203260 | `a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0` |
 | `QBtest.txt` | 206 | `f5dbf843a66f86919a7a0c9084069dcf48145270c7f87273894cbfe1bf74a287` |
 | `readme.txt` | 115 | `9cd641f93c673b447cc3855f21b9299a510950beed17e37fb073c9db60424fdc` |
 | `system/ASCII64.dat` | 24320 | `e82995fad4c4227d97aef5db2befa7dda23397d71d8277f8ab2842a9ec5c6018` |

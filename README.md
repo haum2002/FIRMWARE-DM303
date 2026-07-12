@@ -22,17 +22,18 @@ pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
 Firmware akhir:
 
 ```text
-9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
+a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
 ```
 
 Nama fail root `DM303V4.0.1-beta.bin` digunakan supaya updater dan pengguna
 dapat melihat identiti beta secara terus. String model dalaman masih mengekalkan
 prefix asal `MT100MM`/`BT100MM` dengan versi ringkas `V4.0.1b`.
 
-Pakej akhir semasa ialah **anti-freeze-exp1 build**. Firmware mengekalkan
+Pakej akhir semasa ialah **relay-settle-exp1 build**. Firmware mengekalkan
 identiti `V4.0.1b`, memasukkan 34 ikon navmenu gelap, mengalih fault/default
-self-loop handler kepada permintaan reset sistem, dan menukar tiga runtime
-fail-stop loop supaya tidak mengunci peranti selama-lamanya.
+self-loop handler kepada permintaan reset sistem, menukar tiga runtime
+fail-stop loop supaya tidak mengunci peranti selama-lamanya, dan memanjangkan
+masa settling relay/range selector sebelum bacaan disambung semula.
 
 Resource Bahasa Melayu staging:
 
@@ -51,6 +52,9 @@ checkout dan commit.
 - Perubahan firmware dibuat melalui skrip, bukan edit binari manual.
 - Patch anti-freeze kod sudah dimasukkan ke folder akhir semasa, tetapi ini
   masih perlu diuji pada device kerana ia mengubah laluan fault/runtime.
+- Patch relay-settle hanya memanjangkan delay sedia ada dalam fungsi
+  `0x0801f0f2`; ia belum membuktikan akurasi analog, true RMS, atau noise
+  oscilloscope sudah selesai tanpa ujian bench.
 - Simpan salinan firmware asal daripada peranti sendiri jika boleh.
 - Catat versi hardware, kaedah flash, dan pilihan rollback sebelum mencuba.
 
@@ -66,6 +70,13 @@ Jana semula firmware candidate:
 
 ```powershell
 python tools/dm303_v401_beta_patch.py
+```
+
+Jana semula profil relay-settle semasa secara eksplisit:
+
+```powershell
+python tools/dm303_v401_beta_patch.py --profile relay-settle-exp1
+python tools/dm303_merge_final_package.py --profile relay-settle-exp1
 ```
 
 Jana semula profil minimal untuk rollback/diagnostik:

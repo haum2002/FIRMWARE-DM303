@@ -31,13 +31,15 @@ boot semula ke firmware asal.
 - Nama fail update yang dipilih ialah `DM303V4.0.1-beta.bin`.
 - Navmenu patut menggunakan ikon berlatar gelap yang lebih kemas, dengan border
   pada kad ikon. Ikon dan tulisan asal tidak diskala semula.
-- Build ini menggunakan profil `anti-freeze-exp1`.
+- Build ini menggunakan profil `relay-settle-exp1`.
+- Semasa zeroing atau tukar DC/AC, relay mungkin terasa sedikit lebih lambat
+  kerana masa settling sengaja dipanjangkan.
 
 ## Apa yang belum aktif
 
 - Bahasa Melayu UI belum aktif dalam menu bahasa.
-- Patch ini belum menjamin akurasi bacaan; ia hanya mengurangkan risiko hang
-  kekal dengan reset recovery dan laluan keluar daripada loop fail-stop.
+- Patch ini belum menjamin akurasi bacaan penuh; ia mengurangkan risiko hang
+  kekal dan menambah masa settling relay/range sebelum bacaan disambung semula.
 - Jam/tarikh header, pilihan 12/24 jam, dan pilihan paparan bateri belum
   dipatch. Jika paparan itu belum muncul, itu normal untuk build ini.
 
@@ -46,7 +48,7 @@ boot semula ke firmware asal.
 Sahkan hash firmware:
 
 ```text
-9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112  DM303V4.0.1-beta.bin
+a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0  DM303V4.0.1-beta.bin
 ```
 
 Skrip validasi utama:
@@ -73,6 +75,24 @@ build `anti-freeze-exp1`, jalankan:
 python tools/dm303_v401_beta_patch.py --profile anti-freeze-exp1
 python tools/dm303_merge_final_package.py --profile anti-freeze-exp1
 ```
+
+Untuk kembali kepada build semasa selepas diagnosis:
+
+```powershell
+python tools/dm303_v401_beta_patch.py --profile relay-settle-exp1
+python tools/dm303_merge_final_package.py --profile relay-settle-exp1
+```
+
+## Ujian selepas flash untuk isu bacaan
+
+- Short probe merah dan hitam, masuk voltmeter DC, tekan zeroing, tunggu bacaan
+  stabil.
+- Tukar DC -> AC -> DC sebanyak 20 kali pada voltmeter dan ammeter. Catat jika
+  paparan blank lebih daripada 2 saat.
+- Untuk ammeter, ulang ujian dengan input selamat atau dummy load, bukan pada
+  litar kenderaan penting.
+- Jangan guna injector/ignition/generator pada beban sebenar sehingga waveform
+  disemak dengan oscilloscope luaran.
 
 ## Peraturan keselamatan
 

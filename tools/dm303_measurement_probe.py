@@ -15,7 +15,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from capstone import CS_ARCH_ARM, CS_MODE_THUMB, Cs
-from capstone.arm_const import ARM_OP_MEM
+from capstone.arm_const import ARM_OP_IMM, ARM_OP_MEM
 
 from dm303_text_resource import parse_text_dat
 from dm303_v4_static_analysis import (
@@ -95,6 +95,22 @@ WATCH_OFFSETS = [
     0x08B56,
     0x08BCA,
 ]
+
+RELAY_SELECTOR_ADDR = 0x0801F0F2
+RELAY_MODE_ROUTINE_ADDR = 0x0801F19A
+RELAY_SETTLE_DELAYS = [
+    (0x0F10A, 2, 5, "pre-switch settle before selector bits are changed"),
+    (0x0F146, 3, 8, "selector bit settle after relay/range bits are changed"),
+    (0x0F192, 10, 50, "final post-relay settle before returning to acquisition"),
+]
+
+RELAY_HELPER_TARGETS = {
+    RELAY_SELECTOR_ADDR: "relay/range selector candidate",
+    0x08039396: "GPIO set",
+    0x0803939E: "GPIO reset",
+    0x08017AC2: "timer delay A",
+    0x08017AD4: "timer delay B",
+}
 
 
 def safe_text(value: str) -> str:
@@ -207,6 +223,66 @@ def print_candidate_code_paths(buf: bytes) -> None:
         print(f"  off=0x{offset:05x} addr=0x{LOAD_BASE + offset:08x}")
 
 
+def disassemble_one(buf: bytes, address: int):
+    md = Cs(CS_ARCH_ARM, CS_MODE_THUMB)
+    md.detail = True
+    offset = addr_to_offset(address, len(buf))
+    if offset is None:
+        return None
+    insns = list(md.disasm(buf[offset : offset + 4], address, count=1))
+    return insns[0] if insns else None
+
+
+def find_bl_calls(buf: bytes, target: int) -> list[int]:
+    md = Cs(CS_ARCH_ARM, CS_MODE_THUMB)
+    md.detail = True
+    calls: list[int] = []
+    for offset in range(0, len(buf) - 4, 2):
+        address = LOAD_BASE + offset
+        insns = list(md.disasm(buf[offset : offset + 4], address, count=1))
+        if not insns:
+            continue
+        insn = insns[0]
+        if not insn.mnemonic.startswith("bl"):
+            continue
+        if not insn.operands or insn.operands[0].type != ARM_OP_IMM:
+            continue
+        if (insn.operands[0].imm & ~1) == target:
+            calls.append(address)
+    return calls
+
+
+def print_relay_settle_evidence(buf: bytes) -> None:
+    print()
+    print("Relay/range settling candidate")
+    print(
+        f"  selector=0x{RELAY_SELECTOR_ADDR:08x} "
+        f"mode_routine=0x{RELAY_MODE_ROUTINE_ADDR:08x}"
+    )
+    print("  evidence: selector toggles GPIOB/GPIOD bits and already contains timer waits")
+    print("  note: this is a relay/range candidate, not a proven analog accuracy fix")
+    print("  official delay bytes:")
+    for offset, old_ticks, new_ticks, reason in RELAY_SETTLE_DELAYS:
+        address = LOAD_BASE + offset
+        insn = disassemble_one(buf, address)
+        if insn is None:
+            print(f"    off=0x{offset:05x} addr=0x{address:08x} undecoded")
+            continue
+        print(
+            f"    off=0x{offset:05x} addr=0x{address:08x} "
+            f"{insn.bytes.hex(' ')} {insn.mnemonic} {insn.op_str} "
+            f"official={old_ticks} patched={new_ticks} - {reason}"
+        )
+
+    selector_calls = find_bl_calls(buf, RELAY_SELECTOR_ADDR)
+    print(f"  calls to selector: {len(selector_calls)}")
+    for address in selector_calls[:24]:
+        marker = " mode routine" if RELAY_MODE_ROUTINE_ADDR <= address < RELAY_MODE_ROUTINE_ADDR + 0x180 else ""
+        print(f"    0x{address:08x}{marker}")
+    if len(selector_calls) > 24:
+        print(f"    ... {len(selector_calls) - 24} more")
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--image", type=Path, default=DEFAULT_IMAGE)
@@ -217,6 +293,7 @@ def main(argv: list[str]) -> int:
     print_text_clues(args.text)
     print_exact_peripheral_hits(args.image, buf)
     print_candidate_code_paths(buf)
+    print_relay_settle_evidence(buf)
     print()
     print("Safety note")
     print("  This tool is read-only and does not identify confirmed safe patch points.")

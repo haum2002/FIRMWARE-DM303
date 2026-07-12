@@ -1,7 +1,8 @@
 # DM303 measurement noise and zeroing analysis
 
-Status: critical issue not fixed yet. This document records current evidence and
-safe next steps so the firmware is not falsely marked as optimized.
+Status: first conservative firmware experiment added in `relay-settle-exp1`.
+This document records current evidence and safe next steps so the firmware is
+not falsely marked as fully optimized.
 
 ## Reported symptoms
 
@@ -67,6 +68,33 @@ Likely low-level candidate areas found during static inspection:
 
 These are candidates only. They are not confirmed safe patch points.
 
+## Relay/zeroing evidence added after hardware feedback
+
+The user reported that calibration/zeroing causes about 2-4 relay clicks. That
+changes the most likely failure path: zeroing probably changes a relay/range
+matrix, then captures offset before the analog path is fully settled.
+
+Static inspection found a strong relay/range-selector candidate:
+
+- `0x0801f0f2`: toggles GPIOB/GPIOD bits and waits between changes.
+- `0x0801f19a`: calls `0x0801f0f2` repeatedly for mode/range states.
+- The mode routine contains groups of three selector calls, matching the
+  reported multiple relay clicks during zeroing or mode changes.
+
+The `relay-settle-exp1` profile extends only existing waits in
+`0x0801f0f2`. It does not change GPIO order, pin masks, updater code, or
+measurement math:
+
+| Offset | Official wait | Patched wait | Purpose |
+|---:|---:|---:|---|
+| `0x0f10a` | `2` ticks | `5` ticks | pre-switch settle |
+| `0x0f146` | `3` ticks | `8` ticks | selector bit settle |
+| `0x0f192` | `10` ticks | `50` ticks | final post-relay settle before acquisition resumes |
+
+This patch is intended to reduce blank/freeze after DC -> AC -> DC switching
+and prevent zeroing from capturing a bad offset too early. It is not a complete
+analog noise or RMS accuracy fix.
+
 ## Most likely root causes
 
 1. Shared acquisition state is not cleared when changing modes.
@@ -104,13 +132,18 @@ These are candidates only. They are not confirmed safe patch points.
   reference.
 - Capture injector output with an external oscilloscope across the real load or
   a safe dummy load.
-- Compare official V4.0, current `boot-acceptance`, and current
-  `anti-freeze-exp1` with the same test sequence.
+- Compare official V4.0, `boot-acceptance`, `anti-freeze-exp1`, and current
+  `relay-settle-exp1` with the same test sequence.
 
 ## Patch direction
 
-The next safe patch should not claim to improve analog accuracy yet. It should
-first target measurement state recovery:
+The first safe patch now targets relay/range settling, not analog math:
+
+- Extend existing waits after relay/range switching.
+- Keep pin order and final pin states unchanged.
+- Keep the bootloader/updater untouched.
+
+The next patch should target measurement state recovery:
 
 - On every mode change, clear zero-pending flags, valid-reading flags, ring
   buffers, RMS/filter accumulators, overrange state, and display blanking state.

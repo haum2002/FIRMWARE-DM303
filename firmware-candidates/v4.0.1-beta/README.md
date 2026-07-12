@@ -20,11 +20,14 @@ reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
 ## Direct firmware changes
 
 - The firmware size remains unchanged at `203260` bytes.
-- The flashable profile is now `anti-freeze-exp1`.
+- The flashable profile is now `relay-settle-exp1`.
 - Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ
   recovery stub.
 - Three known runtime fail-stop loops are changed to return/fall through instead
   of hanging forever.
+- Relay/range selector waits in function `0x0801f0f2` are extended from
+  `2/3/10` ticks to `5/8/50` ticks while preserving GPIO order and final pin
+  states.
 - Version strings at offsets `0x02ca0` and `0x02cb0` preserve the original
   model IDs and are marked `MT100MM V4.0.1b` / `BT100MM V4.0.1b`.
 
@@ -53,7 +56,7 @@ language slot would be easier, but that is not the requested add-only behavior.
 
 The updater/SD upgrade procedure was not patched. Treat `DM303-V4.0.1-beta/`
 as the final merged package; its root firmware filename is intentionally
-`DM303V4.0.1-beta.bin`. The current final package includes the `anti-freeze-exp1`
-runtime patch profile and dark navmenu BMP resources. Still confirm recovery,
-rollback, checksum, and device-side behavior before relying on it on hardware
-that cannot be risked.
+`DM303V4.0.1-beta.bin`. The current final package includes the
+`relay-settle-exp1` runtime patch profile and dark navmenu BMP resources. Still
+confirm recovery, rollback, checksum, and device-side behavior before relying on
+it on hardware that cannot be risked.
