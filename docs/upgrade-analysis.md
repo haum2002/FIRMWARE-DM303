@@ -9,6 +9,7 @@ Kerja ini hanya menggunakan snapshot firmware yang dibekalkan dalam repo ini:
 - `DM303-V4.0/DM303V4.004.bin`
 - `DM303-V4.0/system/`
 - fail teks vendor di dalam `DM303-V4.0/`
+- set rasmi tambahan yang pengguna letakkan di `backup/`
 
 Pakej firmware luar, muat turun awam, dan fail update yang beredar di luar tidak termasuk dalam skop. Fail seperti itu tidak boleh digunakan untuk perbandingan, patch, atau gabungan. Calon luar yang pernah tersilap diuji telah ditarik balik dan branch/PR berkaitan tidak lagi menjadi laluan upgrade aktif.
 
@@ -39,9 +40,11 @@ Ini sepadan dengan corak simptom yang dilaporkan, tetapi belum membuktikan semua
 - `SCB_AIRCR` muncul sebagai literal, tetapi nilai terus `SYSRESETREQ` belum ditemui dalam scan semasa.
 - Perkataan 32-bit dalam julat peripheral memberi petunjuk kepada laluan timer, GPIO, CAN, RCC, FLASH, SCB, dan DMA-related, tetapi ini bukti statik dan belum menjadi bukti data-flow penuh.
 - Binari mengandungi string ASCII berkaitan device/version termasuk `MT100MM V4.0` dan `BT100MM V4.0`.
-- Perbandingan dengan `C:\Users\Administrator\Downloads\Compressed\DM303-V4.0\DM303-V4.0-read only` menunjukkan 68/68 fail adalah byte-for-byte sama dengan folder repo semasa. Tiada fail hilang atau berbeza antara dua salinan ini.
+- Perbandingan dengan `backup/DM303 V4.0-read only` menunjukkan 68/68 fail adalah byte-for-byte sama dengan folder kerja `DM303-V4.0`.
+- Perbandingan dengan `backup/DM303 V3.16-read only` menunjukkan 67 aset bersama adalah byte-for-byte sama; perbezaannya ialah binari firmware utama (`DM303V4.004.bin` berbanding `DM303V316.bin`).
+- `backup/SD-file_DM303_update_US240104-read only` ialah set update lain yang lebih kecil. Ia mengandungi `\system\DM30xDB1.dat`, tetapi set V4.0 rasmi dan set V3.16 rasmi tidak mengandungi fail itu.
 - Binari merujuk 64 path `\system\...`; hanya `\system\DM30XDB1.dat` hilang daripada folder `DM303-V4.0/system/`.
-- Binari dan readme yang dibekalkan merujuk `DM30XDB1.dat`, tetapi `DM303-V4.0/system/DM30XDB1.dat` tidak wujud dalam kedua-dua salinan rasmi yang dibekalkan. Fail yang tiada ini tidak boleh diisi daripada pakej awam atau versi lama.
+- Binari dan readme yang dibekalkan merujuk `DM30XDB1.dat`, tetapi `DM303-V4.0/system/DM30XDB1.dat` tidak wujud dalam set V4.0 kerja atau backup V4.0 rasmi. Fail daripada set versi lain tidak boleh disalin masuk ke V4.0 tanpa bukti format, alamat flash, dan compatibility.
 - Ada julat kosong berisi `0x00`, tetapi ia tidak boleh dianggap sebagai code cave selamat sehingga pemilikannya dibuktikan. Ia mungkin data table, aset paparan, buffer, atau alignment region.
 
 ## Arah naik taraf v4.0.1 beta
@@ -66,6 +69,12 @@ Jalankan analisis dalaman:
 
 ```powershell
 python tools/dm303_v4_static_analysis.py
+```
+
+Bandingkan folder kerja dengan set rasmi tambahan di `backup/`:
+
+```powershell
+python tools/dm303_compare_sets.py
 ```
 
 Skrip ini read-only. Ia tidak menghasilkan firmware yang telah dipatch.
