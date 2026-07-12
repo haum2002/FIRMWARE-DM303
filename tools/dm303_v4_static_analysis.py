@@ -32,6 +32,7 @@ LOAD_BASE = 0x08010000
 RAM_START = 0x20000000
 RAM_END = 0x20040000
 VECTOR_WORDS = 80
+SYSRESET_STUB = bytes.fromhex("02 48 02 49 01 60 bf f3 4f 8f fe e7 0c ed 00 e0 04 00 fa 05")
 
 CORE_VECTOR_NAMES = [
     "initial_sp",
@@ -360,10 +361,11 @@ def print_runtime_self_loop_summary(buf: bytes) -> None:
     if not hits:
         print("  none")
         return
+    has_sysreset_stub = buf[0x7554 : 0x7554 + len(SYSRESET_STUB)] == SYSRESET_STUB
     for offset in hits:
         addr = offset_to_addr(offset)
         note = ""
-        if offset == 0x755E:
+        if has_sysreset_stub and offset == 0x755E:
             note = " post-SYSRESETREQ recovery stub hold"
         print(f"  off 0x{offset:05x} addr 0x{addr:08x}{note}")
 

@@ -26,8 +26,9 @@ FINAL_MS = FINAL / "system" / "TEXT_MS.DAT"
 FINAL_REPORT = CANDIDATE / "FINAL-PACKAGE-REPORT.md"
 FINAL_SUMS = CANDIDATE / "FINAL-PACKAGE-SHA256.txt"
 
-EXPECTED_CANDIDATE_SHA256 = "9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112"
+EXPECTED_CANDIDATE_SHA256 = "211cf722a13cab09ba0244eb1b9e919bcc40b6b2dcaf0e4f1756675a353edaa4"
 EXPECTED_MS_SHA256 = "7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd"
+INCLUDE_STAGED_SYSTEM_OVERLAYS = False
 
 
 def sha256_file(path: Path) -> str:
@@ -59,6 +60,8 @@ def copy_tree_contents(source: Path, destination: Path) -> None:
 
 
 def staged_system_overlays() -> list[Path]:
+    if not INCLUDE_STAGED_SYSTEM_OVERLAYS:
+        return []
     system = CANDIDATE / "system"
     overlays = [CANDIDATE_MS]
     overlays.extend(sorted(system.glob("icon-E*.bmp")))
@@ -67,7 +70,10 @@ def staged_system_overlays() -> list[Path]:
 
 
 def validate_inputs() -> None:
-    for path in [BACKUP_V4, CANDIDATE, CANDIDATE_BIN, CANDIDATE_MS]:
+    required = [BACKUP_V4, CANDIDATE, CANDIDATE_BIN]
+    if INCLUDE_STAGED_SYSTEM_OVERLAYS:
+        required.append(CANDIDATE_MS)
+    for path in required:
         if not path.exists():
             raise SystemExit(f"Missing required input: {path}")
 
@@ -75,9 +81,10 @@ def validate_inputs() -> None:
     if candidate_hash != EXPECTED_CANDIDATE_SHA256:
         raise SystemExit(f"Unexpected candidate firmware hash: {candidate_hash}")
 
-    ms_hash = sha256_file(CANDIDATE_MS)
-    if ms_hash != EXPECTED_MS_SHA256:
-        raise SystemExit(f"Unexpected Malay text resource hash: {ms_hash}")
+    if INCLUDE_STAGED_SYSTEM_OVERLAYS:
+        ms_hash = sha256_file(CANDIDATE_MS)
+        if ms_hash != EXPECTED_MS_SHA256:
+            raise SystemExit(f"Unexpected Malay text resource hash: {ms_hash}")
 
 
 def rebuild_final() -> None:
@@ -124,15 +131,16 @@ def validate_final() -> list[tuple[str, int, str]]:
         raise SystemExit("Final folder contains invalid nested system/system tree")
     if "DM303V4.0.1-beta.bin" not in rels:
         raise SystemExit("Final folder is missing DM303V4.0.1-beta.bin")
-    if "system/TEXT_MS.DAT" not in rels:
+    if INCLUDE_STAGED_SYSTEM_OVERLAYS and "system/TEXT_MS.DAT" not in rels:
         raise SystemExit("Final folder is missing system/TEXT_MS.DAT")
 
     final_bin_hash = sha256_file(FINAL_BIN)
     if final_bin_hash != EXPECTED_CANDIDATE_SHA256:
         raise SystemExit(f"Final firmware hash mismatch: {final_bin_hash}")
-    final_ms_hash = sha256_file(FINAL_MS)
-    if final_ms_hash != EXPECTED_MS_SHA256:
-        raise SystemExit(f"Final TEXT_MS hash mismatch: {final_ms_hash}")
+    if INCLUDE_STAGED_SYSTEM_OVERLAYS:
+        final_ms_hash = sha256_file(FINAL_MS)
+        if final_ms_hash != EXPECTED_MS_SHA256:
+            raise SystemExit(f"Final TEXT_MS hash mismatch: {final_ms_hash}")
 
     return rows
 
@@ -156,8 +164,9 @@ def write_reports(rows: list[tuple[str, int, str]]) -> None:
         f"- File count: `{len(rows)}`",
         f"- Firmware: `DM303V4.0.1-beta.bin`",
         f"- Firmware SHA-256: `{sha256_file(FINAL_BIN)}`",
-        f"- Malay UI resource SHA-256: `{sha256_file(FINAL_MS)}`",
+        "- Malay UI resource SHA-256: `not included in boot-acceptance final package`",
         f"- Staged system overlays copied: `{len(staged_system_overlays())}`",
+        "- Final package uses stock V4.0 system resources to isolate the hardware fallback cause.",
         "- Root firmware filename is intentionally `DM303V4.0.1-beta.bin` so the updater must display the beta identity.",
         "- The `DM303V4.0.1-beta.bin` content hash matches the staged V4.0.1 beta candidate.",
         "- Original root name `DM303V4.004.bin` is not present in the final package.",
@@ -184,7 +193,10 @@ def main() -> int:
     print(f"final={FINAL}")
     print(f"final_files={len(rows)}")
     print(f"final_firmware_sha256={sha256_file(FINAL_BIN)}")
-    print(f"final_text_ms_sha256={sha256_file(FINAL_MS)}")
+    if INCLUDE_STAGED_SYSTEM_OVERLAYS:
+        print(f"final_text_ms_sha256={sha256_file(FINAL_MS)}")
+    else:
+        print("final_text_ms_sha256=not-included")
     print(f"report={FINAL_REPORT}")
     return 0
 

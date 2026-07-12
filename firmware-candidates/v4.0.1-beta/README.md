@@ -20,18 +20,16 @@ reference. The clean flash package is rebuilt into `DM303-V4.0.1-beta/` with
 ## Direct firmware changes
 
 - The firmware size remains unchanged at `203260` bytes.
-- Self-loop exception/default vectors now point to a shared recovery stub.
-- The recovery stub writes `0x05FA0004` to `SCB_AIRCR` (`0xE000ED0C`) to request hardware reset.
-- Runtime fail-stop loops at `0x09ca0`, `0x0c6c8`, and `0x2c4ea` no longer loop forever.
+- The flashable default profile keeps exception/default vectors unchanged.
+- The flashable default profile keeps runtime fail-stop loops unchanged.
 - Version strings at offsets `0x02ca0` and `0x02cb0` preserve the original
   model IDs and are marked `MT100MM V4.0.1b` / `BT100MM V4.0.1b`.
 
 ## Navmenu UI status
 
-The menu icon BMP resources are rebuilt with a dark background, yellow icons,
-and preserved 92x92 16-bit BMP layout. Header-level clock/date/battery options
-are not patched yet because the runtime render path and setting storage still
-need safer mapping.
+The menu icon BMP resources are staged with a dark background, yellow icons,
+and preserved 92x92 16-bit BMP layout. They are not copied into the current
+boot-acceptance final package.
 
 ## Bahasa Melayu status
 
@@ -44,5 +42,7 @@ language slot would be easier, but that is not the requested add-only behavior.
 
 The updater/SD upgrade procedure was not patched. Treat `DM303-V4.0.1-beta/`
 as the final merged package; its root firmware filename is intentionally
-`DM303V4.0.1-beta.bin`. Still confirm recovery, rollback, checksum, and
-device-side behavior before relying on it on hardware that cannot be risked.
+`DM303V4.0.1-beta.bin`. The current final package uses stock V4.0 system
+resources to isolate the fallback cause seen on hardware. Still confirm
+recovery, rollback, checksum, and device-side behavior before relying on it on
+hardware that cannot be risked.

@@ -29,6 +29,12 @@ FAULT_BLOCK_SIZE = 20
 FAULT_STUB_VECTOR = 0x08017555
 VECTOR_WORDS = 80
 
+# Hardware testing showed the full anti-freeze candidate reaches the loading
+# screen and then falls back to the original firmware. Keep the flashable
+# default profile minimal until the beta identity itself is accepted.
+ENABLE_EXPERIMENTAL_FAULT_RESET_PATCH = False
+ENABLE_EXPERIMENTAL_RUNTIME_PATCHES = False
+
 ORIGINAL_FAULT_BLOCK = bytes.fromhex("fe e7 " * 10)
 
 # Thumb code at 0x08017554:
@@ -129,8 +135,8 @@ def write_report(records: list[PatchRecord], source_data: bytes, output_data: by
         "- Source firmware is not modified in place.",
         "- Output binary size is unchanged.",
         "- Bootloader/updater code and SD update procedure are not patched.",
-        "- Fault/default self-loop handlers are redirected to a hardware reset request.",
-        "- Runtime fail-stop loops are converted to return/fall-through paths.",
+        "- Flashable default profile keeps fault/default handlers unchanged.",
+        "- Flashable default profile keeps runtime fail-stop loops unchanged.",
         "- Bahasa Melayu resource is added to the candidate folder as `system/TEXT_MS.DAT`.",
         "- True add-only language menu activation is not patched yet because the hardcoded language table has no confirmed spare slot.",
         "",
@@ -164,8 +170,9 @@ def main() -> int:
             f"Refusing to patch unexpected source hash: {source_hash}"
         )
 
-    if source_data[FAULT_BLOCK_OFFSET : FAULT_BLOCK_OFFSET + FAULT_BLOCK_SIZE] != ORIGINAL_FAULT_BLOCK:
-        raise SystemExit("Refusing to patch: fault handler block does not match expected V4.0 bytes")
+    if ENABLE_EXPERIMENTAL_FAULT_RESET_PATCH:
+        if source_data[FAULT_BLOCK_OFFSET : FAULT_BLOCK_OFFSET + FAULT_BLOCK_SIZE] != ORIGINAL_FAULT_BLOCK:
+            raise SystemExit("Refusing to patch: fault handler block does not match expected V4.0 bytes")
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     OUT_SYSTEM.mkdir(parents=True, exist_ok=True)
@@ -173,31 +180,33 @@ def main() -> int:
     image = bytearray(source_data)
     records: list[PatchRecord] = []
 
-    vector_offsets = find_self_loop_vectors(source_data)
-    if not vector_offsets:
-        raise SystemExit("No self-loop vectors found; refusing to patch")
+    vector_offsets: list[int] = []
+    if ENABLE_EXPERIMENTAL_FAULT_RESET_PATCH:
+        vector_offsets = find_self_loop_vectors(source_data)
+        if not vector_offsets:
+            raise SystemExit("No self-loop vectors found; refusing to patch")
 
-    for entry_offset in vector_offsets:
-        before_value = u32_at(source_data, entry_offset)
-        if before_value == FAULT_STUB_VECTOR:
-            continue
+        for entry_offset in vector_offsets:
+            before_value = u32_at(source_data, entry_offset)
+            if before_value == FAULT_STUB_VECTOR:
+                continue
+            records.append(
+                patch_bytes(
+                    image,
+                    entry_offset,
+                    FAULT_STUB_VECTOR.to_bytes(4, "little"),
+                    "redirect self-loop exception/IRQ vector to shared reset-recovery stub",
+                )
+            )
+
         records.append(
             patch_bytes(
                 image,
-                entry_offset,
-                FAULT_STUB_VECTOR.to_bytes(4, "little"),
-                "redirect self-loop exception/IRQ vector to shared reset-recovery stub",
+                FAULT_BLOCK_OFFSET,
+                FAULT_RESET_STUB,
+                "replace permanent fault/default loops with SCB_AIRCR SYSRESETREQ stub",
             )
         )
-
-    records.append(
-        patch_bytes(
-            image,
-            FAULT_BLOCK_OFFSET,
-            FAULT_RESET_STUB,
-            "replace permanent fault/default loops with SCB_AIRCR SYSRESETREQ stub",
-        )
-    )
 
     for offset, replacement in VERSION_PATCHES.items():
         records.append(
@@ -209,14 +218,15 @@ def main() -> int:
             )
         )
 
-    for offset, (replacement, reason) in RUNTIME_ANTI_FREEZE_PATCHES.items():
-        before = bytes(image[offset : offset + len(replacement)])
-        if before != b"\xfe\xe7":
-            raise SystemExit(
-                f"Refusing to patch anti-freeze guard at 0x{offset:05x}: "
-                f"unexpected bytes {before.hex(' ')}"
-            )
-        records.append(patch_bytes(image, offset, replacement, reason))
+    if ENABLE_EXPERIMENTAL_RUNTIME_PATCHES:
+        for offset, (replacement, reason) in RUNTIME_ANTI_FREEZE_PATCHES.items():
+            before = bytes(image[offset : offset + len(replacement)])
+            if before != b"\xfe\xe7":
+                raise SystemExit(
+                    f"Refusing to patch anti-freeze guard at 0x{offset:05x}: "
+                    f"unexpected bytes {before.hex(' ')}"
+                )
+            records.append(patch_bytes(image, offset, replacement, reason))
 
     output_data = bytes(image)
     OUT_BIN.write_bytes(output_data)
@@ -237,6 +247,7 @@ def main() -> int:
     print(f"source={SOURCE}")
     print(f"source_sha256={source_hash}")
     print(f"output={OUT_BIN}")
+    print("profile=boot_acceptance")
     print(f"output_size={len(output_data)}")
     print(f"output_sha256={sha256_file(OUT_BIN)}")
     print(f"patched_vectors={len(vector_offsets)}")

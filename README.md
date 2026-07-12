@@ -22,17 +22,21 @@ pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
 Firmware akhir:
 
 ```text
-9206f9e0c574a8f4ad4c8ba1be7fb51206799641b89e74ce202a93c372382112  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
+211cf722a13cab09ba0244eb1b9e919bcc40b6b2dcaf0e4f1756675a353edaa4  DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
 ```
 
 Nama fail root `DM303V4.0.1-beta.bin` digunakan supaya updater dan pengguna
 dapat melihat identiti beta secara terus. String model dalaman masih mengekalkan
 prefix asal `MT100MM`/`BT100MM` dengan versi ringkas `V4.0.1b`.
 
-Resource Bahasa Melayu:
+Pakej akhir semasa ialah **boot-acceptance build**. Ia menggunakan resource
+`system/` rasmi V4.0 tanpa overlay Bahasa Melayu atau ikon gelap supaya punca
+fallback hardware boleh diasingkan dahulu.
+
+Resource Bahasa Melayu staging:
 
 ```text
-7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  DM303-V4.0.1-beta/system/TEXT_MS.DAT
+7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  firmware-candidates/v4.0.1-beta/system/TEXT_MS.DAT
 ```
 
 Folder `DM303-V4.0.1-beta/` ditandakan sebagai binari dalam `.gitattributes`
@@ -44,8 +48,8 @@ checkout dan commit.
 - Jangan flash tanpa menyemak checksum, laporan patch, dan kaedah recovery.
 - Bootloader/updater dan prosedur SD upgrade tidak dipatch.
 - Perubahan firmware dibuat melalui skrip, bukan edit binari manual.
-- Patch anti-freeze hanya menukar laluan fail-stop/self-loop yang dikenal pasti;
-  laluan normal fungsi bacaan tidak dirombak tanpa pemetaan kod yang cukup.
+- Patch anti-freeze kod belum dimasukkan ke folder akhir semasa kerana build
+  penuh sebelumnya menyebabkan white-screen/loading fallback pada device.
 - Simpan salinan firmware asal daripada peranti sendiri jika boleh.
 - Catat versi hardware, kaedah flash, dan pilihan rollback sebelum mencuba.
 
@@ -79,7 +83,7 @@ Sahkan binari dan resource:
 
 ```powershell
 python tools/dm303_v4_static_analysis.py --no-walk
-python tools/dm303_text_resource.py --input DM303-V4.0.1-beta/system/TEXT_MS.DAT --verify-rebuild
+python tools/dm303_text_resource.py --input firmware-candidates/v4.0.1-beta/system/TEXT_MS.DAT --verify-rebuild
 ```
 
 Analisis penuh berada di [docs/upgrade-analysis.md](docs/upgrade-analysis.md).
