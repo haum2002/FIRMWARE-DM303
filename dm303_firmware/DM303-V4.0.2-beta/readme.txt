@@ -1,49 +1,29 @@
-SD Type: HC-I or SDC
-SD format: FAT32
+FIRMWARE DM303 V4.0.2-beta ENHANCED STABILITY
+============================================
 
-DM303V4.0.2-beta.bin---flash 0x400000 (Enhanced Stability) -- 2024
+CIRI-CIRI BARA:
+✓ Bahasa Melayu DI AKTIFKAN secara default
+✓ kestabilan dipertingkatkan (Vector Table fixed)
+✓ Anti-noise/EMI improvements (Relay delay optimized)
+✓ Compatible dengan semua model DM303
 
-INSTALLATION INSTRUCTIONS / ARAHAN PEMASANGAN:
+PANDUAN PEMASANGAN:
+1. Format SD Card ke FAT32
+2. Salin SEMUA fail (.bin dan folder system/) ke punca SD Card
+3. Pastikan folder system/ disalin sepenuhnya
+4. Matikan DM303, masukkan SD Card
+5. Tekan & tahan butang UPDATE/OK sambil hidupkan peranti
+6. Tunggu sehingga kemas kini selesai
+7. Keluarkan SD Card dan reboot
 
-1. Copy ALL files from this folder to SD Card root directory
-   (Salin SEMUA fail dari folder ini ke punca Kad SD)
+BAHASA MELAYU:
+- Firmware ini menggunakan Bahasa Melayu secara default
+- Untuk tukar bahasa lain: Menu -> Settings -> Language
 
-2. Ensure /system folder is copied completely with all assets
-   (Pastikan folder /system disalin sepenuhnya dengan semua aset)
+NOTA:
+- Bootloader TIDAK diubah suai (selamat)
+- Fungsi update firmware dikekalkan
+- Boleh restore ke firmware asal bila-bila masa
 
-3. Power off your DM303 device
-   (Matikan peranti DM303 anda)
-
-4. Insert SD Card into the device
-   (Masukkan Kad SD ke dalam peranti)
-
-5. Hold the UPDATE/OK button while powering on the device
-   (Tekan dan tahan butang UPDATE/OK semasa menghidupkan peranti)
-
-6. Wait for update to complete - DO NOT power off during update!
-   (Tunggu sehingga kemas kini selesai - JANGAN matikan kuasa semasa kemas kini!)
-
-7. Remove SD Card and reboot the device
-   (Keluarkan Kad SD dan mulakan semula peranti)
-
-WHAT'S NEW in V4.0.2-beta:
-- Enhanced stability against EMI/noise interference
-- Fixed freeze/hang issues with anti-freeze patches
-- Improved relay settle delay for better measurement accuracy
-- Version bump from V4.0.1b to V4.0.2b
-
-APA YANG BAHARU dalam V4.0.2-beta:
-- Kestabilan dipertingkatkan terhadap gangguan EMI/noise
-- Masalah freeze/hang dibetulkan dengan patch anti-freeze
-- Lewatan penempatan relay ditambah baik untuk ketepatan ukuran
-- Naik taraf versi dari V4.0.1b ke V4.0.2b
-
-SAFETY STATUS: ✅ VERIFIED SAFE TO FLASH
-This firmware contains only minimal, verified byte-level patches.
-Bootloader and update functions are NOT modified.
-
-STATUS KESELAMATAN: ✅ DISAHKAN SELAMAT UNTUK FLASH
-Firmware ini mengandungi hanya patch paras-minimal yang telah disahkan.
-Bootloader dan fungsi kemas kini TIDAK diubah suai.
-
-For support, visit: https://github.com/haum2002/FIRMWARE-DM303
+CHECKSUM:
+6f73b33368cd664fd7f56e7daa6ab74b78fabb346ce8065ea5fff970279d276b

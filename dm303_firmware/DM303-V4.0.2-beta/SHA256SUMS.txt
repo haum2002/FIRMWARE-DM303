@@ -1,15 +1,1 @@
-# DM303 V4.0.2-beta Enhanced Stability Firmware
-# SHA-256 Checksums for Verification
-# Generated: 2024
-
-# Main Firmware Binary (SAFE TO FLASH)
-64b6e42bd98c412d2a2cb22f28518a3e00ac8db7fe63747bbb73d2d8354fdb2b  DM303V4.0.2-beta.bin
-
-# Source Firmware (Original V4.0.1-beta)
-#a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0  DM303V4.0.1-beta.bin (reference)
-
-# Verification Instructions:
-# Windows (PowerShell): Get-FileHash DM303V4.0.2-beta.bin -Algorithm SHA256
-# Linux/Mac: sha256sum DM303V4.0.2-beta.bin
-# 
-# Compare the output with the hash above to ensure file integrity.
+6f73b33368cd664fd7f56e7daa6ab74b78fabb346ce8065ea5fff970279d276b  DM303V4.0.2-beta.bin
