@@ -22,26 +22,28 @@ pakej akhir supaya perubahan boleh disemak tanpa menimpa rujukan asal.
 Firmware akhir:
 
 ```text
-c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be  dm303_firmware/DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
+f09f9f43a156b62e90c708c858986ae57f6baa2102a307f5830999b0557249da  dm303_firmware/DM303-V4.0.1-beta/DM303V4.0.1-beta.bin
 ```
 
 Nama fail root `DM303V4.0.1-beta.bin` digunakan supaya updater dan pengguna
 dapat melihat identiti beta secara terus. String model dalaman masih mengekalkan
 prefix asal `MT100MM`/`BT100MM` dengan versi ringkas `V4.0.1b`.
 
-Pakej akhir semasa ialah **force-stable-exp2 build**. Firmware mengekalkan
-identiti `V4.0.1b`, memasukkan 34 ikon navmenu `Soft Eye`, menambah resource
-Bahasa Melayu, mengganti slot bahasa SP dengan Melayu, mengalih fault/default
+Pakej akhir semasa ialah **force-enhanced-exp4 build**. Firmware mengekalkan
+identiti `V4.0.1b`, memulihkan ikon navmenu kepada palet vendor rasmi,
+menambah resource Bahasa Melayu, mengganti slot bahasa SP dengan Melayu,
+menukar nama pilihan bahasa `España` kepada `Melayu`, mengalih fault/default
 self-loop handler kepada permintaan reset sistem, menukar tiga runtime
-fail-stop loop supaya tidak mengunci peranti selama-lamanya, dan memanjangkan
-masa settling relay/range selector kepada profil lebih konservatif `8/12/100`
-ticks sebelum bacaan disambung semula.
+fail-stop loop supaya tidak mengunci peranti selama-lamanya, memanjangkan masa
+settling relay/range selector kepada `8/12/100` ticks, menambah wrapper
+mode-switch gaya V3.16, dan memberi delay boot-logo 200 ticks.
 
 Resource Bahasa Melayu staging:
 
 ```text
 7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  dm303_firmware/DM303-V4.0.1-beta/system/TEXT_MS.DAT
 7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  dm303_firmware/DM303-V4.0.1-beta/system/TEXT_SP.DAT
+cd47c7e59f38488d6ffd10617a5d90ab5c79791535a3f75d70fbaaae42c7c4b3  dm303_firmware/DM303-V4.0.1-beta/system/icon-SP.dat
 ```
 
 Folder `dm303_firmware/DM303-V4.0.1-beta/` ditandakan sebagai binari dalam
@@ -58,9 +60,16 @@ resource semasa checkout dan commit.
 - Patch force-stable hanya memanjangkan delay sedia ada dalam fungsi
   `0x0801f0f2`; ia belum membuktikan akurasi analog, true RMS, atau noise
   oscilloscope sudah selesai tanpa ujian bench.
-- Bahasa Melayu sudah disertakan sebagai `system/TEXT_MS.DAT`; pilihan SP
-  menggunakan resource Melayu melalui `system/TEXT_SP.DAT`. Menu bahasa
-  add-only belum dipatch kerana slot runtime yang selamat belum disahkan.
+- Bahasa Melayu sudah disertakan sebagai `system/TEXT_MS.DAT`; slot bekas SP
+  menggunakan resource Melayu melalui `system/TEXT_SP.DAT` dan label grafik
+  Melayu melalui `system/icon-SP.dat`. Nama pilihan bahasa dalam firmware kini
+  dipaparkan sebagai `Melayu`.
+- `icon-E18.bmp` dikenal pasti sebagai `ADJ. VOLT SIG`. Ia tidak diaktifkan
+  paksa kerana fail label bukan-Cina rasmi hanya mempunyai 17 frame dan jadual
+  dispatch menu belum disahkan selamat.
+- Konvensyen UI semasa: label ikon/menu kecil menggunakan uppercase ringkas
+  seperti `VOLTAN`, `ARUS`, `DATA CAN`, dan `DATA K/LIN`; teks arahan panjang
+  menggunakan Bahasa Melayu biasa yang mudah dibaca.
 - Tiada patch ADC/EMI matematik dimasukkan kerana alamat enjin pengukuran
   belum disahkan. Menulis filter ke alamat tekaan akan berisiko merosakkan
   firmware.
@@ -81,11 +90,14 @@ Jana semula firmware candidate:
 python tools/dm303_v401_beta_patch.py
 ```
 
-Jana semula profil force-stable semasa secara eksplisit:
+Jana semula profil semasa secara eksplisit:
 
 ```powershell
-python tools/dm303_v401_beta_patch.py --profile force-stable-exp2
-python tools/dm303_merge_final_package.py --profile force-stable-exp2
+python tools/dm303_v401_beta_patch.py --profile force-enhanced-exp4
+python tools/dm303_make_dark_menu_assets.py
+powershell -ExecutionPolicy Bypass -File tools/dm303_make_ms_icon_pack.ps1
+powershell -ExecutionPolicy Bypass -File tools/dm303_make_beta_logo.ps1 -SourceArtwork "C:\Users\Administrator\Downloads\image_(1).bmp"
+python tools/dm303_merge_final_package.py --profile force-enhanced-exp4
 ```
 
 Jana semula profil minimal untuk rollback/diagnostik:
@@ -95,7 +107,7 @@ python tools/dm303_v401_beta_patch.py --profile boot-acceptance
 python tools/dm303_merge_final_package.py --profile boot-acceptance
 ```
 
-Jana tema gelap ikon navmenu:
+Pulihkan ikon navmenu vendor ke staging:
 
 ```powershell
 python tools/dm303_make_dark_menu_assets.py
@@ -118,5 +130,8 @@ Analisis penuh berada di [docs/upgrade-analysis.md](docs/upgrade-analysis.md).
 
 Analisis isu noise/zeroing/acquisition berada di
 [docs/measurement-noise-analysis.md](docs/measurement-noise-analysis.md).
+
+Nota `icon-E18` dan status UI Melayu berada di
+[docs/icon-e18-language-ui-analysis.md](docs/icon-e18-language-ui-analysis.md).
 
 Nota flash untuk pemula berada di [docs/beginner-flash-notes.md](docs/beginner-flash-notes.md).

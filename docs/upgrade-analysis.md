@@ -42,16 +42,20 @@ memori tidak sah, peripheral state rosak, atau interrupt tidak dijangka masuk
 ke handler ini, device boleh kelihatan hang kerana handler tidak pernah return.
 
 Selepas pengguna mengesahkan fallback sebelumnya berpunca daripada susunan fail
-SD card, patch anti-freeze dimasukkan semula dan kini dibina bersama profil
-`force-stable-exp2`. Profil ini menukar laluan exception/default kepada
-permintaan reset sistem, menukar tiga fail-stop runtime supaya keluar/return
-daripada loop kekal, dan memanjangkan masa settling relay/range selector
-kepada profil konservatif `8/12/100` ticks.
+SD card, patch anti-freeze dimasukkan semula. Dapatan fizikal V3.16 kemudian
+menunjukkan DC -> AC -> DC boleh lancar walaupun selector timing sama seperti
+V4.0 rasmi, iaitu `2/3/10` ticks. Build semasa kini menggunakan profil
+`force-enhanced-exp4`: laluan exception/default tetap diarahkan kepada
+permintaan reset sistem, tiga fail-stop runtime keluar/return daripada loop
+kekal, relay/range settling dipanjangkan kepada `8/12/100`, helper mode-switch
+`0x0801f0ac` dibalut untuk memanggil `selector(1, flag)` seperti laluan V3.16
+non-sub-mode-4, dan load resource `LOGO-1.bmp` melalui wrapper delay 200 ticks.
 
 Ini belum menyelesaikan semua punca bacaan tidak stabil seperti DMA/state
 acquisition, filtering, kalibrasi ADC, atau display-update blocking. Ia ialah
 patch reliability/recovery untuk mengurangkan keadaan hang kekal apabila fault
-atau fail-stop path tercetus.
+atau fail-stop path tercetus. Math/True RMS dan ADC/filter engine belum dipatch
+kerana hook runtime yang selamat belum disahkan.
 
 ## Perubahan firmware candidate
 
@@ -78,7 +82,7 @@ Perubahan yang dibuat:
 Hash candidate:
 
 ```text
-c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be  DM303V4.0.1-beta.bin
+b2c86842c8149f6b66648285e4cbec61f7699fd4ac2ec424725a784cd484a992  DM303V4.0.1-beta.bin
 ```
 
 Dalam folder flash akhir, fail root juga kekal bernama
@@ -117,20 +121,31 @@ sekitar `0x08035be4` belum mempunyai spare slot yang disahkan.
 
 ## UI navmenu
 
-Tema `Soft Eye` navmenu dibuat pada lapisan resource:
+Tema tuned dark navmenu dibuat pada lapisan resource:
 
 - Source asset: `backup/DM303 V4.0-read only/system/icon-*.bmp`
 - Staging: `firmware-candidates/v4.0.1-beta/system/icon-*.bmp`
 - Final: `dm303_firmware/DM303-V4.0.1-beta/system/icon-*.bmp`
-- 34 ikon BMP menu final ditukar kepada palet charcoal/ivory/amber yang lebih
-  lembut, tanpa pure black atau pure white.
-- Penjana menukar connected menu-card background dan tone-map foreground
-  putih/kuning yang terlalu terang.
+- 34 ikon BMP menu final ditukar kepada palet charcoal-blue rata berdasarkan
+  arah tema gelap sebelumnya.
+- Penjana menukar background biru vendor kepada satu tona charcoal-blue,
+  menormalkan foreground putih/kuning, dan mengelak gradient shadow.
 - Ikon dan label asal tidak diskala semula atau diblur, jadi bentuk asal
   dikekalkan.
-- Border kad ikon ditambah di dalam setiap aset `92x92`.
+- Border satu warna ditambah di dalam setiap aset `92x92`.
 - Header BMP, dimensi `92x92`, row layout, dan saiz fail dikekalkan.
 - Laporan: `firmware-candidates/v4.0.1-beta/DARK-MENU-ASSETS.md`
+
+Logo beta juga dibuat pada lapisan resource:
+
+- Source artwork: `assets/logo/dm303-v401-beta-logo-source.bmp`
+- Template firmware: `backup/DM303 V4.0-read only/system/LOGO-1.bmp`
+- Staging: `firmware-candidates/v4.0.1-beta/system/LOGO-1.bmp`
+- Final: `dm303_firmware/DM303-V4.0.1-beta/system/LOGO-1.bmp`
+- Artwork `image_(1).bmp` daripada pengguna ditukar ke layout firmware
+  `LOGO-1.bmp`.
+- Header BMP, dimensi `320x240`, row layout, bit depth, dan saiz fail
+  dikekalkan.
 
 Fungsi UI runtime seperti jam/tarikh di header, pilihan 12/24 jam, pilihan
 bateri peratus/bar, dan border header antara navmenu/bateri belum dipatch
@@ -157,9 +172,9 @@ Peraturan gabungan:
 - Nama root firmware akhir ialah `DM303V4.0.1-beta.bin`.
 - `DM303V4.004.bin` asal dibuang daripada folder akhir.
 - Kandungan `DM303V4.0.1-beta.bin` akhir mempunyai hash
-  `c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be`.
-- Resource `system/` akhir diambil daripada rujukan V4.0 rasmi dan 34 ikon
-  navmenu `Soft Eye` daripada staging dioverlay.
+  `b2c86842c8149f6b66648285e4cbec61f7699fd4ac2ec424725a784cd484a992`.
+- Resource `system/` akhir diambil daripada rujukan V4.0 rasmi; 34 ikon
+  navmenu tuned dark dan `LOGO-1.bmp` beta daripada staging dioverlay.
 - `system/TEXT_MS.DAT` dioverlay sebagai resource tambahan Bahasa Melayu.
 - `system/TEXT_SP.DAT` diganti dengan resource Melayu untuk menggantikan
   pilihan SP pada device.
@@ -179,10 +194,13 @@ kepada bentuk yang muat dalam slot 16-byte: `MT100MM V4.0.1b` dan
 `BT100MM V4.0.1b`. Build minimal dan build navmenu gelap sudah diterima oleh
 device. Selepas pengguna mengesahkan masalah fallback lama berpunca daripada
 fail firmware diletakkan dalam folder SD card, profil `anti-freeze-exp1`
-dimasukkan semula, dikembangkan kepada `relay-settle-exp1`, dan kini
-ditingkatkan kepada `force-stable-exp2` untuk eksperimen settling relay/range
-yang lebih konservatif. Bahasa Melayu resource sudah disertakan, tetapi menu
-Bahasa Melayu add-only masih belum diaktifkan.
+dimasukkan semula dan pernah dikembangkan kepada `force-stable-exp2` untuk
+eksperimen settling relay/range. Dapatan V3.16 kemudian menunjukkan delay
+panjang bukan punca tunggal, tetapi pemerhatian terbaru masih menunjukkan
+blank/freeze selepas spike/overload. Build semasa dinaikkan kepada
+`force-enhanced-exp4` untuk ujian stability-first: wrapper mode-switch V3.16,
+settling `8/12/100`, dan boot-logo delay 200 ticks. Bahasa Melayu resource
+sudah disertakan, tetapi menu Bahasa Melayu add-only masih belum diaktifkan.
 
 Laporan akhir:
 

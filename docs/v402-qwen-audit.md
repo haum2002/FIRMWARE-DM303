@@ -1,6 +1,6 @@
 # DM303 V4.0.2b Qwen audit
 
-Status: do not flash the current Qwen-generated V4.0.2b candidate.
+Status: do not flash any current V4.0.2b package in this workspace.
 
 This audit was made after the firmware was moved under `dm303_firmware/` and
 after `firmware-candidates/v4.0.2-beta/DM303V4.0.2-beta.bin` appeared in the
@@ -26,8 +26,26 @@ add `dm303_firmware/` as a normal folder.
 | V4.0.1 beta candidate | `a8fe14bb34e3a58eaf88a6eb33ed58517416885cc6edcc948a4f7ac5713e19b0` |
 | Qwen V4.0.2b candidate | `2fe3d55595eb7e3c9cc76055e8fe6185ef2ec9135ac8804b9feff94f2bf5ec8d` |
 
-The V4.0.2b binary is the same size as V4.0.1b and changes only 58 bytes across
-26 byte ranges.
+The original `firmware-candidates/v4.0.2-beta` binary is the same size as the
+older V4.0.1b baseline and changes only 58 bytes across 26 byte ranges. Later
+V4.0.2 folders add more problems:
+
+| Package | Size | SHA-256 | Audit result |
+|---|---:|---|---|
+| `firmware-candidates/v4.0.2-beta/DM303V4.0.2-beta.bin` | `203260` | `2fe3d55595eb7e3c9cc76055e8fe6185ef2ec9135ac8804b9feff94f2bf5ec8d` | unsafe guessed-offset patch set |
+| `dm303_firmware/DM303-V4.0.2-beta/DM303V4.0.2-beta.bin` | `203261` | `4bcd5d3ea0080476d03832f7753ba9be72fc2971694d48753a475f61a004329b` | corrupt shifted image; one extra byte changes alignment after the version area |
+| `dm303_firmware/DM303-V4.0.2-beta-FINAL/DM303V4.0.2-beta-FINAL.bin` | `203260` | `47eee60e262476654a27c95573a6c76f34440ca55bcd8fb4675cb5adf6b3f7a8` | unsafe vector-table edits and unproven claims |
+
+The `203261` byte image is especially unsafe: comparison against the current
+V4.0.1b image shows thousands of apparent byte differences after the version
+string area because data appears shifted by one byte. That destroys Thumb
+instruction alignment and literal/data addresses.
+
+The `V4.0.2-beta-FINAL` image is not the same as the Qwen candidate. It changes
+many vector-table entries from the shared recovery stub value ending in `0x55`
+to the reset vector ending in `0x4d`. It also reports `MT100MM V4.0.2b` while
+the `BT100MM` string remains `V4.0.1b`, making the identity internally
+inconsistent.
 
 ## Critical findings
 
@@ -71,6 +89,8 @@ Qwen's `TIM4 CH2` assumption is not proven here.
 ## Safe next action
 
 Do not use `firmware-candidates/v4.0.2-beta/DM303V4.0.2-beta.bin` on the device.
+Also do not use `dm303_firmware/DM303-V4.0.2-beta/` or
+`dm303_firmware/DM303-V4.0.2-beta-FINAL/` as a recovery or improvement source.
 
 Continue from the known flashable V4.0.1b baseline and only add a new V4.0.2
 candidate after each patch point is confirmed by disassembly and guarded by
