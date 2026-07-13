@@ -27,7 +27,7 @@ except ImportError as exc:  # pragma: no cover - dependency guard
     ) from exc
 
 
-DEFAULT_IMAGE = Path("DM303-V4.0.1-beta/DM303V4.0.1-beta.bin")
+DEFAULT_IMAGE = Path("dm303_firmware/DM303-V4.0.1-beta/DM303V4.0.1-beta.bin")
 LOAD_BASE = 0x08010000
 RAM_START = 0x20000000
 RAM_END = 0x20040000
