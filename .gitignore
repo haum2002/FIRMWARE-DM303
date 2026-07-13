@@ -1,26 +1,7 @@
 ```
-# Firmware binaries and artifacts
-*.bin
-*.hex
-*.elf
-*.hex
-*.out
-*.o
-*.obj
-
-# Checksum and build files
-SHA256SUMS.txt
-*.sha256
-*.md5
-
-# Build directories
-build/
-dist/
-output/
-target/
-
-# Temporary files
-*.tmp
-*.log
-*.bak
+# Build artifacts and firmware files
+dm303_firmware/*/system/*.dat
+dm303_firmware/*/system/*.bmp
+dm303_firmware/*/system/*.GBK
+dm303_firmware/*/
 ```
