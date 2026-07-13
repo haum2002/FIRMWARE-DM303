@@ -97,6 +97,9 @@ Resource Bahasa Melayu:
 - Candidate: `localization/ms_MY/TEXT_MS.DAT`
 - Staging: `firmware-candidates/v4.0.1-beta/system/TEXT_MS.DAT`
 - Final: `dm303_firmware/DM303-V4.0.1-beta/system/TEXT_MS.DAT`.
+- SP slot replacement: `dm303_firmware/DM303-V4.0.1-beta/system/TEXT_SP.DAT`
+  contains the same Malay resource so the existing SP language option can be
+  used for device-side testing.
 
 Validasi semasa:
 
@@ -107,21 +110,24 @@ Validasi semasa:
 - SHA-256: `7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd`
 
 Bahasa Melayu ditambah sebagai resource staging dan dioverlay ke folder akhir
-sebagai fail tambahan `system/TEXT_MS.DAT`. Aktivasi menu Bahasa Melayu secara
-add-only belum dipatch kerana jadual nama bahasa hardcoded sekitar
-`0x08035be4` belum mempunyai spare slot yang disahkan.
+sebagai fail tambahan `system/TEXT_MS.DAT`. Slot bahasa SP sedia ada turut
+diganti dengan resource yang sama melalui `system/TEXT_SP.DAT`. Aktivasi menu
+Bahasa Melayu secara add-only belum dipatch kerana jadual nama bahasa hardcoded
+sekitar `0x08035be4` belum mempunyai spare slot yang disahkan.
 
 ## UI navmenu
 
-Tema gelap navmenu dibuat pada lapisan resource:
+Tema `Soft Eye` navmenu dibuat pada lapisan resource:
 
 - Source asset: `backup/DM303 V4.0-read only/system/icon-*.bmp`
 - Staging: `firmware-candidates/v4.0.1-beta/system/icon-*.bmp`
 - Final: `dm303_firmware/DM303-V4.0.1-beta/system/icon-*.bmp`
-- 34 ikon BMP menu final ditukar latar daripada biru kepada gelap.
-- Penjana baru hanya menukar connected menu-card background, bukan semua piksel
-  biru secara kasar.
-- Ikon dan label asal tidak diskala semula, jadi ketajaman asal dikekalkan.
+- 34 ikon BMP menu final ditukar kepada palet charcoal/ivory/amber yang lebih
+  lembut, tanpa pure black atau pure white.
+- Penjana menukar connected menu-card background dan tone-map foreground
+  putih/kuning yang terlalu terang.
+- Ikon dan label asal tidak diskala semula atau diblur, jadi bentuk asal
+  dikekalkan.
 - Border kad ikon ditambah di dalam setiap aset `92x92`.
 - Header BMP, dimensi `92x92`, row layout, dan saiz fail dikekalkan.
 - Laporan: `firmware-candidates/v4.0.1-beta/DARK-MENU-ASSETS.md`
@@ -153,8 +159,10 @@ Peraturan gabungan:
 - Kandungan `DM303V4.0.1-beta.bin` akhir mempunyai hash
   `c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be`.
 - Resource `system/` akhir diambil daripada rujukan V4.0 rasmi dan 34 ikon
-  navmenu gelap daripada staging dioverlay.
+  navmenu `Soft Eye` daripada staging dioverlay.
 - `system/TEXT_MS.DAT` dioverlay sebagai resource tambahan Bahasa Melayu.
+- `system/TEXT_SP.DAT` diganti dengan resource Melayu untuk menggantikan
+  pilihan SP pada device.
 - Nested tree tidak sah seperti `system/system/` ditolak.
 
 ## Pembetulan selepas ujian device menolak upgrade

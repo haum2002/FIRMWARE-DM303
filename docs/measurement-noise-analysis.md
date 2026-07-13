@@ -56,6 +56,11 @@ This does not prove that no ADC is used. The ADC address could be built
 indirectly, or the meter may use an external analog front-end. It does mean that
 a simple internal-ADC patch would be speculative.
 
+Current `force-stable-exp2` does not patch ADC averaging, RMS math, or EMI
+filter code. That is intentional: no confirmed measurement-engine hook has been
+found yet. The package improves recovery/timing around fault paths and
+relay/range switching while keeping unverified ADC/filter code untouched.
+
 Likely low-level candidate areas found during static inspection:
 
 - `0x08017bc4`: USART3-like sampling/storage path.

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Build dark nav-menu BMP assets for the DM303 V4.0.1 beta package.
+"""Build Soft Eye nav-menu BMP assets for the DM303 V4.0.1 beta package.
 
 The firmware loads fixed 92x92 16-bit BMP files by filename. This tool keeps
 the original BMP headers, dimensions, row layout, and file sizes intact while
-recoloring only the connected menu-card background to a cleaner dark theme.
+recoloring the connected menu-card background and softening harsh foreground
+whites/yellows without rescaling any glyphs.
 """
 
 from __future__ import annotations
@@ -47,15 +48,23 @@ def is_blue_menu_background(red: int, green: int, blue: int) -> bool:
     )
 
 
-def dark_background_color(x: int, y: int, width: int, height: int) -> tuple[int, int, int]:
-    # Subtle vertical + center lift keeps the card from looking flat while
-    # preserving the original low-resolution icon pixels untouched.
-    vertical = int(10 * y / max(1, height - 1))
+def soft_eye_background_color(x: int, y: int, width: int, height: int) -> tuple[int, int, int]:
+    # Muted charcoal/green-gray keeps contrast usable without pure black or
+    # harsh white. The lift keeps the fixed 92x92 asset from looking flat.
+    vertical = int(8 * y / max(1, height - 1))
     cx = abs(x - (width - 1) / 2) / max(1, width / 2)
     cy = abs(y - (height - 1) / 2) / max(1, height / 2)
-    center = max(0, int(9 * (1.0 - min(1.0, (cx * cx + cy * cy) ** 0.5))))
+    center = max(0, int(7 * (1.0 - min(1.0, (cx * cx + cy * cy) ** 0.5))))
     lift = vertical + center
-    return 10 + lift, 13 + lift, 16 + lift
+    return 18 + lift, 23 + lift, 24 + lift
+
+
+def soft_eye_foreground_color(red: int, green: int, blue: int) -> tuple[int, int, int] | None:
+    if red >= 210 and green >= 210 and blue >= 200:
+        return 213, 211, 198
+    if red >= 195 and green >= 155 and blue <= 95:
+        return 232, 190, 56
+    return None
 
 
 def read_bmp_geometry(data: bytes, path: Path) -> tuple[int, int, int, int]:
@@ -126,15 +135,28 @@ def transform_bmp(source: Path, destination: Path) -> tuple[int, str, str]:
 
     for x, y in bg_mask:
         value = get_pixel(data, pixel_offset, width, height, x, y)
-        replacement = rgb_to_rgb565(*dark_background_color(x, y, width, abs(height)))
+        replacement = rgb_to_rgb565(*soft_eye_background_color(x, y, width, abs(height)))
         if replacement != value:
             set_pixel(data, pixel_offset, width, height, x, y, replacement)
             changed_pixels += 1
 
-    outer = rgb_to_rgb565(5, 7, 9)
-    inner = rgb_to_rgb565(44, 51, 57)
-    highlight = rgb_to_rgb565(70, 76, 80)
-    shadow = rgb_to_rgb565(20, 24, 28)
+    for y in range(abs(height)):
+        for x in range(width):
+            if (x, y) in bg_mask:
+                continue
+            value = get_pixel(data, pixel_offset, width, height, x, y)
+            replacement_rgb = soft_eye_foreground_color(*rgb565_to_rgb(value))
+            if replacement_rgb is None:
+                continue
+            replacement = rgb_to_rgb565(*replacement_rgb)
+            if replacement != value:
+                set_pixel(data, pixel_offset, width, height, x, y, replacement)
+                changed_pixels += 1
+
+    outer = rgb_to_rgb565(12, 15, 16)
+    inner = rgb_to_rgb565(48, 57, 56)
+    highlight = rgb_to_rgb565(89, 96, 85)
+    shadow = rgb_to_rgb565(24, 30, 31)
     max_y = abs(height) - 1
     max_x = width - 1
     for x in range(width):
@@ -191,16 +213,18 @@ def main() -> int:
             handle.write(f"{output_hash}  system/{name}\n")
 
     lines = [
-        "# DM303 dark nav-menu asset report",
+        "# DM303 Soft Eye nav-menu asset report",
         "",
-        "Status: resource-level dark theme assets for `v4.0.1 beta`.",
+        "Status: resource-level Soft Eye theme assets for `v4.0.1 beta`.",
         "",
         "## Safety scope",
         "",
         "- Source assets in `backup/` are read-only.",
         "- BMP dimensions, headers, row layout, and file sizes are preserved.",
-        "- Only connected menu-card background pixels and the card border are recolored.",
-        "- Icon glyphs and label pixels are not rescaled.",
+        "- Connected menu-card background pixels and the card border are recolored.",
+        "- Harsh white/yellow foreground pixels are tone-mapped to softer ivory/amber.",
+        "- Icon glyphs and label pixels are not rescaled or blurred.",
+        "- Palette avoids pure black, pure white, and flat high-glare grays.",
         "- Firmware code, bootloader, and updater are not touched by this tool.",
         "",
         "## Files",

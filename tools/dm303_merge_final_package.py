@@ -22,8 +22,10 @@ FINAL = WORKSPACE / "dm303_firmware" / "DM303-V4.0.1-beta"
 
 CANDIDATE_BIN = CANDIDATE / "DM303V4.0.1-beta.bin"
 CANDIDATE_MS = CANDIDATE / "system" / "TEXT_MS.DAT"
+CANDIDATE_SP = CANDIDATE / "system" / "TEXT_SP.DAT"
 FINAL_BIN = FINAL / "DM303V4.0.1-beta.bin"
 FINAL_MS = FINAL / "system" / "TEXT_MS.DAT"
+FINAL_SP = FINAL / "system" / "TEXT_SP.DAT"
 FINAL_REPORT = CANDIDATE / "FINAL-PACKAGE-REPORT.md"
 FINAL_SUMS = CANDIDATE / "FINAL-PACKAGE-SHA256.txt"
 WORKSPACE_SUMS = WORKSPACE / "CHECKSUMS-SHA256.txt"
@@ -36,8 +38,10 @@ EXPECTED_CANDIDATE_SHA256_BY_PROFILE = {
     "force-stable-exp2": "c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be",
 }
 EXPECTED_MS_SHA256 = "7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd"
+EXPECTED_SP_SHA256 = EXPECTED_MS_SHA256
 INCLUDE_DARK_MENU_ICONS = True
 INCLUDE_MS_RESOURCE = True
+REPLACE_SP_WITH_MS_RESOURCE = True
 
 
 def sha256_file(path: Path) -> str:
@@ -73,6 +77,8 @@ def staged_system_overlays() -> list[Path]:
     overlays: list[Path] = []
     if INCLUDE_MS_RESOURCE:
         overlays.append(CANDIDATE_MS)
+    if REPLACE_SP_WITH_MS_RESOURCE:
+        overlays.append(CANDIDATE_SP)
     if INCLUDE_DARK_MENU_ICONS:
         overlays.extend(sorted(system.glob("icon-E*.bmp")))
         overlays.extend(sorted(system.glob("icon-C*.bmp")))
@@ -112,6 +118,8 @@ def validate_inputs(expected_candidate_sha256: str) -> None:
     required = [BACKUP_V4, CANDIDATE, CANDIDATE_BIN]
     if INCLUDE_MS_RESOURCE:
         required.append(CANDIDATE_MS)
+    if REPLACE_SP_WITH_MS_RESOURCE:
+        required.append(CANDIDATE_SP)
     for path in required:
         if not path.exists():
             raise SystemExit(f"Missing required input: {path}")
@@ -124,6 +132,10 @@ def validate_inputs(expected_candidate_sha256: str) -> None:
         ms_hash = sha256_file(CANDIDATE_MS)
         if ms_hash != EXPECTED_MS_SHA256:
             raise SystemExit(f"Unexpected Malay text resource hash: {ms_hash}")
+    if REPLACE_SP_WITH_MS_RESOURCE:
+        sp_hash = sha256_file(CANDIDATE_SP)
+        if sp_hash != EXPECTED_SP_SHA256:
+            raise SystemExit(f"Unexpected SP-slot Malay text resource hash: {sp_hash}")
 
 
 def rebuild_final() -> None:
@@ -172,6 +184,8 @@ def validate_final(expected_candidate_sha256: str) -> list[tuple[str, int, str]]
         raise SystemExit("Final folder is missing DM303V4.0.1-beta.bin")
     if INCLUDE_MS_RESOURCE and "system/TEXT_MS.DAT" not in rels:
         raise SystemExit("Final folder is missing system/TEXT_MS.DAT")
+    if REPLACE_SP_WITH_MS_RESOURCE and "system/TEXT_SP.DAT" not in rels:
+        raise SystemExit("Final folder is missing replacement system/TEXT_SP.DAT")
 
     final_bin_hash = sha256_file(FINAL_BIN)
     if final_bin_hash != expected_candidate_sha256:
@@ -180,6 +194,10 @@ def validate_final(expected_candidate_sha256: str) -> list[tuple[str, int, str]]
         final_ms_hash = sha256_file(FINAL_MS)
         if final_ms_hash != EXPECTED_MS_SHA256:
             raise SystemExit(f"Final TEXT_MS hash mismatch: {final_ms_hash}")
+    if REPLACE_SP_WITH_MS_RESOURCE:
+        final_sp_hash = sha256_file(FINAL_SP)
+        if final_sp_hash != EXPECTED_SP_SHA256:
+            raise SystemExit(f"Final TEXT_SP hash mismatch: {final_sp_hash}")
 
     return rows
 
@@ -209,8 +227,9 @@ def write_reports(rows: list[tuple[str, int, str]], profile: str) -> None:
         f"- Firmware: `DM303V4.0.1-beta.bin`",
         f"- Firmware SHA-256: `{sha256_file(FINAL_BIN)}`",
         f"- Malay UI resource SHA-256: `{sha256_file(FINAL_MS) if INCLUDE_MS_RESOURCE else f'not included in this {profile} package'}`",
+        f"- SP language slot replacement SHA-256: `{sha256_file(FINAL_SP) if REPLACE_SP_WITH_MS_RESOURCE else 'not replaced'}`",
         f"- Staged system overlays copied: `{len(staged_system_overlays())}`",
-        "- Dark navmenu overlays use a connected-background mask, preserve original glyph and label pixels, and add a card border inside each 92x92 icon asset.",
+        "- Soft Eye navmenu overlays use a connected-background mask, softer charcoal/ivory/amber colors, and a card border inside each 92x92 icon asset.",
         *profile_report_lines(profile),
         "- Header clock/date, 12/24 hour setting, and battery percent/bar display are not included because no safe runtime header hook has been confirmed.",
         "- Root firmware filename is intentionally `DM303V4.0.1-beta.bin` so the updater must display the beta identity.",
@@ -257,6 +276,8 @@ def main() -> int:
         print(f"final_text_ms_sha256={sha256_file(FINAL_MS)}")
     else:
         print("final_text_ms_sha256=not-included")
+    if REPLACE_SP_WITH_MS_RESOURCE:
+        print(f"final_text_sp_sha256={sha256_file(FINAL_SP)}")
     print(f"report={FINAL_REPORT}")
     print(f"workspace_checksums={WORKSPACE_SUMS}")
     return 0

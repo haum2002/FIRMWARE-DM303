@@ -483,11 +483,13 @@ def main() -> int:
 
     text_ms = output_dir / "TEXT_MS.DAT"
     slot_candidate = output_dir / "TEXT_PO.ms-slot-candidate.DAT"
+    sp_replacement = output_dir / "TEXT_SP.ms-slot-replacement.DAT"
     csv_path = output_dir / "translations_ms.csv"
 
     rebuilt = rebuild(data, entries, replacements)
     text_ms.write_bytes(rebuilt)
     slot_candidate.write_bytes(rebuilt)
+    sp_replacement.write_bytes(rebuilt)
     write_csv(csv_path, entries, replacements)
 
     print(f"source={args.source}")
@@ -495,6 +497,7 @@ def main() -> int:
     print(f"entries={len(entries)} translated_or_rewrapped={changed}")
     print(f"text_ms={text_ms} size={len(rebuilt)} sha256={sha256(rebuilt)}")
     print(f"slot_candidate={slot_candidate}")
+    print(f"sp_replacement={sp_replacement}")
     print(f"translations_csv={csv_path}")
     print("safety_note=text resource only; firmware binary and upgrade system untouched")
     return 0

@@ -17,6 +17,7 @@ from pathlib import Path
 
 SOURCE = Path("backup/DM303 V4.0-read only/DM303V4.004.bin")
 MS_TEXT = Path("localization/ms_MY/TEXT_MS.DAT")
+SP_TEXT = Path("localization/ms_MY/TEXT_SP.ms-slot-replacement.DAT")
 OUT_DIR = Path("firmware-candidates/v4.0.1-beta")
 OUT_BIN = OUT_DIR / "DM303V4.0.1-beta.bin"
 OUT_SYSTEM = OUT_DIR / "system"
@@ -234,7 +235,8 @@ def write_report(
         relay_scope,
         f"- Patched self-loop vector entries: `{vector_count}`.",
         "- Bahasa Melayu resource is added to the candidate folder as `system/TEXT_MS.DAT`.",
-        "- True add-only language menu activation is not patched yet because the hardcoded language table has no confirmed spare slot.",
+        "- The existing Spanish `TEXT_SP.DAT` slot is replaced with the same Malay resource for device-side language selection.",
+        "- True add-only language menu activation is not patched because the hardcoded language table has no confirmed spare slot.",
         "",
         "## Hashes",
         "",
@@ -356,6 +358,8 @@ def main() -> int:
 
     if MS_TEXT.exists():
         shutil.copy2(MS_TEXT, OUT_SYSTEM / "TEXT_MS.DAT")
+    if SP_TEXT.exists():
+        shutil.copy2(SP_TEXT, OUT_SYSTEM / "TEXT_SP.DAT")
 
     write_report(
         records,
@@ -374,6 +378,9 @@ def main() -> int:
     ms_candidate = OUT_SYSTEM / "TEXT_MS.DAT"
     if ms_candidate.exists():
         sums.append(f"{sha256_file(ms_candidate)}  system/TEXT_MS.DAT")
+    sp_candidate = OUT_SYSTEM / "TEXT_SP.DAT"
+    if sp_candidate.exists():
+        sums.append(f"{sha256_file(sp_candidate)}  system/TEXT_SP.DAT")
     write_text_lf(OUT_SUMS, "\n".join(sums) + "\n")
 
     print(f"source={SOURCE}")

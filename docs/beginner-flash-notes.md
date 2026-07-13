@@ -29,20 +29,23 @@ boot semula ke firmware asal.
 
 - Versi firmware menunjukkan `V4.0.1b`.
 - Nama fail update yang dipilih ialah `DM303V4.0.1-beta.bin`.
-- Navmenu patut menggunakan ikon berlatar gelap yang lebih kemas, dengan border
-  pada kad ikon. Ikon dan tulisan asal tidak diskala semula.
+- Navmenu patut menggunakan ikon `Soft Eye` yang lebih lembut, dengan border
+  pada kad ikon. Ikon dan tulisan tidak diskala semula.
 - Build ini menggunakan profil `force-stable-exp2`.
 - Semasa zeroing atau tukar DC/AC, relay mungkin terasa sedikit lebih lambat
   kerana masa settling sengaja dipanjangkan kepada profil `8/12/100` ticks.
 
 ## Apa yang belum aktif
 
-- Resource Bahasa Melayu `system/TEXT_MS.DAT` sudah disertakan, tetapi pilihan
-  Bahasa Melayu belum aktif dalam menu bahasa.
+- Resource Bahasa Melayu `system/TEXT_MS.DAT` sudah disertakan.
+- Pilihan bahasa SP kini menggunakan `system/TEXT_SP.DAT` yang berisi Bahasa
+  Melayu. Pilih SP jika mahu menguji UI Melayu pada device.
 - Patch ini belum menjamin akurasi bacaan penuh; ia mengurangkan risiko hang
   kekal dan menambah masa settling relay/range sebelum bacaan disambung semula.
 - Jam/tarikh header, pilihan 12/24 jam, dan pilihan paparan bateri belum
   dipatch. Jika paparan itu belum muncul, itu normal untuk build ini.
+- Filter ADC/EMI sebenar belum dipatch kerana alamat enjin pengukuran belum
+  disahkan selamat.
 
 ## Cara semak pakej
 

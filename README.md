@@ -30,16 +30,18 @@ dapat melihat identiti beta secara terus. String model dalaman masih mengekalkan
 prefix asal `MT100MM`/`BT100MM` dengan versi ringkas `V4.0.1b`.
 
 Pakej akhir semasa ialah **force-stable-exp2 build**. Firmware mengekalkan
-identiti `V4.0.1b`, memasukkan 34 ikon navmenu gelap, menambah resource Bahasa
-Melayu, mengalih fault/default self-loop handler kepada permintaan reset
-sistem, menukar tiga runtime fail-stop loop supaya tidak mengunci peranti
-selama-lamanya, dan memanjangkan masa settling relay/range selector kepada
-profil lebih konservatif `8/12/100` ticks sebelum bacaan disambung semula.
+identiti `V4.0.1b`, memasukkan 34 ikon navmenu `Soft Eye`, menambah resource
+Bahasa Melayu, mengganti slot bahasa SP dengan Melayu, mengalih fault/default
+self-loop handler kepada permintaan reset sistem, menukar tiga runtime
+fail-stop loop supaya tidak mengunci peranti selama-lamanya, dan memanjangkan
+masa settling relay/range selector kepada profil lebih konservatif `8/12/100`
+ticks sebelum bacaan disambung semula.
 
 Resource Bahasa Melayu staging:
 
 ```text
 7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  dm303_firmware/DM303-V4.0.1-beta/system/TEXT_MS.DAT
+7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  dm303_firmware/DM303-V4.0.1-beta/system/TEXT_SP.DAT
 ```
 
 Folder `dm303_firmware/DM303-V4.0.1-beta/` ditandakan sebagai binari dalam
@@ -56,9 +58,12 @@ resource semasa checkout dan commit.
 - Patch force-stable hanya memanjangkan delay sedia ada dalam fungsi
   `0x0801f0f2`; ia belum membuktikan akurasi analog, true RMS, atau noise
   oscilloscope sudah selesai tanpa ujian bench.
-- Bahasa Melayu sudah disertakan sebagai `system/TEXT_MS.DAT`, tetapi menu
-  bahasa add-only belum dipatch kerana slot runtime yang selamat belum
-  disahkan.
+- Bahasa Melayu sudah disertakan sebagai `system/TEXT_MS.DAT`; pilihan SP
+  menggunakan resource Melayu melalui `system/TEXT_SP.DAT`. Menu bahasa
+  add-only belum dipatch kerana slot runtime yang selamat belum disahkan.
+- Tiada patch ADC/EMI matematik dimasukkan kerana alamat enjin pengukuran
+  belum disahkan. Menulis filter ke alamat tekaan akan berisiko merosakkan
+  firmware.
 - Simpan salinan firmware asal daripada peranti sendiri jika boleh.
 - Catat versi hardware, kaedah flash, dan pilihan rollback sebelum mencuba.
 

@@ -14,8 +14,9 @@ Final folder: `dm303_firmware/DM303-V4.0.1-beta/`
 - Firmware: `DM303V4.0.1-beta.bin`
 - Firmware SHA-256: `c97a03d6b21a74ade4fff057d5966fd180a3682a0b08d04a58093ffbfbb006be`
 - Malay UI resource SHA-256: `7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd`
-- Staged system overlays copied: `35`
-- Dark navmenu overlays use a connected-background mask, preserve original glyph and label pixels, and add a card border inside each 92x92 icon asset.
+- SP language slot replacement SHA-256: `7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd`
+- Staged system overlays copied: `36`
+- Soft Eye navmenu overlays use a connected-background mask, softer charcoal/ivory/amber colors, and a card border inside each 92x92 icon asset.
 - Firmware code uses the `force-stable-exp2` profile.
 - Fault/default self-loop vectors are redirected to a shared SCB SYSRESETREQ recovery stub.
 - Three known runtime fail-stop loops are changed to return/fall through instead of hanging forever.
@@ -39,41 +40,41 @@ Final folder: `dm303_firmware/DM303-V4.0.1-beta/`
 | `system/HZK-ALL.GBK` | 4194304 | `0286dea064da9b480654586dee2706bbf4ac9abc489bbf57f5652e830cee3301` |
 | `system/ICcorner.dat` | 1792 | `f74ae380602419a9a3e0fcbfc6d13dc5d4586657409ead7243b8458946badd8a` |
 | `system/icon-C.dat` | 82944 | `a268409bd0962c723b9be5ec7c451076217fb9c1ca63fd52b6df2a5344b20ecb` |
-| `system/icon-C1.bmp` | 17000 | `9b535027e07b41ed3226c31f8bf3c83e3415cd8b803d3bf85e22c6888fb6d0d5` |
-| `system/icon-C10.bmp` | 17000 | `854d64a7b913bef7c63c03d19a19d5c31843f43deb4fca9ca0c86a08ebfc9339` |
-| `system/icon-C11.bmp` | 17000 | `b8c96ad9a9b0aaca2b77d509e8958eb163dad3cf8d0935969f53af6daa2a2466` |
-| `system/icon-C12.bmp` | 17000 | `e9b5017bca535fef0cce3109b78b6f866bb213ca6b6efd125160131da51e3e4f` |
-| `system/icon-C13.bmp` | 17000 | `e19be3185fb8c0e1671f0b09a7e62b1dcde0bb6120f61b1ca42f3f7ef7cf46a2` |
-| `system/icon-C14.bmp` | 17000 | `578d98536aa0d93ad02f709b395d38b56160112dd4fdb53201707a59699f3a44` |
-| `system/icon-C15.bmp` | 17000 | `2ef26e18bfbea7485631a35f74d58ce7f1bb06b239e982689393cd096fbf1106` |
-| `system/icon-C16.bmp` | 17000 | `d671f19574b7cd90d0a58156f0b77715bab38311ef69aa70e6c212cb39b5c5a3` |
-| `system/icon-C2.bmp` | 17000 | `c2eb7024ad16a56cbac7b9789ba204ddae5b31a6f8fba382103cf1de1fad5d15` |
-| `system/icon-C3.bmp` | 17000 | `76f33fa999848c9f616439c1af79539a70366e4f9202eac97300be58911f0aac` |
-| `system/icon-C4.bmp` | 17000 | `4b08f8b80decd83cb8c2f09e4a65303371d332030c7a5333d7fe780633b52c24` |
-| `system/icon-C5.bmp` | 17000 | `789735f12eaa1256fcb2d6cf3f4996ad77d03358117627ca3e1fde8291b3a45e` |
-| `system/icon-C6.bmp` | 17000 | `64e8d673fdc321d7f6f7a526cf7c171cdde8e44fadde34d608cc7117389e58d2` |
-| `system/icon-C7.bmp` | 17000 | `4222824a4a66ea5092e1a1a3025b3afba457db73e4662afbe3965c13573f215d` |
-| `system/icon-C8.bmp` | 17000 | `fc62d359fb55d66631d5c76c30225dc564b62767ec746ed86b6beaea1329db1b` |
-| `system/icon-C9.bmp` | 17000 | `cf371de15f8714833338c4faddce8226367740594a0f795f333f20019e1f1e34` |
+| `system/icon-C1.bmp` | 17000 | `f77b3a8fce8ea0c1c14e68a065714023382e405b2373899dc43badde3546bf83` |
+| `system/icon-C10.bmp` | 17000 | `390a7deef0a8162d35334b9ea0aa3ec52caf61ac6921c376f362fe84e25e11f5` |
+| `system/icon-C11.bmp` | 17000 | `b56f84ba84994bc033e8fe47f882743e21736815a22ab239e00e54fc497b5ef8` |
+| `system/icon-C12.bmp` | 17000 | `4ca6ce45e7f047765797252e09f9e5aeead764ae8c574c23f07d46665ac98c69` |
+| `system/icon-C13.bmp` | 17000 | `465e728fd7b6bc587bf8e5a9fdfd34ef899f99bcab4018a6cdfa3cb5b2256c03` |
+| `system/icon-C14.bmp` | 17000 | `4488701a888df55f94b2a6a9e4e569380bc7f103f515de7ad692446e77ec8a6f` |
+| `system/icon-C15.bmp` | 17000 | `ffcc1c757a19a5558a06c1aa2f1762614d67bb053700e02c5726e4af016b6683` |
+| `system/icon-C16.bmp` | 17000 | `0b899d2032f764fe1ad67e71d0c8dbc8e112d060b44c0c96203d7d62bf018f98` |
+| `system/icon-C2.bmp` | 17000 | `a54df9411a2a7832fa59129e3d67bb56ef2e4d9ed3d0c3854e59da7d131fc541` |
+| `system/icon-C3.bmp` | 17000 | `7100db4478af9780226d17d40fe36de8b808da6948d45e54b15bd6b4b9f7f8a9` |
+| `system/icon-C4.bmp` | 17000 | `0b6a424c71664fe80a5c5eff1cd1de41076d1ed4e37c4037588648a8b0728d2c` |
+| `system/icon-C5.bmp` | 17000 | `939ec8c92ef140d4d3ddf2bb8403f5d39f2f9d5491fcbbae05da3d574274be9e` |
+| `system/icon-C6.bmp` | 17000 | `f618fbc53caeded2557b184dc9cd76dd4563e864b796e729d76794c395145337` |
+| `system/icon-C7.bmp` | 17000 | `c445bb765c5396aeec592e078ae51c355cedd1914126d5ad35b80874563fbc1f` |
+| `system/icon-C8.bmp` | 17000 | `b91abcb9659f39b470f6cdc5052c4b84f23c3acfc2dd37fe56ce277fa6960060` |
+| `system/icon-C9.bmp` | 17000 | `eb38b3698578e7b2fd41eb2914f71d65fb3275a9e1d3e509ffdbba62fb8db777` |
 | `system/icon-Dt.dat` | 78336 | `b98018d080aa6b731ca10ce974b53a6d44f831bad04377558f9cef10a8c5553d` |
-| `system/icon-E1.bmp` | 17000 | `2e0b4d17294cf72cf88a47eeaa30d490fa8728239f2fb22a2607f893dbe2755c` |
-| `system/icon-E10.bmp` | 17000 | `dcee5349f92201111f6dd3a5153dee9208aa14d88de9183af417bdfaaa66f3d8` |
-| `system/icon-E11.bmp` | 17000 | `32087008976e984adaae9d4f2a5f96a9495c93d4f2fb95957fdf051bb204086b` |
-| `system/icon-E12.bmp` | 17000 | `5d06d251eb8a13a59d2e9f0b84a1ed1f1d6eac53cf9bc8e24df1bd59f5b7761a` |
-| `system/icon-E13.bmp` | 17000 | `90329d0db4fcfae6942221a667935df93a365063f9561c539e27f1be8a261591` |
-| `system/icon-E14.bmp` | 17000 | `a8cbe8ff6446b6a178047484b368c157aeff1ef8745a3cc647441727078085e1` |
-| `system/icon-E15.bmp` | 17000 | `863ab1087571374a781b43d449ad1f857ef0e14bda329d01e884dc272ac12343` |
-| `system/icon-E16.bmp` | 17000 | `1bc84c735d659d21877aacecc35b7506c79b4a153fff2d7f7119aba987b70ddc` |
-| `system/icon-E17.bmp` | 17000 | `ed7fe21bfd7f90e00ff5b5eaecf784fe0d91be967df2b57c7eb75f485ce35b2e` |
-| `system/icon-E18.bmp` | 17000 | `335eaaddfd90cce0577740a0dee5d11f65c5547b907b1c4f8e5addd2a4ba0f97` |
-| `system/icon-E2.bmp` | 17000 | `fdfb0eb5daccd16402dd3b92b46180ec3a8ddb9ec5106f72b6baef7307e4b72f` |
-| `system/icon-E3.bmp` | 17000 | `4c5062df527a0ab7b3e85985f378c6dd523f57b12b454ad41da5d48e1d8a39a4` |
-| `system/icon-E4.bmp` | 17000 | `92c72486438317659f543d064d27783f2b8cc96723a0c4159d83da3f981c9bd0` |
-| `system/icon-E5.bmp` | 17000 | `2236e8c289a335acd0db2a8769f2303982758c81f8eb51c764ac8cbe3e9ebf2b` |
-| `system/icon-E6.bmp` | 17000 | `60dc2998afdd662bf55999f7c38310a7cf31abd2837ec35c1b1a0acb5b552b74` |
-| `system/icon-E7.bmp` | 17000 | `eacd24ac599d70b28709b859c10f9103078017475066b146527838e0c5983a78` |
-| `system/icon-E8.bmp` | 17000 | `b48e3608673eaf2fec067d9e3f40b243fb3abebabcd0fc90a75474546de5bd48` |
-| `system/icon-E9.bmp` | 17000 | `11c6556d81f5049c20b83f6dbfc5d17e91c1842bfd7d6ea68424bd20643aed1f` |
+| `system/icon-E1.bmp` | 17000 | `41b6db491c54c048a6a326981dfdd9f508148959bb10e1af22b19e1f4d09e88c` |
+| `system/icon-E10.bmp` | 17000 | `7e5f5ccf19e29529890d6d44ccc72b938523a45a9aef4dd27dcda42524914c88` |
+| `system/icon-E11.bmp` | 17000 | `bf53b4bf70d059922de3f8c56698c9bbd901377d5408eefe33cbcc9b045fc2ba` |
+| `system/icon-E12.bmp` | 17000 | `fdd6029f3920488fe3e4961403693a68e6de4229ddf43149cd1a55eb95a603f6` |
+| `system/icon-E13.bmp` | 17000 | `32910bc669f62ae4fec3aed622cb0ec65f03a245082c2e3d991cca98ad4391b8` |
+| `system/icon-E14.bmp` | 17000 | `9650d691026f31d8f715f964c5a1eab9268c4775edab57da648449ff2cdc0b25` |
+| `system/icon-E15.bmp` | 17000 | `536e80faaa436e633a557869b917ecbdd7b1caae44d7d35415d1030b54eb00c9` |
+| `system/icon-E16.bmp` | 17000 | `32f965f0c3280939c6685693cf1cba6cdb4f41f77dc23831ff15e54346c78c74` |
+| `system/icon-E17.bmp` | 17000 | `b2efe529cf44512666e20ff43f744f2dd465b9740bbf9538c4e23489d4fe3569` |
+| `system/icon-E18.bmp` | 17000 | `cf3ea6b6c6a36574be0de23793e2a5498a7e1e58f46ff53de5220900ccb5e242` |
+| `system/icon-E2.bmp` | 17000 | `f7821c90fac0f960f1aa464c43e94a8962da23c81d4f73b280198e7b862785d9` |
+| `system/icon-E3.bmp` | 17000 | `94b1055358d21cb379a74b36cc598ba3b79fe27ab858546bc87dd84ee338dbdf` |
+| `system/icon-E4.bmp` | 17000 | `f91f3face55e8e0eb031e92fe0270edaa2dfc6a3c919dc0e95a185a6ff755b65` |
+| `system/icon-E5.bmp` | 17000 | `a4c2475e9c3880cd6008b0b0e68c950cb1d64a2c543cc7fa86e9666779632092` |
+| `system/icon-E6.bmp` | 17000 | `56b193fe7a2746c69a0c7c8e541b3114576077d27c1040b85559db500621109c` |
+| `system/icon-E7.bmp` | 17000 | `3e3198ff27935eec4ef7cee65b1b3e5284f0ffecb32d106b67654f9c27619509` |
+| `system/icon-E8.bmp` | 17000 | `238e95fbef4b89919ce1fc5ca67f2764c2338ca0ac005a7968ec668f8d42a320` |
+| `system/icon-E9.bmp` | 17000 | `12c8ce91e7452c0bedce52f0ad2cb2a74e70dbd7c9a638dd7aadb4e0cf5606ec` |
 | `system/icon-Fr.dat` | 78336 | `c6a70079bb3f65107eab99f81b8b1cf5c8ac372cb33a1df54004a2fe2284f537` |
 | `system/icon-IT.dat` | 78336 | `e41ddda8922cba8aa2976f40f4846310760b536c90ed612d3093f0cfa50fd36c` |
 | `system/icon-jp.dat` | 78336 | `160a9262d5525860b339bf1ed6954b7735b94c303e17e6ff837659fa53ff94df` |
@@ -99,4 +100,4 @@ Final folder: `dm303_firmware/DM303-V4.0.1-beta/`
 | `system/TEXT_PO.DAT` | 30739 | `dfdba40eb3dd58c981bca9ec6ccaf782058355d7861047bf44bf8ef2b6fb8af7` |
 | `system/TEXT_Pt.DAT` | 26853 | `c6e61ff1ea497e90afe37ce7fb403ca9a27aa39b30a01bd1889c649b65a27c69` |
 | `system/TEXT_RU.DAT` | 47079 | `dd7b001acc5994e240dcb0234e298a85d9ce35ac4c6f7c8aafe4e72355e4e699` |
-| `system/TEXT_SP.DAT` | 32888 | `4b6b2fd9c6dee916390144815e7becc02549b7d6f1260b0551c8d939c3acf83e` |
+| `system/TEXT_SP.DAT` | 33280 | `7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd` |

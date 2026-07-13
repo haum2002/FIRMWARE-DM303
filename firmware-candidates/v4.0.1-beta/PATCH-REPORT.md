@@ -14,7 +14,8 @@ Profile: `force-stable-exp2` - exp1 plus stronger relay/range settling for unsta
 - Relay/range selector waits in function `0x0801f0f2` are extended to `8/12/100` ticks for stronger AC/DC switching recovery.
 - Patched self-loop vector entries: `56`.
 - Bahasa Melayu resource is added to the candidate folder as `system/TEXT_MS.DAT`.
-- True add-only language menu activation is not patched yet because the hardcoded language table has no confirmed spare slot.
+- The existing Spanish `TEXT_SP.DAT` slot is replaced with the same Malay resource for device-side language selection.
+- True add-only language menu activation is not patched because the hardcoded language table has no confirmed spare slot.
 
 ## Hashes
 
