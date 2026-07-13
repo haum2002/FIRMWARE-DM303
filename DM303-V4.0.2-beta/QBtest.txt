@@ -1,0 +1,21 @@
+QB Test File - DM303 V4.0.2-beta
+Quality Assurance Verification
+
+Firmware: DM303V4.0.2-beta.bin
+Build Date: 2024
+Status: Enhanced Stability Release
+
+Test Points:
+[ ] Boot successful
+[ ] Version displays V4.0.2b
+[ ] Measurement stable near noise sources
+[ ] No freeze/hang during operation
+[ ] All buttons responsive
+[ ] LCD display clear
+[ ] Relay clicks normal
+[ ] USB communication working
+
+Notes:
+- This firmware includes anti-freeze patches
+- Relay settle delay increased for stability
+- Safe to flash - bootloader untouched

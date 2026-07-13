@@ -1,0 +1,10 @@
+QBTEST - DM303 V4.0.2-beta FORCE ENHANCED
+============================================
+[PASS] Binary: 203261 bytes
+[PASS] Version: V4.0.2b
+[PASS] System: 66 files
+[PASS] TEXT_MS.DAT: Created
+[PASS] Checksum: Generated
+[PASS] Bootloader: Untouched
+
+Generated: 2026-07-13 03:05:51
