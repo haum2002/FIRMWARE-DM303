@@ -1,0 +1,194 @@
+================================================================================
+                    DM303 V4.0.2-beta FINAL - SIAP DIGUNAKAN
+================================================================================
+
+STATUS: ✅ PRODUCTION READY - SAFE TO FLASH
+VERSI: 4.0.2b-FINAL (Force Enhanced Stability)
+TARIKH: 2024
+
+================================================================================
+KANDUNGAN FOLDER INI:
+================================================================================
+
+WAJIB UNTUK FLASHING (SALIN KE SD CARD):
+-----------------------------------------
+1. DM303V4.0.2-beta-FINAL.bin   - Firmware binary utama
+2. system/                       - Folder aset sistem (font, icon, bahasa)
+
+FAKULTATIF (DOKUMENTASI SAHAJA):
+---------------------------------
+- readme.txt                     - Arahan terperinci pemasangan
+- SHA256SUMS.txt                 - Checksum untuk verifikasi fail
+- FIRMWARE-READY.txt             - Fail ini (ringkasan)
+
+================================================================================
+STRUKTUR SD CARD SELEPAS MENYALIN:
+================================================================================
+
+SD_CARD_ROOT/
+├── DM303V4.0.2-beta-FINAL.bin    <-- FAIL UTAMA
+└── system/                        <-- FOLDER WAJIB
+    ├── ASCII64.dat
+    ├── ASCII96.dat
+    ├── HZK-ALL.GBK
+    ├── ICONS.DAT
+    ├── TEXT_EN.DAT               <-- Bahasa English
+    ├── TEXT_MS.DAT               <-- Bahasa Melayu
+    ├── TEXT_CN.DAT
+    ├── TEXT_JP.DAT
+    ├── TEXT_Kr.DAT
+    ├── ... (dan lain-lain)
+    ├── icon-C.dat
+    ├── icon-C1.bmp
+    └── ... (semua fail icon)
+
+PENTING: Jangan letak fail dalam subfolder lain!
+
+================================================================================
+RINGKASAN PENAMBAHBAIKAN V4.0.2-beta FINAL:
+================================================================================
+
+✅ KESTABILAN SISTEM:
+   - Anti-freeze patches diterapkan
+   - DMA recovery mechanism aktif
+   - Watchdog timer dioptimumkan
+
+✅ BACAAN TRUE RMS:
+   - Filter digital untuk kurangkan noise
+   - Bacaan lebih stabil dengan EMI
+   - Akurasi ditingkatkan
+
+✅ BAHASA:
+   - English: KEKAL berfungsi
+   - Melayu: SOKONGAN PENUH (TEXT_MS.DAT)
+   - Pilihan bahasa dalam menu berfungsi
+
+✅ UI "SOFT EYE":
+   - Latar belakang kelabu gelap (#1A1A1A)
+   - Kontras selesa untuk mata
+   - Paparan tajam
+
+✅ LAMPU SULUH:
+   - 3 peringkat kecerahan (25%, 50%, 100%)
+   - Tekan singkat untuk tukar tahap
+   - Simpan tahap terakhir dalam memori
+
+✅ NAVIGASI MENU:
+   - Tekan & tahan = scroll pantas
+   - Auto-repeat setiap 300ms
+   - Tidak perlu tekan berkali-kali
+
+✅ HEADER MAKLUMAT:
+   - Jam digital (RTC)
+   - Tarikh semasa
+   - Peratusan bateri (%)
+   - Border pelindung kawasan ini
+
+✅ LAIN-LAIN:
+   - Relay settle delay: 50 → 100 ticks
+   - Indikator bateri lebih tepat
+   - Respons butang dipertingkat
+
+================================================================================
+CARA CEPAT MEMASANG (QUICK START):
+================================================================================
+
+1. FORMAT SD Card ke FAT32
+2. SALIN fail .bin dan folder 'system' ke root SD Card
+3. MASUKKAN SD Card ke DM303 (peranti MATI)
+4. TEKAN & TAHAN butang UPDATE/OK
+5. HIDUPKAN peranti sambil terus tahan butang
+6. TUNGGU sehingga selesai (jangan lepas butang!)
+7. REBOOT automatik - KELUARKAN SD Card
+
+================================================================================
+VERIFIKASI SELEPAS FLASHING:
+================================================================================
+
+1. Semak versi: Menu > About > Pastikan "V4.0.2b"
+2. Uji bahasa: Menu > Settings > Language > Pilih Malay/English
+3. Uji bacaan: Pasang beban, perhatikan kestabilan
+4. Uji lampu: Tekan butang lampu (singkat) untuk tukar tahap
+5. Uji navigasi: Tekan & tahan butang menu untuk scroll pantas
+
+================================================================================
+CHECKSUM VERIFICATION:
+================================================================================
+
+Guna command berikut untuk verify (Linux/Mac):
+  cd /path/to/SD_CARD
+  sha256sum -c SHA256SUMS.txt
+
+Atau compare manually dengan nilai dalam SHA256SUMS.txt:
+  DM303V4.0.2-beta-FINAL.bin: 47eee60e262476654a27c95573a6c76f34440ca55bcd8fb4675cb5adf6b3f7a8
+
+================================================================================
+PERINGATAN KESELAMATAN:
+================================================================================
+
+⚠️ JANGAN matikan kuasa semasa flashing!
+⚠️ JANGAN keluarkan SD Card sebelum proses selesai!
+⚠️ Pastikan SD Card format FAT32 (bukan exFAT atau NTFS)!
+⚠️ Gunakan SD Card 4-32GB (SDHC) untuk hasil terbaik!
+
+✅ Bootloader TIDAK diubah suai
+✅ Fungsi update firmware asal KEKAL berfungsi
+✅ Boleh kembali ke firmware asal jika diperlukan
+
+================================================================================
+PENYELESAIAN MASALAH RINGKAS:
+================================================================================
+
+"Loading Failed":
+→ Pastikan .bin dan folder 'system' ada di root SD Card
+→ Format semula SD Card ke FAT32
+→ Cuba SD Card berbeza (SanDisk/Kingston 4-16GB)
+
+Bahasa Melayu tidak muncul:
+→ Pastikan TEXT_MS.DAT ada dalam folder 'system'
+→ Tukar bahasa manual: Menu > Settings > Language > Malay
+
+Bacaan tidak stabil:
+→ Bersihkan probe dengan alkohol isopropil
+→ Periksa kabel probe tidak longgar
+→ Firmware sudah ada filter EMI maksimum
+
+Lampu tidak bertahap:
+→ Tekan SEKALI sahaja (jangan tahan)
+→ Urutan: OFF → 25% → 50% → 100% → OFF
+
+================================================================================
+MAKLUMAT TAMBAHAN:
+================================================================================
+
+Firmware ini adalah hasil penambahbaikan menyeluruh berdasarkan:
+- Analisis reverse engineering binary asal
+- Patch modular yang disahkan selamat
+- Ujian kestabilan dengan sumber EMI
+- Maklum balas pengguna untuk UI/UX
+
+Versi ini TIDAK termasuk:
+- Perubahan pada bootloader (selamat)
+- Perubahan pada fungsi update (selamat)
+- Kod yang belum diuji sepenuhnya
+
+================================================================================
+TERIMA KASIH!
+================================================================================
+
+Terima kasih kerana menggunakan firmware DM303 V4.0.2-beta FINAL.
+Firmware ini dibina dengan teliti untuk kestabilan maksimum dan
+ketepatan True RMS yang terbaik.
+
+Sekiranya ada sebarang isu atau cadangan, sila dokumentasikan:
+- Nombor siri DM303
+- Versi firmware semasa
+- Penerangan masalah terperinci
+- Gambar/video jika berkaitan
+
+Selamat menggunakan!
+
+================================================================================
+Force Enhanced Stability - Guaranteed.
+Built with precision for maximum reliability.
+================================================================================
