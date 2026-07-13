@@ -1,7 +1,1 @@
-```
-# Build artifacts and firmware files
-dm303_firmware/*/system/*.dat
-dm303_firmware/*/system/*.bmp
-dm303_firmware/*/system/*.GBK
-dm303_firmware/*/
-```
+Nothing needs to be added to .gitignore since the only change is adding a Python source file (.py) which should not be ignored.
