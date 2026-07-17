@@ -1,0 +1,774 @@
+index,offset,record_length,text
+1,0x182d,14,Cargando ...
+2,0x183b,31,Presione una tecla para cont.
+3,0x185a,10,Encender
+4,0x1864,10, Apagar 
+5,0x186e,19,Manual de usuario
+6,0x1881,26,Información de versión
+7,0x189b,12,Hardware: 
+8,0x18a7,12,Software: 
+9,0x18b3,16,ID del equipo:
+10,0x18c3,31,Presione una tecla para cont.
+11,0x18e2,27,Comprobación de pantalla
+12,0x18fd,18,Prueba de teclas
+13,0x190f,34,Desc: Mostrar teclas presionadas
+14,0x1931,32,Pulse <ESC> 2 veces para salir
+15,0x1951,31,veces para salir de la prueba
+16,0x1970,13,<ESC> Salir
+17,0x197d,21,Teclas presionadas:
+18,0x1992,3,%
+19,0x1995,3,V
+20,0x1998,12,Voltaje AC
+21,0x19a4,12,Voltaje DC
+22,0x19b0,37,   Min:       V     Max:       V   
+23,0x19d5,37, <HOLD> Mantener  <F1>Volver a cero
+24,0x19fa,38, <Fn> Modo de función              
+25,0x1a20,11,PD Resis.
+26,0x1a2b,7,Mant.
+27,0x1a32,12,Corrie. AC
+28,0x1a3e,12,Corrie. DC
+29,0x1a4a,15,20A(amarillo)
+30,0x1a59,15, mA(verde)   
+31,0x1a68,37,   Min:       A     Max:       A   
+32,0x1a8d,37, <HOLD>Mantener   <F1>Volver a cero
+33,0x1ab2,37, <Fn>Modo funcional   <F2> 20A/mA  
+34,0x1ad7,13,Resistencia
+35,0x1ae4,22, Diodo:             
+36,0x1afa,24,Diodo/Baja resistencia
+37,0x1b12,19,Resistencia:     
+38,0x1b25,36, <HOLD>Mantener  <F1>Volver a cero
+39,0x1b49,7,Disp.
+40,0x1b50,5,div
+41,0x1b55,35,U:      V Min:      V Max:      V
+42,0x1b78,25,Medición de frecuencia
+43,0x1b91,36,<Fn> Detecc. señal entrada (f<6k)
+44,0x1bb5,6,Giro
+45,0x1bbb,37,<Fn>Detección de señal de entrada
+46,0x1be0,19,Resist. Contacto:
+47,0x1bf3,30,Salida onda sinuso./cuadrada
+48,0x1c11,28,Frecuencia:             Hz
+49,0x1c2d,28,Ciclo de trabajo:       % 
+50,0x1c49,31,<F1><F2>Config. ciclo trabajo
+51,0x1c68,35,Sensor:   Min:      V Max:      V
+52,0x1c8b,14,Giro 2trazos
+53,0x1c99,14,Giro 4trazos
+54,0x1ca7,14,Divisor     
+55,0x1cb5,18,Datos de K/Lin: 
+56,0x1cc7,36,<F1>Borrar <L><R>config. Velocidad
+57,0x1ceb,16,Datos CANBUS: 
+58,0x1cfb,36,<F1>Borrar <L><R>config. Velocidad
+59,0x1d1f,25, <Fn> Modo de funciones
+60,0x1d38,37,Configuración de calendario/tiempo
+61,0x1d5d,28,Configuración del sistema
+62,0x1d79,24,Configuración básica
+63,0x1d91,26,Configuración de tiempo
+64,0x1dab,9,Idioma 
+65,0x1db4,17,Sonido de tecla
+66,0x1dc5,8,Brillo
+67,0x1dcd,28,Corr. canal voltaje sondeo
+68,0x1de9,36,¡Conecta el sondeo a la batería!
+69,0x1e0d,36, <UP> <Down> Ajustar datos reales 
+70,0x1e31,36, <ESC> Abandonar     <OK> Guardar 
+71,0x1e55,18,Tiempo de sueño
+72,0x1e67,7, Min 
+73,0x1e6e,36,Presione la tecla <OK> para contin
+74,0x1e92,35,Voltaje de alimentación:       V
+75,0x1eb5,33,<Arriba> Cc. B+  <Abajo> Cc. B-
+76,0x1ed6,30,Error: Conexión incorrecta!
+77,0x1ef4,32,Calibration Voltage of Battery
+78,0x1f14,28,Conect to Vehicle battery!
+79,0x1f30,30,Calibration the current(mA) 
+80,0x1f4e,31,Conect to Signal current(mA)!
+81,0x1f6d,37,Calibration Vehicle Circuit Voltage
+82,0x1f92,28,Conect to Signal Voltage !
+83,0x1fae,25,Calibration current(A) 
+84,0x1fc7,30,Conect to Signal current(A)!
+85,0x1fe5,5,ON 
+86,0x1fea,5,OFF
+87,0x1fef,22,Function Description
+88,0x2005,24,Remote Key(3V)Leakage 
+89,0x201d,15,Voltaje:     
+90,0x202c,34,                                
+91,0x204e,34,"Apague primero el motor, selecci"
+92,0x2070,36,one la línea C01 + la línea C02 
+93,0x2094,34,para conectar los polos positivo
+94,0x20b6,35, y negativo de la batería del au
+95,0x20d9,35, tomóvil.                       
+96,0x20fc,34,                                
+97,0x211e,34,                                
+98,0x2140,34,Conduzca el inyector: seleccione
+99,0x2162,35, la línea C01 para conectar el  
+100,0x2185,34,inyector y luego conectar la bat
+101,0x21a7,36,ería del automóvil.             
+102,0x21cb,36,Detecte la señal de inyección de
+103,0x21ef,34, combustible: conecte el sondeo 
+104,0x2211,35,"negro a la plancha del vehículo,"
+105,0x2234,34,conecte el sondeo rojo a los pin
+106,0x2256,34,es del inyector y presione la te
+107,0x2278,34,cla <Fn> para ingresar a la prue
+108,0x229a,34,ba.                             
+109,0x22bc,34,                                
+110,0x22de,35,Accione la bobina del relé: sele
+111,0x2301,34,ccione el cable C01 para conecta
+112,0x2323,35,"rlo al relé, luego conecte la ba"
+113,0x2346,36,tería del automóvil y presione  
+114,0x236a,34,la <OK>tecla para impulsar la ac
+115,0x238c,36,ción del relé.                  
+116,0x23b0,34,                                
+117,0x23d2,34,                                
+118,0x23f4,36,Salida de señal analógica: salid
+119,0x2418,35,a de onda cuadrada de la línea  
+120,0x243b,35,"C01-K, voltaje de señal de salid"
+121,0x245e,34,a normal de aproximadamente 4.5V
+122,0x2480,35,", frecuencia de salida máxima de"
+123,0x24a3,34,10KHz. Cuando es inferior a 5KHz
+124,0x24c5,34,", se puede usar el sondeo para  "
+125,0x24e7,34,detectar la forma de onda de la 
+126,0x2509,35,"señal, presione la tecla <Fn> pa"
+127,0x252c,35,ra detectar la señal.           
+128,0x254f,35,Seleccione la línea especial par
+129,0x2572,35,a la detección de circuitos auto
+130,0x2595,34,motrices C04 y conecte correctam
+131,0x25b7,34,ente los polos positivo y negati
+132,0x25d9,35,vo de la batería automotriz.    
+133,0x25fc,35,En la interfaz de visualización 
+134,0x261f,34,"de voltaje, presione la sonda de"
+135,0x2641,34, tecla hacia arriba para emitir 
+136,0x2663,35,el polo positivo de la batería y
+137,0x2686,34, presione la sonda de tecla haci
+138,0x26a8,34,a abajo para emitir el polo nega
+139,0x26ca,35,tivo de la batería.             
+140,0x26ed,34,Rojo significa que el voltaje de
+141,0x270f,35,la sonda está cerca del voltaje 
+142,0x2732,35,"de la batería, y azul significa "
+143,0x2755,34,que el voltaje de la sonda es de
+144,0x2777,34,masiado bajo y hay fugas.       
+145,0x2799,34,                                
+146,0x27bb,34,Desconecte la fuente de alimenta
+147,0x27dd,35,ción y vuelva a conectar los pol
+148,0x2800,34,os positivo y negativo correctam
+149,0x2822,34,ente.                           
+150,0x2844,34,                                
+151,0x2866,20,Idiomas Selección
+152,0x287a,30,Encienda el motor y funcione
+153,0x2898,30,durante 15s                 
+154,0x28b6,20,Prueba de arranque
+155,0x28ca,19,Arrancar el motor
+156,0x28dd,33,Valor de voltaje mínimo > 9.6V
+157,0x28fe,34,Valor de voltaje mínimo > 19.2V
+158,0x2920,31,Prueba de inyector automotriz
+159,0x293f,31,Prueba de relés automotrices
+160,0x295e,24,Simulación RPM motor 
+161,0x2976,32,Pulse <OK> para emitir señal.
+162,0x2996,33,Pulse <OK> para detener salida.
+163,0x29b7,18,Estado de salida
+164,0x29c9,25,Voltaje en tiempo real:
+165,0x29e2,27,Valor de voltaje mínimo:
+166,0x29fd,30,            Normal          
+167,0x2a1b,30,El voltaje es demasiado bajo
+168,0x2a39,30,Prueba inspección circuitos
+169,0x2a57,27,1.Pantalla de inicio     
+170,0x2a72,28,2.Medición de voltaje    
+171,0x2a8e,28,3.Medición de corriente  
+172,0x2aaa,28,4.Medición de resistencia
+173,0x2ac6,27,5.Osciloscopio           
+174,0x2ae1,32,6.Prueba inspección circuitos
+175,0x2b01,34,7.Prueba de arranque de batería
+176,0x2b23,33,8.Prueba de inyectores         
+177,0x2b44,34,9.Prueba de relé               
+178,0x2b66,35,10.Prueba de señales analógicas
+179,0x2b89,33,11.Prueba de pulso de encendido
+180,0x2baa,33,12.Detección de datos de K/Lin
+181,0x2bcb,26,13.Det. datos línea CAN
+182,0x2be5,29,14.Medición de frecuencia 
+183,0x2c02,27,1.Pantalla de inicio     
+184,0x2c1d,28,2.Medición de voltaje    
+185,0x2c39,28,3.Medición de corriente  
+186,0x2c55,28,4.Medición de resistencia
+187,0x2c71,27,5.Osciloscopio           
+188,0x2c8c,32,6.Prueba de pulso de encendido
+189,0x2cac,28,7.Medición de frecuencia 
+190,0x2cc8,36,1.Pantalla de inicio              
+191,0x2cec,36,"Encienda, muestre la interfaz de e"
+192,0x2d10,36,"ncendido, presione cualquier tecla"
+193,0x2d34,37,"para ingresar al menú principal,la"
+194,0x2d59,36,esquina superior derecha de la pan
+195,0x2d7d,37,talla muestra la batería y el esta
+196,0x2da2,36,"do de carga, presione la tecla de "
+197,0x2dc6,37,"dirección para mover el cursor, pr"
+198,0x2deb,36,esione la tecla <OK> para ingresar
+199,0x2e0f,38,"al ítem de función, presione la te"
+200,0x2e35,37,cla <ESC> para salir de la función
+201,0x2e5a,36,"actual, presione la tecla de luz  "
+202,0x2e7e,36,para encender / apagar la luz de  
+203,0x2ea2,37,"iluminación, presione la tecla <HO"
+204,0x2ec7,36,LD> para bloquear el valor de visu
+205,0x2eeb,37,"alización en la prueba, presione  "
+206,0x2f10,37,la tecla <F1><F2> para operar segú
+207,0x2f35,36,"n las funciones, presione la tecla"
+208,0x2f59,36, <Fn> para cambiar el modo de func
+209,0x2f7d,39, ión en el ítem de función.       
+210,0x2fa4,37,2.Medición de voltaje             
+211,0x2fc9,38,Ingrese al ítem de función de medi
+212,0x2fef,37,"ción de voltaje, muestre el valor "
+213,0x3014,37,"de medición del sondeo actual, pre"
+214,0x3039,36,sione <HOLD> para bloquear el valo
+215,0x305d,36,"r medido, presione <F1> para volve"
+216,0x3081,36,"r a cero y corregir. Al usar, prim"
+217,0x30a5,36,ero conecte en cortocircuito el so
+218,0x30c9,37,"ndeo rojo y negro, manténgalo pres"
+219,0x30ee,36,"ionado, presione <F1> nuevamente. "
+220,0x3112,36,Presione <Fn> para cambiar el modo
+221,0x3136,37,"de función, presione <Fn>puede cam"
+222,0x315b,37,biar a visualización de voltaje   
+223,0x3180,36,DC / voltaje AC / forma de onda.  
+224,0x31a4,37,El rango de medición de voltaje es
+225,0x31c9,37,"de hasta 1000V, el voltaje máximo "
+226,0x31ee,37,"DC es de 1000V, el voltaje máximo "
+227,0x3213,36,AC es de 700V y el rango se convie
+228,0x3237,37,rte automáticamente.              
+229,0x325c,37,3.Medición de corriente           
+230,0x3281,38,Ingrese al ítem de función de medi
+231,0x32a7,37,"ción de corriente, muestre la medi"
+232,0x32cc,36,"da actual del sondeo, presione <HO"
+233,0x32f0,36,"LD> para bloquear el valor medido,"
+234,0x3314,36,presione <F1> para volver a cero y
+235,0x3338,36,"corregir. Al usar, primero conecte"
+236,0x335c,36,en cortocircuito el sondeo rojo y 
+237,0x3380,37,"negro, manténgalo presionado, pres"
+238,0x33a5,36,ione <F1>nuevamente. Presione <Fn>
+239,0x33c9,37," para cambiar el modo de función, "
+240,0x33ee,36,presione <Fn> para cambiar a corri
+241,0x3412,36,ente DC / corriente AC. Presione  
+242,0x3436,36,<F2> para cambiar al conector de  
+243,0x345a,37,"medición, mA (verde) significa que"
+244,0x347f,36,el sondeo rojo se inserta desde el
+245,0x34a3,36,"conector mA para medir, y 20A (ama"
+246,0x34c7,36,rillo) significa que el sondeo roj
+247,0x34eb,36,o se inserta desde el conector 20A
+248,0x350f,37,para medir. El rango de medición  
+249,0x3534,36,de corriente es 0-200mA.          
+250,0x3558,37,4.Medición de resistencia         
+251,0x357d,38,Ingrese al ítem de función de medi
+252,0x35a3,37,"ción de resistencia, muestre la me"
+253,0x35c8,36,"dida actual del sondeo, presione  "
+254,0x35ec,36,<HOLD> para bloquear el valor medi
+255,0x3610,36,"do, presione <F1> para volver a ce"
+256,0x3634,36,"ro y corregir. Al usar, primero co"
+257,0x3658,36,necte en cortocircuito el sondeo  
+258,0x367c,37,"rojo y negro, manténgalo presiona "
+259,0x36a1,36,"do, presione <F1> nuevamente.     "
+260,0x36c5,36,Presione <Fn>para cambiar el modo 
+261,0x36e9,37,"de función, presione <Fn>para camb"
+262,0x370e,37,iar a la visualización de resisten
+263,0x3733,37,cia / visualización de voltaje de 
+264,0x3758,37,diodo.         Esta función mide  
+265,0x377d,37,el valor de resistencia y la caída
+266,0x37a2,36, de voltaje directo del diodo al  
+267,0x37c6,37,"mismo tiempo, sin conversión, el  "
+268,0x37eb,37,rango de medición de resistencia  
+269,0x3810,37,es un valor de resistencia máximo 
+270,0x3835,37,de 5MΩ. El rango se convierte aut 
+271,0x385a,38,omáticamente. La caída de voltaje 
+272,0x3880,36, directo del diodo es de hasta    
+273,0x38a4,36,2.4V.  Cuando la resistencia medi 
+274,0x38c8,36,"da es inferior a 20 ohmios, se em "
+275,0x38ec,37,itirá un sonido de consejo para   
+276,0x3911,36,indicar el estado de baja resiste 
+277,0x3935,36,"ncia, lo cual es conveniente para "
+278,0x3959,38, determinar si la línea está en   
+279,0x397f,36,cortocircuito durante la inspecci 
+280,0x39a3,37,ón del circuito.                  
+281,0x39c8,36,5.Osciloscopio                    
+282,0x39ec,38,Ingrese al ítem de función del osc
+283,0x3a12,36,"iloscopio, muestre la forma de ond"
+284,0x3a36,36,a del valor medido del sondeo actu
+285,0x3a5a,36,"al, presione <HOLD> para bloquear "
+286,0x3a7e,36,"el estado actual, bloquee el estad"
+287,0x3aa2,37,o de medición: presione <Arriba>  
+288,0x3ac7,36,para que la forma de onda se mueve
+289,0x3aeb,36," hacia arriba, presione <Abajo> pa"
+290,0x3b0f,36,ra que la forma de onda se mueve  
+291,0x3b33,36,"hacia abajo, presione <Izquierdo> "
+292,0x3b57,36,para que la forma de onda se mueve
+293,0x3b7b,36," hacia la izquierda, presione <Der"
+294,0x3b9f,36,echa> para que la forma de onda se
+295,0x3bc3,36, mueve hacia la derecha. En estado
+296,0x3be7,37," de medición normal: <Arriba>, el "
+297,0x3c0c,38,valor del índice de visualización 
+298,0x3c32,36,"de voltaje disminuye. <Abajo>, el "
+299,0x3c56,38,valor del índice de visualización 
+300,0x3c7c,36,"de voltaje aumenta. <Izquierdo>,  "
+301,0x3ca0,36,el tiempo de escaneo aumenta. <De 
+302,0x3cc4,36,"recho>, el tiempo de escaneo dism "
+303,0x3ce8,36,"inuye. <F1>, desplazamiento posit "
+304,0x3d0c,36,"ivo del nivel de disparo. <F2>,   "
+305,0x3d30,36,desplazamiento negativo del nivel 
+306,0x3d54,37, de disparo. El rango de medición 
+307,0x3d79,36, de la forma de onda de voltaje   
+308,0x3d9d,36,"es de hasta 1000V, y el rango se  "
+309,0x3dc1,37,convierte automáticamente.        
+310,0x3de6,37,6.Detección de circuitos de autom.
+311,0x3e0b,38,Ingrese al ítem de función del cir
+312,0x3e31,37,"cuito del automóvil, muestre el va"
+313,0x3e56,36,"lor medido del sondeo actual, pres"
+314,0x3e7a,36,ione <HOLD> para bloquear el valor
+315,0x3e9e,36," medido, presione <F1> para volver"
+316,0x3ec2,36," a cero y corregir. Al usar, prime"
+317,0x3ee6,36,ro conecte en cortocircuito el son
+318,0x3f0a,37,deo rojo de línea especial al polo
+319,0x3f2f,38," negativo de la batería, y manténg"
+320,0x3f55,36,alo presionado y presione <F1> nue
+321,0x3f79,36,vamente. Presione <Fn> para cambia
+322,0x3f9d,37,"r el modo de función, presione <Fn"
+323,0x3fc2,37,> para cambiar a la medición de vo
+324,0x3fe7,37,ltaje/visualización de forma de on
+325,0x400c,37,"da. <Arriba>, la función de impuls"
+326,0x4031,37,ar la salida de voltaje. Después  
+327,0x4056,36,"de presionar, es equivalente al so"
+328,0x407a,36,ndeo rojo conectado al polo positi
+329,0x409e,37,"vo de la fuente de alimentación,  "
+330,0x40c3,36,que se utiliza para conducir equip
+331,0x40e7,37,os de baja potencia en el vehículo
+332,0x410c,36, que funcionan con el voltaje de  
+333,0x4130,38,"alimentación, como luces, relés,  "
+334,0x4156,37,"etc.  <Abajo>, la función de corto"
+335,0x417b,36,circuitar el polo negativo de la  
+336,0x419f,38,fuente de alimentación. Después de
+337,0x41c5,36," presionar, es equivalente al sond"
+338,0x41e9,36,eo rojo conectado al polo negativo
+339,0x420d,37," de la fuente de alimentación, que"
+340,0x4232,36, se utiliza para impulsar el equip
+341,0x4256,37,o de baja potencia en el vehículo 
+342,0x427b,36,que a menudo se alimenta en el cir
+343,0x429f,37,"cuito, como válvulas solenoides,  "
+344,0x42c4,37,"relés, etc. En la interfaz de visu"
+345,0x42e9,37,"alización, cuando el voltaje de de"
+346,0x430e,38,tección está cerca del voltaje de 
+347,0x4334,37,la fuente de alimentación (mayor  
+348,0x4359,36,que el valor de voltaje real de la
+349,0x437d,37," batería menos 0,7), se indica en "
+350,0x43a2,36,rojo. cuando el voltaje de detecci
+351,0x43c6,37,"ón es inferior a 0.7V, el pulso de"
+352,0x43eb,37, detección de fugas se emite autom
+353,0x4410,37,"áticamente, y cuando la resistenci"
+354,0x4435,37,"a de la línea es inferior a 10K,  "
+355,0x445a,36,se indica en verde.               
+356,0x447e,37,7.Prueba de arranque de batería   
+357,0x44a3,37,Esta función es adecuada para prue
+358,0x44c8,36,bas de voltaje de arranque de auto
+359,0x44ec,37,móviles y motocicletas para detect
+360,0x4511,37,ar si el estado de la batería del 
+361,0x4536,37,vehículo cumple con los requisitos
+362,0x455b,37, de arranque. Ingrese este ítem de
+363,0x4580,38," función, apague el motor del vehí"
+364,0x45a6,38,culo según la información indicada
+365,0x45cc,38,", conecte la línea de detección pr"
+366,0x45f2,36,incipal y la abrazadera de la bate
+367,0x4616,37,"ría, presione la tecla <OK> para  "
+368,0x463b,36,"ingresar al estado de monitoreo,  "
+369,0x465f,37,encienda el motor del vehículo de 
+370,0x4684,37,acuerdo con la indicación y muestr
+371,0x46a9,36,e el resultado de la prueba de acu
+372,0x46cd,36,erdo con el valor medido. Cuando  
+373,0x46f1,37,el voltaje mínimo durante el proce
+374,0x4716,37,so de arranque del vehículo es may
+375,0x473b,36,"or que 9,6V, es un estado normal, "
+376,0x475f,36,por debajo de este valor es necesa
+377,0x4783,36,rio determinar la causa de la fall
+378,0x47a7,37,"a, la posible razón es el envejeci"
+379,0x47cc,37,miento de la batería / la corrient
+380,0x47f1,36,e de arranque es demasiado grande 
+381,0x4815,37,/ la carga de la batería es insufi
+382,0x483a,38,"ciente, si la batería está envejec"
+383,0x4860,37,"iendo, la batería debe reemplazars"
+384,0x4885,36,e a tiempo.                       
+385,0x48a9,36,8.Prueba de inyectores            
+386,0x48cd,37,Esta función es adecuada para la  
+387,0x48f2,38,conducción de la señal del inyecto
+388,0x4918,37,"r y la prueba de señal, conecte la"
+389,0x493d,38," línea de detección principal, use"
+390,0x4963,37, la abrazadera de la batería para 
+391,0x4988,36,conectarse a la fuente de alimenta
+392,0x49ac,38,ción de la batería de 12V y luego 
+393,0x49d2,37,"conéctela al inyector, puede condu"
+394,0x49f7,36,cir directamente el inyector de 12
+395,0x4a1b,36,V al trabajo. Puede proporcionar  
+396,0x4a3f,38,una señal de trabajo analógica del
+397,0x4a65,36," inyector entre 500 y 6000 r, y el"
+398,0x4a89,37, ancho del pulso de inyección es  
+399,0x4aae,36,de 3 mS.      Utilice el sondeo pa
+400,0x4ad2,36,ra comprobar el rendimiento del in
+401,0x4af6,38,yector. Ingrese al ítem de función
+402,0x4b1c,37,", muestre la información indicada,"
+403,0x4b41,36,presione la tecla <OK> para ingres
+404,0x4b65,37,ar a la interfaz de conducción de 
+405,0x4b8a,37,señal. presione la tecla de direcc
+406,0x4baf,37,ión para ajustar la velocidad de  
+407,0x4bd4,38,la señal analógica. presione la te
+408,0x4bfa,36,cla <OK> para encender / apagar la
+409,0x4c1e,39, señal de conducción analógica. pr
+410,0x4c45,36,esione la tecla <Fn> para ingresar
+411,0x4c69,38, la detección de señal. La salida 
+412,0x4c8f,38,de la señal de conducción no se ap
+413,0x4cb5,37,aga al ingresar a la detección de 
+414,0x4cda,37,señal.                            
+415,0x4cff,37,9.Prueba de relé                  
+416,0x4d24,37,Esta función es adecuada para prue
+417,0x4d49,37,"bas de relés automotrices, conecta"
+418,0x4d6e,38,ndo la línea de detección principa
+419,0x4d94,36,"l, usando la abrazadera de la bate"
+420,0x4db8,37,ría para conectarse a la fuente de
+421,0x4ddd,38, alimentación de la batería de 12V
+422,0x4e03,37, y luego conectando la línea espec
+423,0x4e28,37,"ial del relé, que puede conducir  "
+424,0x4e4d,38,directamente la acción del relé de
+425,0x4e73,36, 12V. Use un cable especial de rel
+426,0x4e97,37,é para conectar el pin de bobina  
+427,0x4ebc,37,"del relé, use un sondeo rojo y neg"
+428,0x4ee1,36,ro para detectar la resistencia de
+429,0x4f05,37," contacto del relé, una resistenci"
+430,0x4f2a,37,a pequeña indica que el contacto  
+431,0x4f4f,37,está encendido y una resistencia  
+432,0x4f74,37,grande indica que el contacto está
+433,0x4f99,37, abierto. Ingrese al ítem de funci
+434,0x4fbe,38,"ón, muestre la información indicad"
+435,0x4fe4,36,"a, presione la tecla <OK> para ing"
+436,0x5008,37,"resar a la interfaz de detección, "
+437,0x502d,36,presione la tecla <OK> para encend
+438,0x5051,38,er / apagar la señal de conducción
+439,0x5077,37, del relé y use el sondeo para med
+440,0x509c,36,ir la resistencia de contacto.    
+441,0x50c0,38,10.Prueba de señales analógicas   
+442,0x50e6,37,Esta función puede simular la onda
+443,0x510b,36, cuadrada de salida y la onda sinu
+444,0x512f,37,"soidal, adecuada para la detección"
+445,0x5154,38, de línea de vehículo o la prueba 
+446,0x517a,38,de entrada de señal analógica de  
+447,0x51a0,37,"la ECU, conectar la línea de detec"
+448,0x51c5,37,"ción principal, usar la abrazadera"
+449,0x51ea,37, de la batería para conectarse a  
+450,0x520f,37,la fuente de alimentación de la ba
+451,0x5234,38,"tería de 12V, puede emitir una señ"
+452,0x525a,36,al de onda cuadrada de 12V. Sin fu
+453,0x527e,37,"ente de alimentación externa, pued"
+454,0x52a3,37,e emitir una señal de onda cuadrad
+455,0x52c8,37,"a de 4,5V. La señal de onda cuadr "
+456,0x52ed,36,ada se emite desde el terminal [K/
+457,0x5311,37,"Lin], la señal de onda sinusoidal "
+458,0x5336,38,se emite desde la línea de señal y
+459,0x535c,38, la línea de señal de 5V emite una
+460,0x5382,36," onda sinusoidal de 0 ~ 4,5V.     "
+461,0x53a6,38,"Ingrese al ítem de función, muestr"
+462,0x53cc,37,"e la información indicada, presion"
+463,0x53f1,36,e la tecla <OK> para ingresar a la
+464,0x5415,36," interfaz de control, presione la "
+465,0x5439,36,tecla <OK> para encender / apagar 
+466,0x545d,37,"la salida de señal, presione la te"
+467,0x5482,37,cla de dirección para ajustar la  
+468,0x54a7,38,"frecuencia de la señal analógica, "
+469,0x54cd,36,presione <F1><F2> para ajustar el 
+470,0x54f1,36,ciclo de trabajo de la onda cuadra
+471,0x5515,36,"da, presione la tecla <Fn> para in"
+472,0x5539,38,gresar a la detección de señal. La
+473,0x555f,38, salida de señal analógica no se  
+474,0x5585,38,apagará al ingresar a la detección
+475,0x55ab,37, de señal.                        
+476,0x55d0,36,11.Prueba de pulso de encendido   
+477,0x55f4,37,Esta función es adecuada para la  
+478,0x5619,37,prueba de señal de alto voltaje de
+479,0x563e,36, encendido de motores de gasolina 
+480,0x5662,37,"de automóviles y motocicletas, y  "
+481,0x5687,37,detecta la señal de alto voltaje  
+482,0x56ac,37,de encendido de vehículos. Conecte
+483,0x56d1,37, el sensor de la señal de encendid
+484,0x56f6,36,"o, ingrese a la interfaz de prueba"
+485,0x571a,37, y coloque la cabeza del sensor (á
+486,0x573f,38,rea de detección de señal) cerca  
+487,0x5765,37,de la línea de alto voltaje de la 
+488,0x578a,38,señal de encendido del vehículo pa
+489,0x57b0,36,ra mostrar la forma de onda de la 
+490,0x57d4,37,señal de encendido. Si se trata   
+491,0x57f9,37,de un vehículo que se enciende dir
+492,0x581e,37,"ectamente, no hay una línea extern"
+493,0x5843,36,"a de alto voltaje, la cabeza del  "
+494,0x5867,36,sensor puede estar cerca de la bob
+495,0x588b,36,"ina de alto voltaje de encendido, "
+496,0x58af,36,que puede mostrar la forma de onda
+497,0x58d3,37," de la señal de encendido, en este"
+498,0x58f8,37, momento la intensidad de la señal
+499,0x591d,38," será relativamente pequeña, prest"
+500,0x5943,38,e atención a la observación. Presi
+501,0x5969,36,one la tecla <F1> para cambiar al 
+502,0x598d,36,"modo de motor, puede cambiar al mo"
+503,0x59b1,36,do de 4 trazos / 2 trazos / centra
+504,0x59d5,37,"lita, los motores de automóviles  "
+505,0x59fa,37,comúnmente utilizados son de 4 tra
+506,0x5a1f,36,"zos, algunos motores de motociclet"
+507,0x5a43,37,"as son de 2 trazos, los motores má"
+508,0x5a68,37,s antiguos usarán una centralita  
+509,0x5a8d,37,para distribuir señales de alto vo
+510,0x5ab2,36,ltaje. en el modo de 4 trazos / 2 
+511,0x5ad6,36,"trazos, puede mostrar la velocidad"
+512,0x5afa,36, del motor. Presione <HOLD> para  
+513,0x5b1e,36,bloquear el estado actual. En el  
+514,0x5b42,37,estado de medición normal: <Arriba
+515,0x5b67,37,">, el valor del índice de visualiz"
+516,0x5b8c,37,"ación de voltaje disminuye, <Abajo"
+517,0x5bb1,37,">, el valor del índice de visualiz"
+518,0x5bd6,37,ación de voltaje aumenta. <Izquier
+519,0x5bfb,36,"do> el tiempo de escaneo aumenta, "
+520,0x5c1f,36,<Derecho> el tiempo de escaneo dis
+521,0x5c43,36,minuye.                           
+522,0x5c67,37,12.Detección de datos de K/Lin    
+523,0x5c8c,37,Esta función puede detectar los da
+524,0x5cb1,38,tos de comunicación de la línea K 
+525,0x5cd7,37,"del vehículo, adecuada para detect"
+526,0x5cfc,38,ar si la línea de comunicación del
+527,0x5d22,39, vehículo tiene transmisión de señ
+528,0x5d49,38,"al, conectar la línea de detección"
+529,0x5d6f,36," principal, conectar el cable de  "
+530,0x5d93,37,puesta a tierra de la señal al pin
+531,0x5db8,37, de puesta a tierra del vehículo  
+532,0x5ddd,36,(como el orificio No.5 de OBD-II) 
+533,0x5e01,36,y conectarlo a la plancha cuando  
+534,0x5e25,36,"es inconveniente acceder, y conect"
+535,0x5e49,39,ar la línea de señal de la línea K
+536,0x5e70,38, al pin de señal de la línea K del
+537,0x5e96,37, vehículo (como el orificio No.7  
+538,0x5ebb,37,de OBD-II). Ingrese al ítem de fun
+539,0x5ee0,37,ción para mostrar los datos recibi
+540,0x5f05,36,"dos actualmente, que es un valor  "
+541,0x5f29,36,hexadecimal. Presione <F1> para bo
+542,0x5f4d,36,"rrar los datos indicados, presione"
+543,0x5f71,37, las teclas de dirección izquierda
+544,0x5f96,36, y derecha para ajustar la velocid
+545,0x5fba,37,"ad en baudios de comunicación, y  "
+546,0x5fdf,37,la velocidad en baudios de la seña
+547,0x6004,36,l puede ser coherente con la veloc
+548,0x6028,36,idad en baudios establecida para  
+549,0x604c,36,recibir los datos correctos. Esta 
+550,0x6070,37,función se puede utilizar con deco
+551,0x6095,36,dificadores profesionales para ver
+552,0x60b9,37,ificar fallos en la línea de comun
+553,0x60de,37,icación.                          
+554,0x6103,38,13.Detección de datos de línea CAN
+555,0x6129,37,Esta función puede detectar la com
+556,0x614e,37,unicación de datos del bus CAN del
+557,0x6173,37," vehículo, adecuada para detectar "
+558,0x6198,38,si la línea de comunicación del ve
+559,0x61be,39,"hículo tiene transmisión de señal,"
+560,0x61e5,38,conectar la línea de detección pri
+561,0x620b,36,"ncipal, conectar el cable de puest"
+562,0x622f,37,a a tierra de la señal al pin de  
+563,0x6254,37,puesta a tierra del vehículo (como
+564,0x6279,36," el orificio No.5 de OBD-II), cone"
+565,0x629d,36,ctarlo a la plancha cuando es inco
+566,0x62c1,37,"nveniente acceder, conectar la lín"
+567,0x62e6,38,ea de señal CAN + al pin de señal 
+568,0x630c,37,CAN + del vehículo (como el orific
+569,0x6331,36,io No.6 de OBD-II) y conectar la  
+570,0x6355,39,línea de señal CAN- al pin de seña
+571,0x637c,37,l CAN- del vehículo (como el orifi
+572,0x63a1,36,cio No.14 de OBD-II). Ingrese al  
+573,0x63c5,38,ítem de función para mostrar los  
+574,0x63eb,36,"datos recibidos actualmente, que  "
+575,0x640f,36,es un valor hexadecimal. Presione 
+576,0x6433,36,<F1> para borrar los datos indica 
+577,0x6457,36,"dos, presione las teclas de direc "
+578,0x647b,37,ción izquierda y derecha para aju 
+579,0x64a0,36,star la velocidad en baudios de   
+580,0x64c4,37,"comunicación, y los datos solo se "
+581,0x64e9,36, pueden recibir cuando la velocid 
+582,0x650d,37,ad en baudios de la señal es cons 
+583,0x6532,36,istente con la velocidad en baudi 
+584,0x6556,37,os establecida. Esta función se   
+585,0x657b,36,puede utilizar con decodificadore 
+586,0x659f,36,s profesionales para verificar fa 
+587,0x65c3,38,llos en la línea de comunicación. 
+588,0x65e9,37,14.Medición de frecuencia         
+589,0x660e,38,Ingrese al ítem de función del med
+590,0x6634,36,"idor de frecuencia, muestre el val"
+591,0x6658,36,"or medido del sondeo actual, presi"
+592,0x667c,36,one <HOLD> para bloquear el estado
+593,0x66a0,36," actual, presione <Fn> para cambia"
+594,0x66c4,36,r al modo osciloscopio. El rango  
+595,0x66e8,37,de medición de frecuencia es de ha
+596,0x670d,37,"sta 1MHz, y el voltaje de la señal"
+597,0x6732,36, es de control adaptativo.        
+598,0x6756,36,1.Pantalla de inicio              
+599,0x677a,36,"Encienda, muestre la interfaz de e"
+600,0x679e,36,"ncendido, presione cualquier tecla"
+601,0x67c2,37,"para ingresar al menú principal,la"
+602,0x67e7,36,esquina superior derecha de la pan
+603,0x680b,37,talla muestra la batería y el esta
+604,0x6830,36,"do de carga, presione la tecla de "
+605,0x6854,37,"dirección para mover el cursor, pr"
+606,0x6879,36,esione la tecla <OK> para ingresar
+607,0x689d,38,"al ítem de función, presione la te"
+608,0x68c3,37,cla <ESC> para salir de la función
+609,0x68e8,36,"actual, presione la tecla de luz  "
+610,0x690c,36,para encender / apagar la luz de  
+611,0x6930,37,"iluminación, presione la tecla <HO"
+612,0x6955,36,LD> para bloquear el valor de visu
+613,0x6979,37,"alización en la prueba, presione  "
+614,0x699e,37,la tecla <F1><F2> para operar segú
+615,0x69c3,36,"n las funciones, presione la tecla"
+616,0x69e7,36, <Fn> para cambiar el modo de func
+617,0x6a0b,39, ión en el ítem de función.       
+618,0x6a32,37,2.Medición de voltaje             
+619,0x6a57,38,Ingrese al ítem de función de medi
+620,0x6a7d,37,"ción de voltaje, muestre el valor "
+621,0x6aa2,37,"de medición del sondeo actual, pre"
+622,0x6ac7,36,sione <HOLD> para bloquear el valo
+623,0x6aeb,36,"r medido, presione <F1> para volve"
+624,0x6b0f,36,"r a cero y corregir. Al usar, prim"
+625,0x6b33,36,ero conecte en cortocircuito el so
+626,0x6b57,37,"ndeo rojo y negro, manténgalo pres"
+627,0x6b7c,36,"ionado, presione <F1> nuevamente. "
+628,0x6ba0,36,Presione <Fn> para cambiar el modo
+629,0x6bc4,37,"de función, presione <Fn>puede cam"
+630,0x6be9,37,biar a visualización de voltaje   
+631,0x6c0e,36,DC / voltaje AC / forma de onda.  
+632,0x6c32,37,El rango de medición de voltaje es
+633,0x6c57,37,"de hasta 1000V, el voltaje máximo "
+634,0x6c7c,37,"DC es de 1000V, el voltaje máximo "
+635,0x6ca1,36,AC es de 700V y el rango se convie
+636,0x6cc5,37,rte automáticamente.              
+637,0x6cea,37,3.Medición de corriente           
+638,0x6d0f,38,Ingrese al ítem de función de medi
+639,0x6d35,37,"ción de corriente, muestre la medi"
+640,0x6d5a,36,"da actual del sondeo, presione <HO"
+641,0x6d7e,36,"LD> para bloquear el valor medido,"
+642,0x6da2,36,presione <F1> para volver a cero y
+643,0x6dc6,36,"corregir. Al usar, primero conecte"
+644,0x6dea,36,en cortocircuito el sondeo rojo y 
+645,0x6e0e,37,"negro, manténgalo presionado, pres"
+646,0x6e33,36,ione <F1>nuevamente. Presione <Fn>
+647,0x6e57,37," para cambiar el modo de función, "
+648,0x6e7c,36,presione <Fn> para cambiar a corri
+649,0x6ea0,36,ente DC / corriente AC. Presione  
+650,0x6ec4,36,<F2> para cambiar al conector de  
+651,0x6ee8,37,"medición, mA (verde) significa que"
+652,0x6f0d,36,el sondeo rojo se inserta desde el
+653,0x6f31,36,"conector mA para medir, y 20A (ama"
+654,0x6f55,36,rillo) significa que el sondeo roj
+655,0x6f79,36,o se inserta desde el conector 20A
+656,0x6f9d,37,para medir. El rango de medición  
+657,0x6fc2,36,de corriente es 0-200mA.          
+658,0x6fe6,37,4.Medición de resistencia         
+659,0x700b,38,Ingrese al ítem de función de medi
+660,0x7031,37,"ción de resistencia, muestre la me"
+661,0x7056,36,"dida actual del sondeo, presione  "
+662,0x707a,36,<HOLD> para bloquear el valor medi
+663,0x709e,36,"do, presione <F1> para volver a ce"
+664,0x70c2,36,"ro y corregir. Al usar, primero co"
+665,0x70e6,36,necte en cortocircuito el sondeo  
+666,0x710a,37,"rojo y negro, manténgalo presiona "
+667,0x712f,36,"do, presione <F1> nuevamente.     "
+668,0x7153,36,Presione <Fn>para cambiar el modo 
+669,0x7177,37,"de función, presione <Fn>para camb"
+670,0x719c,37,iar a la visualización de resisten
+671,0x71c1,37,cia / visualización de voltaje de 
+672,0x71e6,37,diodo.         Esta función mide  
+673,0x720b,37,el valor de resistencia y la caída
+674,0x7230,36, de voltaje directo del diodo al  
+675,0x7254,37,"mismo tiempo, sin conversión, el  "
+676,0x7279,37,rango de medición de resistencia  
+677,0x729e,37,es un valor de resistencia máximo 
+678,0x72c3,37,de 5MΩ. El rango se convierte aut 
+679,0x72e8,38,omáticamente. La caída de voltaje 
+680,0x730e,36, directo del diodo es de hasta    
+681,0x7332,36,2.4V.  Cuando la resistencia medi 
+682,0x7356,36,"da es inferior a 20 ohmios, se em "
+683,0x737a,37,itirá un sonido de consejo para   
+684,0x739f,36,indicar el estado de baja resiste 
+685,0x73c3,36,"ncia, lo cual es conveniente para "
+686,0x73e7,38, determinar si la línea está en   
+687,0x740d,36,cortocircuito durante la inspecci 
+688,0x7431,37,ón del circuito.                  
+689,0x7456,36,5.Osciloscopio                    
+690,0x747a,38,Ingrese al ítem de función del osc
+691,0x74a0,36,"iloscopio, muestre la forma de ond"
+692,0x74c4,36,a del valor medido del sondeo actu
+693,0x74e8,36,"al, presione <HOLD> para bloquear "
+694,0x750c,36,"el estado actual, bloquee el estad"
+695,0x7530,37,o de medición: presione <Arriba>  
+696,0x7555,36,para que la forma de onda se mueve
+697,0x7579,36," hacia arriba, presione <Abajo> pa"
+698,0x759d,36,ra que la forma de onda se mueve  
+699,0x75c1,36,"hacia abajo, presione <Izquierdo> "
+700,0x75e5,36,para que la forma de onda se mueve
+701,0x7609,36," hacia la izquierda, presione <Der"
+702,0x762d,36,echa> para que la forma de onda se
+703,0x7651,36, mueve hacia la derecha. En estado
+704,0x7675,37," de medición normal: <Arriba>, el "
+705,0x769a,38,valor del índice de visualización 
+706,0x76c0,36,"de voltaje disminuye. <Abajo>, el "
+707,0x76e4,38,valor del índice de visualización 
+708,0x770a,36,"de voltaje aumenta. <Izquierdo>,  "
+709,0x772e,36,el tiempo de escaneo aumenta. <De 
+710,0x7752,36,"recho>, el tiempo de escaneo dism "
+711,0x7776,36,"inuye. <F1>, desplazamiento posit "
+712,0x779a,36,"ivo del nivel de disparo. <F2>,   "
+713,0x77be,36,desplazamiento negativo del nivel 
+714,0x77e2,37, de disparo. El rango de medición 
+715,0x7807,36, de la forma de onda de voltaje   
+716,0x782b,36,"es de hasta 1000V, y el rango se  "
+717,0x784f,37,convierte automáticamente.        
+718,0x7874,36,6.Prueba de pulso de encendido    
+719,0x7898,37,Esta función es adecuada para la  
+720,0x78bd,37,prueba de señal de alto voltaje de
+721,0x78e2,36, encendido de motores de gasolina 
+722,0x7906,37,"de automóviles y motocicletas, y  "
+723,0x792b,37,detecta la señal de alto voltaje  
+724,0x7950,37,de encendido de vehículos. Conecte
+725,0x7975,37, el sensor de la señal de encendid
+726,0x799a,36,"o, ingrese a la interfaz de prueba"
+727,0x79be,37, y coloque la cabeza del sensor (á
+728,0x79e3,38,rea de detección de señal) cerca  
+729,0x7a09,37,de la línea de alto voltaje de la 
+730,0x7a2e,38,señal de encendido del vehículo pa
+731,0x7a54,36,ra mostrar la forma de onda de la 
+732,0x7a78,37,señal de encendido. Si se trata   
+733,0x7a9d,37,de un vehículo que se enciende dir
+734,0x7ac2,37,"ectamente, no hay una línea extern"
+735,0x7ae7,36,"a de alto voltaje, la cabeza del  "
+736,0x7b0b,36,sensor puede estar cerca de la bob
+737,0x7b2f,36,"ina de alto voltaje de encendido, "
+738,0x7b53,36,que puede mostrar la forma de onda
+739,0x7b77,37," de la señal de encendido, en este"
+740,0x7b9c,37, momento la intensidad de la señal
+741,0x7bc1,38," será relativamente pequeña, prest"
+742,0x7be7,38,e atención a la observación. Presi
+743,0x7c0d,36,one la tecla <F1> para cambiar al 
+744,0x7c31,36,"modo de motor, puede cambiar al mo"
+745,0x7c55,36,do de 4 trazos / 2 trazos / centra
+746,0x7c79,37,"lita, los motores de automóviles  "
+747,0x7c9e,37,comúnmente utilizados son de 4 tra
+748,0x7cc3,36,"zos, algunos motores de motociclet"
+749,0x7ce7,37,"as son de 2 trazos, los motores má"
+750,0x7d0c,37,s antiguos usarán una centralita  
+751,0x7d31,37,para distribuir señales de alto vo
+752,0x7d56,36,ltaje. en el modo de 4 trazos / 2 
+753,0x7d7a,36,"trazos, puede mostrar la velocidad"
+754,0x7d9e,36, del motor. Presione <HOLD> para  
+755,0x7dc2,36,bloquear el estado actual. En el  
+756,0x7de6,37,estado de medición normal: <Arriba
+757,0x7e0b,37,">, el valor del índice de visualiz"
+758,0x7e30,37,"ación de voltaje disminuye, <Abajo"
+759,0x7e55,37,">, el valor del índice de visualiz"
+760,0x7e7a,37,ación de voltaje aumenta. <Izquier
+761,0x7e9f,36,"do> el tiempo de escaneo aumenta, "
+762,0x7ec3,36,<Derecho> el tiempo de escaneo dis
+763,0x7ee7,36,minuye.                           
+764,0x7f0b,37,7.Medición de frecuencia          
+765,0x7f30,38,Ingrese al ítem de función del med
+766,0x7f56,36,"idor de frecuencia, muestre el val"
+767,0x7f7a,36,"or medido del sondeo actual, presi"
+768,0x7f9e,36,one <HOLD> para bloquear el estado
+769,0x7fc2,36," actual, presione <Fn> para cambia"
+770,0x7fe6,36,r al modo osciloscopio. El rango  
+771,0x800a,37,de medición de frecuencia es de ha
+772,0x802f,37,"sta 1MHz, y el voltaje de la señal"
+773,0x8054,36, es de control adaptativo.        

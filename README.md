@@ -75,12 +75,21 @@ a26edd279ae15a68c3f819b1e2dac10d91043a45f6faac64aa0bdfa504f38878
 ```
 
 Kandungan: firmware `repair-i` penuh (patch measurement yang sama, bait demi
-bait) + menu bahasa `Melayu` (slot Spanish digunakan semula) + 137 entri teks
-Melayu + tema gelap (latar `#0A233B`, teks `#EFF7FA`, ambar `#FFCC48`).
+bait) + menu bahasa `Melayu` (slot Spanish digunakan semula) + **terjemahan
+Melayu penuh 757/773 entri** (16 entri kekal: ruang kosong/simbol/unit) +
+tema gelap (latar `#0A233B`, teks `#EFF7FA`, ambar `#FFCC48`).
 Semua resource sistem lain kekal rasmi V4.0.
 
 Firmware ini berbeza dengan `V4.0.1o` hanya pada 8 bait: marker versi
 (`0x02cae`, `0x02cbe`) dan nama menu bahasa (`0x25bf8`-`0x25bfe`).
+
+Nota pembetulan 2026-07-17: versi awal pakej ini hanya menterjemah 137 entri
+(17%) dan sebahagiannya jatuh pada entri yang salah kerana ketidakjajaran
+indeks EN/SP (lihat `docs/v401p-full-malay-text-rebuild-2026-07-17.md`).
+`TEXT_SP.DAT` kini dibina semula mengikut indeks SP dengan panjang bait
+tepat sama seperti rasmi — jadual offset sebait dengan fail vendor.
+SHA-256 TEXT_SP.DAT baharu:
+`f955f4c83a57ac26150536a377f29b40c5d64fc5ceb2991e2c5fb7ef6c147fd9`
 
 Nota slot bahasa: firmware rasmi mempunyai 14 slot bahasa tetap tanpa slot
 kosong, jadi Bahasa Melayu tidak boleh ditambah tanpa menggantikan satu slot

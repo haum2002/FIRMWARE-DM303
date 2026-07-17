@@ -235,13 +235,20 @@ def audit_text_dat(official_path: Path, cand_path: Path) -> None:
             replaced += 1
             if len(cand_text) > len(off_text):
                 too_long.append(i)
-    # Verified against localization/ms_MY/TEXT_SP.safe-slot-replacement.csv:
-    # the build manifest lists 137 applied Malay translations; 3 of them are
-    # byte-identical to the official Spanish text ("Hardware: ", "Software: ",
-    # "div"), so exactly 134 entries differ at byte level.
-    check(replaced == 134, "byte-differing entries == 134 (137 applied, 3 no-op)",
+    # Full-Malay rebuild 2026-07-17 (localization/ms_MY/translations_ms_sp_full.csv):
+    # 757 entries translated to Malay, 16 unchanged (8 blank spacers, 5 pure
+    # symbols/units, "Normal", "Hardware: "/"Software: " kept by convention).
+    # Every translation is exactly its official entry's byte length, so the
+    # rebuilt file keeps the official size and offset table byte-for-byte.
+    check(replaced == 757, "byte-differing entries == 757 (full Malay)",
           f"actual={replaced}")
     check(not too_long, "no replacement longer than official slot", f"too_long={too_long[:10]}")
+    off_data = official_path.read_bytes()
+    cand_data = cand_path.read_bytes()
+    check(len(off_data) == len(cand_data) == 32888, "TEXT_SP.DAT size == official 32888")
+    check(off_data[:6189] == cand_data[:6189], "offset table byte-identical to official")
+    check(sha256(cand_data) == "f955f4c83a57ac26150536a377f29b40c5d64fc5ceb2991e2c5fb7ef6c147fd9",
+          "TEXT_SP.DAT full-Malay SHA-256")
 
 
 def audit_bmp(path: Path) -> None:

@@ -90,7 +90,7 @@ a28a073e4c8e95165065c6b3325079b073df7bf9852110ed8f8fa229ec0b99e9  dm303_firmware
 dfdba40eb3dd58c981bca9ec6ccaf782058355d7861047bf44bf8ef2b6fb8af7  dm303_firmware/DM303-V4.0.1p-ms-beta/system/TEXT_PO.DAT
 c6e61ff1ea497e90afe37ce7fb403ca9a27aa39b30a01bd1889c649b65a27c69  dm303_firmware/DM303-V4.0.1p-ms-beta/system/TEXT_Pt.DAT
 dd7b001acc5994e240dcb0234e298a85d9ce35ac4c6f7c8aafe4e72355e4e699  dm303_firmware/DM303-V4.0.1p-ms-beta/system/TEXT_RU.DAT
-96bde6bca8036d2a6d0647b85db76135fa4ef1f222db70860381c66aefaed76e  dm303_firmware/DM303-V4.0.1p-ms-beta/system/TEXT_SP.DAT
+f955f4c83a57ac26150536a377f29b40c5d64fc5ceb2991e2c5fb7ef6c147fd9  dm303_firmware/DM303-V4.0.1p-ms-beta/system/TEXT_SP.DAT
 a268409bd0962c723b9be5ec7c451076217fb9c1ca63fd52b6df2a5344b20ecb  dm303_firmware/DM303-V4.0.1p-ms-beta/system/icon-C.dat
 10b31fc3fadb4c95abf8dc5d89db83f7c9b8642eaf1e6a404bdc5fea8ba1e6d8  dm303_firmware/DM303-V4.0.1p-ms-beta/system/icon-C1.bmp
 671402f2fdc12da843ef907d8a6268f787037a7dc9b62e811573ae33ab91a866  dm303_firmware/DM303-V4.0.1p-ms-beta/system/icon-C10.bmp

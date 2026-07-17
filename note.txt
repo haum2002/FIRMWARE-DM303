@@ -226,3 +226,27 @@ Current safe next direction
   `Hardware: `, `Software: `, `div`), zero replacements longer than their
   official slots. All 34 overlay BMPs keep the official RGB565 layout.
 - All five project gates re-run after the audit: ok.
+
+2026-07-17 field feedback + full-Malay corrective rebuild
+---------------------------------------------------------
+- USER DEVICE TEST RESULT: V4.0.1p Malay UI did not work fully. Root cause
+  found by fresh analysis: `STATIC_TRANSLATIONS` is keyed by TEXT_EN index,
+  but TEXT_EN (815 entries) and TEXT_SP (773 entries) are only index-aligned
+  for entries 1-89; beyond that the content diverges. The old package had
+  only 137/773 entries replaced, some on unrelated Spanish strings.
+- Corrective rebuild: `localization/ms_MY/translations_ms_sp_full.csv`
+  translates all 773 SP entries keyed by SP index (757 translated, 16
+  unchanged blanks/symbols). Rebuilt `TEXT_SP.DAT` keeps the official size
+  (32888) and the entire offset table byte-identical; only record text bytes
+  changed. New SHA-256:
+  `f955f4c83a57ac26150536a377f29b40c5d64fc5ceb2991e2c5fb7ef6c147fd9`
+  (registered in `dm303_ui_overlay_candidate_check.py`). Full write-up:
+  `docs/v401p-full-malay-text-rebuild-2026-07-17.md`.
+- The rebuilt resource is now in `dm303_firmware/DM303-V4.0.1p-ms-beta/` and
+  the ui-ms staging sd-root. Firmware binary unchanged. Independent audit
+  updated (757 differing entries) and passing; all gates re-run: ok.
+- USER ALSO CONFIRMS measurement symptoms persist on repair-i (noise,
+  unstable readings, AC->DC latency, zero/calibration). The 240->64
+  acquisition-window theory is disproved on-device. No new speculative
+  measurement patches added; next step is a deeper sampling/math audit and
+  V3.16-vs-V4.0 switching-path comparison, as single-change HOLD candidates.

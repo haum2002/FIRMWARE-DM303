@@ -72,8 +72,14 @@ a26edd279ae15a68c3f819b1e2dac10d91043a45f6faac64aa0bdfa504f38878  DM303-V4.0.1p-
 - Firmware differs from repair-i in exactly 8 bytes: version marker
   (`0x02cae`, `0x02cbe`) and the `Español` -> `Melayu` menu name
   (`0x25bf8`-`0x25bfe`). Every repair-i measurement patch byte is unchanged.
-- `TEXT_SP.DAT` rebuilt on the official SP 773-entry layout with 137 Malay
-  entries; dark nav/menu assets are direct RGB565 tints with official BMP
+- `TEXT_SP.DAT` rebuilt on the official SP 773-entry layout with **full Malay
+  coverage: 757 translated entries** (16 unchanged blanks/symbols), every
+  entry exactly its official byte length so the offset table is byte-identical
+  to vendor. Corrects the 2026-07-16 partial build (137 entries, some
+  misaligned — see `docs/v401p-full-malay-text-rebuild-2026-07-17.md`).
+  `TEXT_SP.DAT` SHA-256:
+  `f955f4c83a57ac26150536a377f29b40c5d64fc5ceb2991e2c5fb7ef6c147fd9`.
+- Dark nav/menu assets are direct RGB565 tints with official BMP
   headers/sizes (palette: background `#0A233B`, text `#EFF7FA`, amber
   `#FFCC48`). All other system resources are official V4.0.
 - Spanish is sacrificed (no spare language slot exists); it is restorable by
