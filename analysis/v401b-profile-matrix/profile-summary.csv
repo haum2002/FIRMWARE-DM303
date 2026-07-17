@@ -1,0 +1,14 @@
+profile,visible_marker,sha256,classification,decision
+boot-acceptance,V4.0.1b,ea910e141c9ddb19b550e4769fa87228fb5601492ae412487c39dc6efbc304d5,minimal beta identity/resource build,reference only
+anti-freeze-exp1,V4.0.1b,de953819e5d9804cbb66eb7bb2bd17ac24d2d80282816951db1dd9048e77e6ab,fault/reset recovery only,keep as early safety reference
+stream-recovery-exp11,V4.0.1b,d244ffd168dded8656a83e2cf62f663a2228d32803b4a7ee08a4b857b5b44526,bounded low-IO timeout recovery,keep concept
+stream-recovery-exp12,V4.0.1b,0a2090bf5c42cd89509f65881d8b54862d243c6b9d224478ab95bb3ef8e06a16,stale stream state clear on error,keep concept
+stream-recovery-exp13,V4.0.1b,fbe05118e33743fb56679d5edd1eb2019c1d82e39f499c1459fe89401ce8130b,mode/range entry stale state clear,keep concept
+stream-recovery-exp14,V4.0.1b,57204ff3219fe2bbb06df116ce6ffd87593605c66b1e0fd40b803f61d08dcab9,last V4.0.1b before V4.0.1c with current-switch gate caps,baseline for reassessment only
+stream-recovery-exp15,V4.0.1c,3a2db571a4c783d0df2a454ec13d8d38a3a22a0e6ad7cc9993a0afa1edd7f3a0,aggressive immediate gates and stale bit0 bypass,reject for next baseline
+stream-recovery-exp16-ui-safe,V4.0.1d,29a8bd71cba65538ba25d8e76aa5122234f9a28ad957287ba82fbf4fdf6c60af,exp14 core with exp15 removed and boot delay disabled,use as UI-safety comparison
+clean-resource-exp17,V4.0.1e,d3760c42731a5fd6c0db508b51df85b1725046f028d767315916c4ee58904b77,official flow/resource cleanup,no measurement fix
+stability-exp18-resource,V4.0.1f,a9cc0fc643fa79378b04ab4c00fd7303551c63e2d75329b623f529f8856e90fe,resource-complete plus recovery,no field performance proof
+stability-exp19-ui-ms,V4.0.1g,24c3bd15282b3e43e42c0e45a7743261469283e61d345bf46a8483eb9350342d,Malay/dark UI reintroduced,do not use for performance isolation
+stability-exp20-ms-safe,V4.0.1h,b9f54dbc46b25a8f9da7af85bc12c8eb591d7806372f10487b1aa717150ac45f,safe Malay SP resource layout,do not use until performance baseline is isolated
+v401h-repair-a,V4.0.1h,66315b32c079842251143450bb853c5f60a29bb27c93b73f03389a9813b1cd36,failed V4.0.1h cleaned of Malay/dark resource layer,HOLD analysis-only repair baseline

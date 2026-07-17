@@ -1,0 +1,413 @@
+Measurement text clues
+  text=backup\DM303 V3.16-read only\system\TEXT_EN.DAT entries=815
+  0020 len=13 Voltage(AC)
+  0021 len=13 Voltage(DC)
+  0023 len=37  <HOLD> Hold        <F1> Zeroing   
+  0024 len=37  <Fn> Function Mode                
+  0026 len=07 HOLD 
+  0027 len=04 AC
+  0028 len=04 DC
+  0032 len=37  <HOLD> Hold         <F1> Zeroing  
+  0033 len=37  <Fn> Function Mode  <F2> 20A/mA   
+  0038 len=37  <HOLD> Hold        <F1> Zeroing   
+  0042 len=23 Frequency Measurement
+  0043 len=30 <Fn>to signal detec.(f<6000)
+  0045 len=25 <Fn>to signal detection
+  0046 len=31 Contact Resistance:          
+  0048 len=23 Frequency:         Hz
+  0050 len=29 <F1><F2> Duty Cycle Setting
+  0056 len=37 <F1>Clear  <Fn><LEFT><RIGHT>set BPS
+  0058 len=37 <F1>Clear  <Fn><LEFT><RIGHT>set BPS
+  0059 len=24  <Fn> Function Mode   
+  0067 len=35 Calibrate the voltage with probe.
+  0069 len=35  <UP> <Down> Adjust actual value 
+  0074 len=24 Supply Voltage:      V
+  0077 len=32 Calibration Voltage of Battery
+  0079 len=30 Calibration the current(mA) 
+  0080 len=31 Conect to Signal current(mA)!
+  0081 len=37 Calibration Vehicle Circuit Voltage
+  0082 len=28 Conect to Signal Voltage !
+  0083 len=25 Calibration current(A) 
+  0084 len=30 Conect to Signal current(A)!
+  0089 len=15 Voltage:     
+  0090 len=23 Voltage Signal Output
+  0094 len=23 Adj. Voltage\uff1a       
+  0095 len=28 <F1><F2> Frequency Setting
+  0104 len=34 Drive the fuel injector: Choose 
+  0105 len=34 the C01 line to connect the fuel
+  0106 len=34 injector, and then connect the  
+  0108 len=34 Detect fuel injection signal: co
+  0109 len=34 nnect the black probe to the veh
+  0111 len=34 to the fuel injector pin, press 
+  0112 len=34 <Fn> to enter the test.         
+  0124 len=34 normal output signal voltage is 
+  0128 len=34  to detect the signal waveform, 
+  0129 len=34  press the <Fn> to check the sig
+  0135 len=34 voltage display, press up button
+  0139 len=34 probe voltage is close to the ba
+  0140 len=34 ttery voltage, blue means the pr
+  0141 len=34 obe voltage is too low and there
+  0154 len=34 \u53ef\u4ee5\u4f7f\u7528\u8868\u7b14\u68c0\u6d4b\u7535\u8def\u6ce2\u5f62\uff0c\u6309<Fn>
+  0164 len=26 Min.voltage value > 9.6V
+  0165 len=27 Min.voltage value > 19.2V
+  0166 len=20 Fuel Injector Test
+  0172 len=20 Real-time voltage:
+  0173 len=18 Minimum Voltage:
+  0175 len=21 Voltage is too low.
+  0178 len=23 2.Voltage Measurement
+  0179 len=23 3.Current Measurement
+  0181 len=16 5.Oscilloscope
+  0184 len=17 8.Injector test
+  0190 len=26 14.Frequency Measurement
+  0192 len=23 2.Voltage Measurement
+  0193 len=23 3.Current Measurement
+  0195 len=16 5.Oscilloscope
+  0197 len=25 7.Frequency Measurement
+  0199 len=23 2.Voltage Measurement
+  0200 len=23 3.Current Measurement
+  0202 len=16 5.Oscilloscope
+  0203 len=28 6.Adj. Voltage signal Test
+  0214 len=36 f the light,<HOLD> key to lock the
+  0215 len=36  display value during the test,<F1
+  0216 len=36  ><F2>to operate according to the 
+  0217 len=36  prompts, <Fn> to switch the funct
+  0219 len=36 2.Voltage Measurement             
+  0220 len=36 Enter the voltage measurement func
+  0221 len=36 tion,the current measurement value
+  0222 len=36  is displayed,press<HOLD>to lock t
+  0223 len=36 he measurement value,press<F1>for 
+  0224 len=36 zeroing.When using, short connecte
+  0225 len=36 d the red and black probe,and hold
+  0226 len=36  it, and then press <F1>. <Fn>for 
+  0227 len=36 switching function mode,press <Fn>
+  0228 len=36 to switch DC voltage/AC voltage/wa
+  0229 len=36 veform display. The voltage measur
+  0230 len=36 ement range is up to 1000V, the ma
+  0231 len=36 x.DC voltage is 1000V, the max.AC 
+  0232 len=36 voltage is 700V, and the range is 
+  0234 len=36 3.Current Measurement             
+  0235 len=36 Enter the current measurement func
+  0236 len=36 tion,the current measurement value
+  0237 len=36  is displayed,press<HOLD>to lock t
+  0238 len=36 he measurement value,press<F1>for 
+  0239 len=36 zeroing.When using, short connecte
+  0240 len=36 d the red and black probe,and hold
+  0241 len=36  it, and then press <F1>. <Fn>for 
+  0242 len=36 switching function mode,press <Fn>
+  0243 len=36 to switch DC voltage/AC voltage.  
+  0245 len=36 nt jack.If it shows mA (green), it
+  0247 len=36 ted from the mA jack for measureme
+  0250 len=36 rted from the 20A jack for measure
+  0251 len=36 ment. Current measurement range is
+  0255 len=36 unction,the current measurement va
+  0256 len=36 lue is displayed,press<HOLD>to loc
+  0257 len=36 k the measurement value,press<F1>f
+  0258 len=36 or zeroing.When using, short conne
+  0259 len=36 cted the red and black probe,and h
+  0260 len=36 old it, and then press <F1>. <Fn>f
+  0262 len=36 Fn> to switch resistance display/ 
+  0263 len=36 diode voltage display. This functi
+  0266 len=36  voltage drop of the diode without
+  0268 len=36 sance is up to 5M\u03a9,and the range 
+  0270 len=36 x.forward voltage drop of the diod
+  0278 len=36 5.Oscilloscope                    
+  0279 len=36 Enter the oscilloscope function,th
+  0280 len=36 e waveform of current measured val
+  0281 len=36 ue  is displayed.Press<HOLD>to loc
+  0282 len=36 k the current status,<\u2191>/<\u2193>/<\u2190
+  0283 len=36 >/<\u2192>makes the waveform move up, 
+  0286 len=36 <\u2191> means the voltage division va
+  0291 len=36  time decreases, <F1>means positiv
+  0293 len=36 >means negative shift. The voltage
+  0294 len=36 waveform range is up to 1000V, and
+  0295 len=36  the range is automatically conver
+  0299 len=36 tion function,the current measurem
+  0300 len=36 ent value is displayed,press<HOLD>
+  0302 len=36 s<F1>for zeroing.When using, short
+  0305 len=36 d it, and then press <F1>. <Fn>for
+  0306 len=36 switching function mode,press <Fn>
+  0307 len=36 to switch voltage measurement/wave
+  0308 len=36 form display.<\u2191>Drive voltage out
+  0321 len=36 ace, when the detection voltage is
+  0322 len=36 close to the power supply voltage 
+  0323 len=36 (greater than the actual voltage  
+  0326 len=36 the detection voltage is lower tha
+  0343 len=36 the vehicle engine according to th
+  0346 len=36 ormal for the minimum voltage to b
+  0352 len=36 arter current is too high/the batt
+  0355 len=36 to be replaced in time.           
+  0356 len=36 8.Injector test                   
+  0358 len=36 l injector signal drive and signal
+  0362 len=36 ply, and then connect the fuel inj
+  0364 len=36 el injector to work. It can provid
+  0366 len=36 injector between 500 and 6000 rpm,
+  0369 len=36 erating performance of the fuel in
+  0373 len=36 gnal drive interface, the directio
+  0377 len=36 <Fn> to enter the signal detection
+  0392 len=36 red and black probes to detect the
+  0393 len=36 contact resistance of the relay.If
+  0396 len=36 ance is large, the contact is disc
+  0400 len=36 detection interface,press  <OK> to
+  0403 len=36 contact resistance.               
+  0424 len=36 to adjust the frequency of the ana
+  0425 len=36 log signal, <F1><F2> to adjust the
+  0427 len=36 s the <Fn> key to enter the signal
+  0433 len=36 high-voltage signal test of gasoli
+  0436 len=36 gh-voltage signal of vehicle ignit
+  0438 len=36 sensor, enters the test interface,
+  0442 len=36 al,then the waveform of the igniti
+  0446 len=36 igh-voltage wire, you can put the 
+  0448 len=36 high-voltage coil, and the wavefor
+  0452 len=36 so take care of it. Press<F1> to s
+  0459 len=36 stribute high-voltage signals. Eng
+  0461 len=36 roke/2-stroke mode. <HOLD> is to  
+  0462 len=36 lock the current state, under norm
+  0464 len=36 he voltage division value decrease
+  0465 len=36 s, <\u2193> means the voltage division
+  0480 len=36 access, it can be connected to the
+  0485 len=36 n item to display the currently re
+  0487 len=36 al value. Press <F1> to clear the 
+  0508 len=36 inconvenient to access, it can be 
+  0516 len=36 the currently received data, and  
+  0518 len=36 F1> to clear the displayed data,  
+  0527 len=36 14.Frequency Measurement          
+  0528 len=36 Enter the frequency measurement,th
+  0529 len=36 e current measurement value is dis
+  0530 len=36 played,press <HOLD> to lock the cu
+  0531 len=36 rrent state, press <Fn>to switch  
+  0532 len=36 to the oscilloscope mode. The freq
+  0533 len=36 uency measurement range is up to  
+  0534 len=36 1MHz, and the signal voltage is ad
+  0545 len=36 f the light,<HOLD> key to lock the
+  0546 len=36  display value during the test,<F1
+  0547 len=36  ><F2>to operate according to the 
+  0548 len=36  prompts, <Fn> to switch the funct
+  0550 len=36 2.Voltage Measurement             
+  0551 len=36 Enter the voltage measurement func
+  0552 len=36 tion,the current measurement value
+  0553 len=36  is displayed,press<HOLD>to lock t
+  0554 len=36 he measurement value,press<F1>for 
+  0555 len=36 zeroing.When using, short connecte
+  0556 len=36 d the red and black probe,and hold
+  0557 len=36  it, and then press <F1>. <Fn>for 
+  0558 len=36 switching function mode,press <Fn>
+  0559 len=36 to switch DC voltage/AC voltage/wa
+  0560 len=36 veform display. The voltage measur
+  0561 len=36 ement range is up to 1000V, the ma
+  0562 len=36 x.DC voltage is 1000V, the max.AC 
+  0563 len=36 voltage is 700V, and the range is 
+  0565 len=36 3.Current Measurement             
+  0566 len=36 Enter the current measurement func
+  0567 len=36 tion,the current measurement value
+  0568 len=36  is displayed,press<HOLD>to lock t
+  0569 len=36 he measurement value,press<F1>for 
+  0570 len=36 zeroing.When using, short connecte
+  0571 len=36 d the red and black probe,and hold
+  0572 len=36  it, and then press <F1>. <Fn>for 
+  0573 len=36 switching function mode,press <Fn>
+  0574 len=36 to switch DC voltage/AC voltage.  
+  0576 len=36 nt jack.If it shows mA (green), it
+  0578 len=36 ted from the mA jack for measureme
+  0581 len=36 rted from the 20A jack for measure
+  0582 len=36 ment. Current measurement range is
+  0586 len=36 unction,the current measurement va
+  0587 len=36 lue is displayed,press<HOLD>to loc
+  0588 len=36 k the measurement value,press<F1>f
+  0589 len=36 or zeroing.When using, short conne
+  0590 len=36 cted the red and black probe,and h
+  0591 len=36 old it, and then press <F1>. <Fn>f
+  0593 len=36 Fn> to switch resistance display/ 
+  0594 len=36 diode voltage display. This functi
+  0597 len=36  voltage drop of the diode without
+  0599 len=36 sance is up to 5M\u03a9,and the range 
+  0601 len=36 x.forward voltage drop of the diod
+  0609 len=36 5.Oscilloscope                    
+  0610 len=36 Enter the oscilloscope function,th
+  0611 len=36 e waveform of current measured val
+  0612 len=36 ue  is displayed.Press<HOLD>to loc
+  0613 len=36 k the current status,<\u2191>/<\u2193>/<\u2190
+  0614 len=36 >/<\u2192>makes the waveform move up, 
+  0617 len=36 <\u2191> means the voltage division va
+  0622 len=36  time decreases, <F1>means positiv
+  0624 len=36 >means negative shift. The voltage
+  0625 len=36 waveform range is up to 1000V, and
+  0626 len=36  the range is automatically conver
+  0630 len=36 high-voltage signal test of gasoli
+  0633 len=36 gh-voltage signal of vehicle ignit
+  0635 len=36 sensor, enters the test interface,
+  0639 len=36 al,then the waveform of the igniti
+  0643 len=36 igh-voltage wire, you can put the 
+  0645 len=36 high-voltage coil, and the wavefor
+  0649 len=36 so take care of it. Press<F1> to s
+  0656 len=36 stribute high-voltage signals. Eng
+  0658 len=36 roke/2-stroke mode. <HOLD> is to  
+  0659 len=36 lock the current state, under norm
+  0661 len=36 he voltage division value decrease
+  0662 len=36 s, <\u2193> means the voltage division
+  0666 len=36 7.Frequency Measurement           
+  0667 len=36 Enter the frequency measurement,th
+  0668 len=36 e current measurement value is dis
+  0669 len=36 played,press <HOLD> to lock the cu
+  0670 len=36 rrent state, press <Fn>to switch  
+  0671 len=36 to the oscilloscope mode. The freq
+  0672 len=36 uency measurement range is up to  
+  0673 len=36 1MHz, and the signal voltage is ad
+  0684 len=36 f the light,<HOLD> key to lock the
+  0685 len=36  display value during the test,<F1
+  0686 len=36  ><F2>to operate according to the 
+  0687 len=36  prompts, <Fn> to switch the funct
+  0689 len=36 2.Voltage Measurement             
+  0690 len=36 Enter the voltage measurement func
+  0691 len=36 tion,the current measurement value
+  0692 len=36  is displayed,press<HOLD>to lock t
+  0693 len=36 he measurement value,press<F1>for 
+  0694 len=36 zeroing.When using, short connecte
+  0695 len=36 d the red and black probe,and hold
+  0696 len=36  it, and then press <F1>. <Fn>for 
+  0697 len=36 switching function mode,press <Fn>
+  0698 len=36 to switch DC voltage/AC voltage/wa
+  0699 len=36 veform display. The voltage measur
+  0700 len=36 ement range is up to 1000V, the ma
+  0701 len=36 x.DC voltage is 1000V, the max.AC 
+  0702 len=36 voltage is 700V, and the range is 
+  0704 len=36 3.Current Measurement             
+  0705 len=36 Enter the current measurement func
+  0706 len=36 tion,the current measurement value
+  0707 len=36  is displayed,press<HOLD>to lock t
+  0708 len=36 he measurement value,press<F1>for 
+  0709 len=36 zeroing.When using, short connecte
+  0710 len=36 d the red and black probe,and hold
+  0711 len=36  it, and then press <F1>. <Fn>for 
+  0712 len=36 switching function mode,press <Fn>
+  0713 len=36 to switch DC voltage/AC voltage.  
+  0715 len=36 nt jack.If it shows mA (green), it
+  0717 len=36 ted from the mA jack for measureme
+  0720 len=36 rted from the 20A jack for measure
+  0721 len=36 ment. Current measurement range is
+  0725 len=36 unction,the current measurement va
+  0726 len=36 lue is displayed,press<HOLD>to loc
+  0727 len=36 k the measurement value,press<F1>f
+  0728 len=36 or zeroing.When using, short conne
+  0729 len=36 cted the red and black probe,and h
+  0730 len=36 old it, and then press <F1>. <Fn>f
+  0732 len=36 Fn> to switch resistance display/ 
+  0733 len=36 diode voltage display. This functi
+  0736 len=36  voltage drop of the diode without
+  0738 len=36 sance is up to 5M\u03a9,and the range 
+  0740 len=36 x.forward voltage drop of the diod
+  0748 len=36 5.Oscilloscope                    
+  0749 len=36 Enter the oscilloscope function,th
+  0750 len=36 e waveform of current measured val
+  0751 len=36 ue  is displayed.Press<HOLD>to loc
+  0752 len=36 k the current status,<\u2191>/<\u2193>/<\u2190
+  0753 len=36 >/<\u2192>makes the waveform move up, 
+  0756 len=36 <\u2191> means the voltage division va
+  0761 len=36  time decreases, <F1>means positiv
+  0763 len=36 >means negative shift. The voltage
+  0764 len=36 waveform range is up to 1000V, and
+  0765 len=36  the range is automatically conver
+  0787 len=36 to adjust the frequency of the ana
+  0788 len=36 log signal, <F1><F2> to adjust the
+  0790 len=36 s the <Fn> key to enter the signal
+  0794 len=36 6.Adjustable voltage signal test. 
+  0796 len=36 put sensor's voltage and square wa
+  0801 len=36 tput signal voltage is 0V-4.5V,and
+  0805 len=36 nal, and the adjustable voltage si
+  0807 len=36  the function interface, use the  
+  0809 len=36 ted voltage signal, and use <F1>< 
+  0810 len=36 F2> to adjust the frequency of the
+  0811 len=36  square wave. Press <Fn>key to ent
+
+Exact peripheral literal hits
+  image=backup\DM303 V3.16-read only\DM303V316.bin
+  TIM2    0x40000000 hits=46 offs=0x0470a, 0x047a6, 0x04876, 0x0490a, 0x319be, 0x3380d, 0x33845, 0x3387d, 0x338b5, 0x338ed, ... +36
+  TIM3    0x40000400 hits= 6 offs=0x0727c, 0x076ec, 0x07fc0, 0x2fe48, 0x302a0, 0x309a4
+  TIM4    0x40000800 hits= 9 offs=0x07280, 0x0774c, 0x07fc4, 0x08824, 0x08c4c, 0x2fe4c, 0x302a4, 0x309a8, 0x319f4
+  TIM5    0x40000c00 hits= 3 offs=0x2fe50, 0x302a8, 0x309ac
+  TIM6    0x40001000 hits= 1 offs=0x2fe54
+  TIM7    0x40001400 hits= 1 offs=0x2fe58
+  SPI2    0x40003800 hits= 2 offs=0x06aa0, 0x2fa3c
+  SPI3    0x40003c00 hits= 1 offs=0x2fa40
+  USART2  0x40004400 hits= 1 offs=0x30d98
+  USART3  0x40004800 hits= 4 offs=0x076c8, 0x07fc8, 0x222e4, 0x30d9c
+  UART4   0x40004c00 hits= 1 offs=0x30da0
+  UART5   0x40005000 hits= 1 offs=0x30da4
+  CAN1    0x40006400 hits= 5 offs=0x07fcc, 0x0884c, 0x08c34, 0x22c20, 0x2cccc
+  AFIO    0x40010000 hits= 2 offs=0x2e464, 0x2e574
+  EXTI    0x40010400 hits= 1 offs=0x2d970
+  GPIOA   0x40010800 hits= 7 offs=0x03e1c, 0x0ca00, 0x0e338, 0x0e800, 0x1a5bc, 0x1b274, 0x2e448
+  GPIOB   0x40010c00 hits=17 offs=0x03e20, 0x072b4, 0x076d0, 0x08820, 0x08c48, 0x09ec4, 0x0a330, 0x0be78, 0x0c9fc, 0x0cd08, ... +7
+  GPIOC   0x40011000 hits=14 offs=0x03e24, 0x060dc, 0x072b0, 0x07fb8, 0x0ca08, 0x19464, 0x1b27c, 0x1b6a8, 0x1e5a8, 0x1ee00, ... +4
+  GPIOD   0x40011400 hits=15 offs=0x03e28, 0x041f4, 0x05dec, 0x07fdc, 0x09178, 0x09480, 0x09a84, 0x0a334, 0x0c9f8, 0x0e334, ... +5
+  GPIOE   0x40011800 hits= 4 offs=0x03e34, 0x09a88, 0x0a338, 0x2e458
+  TIM1    0x40012c00 hits= 5 offs=0x0728c, 0x07fbc, 0x2fe44, 0x30298, 0x3099c
+  SPI1    0x40013000 hits= 3 offs=0x06a9c, 0x09174, 0x2fa38
+  TIM8    0x40013400 hits= 3 offs=0x2fe5c, 0x3029c, 0x309a0
+  USART1  0x40013800 hits= 2 offs=0x05df0, 0x30d94
+  DMA1    0x40020000 hits= 1 offs=0x07ff4
+  RCC     0x40021000 hits= 3 offs=0x06de8, 0x2eaac, 0x2ebbc
+  FLASH   0x40022000 hits= 3 offs=0x06df4, 0x2dd6c, 0x2e04c
+
+Candidate peripheral code paths
+  functions=189 seen_instructions=1995
+  func=0x08018a7e off=0x08a7e hits=13 peripherals={'CAN1': 13}
+  func=0x080188fa off=0x088fa hits=13 peripherals={'CAN1': 13}
+  func=0x080189d8 off=0x089d8 hits=12 peripherals={'CAN1': 12}
+  func=0x0801886a off=0x0886a hits=12 peripherals={'CAN1': 12}
+  func=0x0803d860 off=0x2d860 hits=6 peripherals={'EXTI': 6}
+  func=0x08017dca off=0x07dca hits=5 peripherals={'PERIPH 0x40020800': 5}
+  func=0x08017ad4 off=0x07ad4 hits=4 peripherals={'PERIPH 0x40020c00': 4}
+  func=0x0803e51a off=0x2e51a hits=3 peripherals={'AFIO': 3}
+  func=0x080184d8 off=0x084d8 hits=3 peripherals={'GPIOB': 1, 'TIM4': 2}
+  func=0x08017448 off=0x07448 hits=3 peripherals={'USART3': 3}
+  func=0x080171b6 off=0x071b6 hits=3 peripherals={'TIM1': 1, 'GPIOC': 1, 'GPIOB': 1}
+  func=0x08015a92 off=0x05a92 hits=3 peripherals={'USART1': 3}
+  func=0x0803ea92 off=0x2ea92 hits=2 peripherals={'RCC': 2}
+  func=0x0803ea84 off=0x2ea84 hits=2 peripherals={'RCC': 2}
+  func=0x0803d92c off=0x2d92c hits=2 peripherals={'EXTI': 2}
+  func=0x0803d4c4 off=0x2d4c4 hits=2 peripherals={'PERIPH 0x40007400': 2}
+  func=0x0803d4aa off=0x2d4aa hits=2 peripherals={'PERIPH 0x40007400': 2}
+  func=0x0803c1b2 off=0x2c1b2 hits=2 peripherals={'SCB': 1, 'PERIPH 0xe000e400': 1}
+  func=0x08018b1a off=0x08b1a hits=2 peripherals={'CAN1': 2}
+  func=0x0801898e off=0x0898e hits=2 peripherals={'CAN1': 2}
+  func=0x08017e3e off=0x07e3e hits=2 peripherals={'DMA1': 1, 'PERIPH 0x40020800': 1}
+  func=0x08017e24 off=0x07e24 hits=2 peripherals={'DMA1': 2}
+  func=0x08017c92 off=0x07c92 hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x08017c80 off=0x07c80 hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x08017c58 off=0x07c58 hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x08017c20 off=0x07c20 hits=2 peripherals={'PERIPH 0x40020800': 2}
+  func=0x08017c0e off=0x07c0e hits=2 peripherals={'PERIPH 0x40020800': 2}
+  func=0x08017bc6 off=0x07bc6 hits=2 peripherals={'PERIPH 0x40020800': 2}
+  func=0x08017b98 off=0x07b98 hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x08017b56 off=0x07b56 hits=2 peripherals={'PERIPH 0x40020800': 2}
+  func=0x08017b44 off=0x07b44 hits=2 peripherals={'PERIPH 0x40020800': 2}
+  func=0x08017b08 off=0x07b08 hits=2 peripherals={'PERIPH 0x40020800': 2}
+  func=0x08017a9a off=0x07a9a hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x08017a88 off=0x07a88 hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x08017a44 off=0x07a44 hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x08017a0a off=0x07a0a hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x080179f8 off=0x079f8 hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x080179b4 off=0x079b4 hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x0801797a off=0x0797a hits=2 peripherals={'PERIPH 0x40020c00': 2}
+  func=0x08017968 off=0x07968 hits=2 peripherals={'PERIPH 0x40020c00': 2}
+
+Manual-watch candidate offsets
+  off=0x07bc4 addr=0x08017bc4
+  off=0x07c26 addr=0x08017c26
+  off=0x07d32 addr=0x08017d32
+  off=0x07e90 addr=0x08017e90
+  off=0x08b56 addr=0x08018b56
+  off=0x08bca addr=0x08018bca
+
+Relay/range settling candidate
+  selector=0x0801f0f2 mode_routine=0x0801f19a
+  evidence: selector toggles GPIOB/GPIOD bits and already contains timer waits
+  note: this is a relay/range candidate, not a proven analog accuracy fix
+  official delay bytes:
+    off=0x0f10a addr=0x0801f10a c8 42 cmn r0, r1 official=2 patched=5 - pre-switch settle before selector bits are changed
+    off=0x0f146 addr=0x0801f146 00 20 movs r0, #0 official=3 patched=8 - selector bit settle after relay/range bits are changed
+    off=0x0f192 addr=0x0801f192 c8 03 lsls r0, r1, #0xf official=10 patched=50 - final post-relay settle before returning to acquisition
+  calls to selector: 0
+
+Safety note
+  This tool is read-only and does not identify confirmed safe patch points.

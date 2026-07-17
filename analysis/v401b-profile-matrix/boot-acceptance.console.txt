@@ -1,0 +1,11 @@
+source=backup\DM303 V4.0-read only\DM303V4.004.bin
+source_sha256=64faaffb5fb65bdd0057d4fce1d9a2ac93e9229f118fba0a84d758c0ff926158
+output=firmware-candidates\v4.0.1-beta\DM303V4.0.1-beta.bin
+profile=boot-acceptance
+output_size=203260
+output_sha256=ea910e141c9ddb19b550e4769fa87228fb5601492ae412487c39dc6efbc304d5
+patched_vectors=0
+patch_records=3
+report=firmware-candidates\v4.0.1-beta\PATCH-REPORT.md
+safety_note=candidate only; do not flash before bench/recovery validation
+

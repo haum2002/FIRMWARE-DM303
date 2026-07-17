@@ -1,6 +1,11 @@
 # DM303 measurement noise and zeroing analysis
 
-Status: stability-first test build added in `force-enhanced-exp4`.
+Status: stream recovery test build updated to `stream-recovery-exp14`.
+
+Note: older sections in this file mention exp13 because that was the previous
+recovery profile. Exp14 keeps exp13's stream/state recovery and adds the
+stale-busy transaction bypass plus two current-switch latency caps for the
+reported ammeter AC -> DC 30-second blank.
 This document records current evidence and safe next steps so the firmware is
 not falsely marked as fully optimized.
 
@@ -28,6 +33,8 @@ because resistance, continuity, and battery behavior are weaker.
 - Ammeter can blank after switching DC -> AC -> DC.
 - The blank state is not limited to the numeric reading: the battery icon can
   disappear at the same time and only returns when the numeric value returns.
+- Cranking mode can show a real-time voltage around `2.88 V` while the internal
+  battery is nominally `3.7 V` and the battery icon shows about `3/4` bars.
 - Ohmmeter can enter the same blank state when opening ohmmeter mode.
 - Blank/freeze can happen on any meter mode after spike, overload, or abnormal
   signal handling.
@@ -42,6 +49,43 @@ because resistance, continuity, and battery behavior are weaker.
 - Fuel injector test has unwanted fine noise/vibration and must be treated as a
   safety risk until the output path is verified.
 - True RMS cannot be trusted while acquisition noise and zeroing are unstable.
+
+## Field-observation analyzer result
+
+The user-supplied observations are now captured in
+`docs/v401b-field-observations.csv` and analyzed in
+`docs/v401b-field-observation-analysis.md`.
+
+Current result:
+
+- Overall status: `FAIL`.
+- Ammeter green AC and DC: `FAIL` because blank events are present.
+- Ohmmeter open: `FAIL` because blank events are present.
+- Oscilloscope at `0.1 V/div`, `12.5 us`: `PASS` for the latest
+  `+0.07 V / -0.03 V` observation against the V3.16-style `0.13 V`
+  peak-to-peak target.
+- Cranking open `2.88 V`: `REVIEW`; treat as floating/leakage evidence until
+  short-to-negative and known limited-source tests are provided.
+
+This confirms that the active firmware problem is still recovery/state blanking
+in meter paths, especially ammeter green and ohmmeter, not just cosmetic UI or
+logo/icon quality.
+
+## Power rail and cranking update
+
+The cranking observation is now tracked as a hardware-facing diagnostic path in
+`docs/power-rail-cranking-analysis.md`.
+
+Current interpretation: cranking mode is intended for a connected vehicle
+battery. A `2.88 V` reading with the cranking input open may be a ghost voltage
+from a floating high-impedance input, internal bias, protection leakage, relay
+or mux leakage, PCB contamination, or supply-rail coupling. It is not yet proof
+that the internal Li-ion cell itself is at `2.88 V`.
+
+The Malay cranking manual text has been updated to warn that an unconnected
+cable/clip can produce a floating reading and must not be treated as a real
+battery voltage. No fixed offset subtraction is applied, because hiding a
+`2.88 V` leak would make real low-voltage cranking tests wrong.
 
 ## Important safety note
 
@@ -86,13 +130,19 @@ This does not prove that no ADC is used. The ADC address could be built
 indirectly, or the meter may use an external analog front-end. It does mean that
 a simple internal-ADC patch would be speculative.
 
-Current `force-enhanced-exp4` does not patch ADC averaging, RMS math, True RMS
+Current `stream-recovery-exp13` does not patch ADC averaging, RMS math, True RMS
 math, or EMI filter code. That is intentional: no confirmed measurement-engine
-hook has been found yet. The package improves recovery from fault paths, changes
-a confirmed mode-switch helper difference between V3.16 and V4.0, restores the
-stronger `8/12/100` relay/range settling test profile, and adds a guarded
-boot-logo resource delay while keeping unverified ADC/filter/math code
-untouched.
+hook has been found yet. The package improves recovery from fault paths, keeps
+the official/V3.16 `2/3/10` relay/range timing, preserves the original V4.0
+mode helper behavior, adds a guarded boot-logo resource delay, and adds
+fail-fast recovery to four high-level stream/status retry branches that can
+block UI/status refresh after the lower helper has already timed out. It also
+routes one command `0x40` busy failure to an existing error/clear path instead
+of a false normal fall-through, and routes the low byte-IO helper through a
+bounded `0x0fa0` wrapper that returns `0xff` if a ready flag never appears.
+The older
+`force-enhanced-exp4` wrapper/long-delay build is retained only as a diagnostic
+comparison profile.
 
 Latest read-only probe after the battery-icon observation confirms the same
 constraint: the V4.0.1b binary still follows the V4.0 peripheral/acquisition
@@ -103,9 +153,9 @@ servicing the normal display/status refresh while waiting for measurement data,
 range/protection recovery, or a valid-state flag.
 
 Static disassembly has identified math/scaling-heavy routines, but no safe patch
-contract yet. Those routines are not modified in `force-enhanced-exp4`; changing
-them without a confirmed input/output contract could make True RMS and DC/AC
-calibration worse while still leaving the freeze intact.
+contract yet. Those routines are not modified in `stream-recovery-exp13`;
+changing them without a confirmed input/output contract could make True RMS and
+DC/AC calibration worse while still leaving the freeze intact.
 
 Likely low-level candidate areas found during static inspection:
 
@@ -118,6 +168,45 @@ Likely low-level candidate areas found during static inspection:
   relevant to signal or actuator output behavior.
 
 These are candidates only. They are not confirmed safe patch points.
+
+## Stream recovery patch in `stream-recovery-exp13`
+
+The latest freeze clue is that the numeric reading and battery icon can vanish
+together. That points to a shared UI/status refresh path being blocked while the
+firmware waits for measurement/status data. Static disassembly found one
+strong read-block helper at `0x08019550` and related command/status retry loops
+around `0x080196b2`.
+
+The lower byte helper at `0x08016a06` already has two hardware-ready timeouts.
+The risky behavior is one level above it: when the helper returns a timeout-like
+byte such as `0xff`, the wrapper can keep retrying while a busy/valid flag stays
+nonzero. If that flag never clears after spike, overload, or a failed mode
+transition, the UI/status refresh can appear frozen.
+
+`stream-recovery-exp13` keeps the fail-fast branch changes from exp6, keeps the
+balanced command retry clamp from exp9, keeps the command `0x40` busy-failure
+error route from exp10, and replaces the low byte-IO helper entry with a
+bounded failure-return wrapper:
+
+| Offset | Address | Before | After | Effect |
+|---:|---:|---|---|---|
+| `0x09570` | `0x08019570` | `bne retry` | `nop` | stop repeated stream-read retry after lower helper timeout |
+| `0x09706` | `0x08019706` | `bne retry` | `bne error/clear` | route command-0x40 busy failure to existing block `0x080197a2` |
+| `0x09758` | `0x08019758` | `bne retry` | `nop` | stop command-0xe9 retry when status clear fails |
+| `0x097be` | `0x080197be` | `bne retry` | `nop` | stop mode/status retry when command helper cannot recover |
+| `0x06a06` | `0x08016a06` | `push; mov` | `b.w 0x08016a50` | route low byte-IO to bounded wrapper |
+| `0x06a50` | `0x08016a50` | setup helper prefix | bounded wrapper prefix | keep SPI1 calls, wait up to `0x0fa0`, return `0xff` on ready-timeout |
+| `0x0967c` | `0x0801967c` | `movs r7,#0x95` | `movs r7,#0x60` | reduce command `0x40` retry budget |
+| `0x09682` | `0x08019682` | `movs r7,#0x87` | `movs r7,#0x60` | reduce command `0x48` retry budget |
+| `0x09694` | `0x08019694` | `movs r7,#0x0a` | unchanged | keep the small fallback retry budget |
+| `0x097e6` | `0x080197e6` | `bic #1` | `bic #3` | clear stale stream/status bits `0` and `1` on existing error cleanup |
+| `0x0f19a` | `0x0801f19a` | original prologue | `b.w 0x0803d606` | enter guarded mode/range stale-state clear wrapper before relay/range switching |
+| `0x2d606` | `0x0803d606` | zero code cave | wrapper | preserve original prologue, clear bits `0` and `1` of `0x2000022c`, continue original mode/range function |
+
+This is a latency/recovery patch, not a claimed analog accuracy patch. It should
+reduce indefinite blank/freeze behavior by forcing recovery/error handling
+instead of waiting forever. It does not change relay GPIO order, ADC/RMS math,
+bootloader/updater behavior, or resource layout.
 
 ## Relay/zeroing evidence added after hardware feedback
 
@@ -160,8 +249,8 @@ relay/range selector and mode-switch routines:
 |---|---:|---:|---:|
 | V3.16 | `0x0801e1ac` | `0x0801e29a` | `2/3/10` ticks |
 | Official V4.0 | `0x0801f0f2` | `0x0801f19a` | `2/3/10` ticks |
-| V4.0.1b `v316-switch-exp3` | `0x0801f0f2` | `0x0801f19a` | `2/3/10` ticks |
-| V4.0.1b `force-enhanced-exp4` | `0x0801f0f2` | `0x0801f19a` | `8/12/100` ticks |
+| V4.0.1b `stream-recovery-exp13` | `0x0801f0f2` | `0x0801f19a` | `2/3/10` ticks |
+| V4.0.1b `force-enhanced-exp4` diagnostic | `0x0801f0f2` | `0x0801f19a` | `8/12/100` ticks |
 
 This is a key correction: the smoother V3.16 DC/AC switching is not explained
 by longer relay/range waits, because V3.16 and official V4.0 use the same
@@ -169,30 +258,40 @@ observed waits. The old long-wait V4.0.1b profile remains available as a
 diagnostic mitigation for bad zero capture and post-switch blanking, but it
 should not be described as the proven root-cause fix. It may also add latency.
 
-Further static comparison found one stronger V3.16/V4.0 difference:
+Later static comparison corrected an earlier assumption:
 
-- V3.16 mode tail checks a sub-mode value before using helper `0x0801e254`.
-  Outside sub-mode `4`, it calls the selector path directly.
-- V4.0 mode tail calls helper `0x0801f0ac` directly from the corresponding
-  flag path.
-- `v316-switch-exp3` wraps V4 helper `0x0801f0ac` so those existing call sites
-  perform `selector(1, flag)` directly. The call sites and updater are left
-  unchanged.
+- V3.16 helper `0x0801e254` and V4.0 helper `0x0801f0ac` have the same observed
+  control shape around the relevant tail calls.
+- The old `v316-switch-exp3` / `force-enhanced-exp4` wrapper therefore is not a
+  proven V3.16 behavior port. It is now treated as an experimental comparison,
+  not the default.
+- `stream-recovery-exp13` keeps the original V4.0 helper and official timing
+  while adding fail-fast recovery to four high-level stream/status retry
+  branches that can block UI/status refresh after the lower helper times out,
+  plus a bounded low byte-IO wrapper and command retry clamp `0x95`/`0x87`
+  -> `0x60`. It also routes command `0x40` busy failure to the existing
+  error/clear path instead of treating that case as normal fall-through.
 
 The next safe diagnostic comparison is therefore:
 
-- Test `force-enhanced-exp4`: current build with V3.16-style helper wrapper,
+- Test `stream-recovery-exp13`: current build with original V4.0 helper,
+  official/V3.16 `2/3/10` selector timing, fault recovery, guarded boot-logo
+  settling delay, stream/status fail-fast recovery, bounded low byte-IO
+  failure return, command retry clamp to `0x60`, and command `0x40`
+  busy-failure routing to the existing error/clear path, stream/status stale
+  bit cleanup, and mode/range stale-state clear at function entry.
+- Test `force-enhanced-exp4`: diagnostic comparison build with the old wrapper,
   stronger `8/12/100` selector timing, and guarded boot-logo settling delay.
-- Test `v316-switch-exp3`: comparison build with V3.16-style helper wrapper and
+- Test `v316-switch-exp3`: comparison build with the old wrapper and
   official/V3.16 `2/3/10` selector timing.
 - Test `force-stable-exp2`: old long-delay mitigation with `8/12/100`.
 - Compare both on the exact same DC -> AC -> DC ammeter sequence and
   oscilloscope noise setting.
 
-If `force-enhanced-exp4` still fails while V3.16 succeeds, the next patch must
+If `stream-recovery-exp13` still fails while V3.16 succeeds, the next patch must
 target mode-change state, filter buffers, validity flags, or measurement engine
-reset points. Adding more relay delay after that would likely only increase
-latency.
+reset points. Adding more relay delay or another helper wrapper after that would
+likely only increase latency or hide the real stall.
 
 ## Most likely root causes
 
@@ -247,8 +346,8 @@ latency.
 - Capture injector output with an external oscilloscope across the real load or
   a safe dummy load.
 - Compare official V4.0, `boot-acceptance`, `anti-freeze-exp1`,
-  `v316-switch-exp3`, `force-stable-exp2`, and current `force-enhanced-exp4` with the same test
-  sequence.
+  `stream-recovery-exp13`, `v316-switch-exp3`, `force-stable-exp2`, and
+  `force-enhanced-exp4` with the same test sequence.
 
 ## Patch direction
 

@@ -345,11 +345,11 @@ index,source_length,source,translation
 344,34,"e prompt, and display the test res","seperti bateri uzur, arus starter"
 345,34,ult by the measured value. It is n,"terlalu tinggi, atau bateri tidak"
 346,34,ormal for the minimum voltage to b,cukup cas. Ganti bateri jika sudah
-347,34,e greater than 9.6V during vehicle,uzur.
-348,34,start-up. If it is lower than this,
-349,34,"value, it is necessary to determin",
-350,34,e the cause of the fault. It may b,
-351,34,e that the battery is aging/the st,
+347,34,e greater than 9.6V during vehicle,uzur. Jika kabel/klip tidak
+348,34,start-up. If it is lower than this,"disambung, bacaan boleh terapung"
+349,34,"value, it is necessary to determin",akibat input terbuka dan tidak
+350,34,e the cause of the fault. It may b,boleh dianggap sebagai voltan
+351,34,e that the battery is aging/the st,bateri sebenar.
 352,34,arter current is too high/the batt,
 353,34,ery is not fully charged. If the b,
 354,34,"attery is aging, the battery needs",

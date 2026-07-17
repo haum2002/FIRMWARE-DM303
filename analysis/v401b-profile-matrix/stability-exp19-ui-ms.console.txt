@@ -1,0 +1,11 @@
+source=backup\DM303 V4.0-read only\DM303V4.004.bin
+source_sha256=64faaffb5fb65bdd0057d4fce1d9a2ac93e9229f118fba0a84d758c0ff926158
+output=firmware-candidates\v4.0.1-beta\DM303V4.0.1-beta.bin
+profile=stability-exp19-ui-ms
+output_size=203260
+output_sha256=24c3bd15282b3e43e42c0e45a7743261469283e61d345bf46a8483eb9350342d
+patched_vectors=56
+patch_records=76
+report=firmware-candidates\v4.0.1-beta\PATCH-REPORT.md
+safety_note=candidate only; do not flash before bench/recovery validation
+

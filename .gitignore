@@ -51,3 +51,6 @@ backup/
 
 # Local scratch files
 *.bak
+
+# Local portable Python used to run tools/ on machines without Python
+tools/_py/

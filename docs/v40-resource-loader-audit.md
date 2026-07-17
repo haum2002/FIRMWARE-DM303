@@ -1,0 +1,74 @@
+# DM303 resource-loader audit
+
+Image: `backup/DM303 V4.0-read only/DM303V4.004.bin`
+Root: `backup/DM303 V4.0-read only`
+Image SHA-256: `64faaffb5fb65bdd0057d4fce1d9a2ac93e9229f118fba0a84d758c0ff926158`
+Resource paths referenced: `64`
+All referenced resources present: `False`
+
+| Offset | Firmware path | Resolved file | Exists | Size | SHA-256 |
+|---:|---|---|---|---:|---|
+| `0x048d4` | `\system\ASCII64.dat` | `backup/DM303 V4.0-read only/system/ASCII64.dat` | `True` | `24320` | `e82995fad4c4227d97aef5db2befa7dda23397d71d8277f8ab2842a9ec5c6018` |
+| `0x049d0` | `\system\ASCII96.dat` | `backup/DM303 V4.0-read only/system/ASCII96.dat` | `True` | `54720` | `da9a6165fb441529a4f913c54960784c19cf6118e2cb0e1ae9671c572b14cd10` |
+| `0x04278` | `\system\DM30XDB1.dat` | `` | `False` | `` | `` |
+| `0x0424c` | `\system\HZK-ALL.GBK` | `backup/DM303 V4.0-read only/system/HZK-ALL.GBK` | `True` | `4194304` | `0286dea064da9b480654586dee2706bbf4ac9abc489bbf57f5652e830cee3301` |
+| `0x047d4` | `\system\ICcorner.dat` | `backup/DM303 V4.0-read only/system/ICcorner.dat` | `True` | `1792` | `f74ae380602419a9a3e0fcbfc6d13dc5d4586657409ead7243b8458946badd8a` |
+| `0x04e00` | `\system\icon-C.DAT` | `backup/DM303 V4.0-read only/system/icon-C.dat` | `True` | `82944` | `a268409bd0962c723b9be5ec7c451076217fb9c1ca63fd52b6df2a5344b20ecb` |
+| `0x044b8` | `\system\icon-c1.bmp` | `backup/DM303 V4.0-read only/system/icon-C1.bmp` | `True` | `17000` | `1ead5842322ef1030be32be2dfe7acc3ccc0b8f1c07d4b828d8d77af9e21cb91` |
+| `0x04738` | `\system\icon-c10.bmp` | `backup/DM303 V4.0-read only/system/icon-C10.bmp` | `True` | `17000` | `ffd6af9de92d88c141c091d49f92fc5d5bf32ed46d463c0096c3c75a0d7d7dba` |
+| `0x0476c` | `\system\icon-c11.bmp` | `backup/DM303 V4.0-read only/system/icon-C11.bmp` | `True` | `17000` | `f1e7a808647f214d45d70e6bff34355f6e14253bd608087165441015f135d5cf` |
+| `0x0483c` | `\system\icon-c12.bmp` | `backup/DM303 V4.0-read only/system/icon-C12.bmp` | `True` | `17000` | `391b28c859a094e3d6125dc6d574868757124349cf3e4f33b9e3b7a44f55c675` |
+| `0x048a4` | `\system\icon-c13.bmp` | `backup/DM303 V4.0-read only/system/icon-C13.bmp` | `True` | `17000` | `3dcacb00d71350ca45a9a250cd86adeb717f2c5244d5d1077c66171755e6d117` |
+| `0x04938` | `\system\icon-c14.bmp` | `backup/DM303 V4.0-read only/system/icon-C14.bmp` | `True` | `17000` | `59f908375531599cd3a69fbbea4363a535c23fa8419be137d642f8ee4a99aec6` |
+| `0x049a0` | `\system\icon-c15.bmp` | `backup/DM303 V4.0-read only/system/icon-C15.bmp` | `True` | `17000` | `abf772f9ef7d04d8277c3042c5dbb1cceaa095fdf5adbc37d95d7cad0ec8bd44` |
+| `0x04b60` | `\system\icon-c16.bmp` | `backup/DM303 V4.0-read only/system/icon-C16.bmp` | `True` | `17000` | `78aef1060950808d425bb489614cb7e30679f9e532844c79f231abdd068fa727` |
+| `0x044e8` | `\system\icon-c2.bmp` | `backup/DM303 V4.0-read only/system/icon-C2.bmp` | `True` | `17000` | `580f6b2c391d61bd7925230559a063df05a473ba34a4e07a0594f99d3243de71` |
+| `0x04518` | `\system\icon-c3.bmp` | `backup/DM303 V4.0-read only/system/icon-C3.bmp` | `True` | `17000` | `11882224a396705d351160aef2f2c36d225f776389ac13b8c907ebbfcc971ed5` |
+| `0x04548` | `\system\icon-c4.bmp` | `backup/DM303 V4.0-read only/system/icon-C4.bmp` | `True` | `17000` | `e1324cb82f993eda97001d5709f3524a859ba6dbda651ad472a1cbecf444ec6e` |
+| `0x0464c` | `\system\icon-c5.bmp` | `backup/DM303 V4.0-read only/system/icon-C5.bmp` | `True` | `17000` | `fb0d7e15dd6df163ab00fd1d12932605de5d881a05c7f8a18e750ed6a1d91f4f` |
+| `0x0467c` | `\system\icon-c6.bmp` | `backup/DM303 V4.0-read only/system/icon-C6.bmp` | `True` | `17000` | `f807964498b2cfb61d57a78151445668732ff551bde31f1ac08cb8b5874dcf59` |
+| `0x046a8` | `\system\icon-c7.bmp` | `backup/DM303 V4.0-read only/system/icon-C7.bmp` | `True` | `17000` | `ef10731feec1ad1d97a9e244f5ebfd74f07cbd20a416484e6535d74f65fde55c` |
+| `0x046d8` | `\system\icon-c8.bmp` | `backup/DM303 V4.0-read only/system/icon-C8.bmp` | `True` | `17000` | `6c43f1e23bf96317074b29e80272024225d08ca6d42f91cdabf93e83c08f74d9` |
+| `0x04708` | `\system\icon-c9.bmp` | `backup/DM303 V4.0-read only/system/icon-C9.bmp` | `True` | `17000` | `68c86c6f4ade4e5442470f4183c72f01cb38594c02934e734f9e567eec155f36` |
+| `0x04ec8` | `\system\icon-Dt.DAT` | `backup/DM303 V4.0-read only/system/icon-Dt.dat` | `True` | `78336` | `b98018d080aa6b731ca10ce974b53a6d44f831bad04377558f9cef10a8c5553d` |
+| `0x042a8` | `\system\icon-e1.bmp` | `backup/DM303 V4.0-read only/system/icon-E1.bmp` | `True` | `17000` | `adeac0142c1fa795ebdab54d83bebc4189b3b9a6de5d4089c4c5c019a39af31e` |
+| `0x04450` | `\system\icon-e10.bmp` | `backup/DM303 V4.0-read only/system/icon-E10.bmp` | `True` | `17000` | `93c97545fe82061f2057a7ea1ae84db31eb390b1361238e92ba2f63098eae0ba` |
+| `0x04484` | `\system\icon-e11.bmp` | `backup/DM303 V4.0-read only/system/icon-E11.bmp` | `True` | `17000` | `fd259f94d7788a74ae3c58af4854277dc9ed645fc491108753e28e367b18c603` |
+| `0x04808` | `\system\icon-e12.bmp` | `backup/DM303 V4.0-read only/system/icon-E12.bmp` | `True` | `17000` | `e5e337a959762c72e97a70ce416e95af97a4e3b73aff832920a20a198baa7b6b` |
+| `0x04870` | `\system\icon-e13.bmp` | `backup/DM303 V4.0-read only/system/icon-E13.bmp` | `True` | `17000` | `74231b56657e875ad71a11cfddc24001359fb95909b0a8354ea47155e68d79e1` |
+| `0x04904` | `\system\icon-e14.bmp` | `backup/DM303 V4.0-read only/system/icon-E14.bmp` | `True` | `17000` | `6030a5e107404f8359fb9658134bc470441e919c93efd5095144c7180f2cdc19` |
+| `0x0496c` | `\system\icon-e15.bmp` | `backup/DM303 V4.0-read only/system/icon-E15.bmp` | `True` | `17000` | `792e642b335cfcabcd5e5a9bd142d7ea7775998b7c294e09a6d881b70e46626e` |
+| `0x04a00` | `\system\icon-e16.bmp` | `backup/DM303 V4.0-read only/system/icon-E16.bmp` | `True` | `17000` | `ab9363c1e5d6ce51b57c537b4ff6b842d3bb1bd3cdcaedf5e802c97b74c76d78` |
+| `0x04b94` | `\system\icon-e17.bmp` | `backup/DM303 V4.0-read only/system/icon-E17.bmp` | `True` | `17000` | `e4c87a7762de2492e37bb2943c46630235f15ac8b5dd9552651097db92bff39f` |
+| `0x04bc8` | `\system\icon-e18.bmp` | `backup/DM303 V4.0-read only/system/icon-E18.bmp` | `True` | `17000` | `f4b12f4328eab765e71f70424f5b9899a1c8d6da9203e0ea0ba02926ab32e444` |
+| `0x042d4` | `\system\icon-e2.bmp` | `backup/DM303 V4.0-read only/system/icon-E2.bmp` | `True` | `17000` | `8f5e5f8acc9e72149362ebb34baf62b39a75c047a37f7eb19fdb675d63da7341` |
+| `0x04304` | `\system\icon-e3.bmp` | `backup/DM303 V4.0-read only/system/icon-E3.bmp` | `True` | `17000` | `145ab05a7d773879d85810c5ed34aad22820a76cf12e2aaf56ea5e06454f7be2` |
+| `0x04334` | `\system\icon-e4.bmp` | `backup/DM303 V4.0-read only/system/icon-E4.bmp` | `True` | `17000` | `18b12e30f50e72b0e7bd025ad6bd84cc6986bfa0659f5bc5ffec6219c650e1bd` |
+| `0x04364` | `\system\icon-e5.bmp` | `backup/DM303 V4.0-read only/system/icon-E5.bmp` | `True` | `17000` | `24c652506198c6f897771454ce4b76433cdcda38abaca05f13975f54b71f0692` |
+| `0x04394` | `\system\icon-e6.bmp` | `backup/DM303 V4.0-read only/system/icon-E6.bmp` | `True` | `17000` | `cee14d39306e0f9bd180362a418c5fa2cbc921a4c402a1f7ff78c4bcf017d45b` |
+| `0x043c4` | `\system\icon-e7.bmp` | `backup/DM303 V4.0-read only/system/icon-E7.bmp` | `True` | `17000` | `8f603f1fe6028ad8476a2c065bf2dee23840a0108c34cc251bce9f32c5300622` |
+| `0x043f4` | `\system\icon-e8.bmp` | `backup/DM303 V4.0-read only/system/icon-E8.bmp` | `True` | `17000` | `72a7c649a8c300f2a4fc5ed5494aced171b0bdbed81eb67ca69434fdab5619f6` |
+| `0x04424` | `\system\icon-e9.bmp` | `backup/DM303 V4.0-read only/system/icon-E9.bmp` | `True` | `17000` | `750a3f2a05065635a26b4165a92f03ac4c4c9996555a01c09e1dbf1d94fd4995` |
+| `0x04e78` | `\system\icon-FR.DAT` | `backup/DM303 V4.0-read only/system/icon-Fr.dat` | `True` | `78336` | `c6a70079bb3f65107eab99f81b8b1cf5c8ac372cb33a1df54004a2fe2284f537` |
+| `0x04e50` | `\system\icon-IT.DAT` | `backup/DM303 V4.0-read only/system/icon-IT.dat` | `True` | `78336` | `e41ddda8922cba8aa2976f40f4846310760b536c90ed612d3093f0cfa50fd36c` |
+| `0x05358` | `\system\icon-JP.DAT` | `backup/DM303 V4.0-read only/system/icon-jp.dat` | `True` | `78336` | `160a9262d5525860b339bf1ed6954b7735b94c303e17e6ff837659fa53ff94df` |
+| `0x05330` | `\system\icon-KR.DAT` | `backup/DM303 V4.0-read only/system/icon-Kr.dat` | `True` | `78336` | `4630b5e0f94faaf0a1608f31ff1e79b0baa8263ef2a30d9d66a84ed8bab39e2a` |
+| `0x04f40` | `\system\icon-NL.DAT` | `backup/DM303 V4.0-read only/system/icon-NL.dat` | `True` | `78336` | `9d01c3100bb44fbfab2c4aece2c07d22335a38bc634a32f7e314830cb8dc9d5f` |
+| `0x04f18` | `\system\icon-PL.DAT` | `backup/DM303 V4.0-read only/system/icon-PL.dat` | `True` | `78336` | `f34893bd1c318906c4e245ee0a4741ef1b6aa817f6fb8920323de4a1f43dc635` |
+| `0x04ef0` | `\system\icon-Pt.DAT` | `backup/DM303 V4.0-read only/system/icon-Pt.dat` | `True` | `78336` | `bd6f7602e9f1613a68972cb2a80d64ee103ab48208065ca9e6ca55ae1b11aa57` |
+| `0x04ea0` | `\system\icon-RS.DAT` | `backup/DM303 V4.0-read only/system/icon-RS.dat` | `True` | `78336` | `3e305e1317a06966a5e44e330ce5e1d32c88767be422e829b06e0ae9c9263140` |
+| `0x04e28` | `\system\icon-SP.DAT` | `backup/DM303 V4.0-read only/system/icon-SP.dat` | `True` | `78336` | `96f2b294c7fad14a527eb96f1a8f09f7e0f33e2f02f7f43af305c9fa2df57394` |
+| `0x047a4` | `\system\LOGO-1.bmp` | `backup/DM303 V4.0-read only/system/LOGO-1.bmp` | `True` | `153672` | `f5e84dfd0a14f63ad8c570629c59c36a0a8a8844ce4cfc48c9c89d1031b41ba3` |
+| `0x04dd4` | `\system\TEXT_CFT.DAT` | `backup/DM303 V4.0-read only/system/TEXT_CFT.DAT` | `True` | `17840` | `24e415a0dd767bb33601ac4a681f9a4f8bc105525c4d3e43e63fc5b0c8de8bba` |
+| `0x04c1c` | `\system\TEXT_CN.DAT` | `backup/DM303 V4.0-read only/system/TEXT_CN.DAT` | `True` | `22341` | `e97b859ad975c6501b6410de0e8cf0e938e536898901a25bb3599779f4fe74a5` |
+| `0x04bf4` | `\system\TEXT_EN.DAT` | `backup/DM303 V4.0-read only/system/TEXT_EN.DAT` | `True` | `33649` | `8b5d61ed079c69042cc1cfcc972ae22add20ae3aa708452c05bf5e51ad812e93` |
+| `0x04c94` | `\system\TEXT_FR.DAT` | `backup/DM303 V4.0-read only/system/TEXT_FR.DAT` | `True` | `32219` | `a22157ba97734d9cf08ae0dbc2b1a6a5b85c9f4767885ade47858d87d33e86c0` |
+| `0x04ce4` | `\system\TEXT_GE.DAT` | `backup/DM303 V4.0-read only/system/TEXT_GE.DAT` | `True` | `30280` | `0c3b7e77ccd70951a42d91cdad8cbed12e9b20b1c6f82d81c81476b1dcd608a4` |
+| `0x04c6c` | `\system\TEXT_IT.DAT` | `backup/DM303 V4.0-read only/system/TEXT_IT.DAT` | `True` | `31604` | `f123c49bf87b9b03944829ea1dca8e7a14cc59bbb5b1f6b1d3bf69d32174a71b` |
+| `0x04dac` | `\system\TEXT_JP.DAT` | `backup/DM303 V4.0-read only/system/TEXT_JP.DAT` | `True` | `22655` | `dc3550ec28df1797938226cb07e6920d3343103e411a77e62e310c92d40ab034` |
+| `0x04d84` | `\system\TEXT_KR.DAT` | `backup/DM303 V4.0-read only/system/TEXT_Kr.DAT` | `True` | `22541` | `a28a073e4c8e95165065c6b3325079b073df7bf9852110ed8f8fa229ec0b99e9` |
+| `0x04d5c` | `\system\TEXT_NL.DAT` | `backup/DM303 V4.0-read only/system/TEXT_NL.DAT` | `True` | `29587` | `788a260484f88b8c69ae7259f16367eb162e6e1cef16e72080db5d73c6908f3f` |
+| `0x04d34` | `\system\TEXT_PL.DAT` | `backup/DM303 V4.0-read only/system/TEXT_PL.DAT` | `True` | `31074` | `6103531c0a9e1fdf5e1450950df6798e73f3b040080f81138666835d09dcad18` |
+| `0x04d0c` | `\system\TEXT_PO.DAT` | `backup/DM303 V4.0-read only/system/TEXT_PO.DAT` | `True` | `30739` | `dfdba40eb3dd58c981bca9ec6ccaf782058355d7861047bf44bf8ef2b6fb8af7` |
+| `0x04cbc` | `\system\TEXT_RU.DAT` | `backup/DM303 V4.0-read only/system/TEXT_RU.DAT` | `True` | `47079` | `dd7b001acc5994e240dcb0234e298a85d9ce35ac4c6f7c8aafe4e72355e4e699` |
+| `0x04c44` | `\system\TEXT_SP.DAT` | `backup/DM303 V4.0-read only/system/TEXT_SP.DAT` | `True` | `32888` | `4b6b2fd9c6dee916390144815e7becc02549b7d6f1260b0551c8d939c3acf83e` |

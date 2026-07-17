@@ -1,0 +1,11 @@
+source=backup\DM303 V4.0-read only\DM303V4.004.bin
+source_sha256=64faaffb5fb65bdd0057d4fce1d9a2ac93e9229f118fba0a84d758c0ff926158
+output=firmware-candidates\v4.0.1-beta\DM303V4.0.1-beta.bin
+profile=anti-freeze-exp1
+output_size=203260
+output_sha256=de953819e5d9804cbb66eb7bb2bd17ac24d2d80282816951db1dd9048e77e6ab
+patched_vectors=56
+patch_records=62
+report=firmware-candidates\v4.0.1-beta\PATCH-REPORT.md
+safety_note=candidate only; do not flash before bench/recovery validation
+

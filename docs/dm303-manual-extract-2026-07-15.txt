@@ -1,0 +1,2674 @@
+
+===== PAGE 1 =====
+www.autooltech.com
+Auto Diagnostic Multimeter
+AUTOOL DM303
+User Manual
+ 
+
+===== PAGE 2 =====
++86-755-2330 4822 / +86-400 032 0988
+AUTOOL TECHNOLOGY CO.,LTD
+www.autooltech.com
+aftersale@autooltech.com
+Unit 1303, Building 1, Runzhi R&D Center, 
+Bao'an, Shenzhen, China
+
+===== PAGE 3 =====
+TABLE OF CONTENTS (Original Instructions)
+Copyright Information........................................................................................ 3
+ Copyright......................................................................................................... 3
+ Trademark....................................................................................................... 3
+Safety Rules........................................................................................................ 4
+ General safety rules........................................................................................ 4
+ Handling .......................................................................................................... 4
+ Electrical safety rules ...................................................................................... 5
+ Equipment safety rules.................................................................................... 5
+ Application....................................................................................................... 5
+ Personnel protection safety rules.................................................................... 6
+Cautions .............................................................................................................. 7
+ Safe operation guidelines................................................................................ 7
+Product Introduction.......................................................................................... 9
+ Overview......................................................................................................... 9
+ Composite indicator ........................................................................................ 10
+Product Structure............................................................................................... 11
+ Structure diagram............................................................................................ 11
+ Button function ................................................................................................ 12
+ Cable Number................................................................................................. 13
+Operations Instruction....................................................................................... 14
+ Functional operation guidelines ...................................................................... 14
+ Voltage measurement..................................................................................... 14
+ Oscilloscope.................................................................................................... 15
+ Current measurement ..................................................................................... 17
+ Resistance test................................................................................................ 18
+ Automotive circuit test..................................................................................... 19
+ Car start-up test .............................................................................................. 22
+ Injector test...................................................................................................... 23
+ Automobile relay test....................................................................................... 25
+ Analog signal test............................................................................................ 26
+ Ignition pulse signal test.................................................................................. 28
+1
+
+===== PAGE 4 =====
+ K line data ....................................................................................................... 29
+ CAN bus data.................................................................................................. 31
+ Frequency measurement ................................................................................ 32
+Other Problems .................................................................................................. 33
+ Software upgrading......................................................................................... 33
+ Equipment identification number..................................................................... 33
+Maintenance Service.......................................................................................... 34
+ Maintenance.................................................................................................... 34
+Warranty.............................................................................................................. 35
+ Warranty access.............................................................................................. 35
+ Disclaimer ....................................................................................................... 35
+Return & Exchange Service .............................................................................. 36
+ Return & Exchange......................................................................................... 36
+EU Declaration Of Conformity........................................................................... 37
+2
+
+===== PAGE 5 =====
+COPYRIGHT INFORMATION
+Copyright
+Trademark Manual are either trademarks, registered trademarks, service 
+marks, domain names, logos, company names  or are otherwise 
+the property of AUTOOL or its affiliates. In countries where any of 
+the AUTOOL trademarks, service marks, domain names, logos 
+and company names are not registered, AUTOOL claims other 
+rights associated with unregistered trademarks, service marks, 
+domain names, logos, and company names. Other products or 
+company names referred to in this manual may be trademarks of 
+their respective owners. You may not use any trademark, service 
+mark, domain name, logo, or company name of AUTOOL or any 
+third party without permission from the owner of the applicable 
+trademark, service mark, domain name, logo, or company name. 
+You may contact AUTOOL by visiting AUTOOL at https://www.au-
+tooltech.com, or writing to aftersale@autooltech.com, to request 
+written permission to use materials on this manual for purposes or 
+for all other questions relating to this manual.
+●  
+●   
+●    
+●   
+   
+All rights reserved by AUTOOL TECH. CO., LTD. No part of this 
+publication may be reproduced, stored in a retrieval system, or 
+transmitted in any form or by any means, electronic, mechanical, 
+photocopying, recording or otherwise, without the prior written 
+permission of AUTOOL.  The information contained herein is 
+designed only for the use of this unit. AUTOOL is not responsi-
+ble for any use of this information as applied to other units.
+Neither AUTOOL nor its affiliates shall be liable to the purchaser 
+of this unit or third parties for damages, losses, costs, or 
+expenses incurred by the purchaser or third parties as a result 
+of: accident, misuse, or abuse of this unit, or unauthorized modi-
+fications, repairs, or alterations to this unit, or failure to strictly 
+comply with AUTOOL operating and maintenance instructions.
+AUTOOL shall not be liable for any damages or problems 
+arising from the use of any options or any consumable products 
+other than those designated as original AUTOOL products or 
+AUTOOL approved products by AUTOOL.
+Other product names used herein are for identification purpos-
+es only and may be trademarks of their respective owners. 
+AUTOOL disclaims any and all rights in those marks.
+3
+
+===== PAGE 6 =====
+4
+SAFETY RULES
+Handling
+General
+safety rules
+Always keep this user manual with the machine.
+Before using this product, read all the operational 
+instructions in this manual. Failure to follow them may 
+result in electric shock and irritation to skin and eyes.
+Each user is responsible for installing and using the 
+equipment according to this user manual. The supplier is 
+not responsible for damage caused by improper use and 
+operation.
+This equipment must only be operated by trained and 
+qualified personnel. Do not operate it under the influence 
+of drugs, alcohol, or medication.
+This machine is developed for specific applications. The 
+supplier points out that any modification and/or use for 
+any unintended purposes is strictly prohibited.
+The supplier assumes no express or implied warranties 
+or liabilities for personal injury or property damage 
+caused by improper use, misuse, or failure to follow 
+safety instructions.
+This equipment is intended for use by professionals only. 
+Improper use by non-professionals may result in injury or 
+damage to the tools or workpieces.
+Keep out of reach of children.
+When operating, ensure nearby personnel or animals 
+maintain a safe distance. Avoid working in rain, water, or 
+damp environments. Keep the work area well-ventilated, 
+dry, clean, and bright.
+Used/damaged equipment must not be disposed of in 
+household waste but must be disposed of in an environ -
+mentally friendly manner. Use designated electrical 
+equipment collection points.
+Used po wer batteries should be treated as hazardous 
+waste, such as at a designated waste disposal facility.
+
+===== PAGE 7 =====
+5
+Electrical
+safety rules
+Do not twist or severely bend the wires, as this may 
+damage the internal cables. If the wires show signs of 
+damage, do not use the diagnostic multimeter. Damaged 
+cables pose a risk of electric shock. Keep wires away 
+from heat sources, oil, sharp edges, and moving parts. 
+Damaged wires must be replaced by the manufacturer, 
+their technicians, or qualified personnel to prevent 
+hazardous situations or injury.
+When performing measurements, use only the measure-
+ment category (CAT), voltage, and current ratings speci -
+fied for this product, including the appropriate probes, 
+test leads, and adapters.
+Never leave the device unattended while it is operating. 
+Always turn off the device at the main switch and remove 
+the power battery when the device is not being used for 
+its intended purpose.
+When measuring current, first disconnect the power from 
+the circuit, then connect the product to the circuit. The 
+product should be connected in series with the circuit.
+Before measuring resistance, continuity, capacitance, or 
+diodes, disconnect the power and discharge all high-volt-
+age capacitors.
+Do not attempt to repair the equipment yourself.
+Before powering on the device, check that the battery 
+voltage and model specifications match the values on 
+the nameplate. Mismatched values can pose serious 
+hazards and damage the equipment.
+It is essential to protect the equipment from rainwater, 
+moisture, mechanical damage, overload, and rough 
+handling.
+Equipment
+safety rules
+Before use, check the device interfaces and test probes 
+for any damage. Do not operate the device if any 
+damage is found.
+Use the equipment only in compliance with all safety 
+instructions, technical documents, and vehicle manufac -
+turer specifications. 
+Application
+
+===== PAGE 8 =====
+6
+Personnel 
+protection 
+safety rules
+Do not touch live conductors with voltages exceeding 
+30V AC RMS, 42V AC peak, or 60V DC.
+Do not connect live conductors in a damp environment.
+Do not use current measurement results as an indication 
+that a circuit is safe to touch. To determine circuit safety, 
+voltage measurements must be conducted.
+Before using the product, inspect the casing for any 
+cracks or damage to plastic parts. Pay special attention 
+to the insulation near the ports.
+Wear personal protective equipment (such as approved 
+rubber gloves, face shields, and flame-resistant clothing) 
+to protect against electric shocks and arc injuries when 
+working with exposed live conductors.
+Always ensure you have a stable footing to safely control 
+equipment in case of emergencies.
+Use re placement batteries that have similar capacity, 
+design, chemical composition, service life, and come 
+from the same manufacturer. Mismatched batteries can 
+lead to gas formation and subsequent battery rupture.
+
+===== PAGE 9 =====
+ 
+CAUTIONS
+Safe 
+operation 
+guidelines
+The automobile diagnostic multimeter is designed and 
+produced in strict accordance with GB4793.1 Safety Require -
+ments for Electronic Measuring instruments and IEC61010 
+Safety Standard, and conforms to double insulation, overvolt -
+age standards (CATII1000V, CATIII600V) and safety 
+standards of pollution level 2. Please operate the instrument 
+according to usage instructions in the Manual; otherwise, it 
+might weaken or lose protection function of the instrument. 
+Before use, check that the insulation layer of the probe is intact 
+without damage or breakage. If any obvious damage to insula-
+tion of probe or instrument shell, or you believe that the instru -
+ment cannot work normally, please do not use the instrument 
+any more. 
+While using a probe, put your fingers behind its finger protec -
+tion ring. 
+Do not apply voltage above 1000Vrms between instrument 
+terminal and grounding terminal to prevent electric shock and 
+instrument damage. 
+In case of measured voltage higher than DC60V and 42Vrms, 
+be careful to prevent electric shock. 
+Before covering up the rear cover of the instrument, it is strictly 
+forbidden to use the instrument; otherwise there will be risks of 
+electric shock. 
+Measured signals are not allowed to exceed the regulated limit 
+value to prevent electric shock and instrument damage. 
+It is not allowed to use current to test terminals or voltage at 
+current gear. 
+A self-r ecovery fuse is used inside the instrument. Do not 
+change the internal wiring of the instrument to avoid damaging 
+the instrument and endangering safety. 
+When the battery symbol is shown in red on the LCD, the 
+battery should be replaced timely to ensure the measurement 
+For the correct use of the instrument, please read the full text 
+of this manual carefully before use, especially the “safety 
+precautions”. 
+7
+
+===== PAGE 10 =====
+ 
+accuracy. 
+Do not operate the instrument in the high temperature, high 
+humidity environment. Especially, do not store the instrument 
+in the wet environment, as the instrument performance may 
+deteriorate if being wetted. 
+Clean the instrument enclosure with a wet cloth and a gentle 
+detergent, and do not use abrasive agents or solvents. 
+8
+
+===== PAGE 11 =====
+9
+The automobile diagnostic multimeter is a hand-held new 
+diagnostic oscillometric multimeter integrating digital oscillo -
+scope, digital multimeter, automobile circuit and automobile 
+signal inspection, which is designed with the embedded digital 
+control technology. 
+The multimeter mode can measure the AC / DC voltage and 
+current, resistance, diode forward voltage drop, on-off and 
+frequency. 
+Oscilloscope mode is a complete intelligent measurement 
+system, which includes signal input, data sampling, data 
+processing and automatic search, with the waveform test 
+bandwidth of 200KHZ. With a variable sampling frequency, the 
+slowly varying signal amount can be measured. It is applicable 
+to measuring and observing various signals on the automobile 
+circuit during the car overhaul, including the motor drive signal 
+and motor power voltage of new energy vehicle, fuel car engine 
+ignition pulse signal, camshaft signal, crankshaft signal, wheel 
+speed sensor signal, oxygen sensor signal and so on; 
+Car circuit detection can online test the low voltage circuit, 
+prompt high voltage or line leakage and output the power 
+supply voltage. It can also output the power voltage to test the 
+parts of the car, or lower the voltage to drive the parts of the 
+car, such as lights; Test the battery voltage when the oil-fueled 
+vehicle starts, and judge whether the vehicle starting system 
+and the battery are in good condition; 
+The analog signal output can be applied to the car ECU detec-
+tion and can simulate the square wave and sine wave output 
+and simulate the fuel injection signal to drive the fuel injection 
+nozzle; Check the data signal K line and CAN bus signal in the 
+vehicle. 
+Any other use is considered beyond the intended purpose of 
+the equipment and is prohibited.
+PRODUCT INTRODUCTION
+Overview ●
+●
+●
+●
+●
+●
+
+===== PAGE 12 =====
+10
+LCD is a 2.8-inch color screen, with a resolution of 320*240; 
+Input impedance for the voltage measurement: it is 2~3MΩ 
+when the voltage is lower than 160V; it is 10MΩ when the 
+voltage is higher than 160V. The maximum input voltage is 
+1000Vpp; The analog bandwidth is 200KHz; The voltage 
+range is converted automatically; 
+The 10A terminal fuse for current measurement is 15A self-re -
+covery fuse, and the maximum measurable current is 20A; The 
+current measurement mA/uA terminal fuse is 0.5A self-recov -
+ery fuse, and the maximum measurable current is 200mA; 
+Working temperature: 0~40°C(32~104°F) Humidity: ≤75%;
+Storage temperature: -10~50°C(14~122°F) Humidity: ≤70%;
+Altitude: 2000m. 
+●
+●
+●
+●
+●
+●
+The multimeter function and the oscilloscope function are 
+integrated together on the instrument. When measuring the 
+voltage signal using a probe, switch to the oscilloscope function 
+with [Fn] key to facilitate the use and observation of signal wave-
+form. 
+Composite 
+indicator 
+
+===== PAGE 13 =====
+11
+PRODUCT STRUCTURE
+Structure
+diagram
+Display screen Power supply indicator
+A B
+Button 10A current inputC D
+mA/uA measurement
+input COM measurement inputE F
+Diode, voltage, 
+resistance, frequency 
+measurement input
+Lighting lampG H
+DB15 interfaceI
+A
+B
+I
+C
+D
+E F
+H
+G
+
+===== PAGE 14 =====
+12
+Button 
+function 
+Power key
+A
+HOLD Pause Hold / Measurement key.B
+Direction
+button Select the functional items.C
+ESC Return key.D
+Fn Measurement mode switch key.
+E OK Enter key.
+F
+F2 Function keys, defined by the test function.G
+ZERO / F1 Function key, quick reset setting, or 
+defined by test function.H
+Lighting key Press the light on / off. I
+Press for power-on, press for about 0.3 
+seconds to turn off the power when it is 
+on, and long press 3 seconds to reset the 
+instrument.
+A
+B
+C
+D
+E
+H
+I
+G
+F
+
+===== PAGE 15 =====
+13
+Cable 
+number
+ Cable Number
+NO. Distribution
+Head No.Name Functions
+C01
+C01 - 1
+Multi-functional
+detection line
+DC connector, 
+connected to the 
+battery clip line
+C02Battery clip line
+C03
+Ignition pulse 
+signal detection 
+line
+Sensing high-voltage
+line signal
+C05Jumper(Black)
+C06Jumper(Green)
+C07Jumper(Yellow)
+C04
+C04 - 1Automotive 
+circuit detection 
+line
+DC connector, 
+connected to the 
+battery clip line
+C04 - 2 Probe terminal
+C01 - 2 Terminals for
+injector test and 
+Automobile relay test
+C01 - K K line signal line
+C01 - CAN+ CAN+ signal line
+C01 - CAN- CAN- signal line
+C01 - GND Ground wire
+C01 - SIN Sine wave signal line
+C01 - S1 5V signal line
+C01 - S2 Square signal line 
+
+===== PAGE 16 =====
+RedBlack
+14
+OPERATIONS INSTRUCTION
+The instrument is equipped with a power switch and the 
+automatic sleep function. The automatic sleep time can be set 
+to 1-30 minutes. The key tone of the instrument can be set to 
+turn on and off, but the warning tone cannot be turned off. The 
+brightness of the screen can be set. The brightness can be set 
+according to the actual operation environment, and the battery 
+time can be extended by appropriately lowering the brightness. 
+The help function of the instrument provides a brief operation 
+description. 
+The instrument is configured in one or more languages 
+according to the sales area. Please contact your local dealer 
+for different languages. 
+After turning on the power supply, according to the displayed 
+icon, use the [up / down / left / right] direction keys to move the 
+current option, and press [OK] to enter the function item. 
+●
+●
+●
+●
+Functional 
+operation 
+guidelines 
+Insert the red probe into the “V” jack and the black probe into 
+the “COM” jack; 
+●Voltage 
+measurement
+
+===== PAGE 17 =====
+Voltage （DC）
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+<F2>PULL DOWN
+0.00V
+15
+Insert the red probe into the “V” jack and the black probe into 
+the “COM” jack. The instrument does not have a dedicated 
+BNC interface. The oscilloscope is used as an expanded 
+function of voltage signal detection, which greatly facilitates 
+user operation and is particularly suitable for vehicle mainte -
+nance.
+●
+The current measured value is displayed. If the voltage fluctu -
+ates, press the [ HOLD] key to maintain the display status. If 
+there is no voltage signal, the displayed value is non-zero, the 
+red and black probe can be shorted, and press the [ F1] key at 
+the same time to perform the quick zeroing operation. [F2] key 
+is used to remove the induction power at the measurement 
+point. Press [Fn] key to switch to the AC voltage measurement 
+and the oscilloscope mode to observe the signal waveform; In 
+the voltage measurement or oscilloscope mode, the range is 
+automatically converted, and the maximum measurable 
+voltage signal is 1000V; 
+In the voltage measurement mode, the probe only inputs 
+signal, but no pulse signal, without interference to the 
+measured point. 
+●
+●
+Oscilloscope
+Enter the function item, displayed as shown below:●
+
+===== PAGE 18 =====
+5V/di v 1mS
+0V
+U:  0.00V        MIN:  0.00V        MAX:  0.00V
+Trig. +00
+16
+Display the current signal waveform, 5V/grid - display the 
+voltage scale value, and press the [up] and [ down] keys to 
+change during measurement; 1ms-scan time scale value; 
+during measurement, press the [ left] and [right] keys to 
+change; Trigger+01 - displays the correction value of the 
+trigger level, which can be changed by pressing [ F1 / F2]. The 
+trigger level is the average value of the current waveform 
+automatically calculated. The positive value of trigger correc -
+tion indicates the increase value of trigger level correction, and 
+the negative value of trigger correction indicates the decrease 
+value of trigger level correction; 
+Press the [HOLD] button to pause the display of the waveform. 
+When the waveform is suspended, the [up / down / left / right] 
+keys can be used for the left and right movement control of the 
+waveform, so as to facilitate the comparison and observation 
+of the waveform. 
+●
+●
+Enter the function item, displayed as shown below: ●
+RedBlack
+
+===== PAGE 19 =====
+Ampere(DC) mA(Green)
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+<F2>20A/mA
+0.0mA
+Below 200mA Above 200mA
+Red Black Red Black
+17
+In the process of voltage signal measurement, the instrument 
+automatically changes the range and the maximum measur -
+able voltage signal is 1000V; 
+●
+Enter the function item, displayed as shown below: ●
+Measure the current below 200mA, insert the red probe into 
+the green “mAuA” jack, and insert the black probe into the 
+“COM” jack; 
+Measure the current above 200mA, insert the red probe into 
+the yellow “A” jack, and insert the black probe into the “COM” 
+jack; 
+●
+The current measured value is displayed. If the current fluctu -
+ates, press the [ HOLD] key to maintain the display status. If 
+there is no current signal, the displayed value is non-zero, the 
+red and black probe can be shorted, and press the [ F1] key at 
+the same time to perform the quick zeroing operation. [F2] key 
+is used to switch the large current measurement, [Fn] key is 
+used to convert measurements of DC current and AC current. 
+●
+●
+Current 
+measurement
+
+===== PAGE 20 =====
+Ampere(DC) 10A(Yellow)
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+<F2>20A/mA
+0.00A
+RedBlack
+18
+●
+Enter the function item, displayed as shown below: ●
+Insert the red probe into the “Ω” jack and the black probe into 
+the “COM” jack; 
+●
+Press [F2] key and switch to detect high current mode as 
+shown below: 
+● In the high current mode, the maximum measurable current is 
+20A and the maximum measurable continuous current is 10A. 
+There is 15A 30V self-recovery fuse inside, which can protect 
+the instrument from damage due to excessive current in the 
+use of vehicle detection. However, the detection of current in 
+220V / 380V strong current circuit cannot prevent damage 
+caused by excessive current, and cannot exceed the measur -
+able current range during use. 
+Resistance 
+test
+
+===== PAGE 21 =====
+Resistance
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+Diode：        .     V
+0.00Ω
+Diode/Short
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+Resistance：        .     Ω
+0.00V
+19
+●
+Insert the special wire for automobile circuit into the multi-func-
+tional interface (top of the machine), connect the battery clip 
+line, clamp the red clip on the positive plate of the automobile 
+battery, clamp the black clip on the negative plate of the 
+automobile battery, and use the probe to detect the automobile 
+circuit. During the detection process, the probe will send a test 
+signal to detect the electric leakage of the circuit.
+●
+The instrument detection resistance and the diode are 
+two-in-one function display. Press [ Fn] key to switch the 
+display mode. When measuring the resistance, the resistance 
+can be set as the main display; when measuring the diode, the 
+diode can be set as the main display; As shown in the following 
+figure: 
+● The resistance value displayed is the resistance value when 
+measuring the resistance, and the voltage value displayed is 
+the pressure drop value when measuring the diode. Connect 
+the red and black probe, and press [ F1] key for zeroing. If the 
+resistance is excessive low, the instrument will give a sound 
+prompt. 
+Automotive 
+circuit test
+
+===== PAGE 22 =====
+Voltage(DC)
+<HOLD>Hold
+Supply voltage:  12.50V
+<UP>SHORT TO B+
+<F1>Zero
+<DOWN>SHORT TO B-
+0.00V
+Red
+Red
+Black
+C04 - 1C04 - 2
+C04
+C02
+20
+Enter the function item, displayed as shown below: ●
+●
+●
+●
+●
+Connecting the battery for power supply, the instrument will 
+obtain the external power; 
+The instrument displays the current probe voltage value and 
+the voltage value of the power clip; 
+Insert the probe into the COM port of the instrument, showing 
+the voltage is zero; if not zero, press [F1] key to zero; 
+Detect the circuit on the automobile using a probe, showing the 
+current detection voltage. If the voltage is a constantly chang -
+ing signal, press [Fn] key to enter the oscilloscope for observa-
+tion; if the detected voltage is lower than 0.7V, the instrument 
+will automatically detect the leakage; if the figure with blue 
+background is displayed and there is a sound prompt, it 
+indicates that the circuit resistance to ground is lower than 
+Test signal
+
+===== PAGE 23 =====
+12.40V
+Voltage(DC)
+<HOLD>Hold
+Supply voltage:  12.50V
+<UP>SHORT TO B+
+<F1>Zero
+<DOWN>SHORT TO B-
+0.00V
+Voltage(DC)
+<HOLD>Hold
+Supply voltage:  12.50V
+<UP>SHORT TO B+
+<F1>Zero
+<DOWN>SHORT TO B-
+21
+If the detected voltage is very high and close to the power 
+supply voltage, the instrument will display a number on the red 
+background with a sound prompt, indicating that the circuit 
+voltage is high, which may be a power supply line. If it is an 
+insulated line, it indicates that the line is leaking to the power 
+supply, as shown in the following figure: 
+Probe power supply function on instrument line: Press the [up] 
+function key, and the probe outputs the power supply voltage; 
+Probe grounding function on instrument line: Press the [down] 
+function key, and the probe is short circuited to the negative 
+pole of the power supply; 
+Test function of automotive electrical appliances: The instru -
+ment outputs a power supply voltage value through the probe 
+to drive the automobile electrical appliances to work. It judges 
+whether the electrical appliances are damaged by observing 
+whether the electrical appliances are working, or drive the 
+automobile electrical appliance through short connecting the 
+special probe to the negative pole, and then judge whether the 
+electrical appliance is damaged by observing whether the 
+electrical appliance is working. For example, check whether 
+the turn signal is intact and use the probe to detect the current 
+voltage value of the two leads of the lamp. If both lines are 
+●
+●
+●
+●
+10K. If the circuit is insulated to ground, it indicates that the 
+circuit has leakage, as shown in the following figure:
+
+===== PAGE 24 =====
+RedBlack
+C01 - 1
+C01
+C02
+22
+Enter the function item, displayed as shown below: ●
+Insert the multi-function detection line into the multi-function 
+interface (the top of the machine), connect the battery clip line, 
+clamp the red clip on the positive plate of the car battery, clamp 
+the black clip on the negative plate of the car battery, and turn 
+off the car engine; 
+●
+close to zero voltage, connect the probe to one line, press the 
+up key of the instrument, and observe whether the lamp is on. 
+If it is not on, replace it with another line. If the lamp is normal, 
+one line will turn on the lamp when it is powered. If both lines 
+cannot turn on the lamp when it is powered, the lamp is 
+damaged. 
+Car start-up 
+test
+
+===== PAGE 25 =====
+CRANKING TEST
+CURRENT： 12.27V
+START
+MINIMUM VOL TAGE：
+MIN VALUE > 9.6V
+12.27V
+PLEASE START THE ENGINE AND
+WAIT 15 SECONDS.
+CRANKING TEST
+CURRENT： 13.87V
+START
+MINIMUM VOL TAGE：
+MIN VALUE > 9.6V
+10.20V
+NORMAL
+23
+At this point, start the engine and wait for 15 seconds, as 
+shown below: 
+●
+The instrument can directly drive the injector for testing, and 
+can also detect the real-time injector signal of the vehicle; 
+Insert the multi-function detection line into the multi-function 
+interface (top of the machine), connect the battery clip line, 
+clamp the red clip on the positive plate, clamp the black clip on 
+the negative plate, and connect the removed injector to the 
+multi-function line, as shown in the figure below: 
+●
+●
+During the vehicle start process, the minimum battery voltage 
+is detected above 9.6V, indicating the normal state. If the 
+lowest voltage is below 9.6V, indicating the low voltage. The 
+possible reasons for low voltage are battery aging, large 
+mechanical flow, etc. It is necessary to further check the corre-
+sponding components, among which battery aging is the most 
+important reason. 
+●
+Injector test
+
+===== PAGE 26 =====
+INJECTOR TEST
+SIMULATE ENGINE SPEED
+1000 RPM
+PRESS <OK> TO OUTPUT
+<Fn> to signal check
+C01 - 2
+RedBlack
+C01 - 1
+C01
+C02
+24
+Enter the function item, displayed as shown below: ●
+When first entering the function interface, there is no drive 
+signal output, so press [OK] to output the injector drive signal. 
+It can test the electromagnetic injector, including GDI injector. 
+When it cannot drive 120V injector, a slight sound may be 
+heard. 
+Press [OK] to stop or start the injector working. 
+The simulation speed may be adjusted with [up  / down / left / 
+right] keys. At all speeds, the analog drive signal is a 3mS 
+low-voltage pulse. 
+The injector drives a signal pulse width of 3ms; 
+●
+●
+●
+●
+
+===== PAGE 27 =====
+C01 - 2
+C01 - 1
+RedBlack
+RedBlack
+C01
+C02
+25
+●
+●
+Insert the multi-functional detection line into the multi-function -
+al interface (top of the machine), connect the battery clip line, 
+clamp the red clip on the battery positive plate and the black 
+clip on the battery negative plate. The red clip of the C01-2 
+transfer line is clamped at the bottom of a coil of the relay, the 
+black clip is clamped on the bottom of the other coil of the 
+relay, insert the red probe into the Ω jack, and the black probe 
+into the COM jack.
+●Automobile 
+relay test
+Press [Fn] key to turn to the oscilloscope display mode, insert 
+the red probe into V jack, and connect the injector pin with the 
+red probe to observe the working waveform of the injection 
+nozzle. At this time, the fuel injection drive and the oscillo -
+scope function are running simultaneously. 
+Without connecting the fuel injector, press [Fn] key to switch to 
+the oscilloscope display mode, which can also detect the 
+operating waveform of the fuel injector during vehicle opera -
+tion. It is necessary to insert the red probe into the V jack, the 
+black probe into the COM jack, the black probe touch the body 
+ground or battery negative, and the red probe touch the 
+connection line of the fuel injector. 
+
+===== PAGE 28 =====
+RELAY TEST
+OUTPUT STATUS
+OFF
+.       Ω Contact Resistance:
+PRESS <OK> TO OUTPUT
+26
+Enter the function item, displayed as shown below: ●
+Press [OK] to output the relay drive signal which is the same 
+with the battery voltage. We can hear the relay on/off sound. 
+When contacting the contact pin of automotive relay using the 
+red and black probe, we can observe the resistance for the 
+contact on/off and observe the conditions of relay. 
+Vehicles using 12V battery can test 12V car relay and 24V 
+battery can test 24V car relay. Please do not use it to test relays 
+with different operating voltages. Especially, do not use a 12V 
+battery to test relays below 6V or a 24V battery to test 12V 
+breakers; Normally, the vehicle with a 12V battery will use a 12V 
+relay and the vehicle with a 24V battery will use a 24V relay. 
+●
+●
+The instrument analog outputs basic square wave and sine 
+wave signals. If other signal simulation is required, contact the 
+manufacturer to customize non-standard products. 
+The independent output signal of the instrument is a square 
+wave close to 5V and a sine wave close to 5Vpp. If 12V square 
+wave needs to be generated, the battery needs to be connect -
+ed for power supply. 
+Insert the multi-function detection line into the multi-function 
+interface (the top of the machine). If the 12V square wave 
+signal is required, then connect the battery clip line and 
+connect to the battery; 
+●
+●
+●
+Analog signal 
+test
+
+===== PAGE 29 =====
+RedBlack
+C01 - K
+C01 - SIN
+C01 - S2
+C01 - S1
+C01 - 1
+C01
+C02
+Enter the function item, displayed as shown below: ●
+27
+Output signal:  
+The “square wave” is identified as the signal line to output 
+the 12V square wave signal.
+The “K-line” is identified as the signal line to output the 5V 
+square wave signal.
+The “sine wave” is identified as the signal line to output the 
+sine wave signal. 
+The “5V signal” is identified as the signal line to output 
+0V~4.5V peak-valley sine wave signal. 
+The “ground line” is identified as the grounding line, which is 
+connected to the application system. 
+●
+●
+Output signal frequency: 
+1Hz~10KHz    Duty cycle: 10%~90% 
+●
+●
+●
+●
+●
+
+===== PAGE 30 =====
+28
+When you first enter the functional interface, there is no analog 
+signal output. Press [OK] to output the signal. 
+Press [up / down / left / right] keys to adjust the analog 
+frequency and press [F1 / F2]  to adjust the duty cycle of square 
+signal. 
+Press [OK] to output/stop the output signal .
+Press [Fn] key to enter the synchronous oscilloscope for 
+observation, insert the red probe to V jack. Contact the signal 
+output line to observe the analog signal waveform. 
+When the analog signal is above 6000Hz, the oscilloscope 
+mode is prohibited. 
+●
+●
+●
+●
+●
+Insert the Ignition pulse signal detection line into the multifunc-
+tional interface (top of the machine). 
+Close to the sensor head (top yellow area) to the ignition of the 
+engine cylinder. 
+●
+●
+Ignition pulse 
+signal test
+SINE/SQUARE WAVE OUTPUT
+1000 Hzfrequency：
+50 %duty cycle：
+<Fn> to signal check (f<6000)
+PRESS <OK> TO OUTPUT
+<F1><F2> set duty cycle
+C03
+
+===== PAGE 31 =====
+5V/di v 100uS
+0V
+SENSOR:        Min:  0.00V       Max:  0.00V
+0 RPM   4STROKE
+29
+Press [up / down] keys to adjust the waveform amplitude. 
+Press [left / right] keys to adjust the time value.
+Press [F1] to select the engine cylinder type and ignition, which 
+is used to calculate the engine speed. The option “distributor” 
+represents the high-voltage signal on the distributor of the old 
+engine, the option “2-stroke” represents the cylinder ignition 
+pulse signal of the two-stroke engine, and the option “4-stroke” 
+represents the ignition pulse signal of the four stroke engine; 
+The speed value shown is the engine speed value calculated 
+from the single cylinder ignition pulse signal. During the test, 
+the sensor head shall be close to an ignition wire or an ignition 
+coil of a cylinder, and not close to two or more ignition pulse 
+signal wires. If multiple ignition wires are arranged together, the 
+position close to the spark plug can be selected for detection. 
+●
+●
+●
+●
+Insert the multi-function detection line into the multi-function 
+interface (the top of the machine). The “K line” identification 
+line connects the extension wire and probe; the “ground wire” 
+identification line connects the extension wire and probe; the 
+ground wire probe is connected to the ground wire end of the 
+vehicle circuit (such as the 5 pin of the standard OBD-II), and 
+the K line probe is connected to the K line bus in the vehicle 
+circuit. Note to distinguish K lines on the automotive circuit. For 
+example, the 7-pin of the standard OBD-II is K line, and there 
+are multiple K lines in the car for connecting various low-speed 
+electrical appliances in the car. 
+●K line data
+Enter the function item, displayed as shown below: ●
+
+===== PAGE 32 =====
+K Line Date:        BPS 10400
+<F1>Clear       <Fn><LEFT><RIGHT>set BPS
+82 19 F0 A8 01 34 BF FO 19 E8
+01 00 04 FF FF FF FF 01 04 FF
+00 00 00 02 02 FF FF 0C 02 FF
+FF 0D 01 FF 1C 01 FF 1F 02 FF
+FF 20 04 FF FF FF FF 21 02 FF
+FF 30 01 FF 31 02 FF FF 40 04
+30
+The instrument provides the detection capability of the 5V 
+signal lines and the 12V signal lines. When connected to the 
+5V signal line, the signal on the K line is 5V signal, and when 
+connected to the 12V signal line, the K line is 12V signal. 
+The instrument can test K line Baud rate 1200 / 2400 / 4800 / 
+9600 / 10400 / 19200 / 38400 / 57600 / 115200. If there is no 
+Baud rate that the user needs, please contact the manufactur -
+er to customize the non-standard products. 
+Enter the function item, displayed as shown below: 
+●
+●
+●
+Press [F1] to clear the current display data.
+Press [HOLD] to keep the current display state. In the hold 
+state, press the [ up / down] keys to scroll back and forth to 
+view the received data.
+●
+●
+C01 - K
+C01 - 
+GND
+C01
+
+===== PAGE 33 =====
+C01 - CAN+
+C01 - CAN-
+C01 - GND
+C01
+Insert the multi-function detection line into the multi-function 
+interface (the top of the machine). The “CAN+” identification 
+line connects the extension wire and probe; the “CAN -” identi-
+fication line connects the extension wire and probe; the 
+“ground wire” identification line connects the extension wire 
+and probe; the ground wire probe is connected to the ground 
+wire end of the vehicle circuit (such as the 5 pin of the standard 
+OBD-II); the CAN+ wire probe is connected to the bus CANH 
+in the vehicle circuit; the CAN- wire probe is connected to the 
+bus CANL in the vehicle circuit. Note to distinguish the CAN 
+lines on the car circuit. For example, 6 pin of the standard 
+OBD-II is CANH line and 14 pin is CANL line. The car interior 
+also has a multiple CAN bus to connect the various electronic 
+controllers inside the car.
+●
+●
+CAN bus data
+31
+The instrument can test CAN bus Baud rate 500K / 250K / 125K 
+/ 100K / 83.33K / 50K / 33.33K. If there is no baud rate that the 
+user needs, please contact the manufacturer to customize the 
+non-standard products. 
+Enter the function item, displayed as shown below: 
+●
+●
+Press the [left / right] keys in the receiving state to change the 
+baud rate of communication.
+
+===== PAGE 34 =====
+RedBlack
+Insert the red probe into the “V” jack and the black probe into 
+the “COM” jack; 
+The red probe is connected to the signal to be tested, and the 
+black probe is connected to the ground line of the signal 
+source to be tested. 
+●
+●
+●
+●
+●
+Frequency 
+measurement
+32
+The measured signal voltage amplitude is the maximum 
+voltage value of 1000V. 
+●
+Press [F1] to clear the current display data. 
+Press [HOLD] to keep the current display state. In the hold 
+state, press the [ up / down] keys to scroll back and forth to 
+view the received data.
+Press the [left / right] keys in the receiving state to change the 
+baud rate of communication.
+CANBUS Date:    BPS 500000
+ID1: 7ﬀ    MASK: 7ﬀ
+ID2: 7ﬀ    MASK: 7ﬀ
+<F1>Clear       <Fn><LEFT><RIGHT>set BPS
+01 00 04 FF FF FF FF 01 04 FF
+00 00 00 02 02 FF FF 0C 02 FF
+FF 0D 01 FF 1C 01 FF 1F 02 FF
+FF 20 04 FF FF FF FF 21 02 FF
+FF 30 01 FF 31 02 FF FF 40 04
+
+===== PAGE 35 =====
+FREQUENCY METER
+<Fn> to signal check
+50 Hz
+OTHER PROBLEMS
+The instrument can update the application software with 
+MicroSD card and copy the updated file to SD card. Insert the 
+instrument SD holder and restart up. If the instrument detects 
+an available upgrade file, it will be displayed on the screen and 
+press [OK] directly. If you only need to update the data file, the 
+instrument will automatically read in the corresponding file 
+after power on. 
+The update file is published by the manufacturer of the instru -
+ment and is accessible to the user through the distributor. 
+●
+●
+Software 
+upgrading
+The instrument has a unique identification number that cannot 
+be changed by the user. The manufacturer confirms whether 
+the instrument is legal according to the unique identification 
+number, and the manufacturer may provide after-sales service 
+according to the instrument identification number. 
+●Equipment 
+identification 
+number 
+●
+33
+The measured signal frequency is 1Hz~1MHz. 
+Enter the function item, displayed as shown below:
+●
+●
+It displays the frequency of currently detected. Due to the large 
+input impedance of the instrument, the induced interference 
+signal will be displayed when it is not connected to the signal to 
+be measured. It should be connected to the effective signal 
+source during the measurement and the signal source voltage 
+Vpp should be larger than 1V. 
+
+===== PAGE 36 =====
+34
+  
+ 
+ 
+ 
+ 
+Be careful not to rub the product against rough surfaces or 
+wear the product, especially the sheet metal housing.
+Please regularly check the product parts that need to be 
+tightened and connected. If found loose, please tighten it in 
+time to ensure the safe operation of the equipment. The exter-
+nal and internal parts of the equipment in contact with various 
+chemical media should be frequently treated with anti-corrosion 
+treatment such as rust removal and painting to improve the 
+corrosion resistance of the equipment and extend its service 
+life.
+Comply with the safe operating procedures and do not 
+overload the equipment. The safety guards of the products 
+are complete and reliable. 
+Unsafe factors are to be eliminated in time. The circuit part 
+should be checked thoroughly and the aging wires should be 
+replaced in time.
+Adjust the clearance of various parts and replace worn 
+(broken) parts. Avoid contact with corrosive liquids.
+When not in use, please store the product in a dry place. Do 
+not store the product in hot, humid, or non-ventilated places.
+Our products are made of long-lasting and durable materials, and 
+we insist on perfect production process. Each product leaves the 
+factory after 35 procedures and 12 times of testing and inspec -
+tion work, which ensures that each product has excellent quality 
+and performance.
+To maintain the performance and appearance of the product, it is 
+recommended that the following product care guidelines be read 
+carefullyğ
+  
+●   
+●   
+●  
+●   
+●   
+●   
+MAINTENANCE SERVICE
+Maintenance
+
+===== PAGE 37 =====
+35
+WARRANTY
+  
+ 
+The repair or replacement of products is determined by the 
+actual breakdown situation of product.
+It is guaranteed that AUTOOL will use brand new component, 
+accessory or device in terms of repair or replacement. 
+If the product fails within 90 days after the customer receives 
+it, the buyer should provide both video and picture, and we will 
+bear the shipping cost and provide the accessories for the 
+customer to replace it free of charge. While the product is 
+received for more than 90 days, the customer will bear the 
+appropriate cost and we will provide the parts to the customer 
+for replacement free of charge.
+The product is not purchased through official or authorized 
+channels.
+The product breakdown because the user does not follow 
+product instructions to use or maintain the product.
+From the date of receipt, we provide a three-year warranty for the 
+main unit and all the accessories included are covered by a 
+one-year warranty.
+We AUTOOL pride ourselves on superb design and excellent 
+service. It would be our pleasure to provide you with any further 
+support or services.
+All information, illustrations, and specifications contained in this 
+manual, AUTOOL resumes the right of modify this manual and the 
+machine itself with no prior notice. The physical appearance and 
+color may differ from what is shown in the manual, please refer to 
+the actual product. Every effort has been made to make all 
+descriptions in the book accurate, but inevitably there are still 
+inaccuracies, if in doubt, please contact your dealer or AUTOOL 
+after-service centre, we are not responsible for any consequences 
+arising from misunderstandings.
+   
+●   
+●   
+●   
+●  
+●   
+These conditions below shall not be in warranty range
+Warranty
+access
+Disclaimer
+
+===== PAGE 38 =====
+36
+If you are an AUTOOL user and are not satisfied with the 
+AUTOOL products purchased from the online authorized 
+shopping platform and offline authorized dealers, you can 
+return the products within seven days from the date of receipt; 
+or you may exchange it for another product of the same value 
+within 30 days from the date of delivery.
+Returned and exchanged products must be in fully saleable 
+condition with documentation of the relevant bill of sale, all 
+relevant accessories and original packaging.
+AUTOOL will inspect the returned items to ensure that they 
+are in good condition and eligible. Any item that does not pass 
+inspection will be returned to you and you will not receive a 
+refund for the item.
+You can exchange the product through the customer service 
+center or AUTOOL authorized distributors; the policy of return 
+and exchange is to return the product from where it was 
+purchased. If there are difficulties or problems with your return 
+or exchange, please contact AUTOOL Customer Service.
+●   
+ 
+●    
+●   
+●   
+RETURN & EXCHANGE SERVICE
+Return &
+Exchange
+China
+Oversea Zone
+E-mail
+Facebook
+YouTube
+400-032-0988 
++86 0755 23304822
+aftersale@autooltech.com
+https://www.facebook.com/autool.vip
+https://www.youtube.com/c/autooltech
+
+===== PAGE 39 =====
+37
+EU DECLARATION OF CONFORMITY 
+We as the manufacturer declare that the designated product:
+Auto Diagnostic Multimeter (DM303)
+Complies with the requirements of the:
+EMC Directive 2014/30/EU
+RoHS Directive 2011/65/EU + 2015/863 + 2017/2102
+Applied Standards:
+EN IEC 55014-1:2021, EN IEC 61000-3-2:2019+A1:2021, EN 
+61000-3-3:2013+A2:2021, EN IEC 55014-2:2021
+IEC 62321-3-1:2013, IEC 62321-7-1:2015, IEC 62321-4: 2013+A1:2017, IEC 
+62321-7-2:2017, IEC 62321-5: 2013, IEC 62321-6:2015, IEC 62321-8:2017
+Certificate No.: HS202408077210E, HS202408077213E
+Test Report No.: HS202408077210-1ER, HS202408077213-1ER
+Manufacturer
+Shenzhen AUTOOL Technology Co, Ltd.
+Floor 2, Workshop 2, Hezhou Anle Industrial Park, Hezhou
+Community, Hangcheng Street, Bao 'an District, Shenzhen
+Email: aftersale@autooltech.com
+COMPANY NAME: XDH Tech
+ADRESS: 2 Rue Coysevox Bureau 3, Lyon, France
+E-MaiL: xdh.tech@outlook.com
+CONTACT PERSON: Dinghao Xue
+
+===== PAGE 40 =====
+INHALTSVERZEICHNIS (Übersetzung der originalen Anweisungen)
+Urheberrecht information .................................................................................. 40
+ Urheberrechte ................................................................................................. 40
+ Markenrecht .................................................................................................... 40
+Sicherheitsregeln ............................................................................................... 41
+ Allgemeine sicherheitsregeln .......................................................................... 41
+ Handhabung.................................................................................................... 42
+ Elektrische sicherheitsregeln .......................................................................... 42
+ Geräte sicherheitsregeln................................................................................. 42
+ Anwendung ..................................................................................................... 43
+ Personalsicherheitsregeln............................................................................... 43
+Warnhinweise ..................................................................................................... 44
+ Sicherheitsanweisungen ................................................................................. 44
+Produkteinführung ............................................................................................. 46
+ Überblick ......................................................................................................... 46
+ Zusammengesetzter Indikator......................................................................... 47
+Produktstruktur .................................................................................................. 48
+ Strukturdiagramm............................................................................................ 48
+ Tastenfunktion................................................................................................. 49
+ Kabelnummer.................................................................................................. 50
+Bedienungsanleitung......................................................................................... 51
+ Funktionale Bedienrichtlinien .......................................................................... 51
+ Spannungsmessung ....................................................................................... 51
+ Oszilloskop...................................................................................................... 52
+ Strommessung ................................................................................................ 54
+ Widerstandsmessung...................................................................................... 55
+ Automobilschaltungstest ................................................................................. 56
+ Startprüfung des Fahrzeugs............................................................................ 59
+ Injektorprüfung ................................................................................................ 60
+ Automobilrelaisprüfung ................................................................................... 62
+ Analogsignalprüfung ....................................................................................... 64
+ Zündimpuls-Signalmessung............................................................................ 65
+38
+
+===== PAGE 41 =====
+ K-Leitungsdaten.............................................................................................. 67
+ CAN-Bus-Daten .............................................................................................. 68
+ Frequenzmessung .......................................................................................... 70
+Andere Probleme................................................................................................ 71
+ Software-Upgrade........................................................................................... 71
+ Ausrüstungsidentifikationsnummer................................................................. 71
+Wartungsservice................................................................................................. 72
+ Wartungs......................................................................................................... 72
+Garantie............................................................................................................... 73
+ Garantiemethode ............................................................................................ 73
+ Haftungsausschluss........................................................................................ 73
+Rückgabe- und Umtauschservice..................................................................... 74
+ Rückkehr......................................................................................................... 74
+EU-Konformitätserklärung................................................................................. 75
+39
+
+===== PAGE 42 =====
+URHEBERRECHT INFORMATION
+Urheberrechte
+Marken, die in diesem Handbuch verwendet werden, sind entweder 
+Marken, eingetragene Marken, Dienstleistungsmarken, Domänennamen, 
+Logos, Firmennamen oder anderweitig Eigentum von AUTOOL oder 
+seinen Tochtergesellschaften. In Ländern, in denen einige der AUTOOL- 
+Marken, Dienstleistungsmarken, Domänennamen, Logos und Firmen -
+namen nicht registriert sind, beansprucht AUTOOL andere Rechte im 
+Zusammenhang mit nicht registrierten Marken, Dienstleistungsmarken, 
+Domänennamen, Logos und Firmennamen. Andere in diesem Handbuch 
+genannte Produkte oder Firmennamen können Marken ihrer jeweiligen 
+Eigentümer sein. Sie dürfen keine Marken, Dienstleistungsmarken, 
+Domänennamen, Logos oder Firmennamen von AUTOOL oder Dritten 
+ohne Genehmigung des Eigentümers der jeweiligen Marke, Dienstleis -
+tungsmarke, Domänennamen, des Logos oder des Firmennamens 
+verwenden. Sie können AUTOOL kontaktieren, indem Sie AUTOOL unter 
+https://www.autooltech.com besuchen oder an aftersale@autooltech.com 
+schreiben, um schriftliche Genehmigung zur Verwendung von Materialien 
+in diesem Handbuch für bestimmte Zwecke oder für alle anderen Fragen im 
+Zusammenhang mit diesem Handbuch zu erhalten.
+Alle Rechte vorbehalten von AUTOOL TECH. CO., LTD. Kein Teil 
+dieser Veröffentlichung darf ohne vorherige schriftliche Genehmigung 
+von AUTOOL reproduziert, in einem Datenabrufsystem gespeichert 
+oder in irgendeiner Form oder auf irgendeine Weise elektronisch, 
+mechanisch, fotokopiert, aufgezeichnet oder anders übertragen 
+werden. Die hier enthaltenen Informationen sind nur für die Verwend -
+ung dieser Einheit vorgesehen. AUTOOL ist nicht verantwortlich für 
+die Verwendung dieser Informationen in Bezug auf andere Einheiten.
+Weder AUTOOL noch seine Tochtergesellschaften haften gegenüber 
+dem Käufer dieser Einheit oder Dritten für Schäden, Verluste, Kosten 
+oder Ausgaben, die dem Käufer oder Dritten infolge von: Unfall, 
+Missbrauch oder falscher Verwendung dieser Einheit oder unbefugten 
+Modifikationen, Reparaturen oder Änderungen an dieser Einheit oder 
+Nichteinhaltung der AUTOOL-Betriebs- und Wartungsanweisungen 
+entstehen. AUTOOL haftet nicht für Schäden oder Probleme, die sich 
+aus der Verwendung von Optionen oder Verbrauchsmaterialien 
+ergeben, die nicht als Original-AUTOOL-Produkte oder von AUTOOL 
+genehmigte Produkte ausgewiesen sind.
+Andere in diesem Dokument verwendete Produktbezeichnungen 
+dienen nur Identifikationszwecken und können Marken ihrer jeweili -
+gen Eigentümer sein. AUTOOL verzichtet auf jegliche Rechte an 
+diesen Marken.
+Markenrecht
+40
+●
+●
+●
+
+===== PAGE 43 =====
+41
+SICHERHEITSREGELN
+Bewahren Sie diese Bedienungsanleitung immer bei der 
+Maschine auf.
+Vor der Verwendung dieses Produkts lesen Sie bitte alle 
+Betriebsanleitungen in dieser Anleitung durch. Das 
+Nichtbefolgen kann zu elektrischen Schlägen sowie 
+Reizungen an Haut und Augen führen.
+Jeder Benutzer ist dafür verantwortlich, die Ausrüstung 
+gemäß dieser Bedienungsanleitung zu installieren und 
+zu verwenden. Der Lieferant haftet nicht für Schäden, 
+die durch unsachgemäße Verwendung und Bedienung 
+verursacht werden.
+Diese Ausrüstung darf nur von geschultem und qualifi -
+ziertem Personal betrieben werden. Betreiben Sie sie 
+nicht unter dem Einfluss von Drogen, Alkohol oder 
+Medikamenten.
+Diese Maschine ist für spezifische Anwendungen 
+entwickelt worden. Der Lieferant weist darauf hin, dass 
+jede Modifikation und/oder Verwendung für nicht 
+vorgesehene Zwecke strengstens untersagt ist.
+Der Li eferant übernimmt keine ausdrücklichen oder 
+stillschweigenden Garantien oder Haftungen für Person -
+enschäden oder Sachschäden, die durch unsach -
+gemäße Verwendung, Missbrauch oder Nichtbefolgung 
+von Sicherheitsanweisungen verursacht werden.
+Dieses Werkzeug ist nur für den professionellen 
+Gebrauch bestimmt. Eine nicht professionelle 
+Bedienung kann zu Verletzungen von Personal oder 
+Schäden an Werkzeugen oder Werkstücken führen.
+Außerhalb der Reichweite von Kindern aufbewahren.
+Bei d er Arbeit sicherstellen, dass sich Personen oder 
+Tiere in der Nähe in sicherem Abstand befinden. Arbeit -
+en Sie nicht bei Regen, Wasser oder in feuchter Umge -
+bung. Halten Sie den Arbeitsbereich gut belüftet, trock -
+en, sauber und hell.
+Allgemeine 
+sicherheitsre-
+geln
+
+===== PAGE 44 =====
+42
+Verdrehen oder stark Biegen der Kabel vermeiden, da 
+dies die internen Leitungen beschädigen könnte. Zeigen 
+die Kabel Anzeichen von Beschädigungen, verwenden 
+Sie das Diagnosetool nicht. Beschädigte Kabel stellen 
+ein Risiko für elektrischen Schlag dar. Halten Sie die 
+Kabel von Wärmequellen, Öl, scharfen Kanten und 
+beweglichen Teilen fern. Beschädigte Kabel müssen 
+vom Hersteller, seinen Technikern oder qualifiziertem 
+Personal ersetzt werden, um gefährliche Situationen 
+oder Verletzungen zu vermeiden.
+Bei de r Durchführung von Messungen verwenden Sie 
+ausschließlich die für dieses Produkt angegebenen 
+Messkategorien (CAT), Spannungs- und Stromstärken 
+sowie die entsprechenden Sonden, Prüfleitungen und 
+Adapter.
+Lassen Sie das Gerät niemals unbeaufsichtigt, während es 
+in Betrieb ist. Schalten Sie das Gerät immer am Hauptschal-
+ter aus und entfernen Sie die Batterien, wenn das Gerät 
+nicht für den vorgesehenen Zweck verwendet wird.
+Beim Messen des Stroms trennen Sie zunächst die 
+Stromversorgung vom Stromkreis und verbinden dann 
+das Produkt mit dem Stromkreis. Das Produkt sollte in 
+Reihe mit dem Stromkreis geschaltet werden.
+Vor dem Messen von Widerstand, Durchgang, Kapazität 
+oder Dioden trennen Sie die Stromversorgung und 
+entladen Sie alle Hochvolt-Kondensatoren.
+Versuchen Sie nicht, die Ausrüstung selbst zu reparieren.
+Vor dem Einschalten des Geräts überprüfen Sie, ob die 
+Batteriespannung und die Modellspezifikationen mit den 
+Elektrische 
+sicherheits-
+regeln
+Geräte 
+sicherheits-
+regeln
+Handhabung Gebrauchte/beschädigte Ausrüstung darf nicht im 
+Hausmüll entsorgt werden, sondern muss umweltfreun -
+dlich entsorgt werden. Verwenden Sie dafür vorgeseh 
+ene Sammelstellen für Elektrogeräte.
+Verbrauchte Batterien sollten als gefährlicher Abfall 
+behandelt und bei einer dafür vorgesehenen 
+Entsorgungsstelle entsorgt werden.
+
+===== PAGE 45 =====
+43
+Berühren Sie keine spannungsführenden Leiter mit Span-
+nungen über 30V AC RMS, 42V AC Spitze oder 60V DC.
+Schließen Sie keine spannungsführenden Leiter in 
+feuchter Umgebung an.
+Verwenden Sie keine Strommesswerte als Hinweis 
+darauf, dass ein Stromkreis sicher berührt werden kann. 
+Zur Beurteilung der Sicherheit des Stromkreises müssen 
+Spannungsmessungen durchgeführt werden.
+Überprüfen Sie vor der Verwendung des Produkts das 
+Gehäuse auf Risse oder Beschädigungen an den Kunst-
+stoffteilen. Achten Sie besonders auf die Isolierung in 
+der Nähe der Anschlüsse.
+Tragen Sie persönliche Schutzausrüstung (wie zugelas -
+sene Gummihandschuhe, Gesichtsschutz und 
+flammhemmende Kleidung), um sich bei der Arbeit mit 
+freiliegenden stromführenden Leitern vor elektrischen 
+Schlägen und Lichtbogenverletzungen zu schützen.
+Stellen Sie immer sicher, dass Sie einen sicheren Stand 
+haben, um im Notfall die Ausrüstung sicher zu kontrollieren.
+Personal-
+sicherhe-
+itsregeln
+Überprüfen Sie vor der Verwendung die Geräteschnitt -
+stellen und Prüfspitzen auf Beschädigungen. Betreiben 
+Sie das Gerät nicht, wenn Schäden festgestellt werden.
+Verwenden Sie die Ausrüstung nur unter Beachtung aller 
+Sicherheitsanweisungen, technischen Dokumente und 
+Spezifikationen des Fahrzeugherstellers.
+Verwenden Sie Ersatzbatterien mit ähnlicher Kapazität, 
+Bauart, chemischer Zusammensetzung und Lebensdau -
+er, und achten Sie darauf, dass sie vom gleichen 
+Hersteller stammen. Unpassende Batterien können zu 
+Gasbildung und anschließender Batterieberstung führen.
+Anwendung
+auf dem Typenschild angegebenen Werten übereinstim -
+men. Abweichende Werte können zu ernsthaften 
+Gefahren und Schäden am Gerät führen.
+Es ist unerlässlich, die Ausrüstung vor Regenwasser, 
+Feuchtigkeit, mechanischen Beschädigungen, Überlast -
+ung und unsachgemäßer Handhabung zu schützen.
+
+===== PAGE 46 =====
+ 
+Warnhinweise
+Das automobile Diagnosetester-Multimeter ist nach GB4793.1 
+Sicherheitsanforderungen für elektronische Messgeräte und 
+IEC61010 Sicherheitsstandard streng gefertigt und entspricht 
+den Anforderungen an doppelte Isolierung, Überspannungs -
+standards (CATII1000V, CATIII600V) sowie den Sicherheits -
+standards der Verschmutzungsstufe 2. Bitte bedienen Sie das 
+Instrument gemäß den Gebrauchsanweisungen im Handbuch; 
+andernfalls könnte die Schutzfunktion des Instruments 
+geschwächt oder verloren gehen.
+Überprüfen Sie vor der Benutzung, ob die Isolierung der 
+Sonde intakt ist und keine Beschädigungen oder Brüche 
+aufweist. Bei offensichtlichen Beschädigungen der Isolierung 
+der Sonde oder des Instrumentengehäuses oder wenn Sie 
+glauben, dass das Instrument nicht ordnungsgemäß funktion -
+iert, verwenden Sie das Instrument bitte nicht mehr.
+Halten Sie beim Benutzen einer Sonde Ihre Finger hinter dem 
+Schutzring der Sonde.
+Wenden Sie keine Spannung von mehr als 1000Vrms 
+zwischen dem Instrumentenanschluss und dem Erdungsan -
+schluss an, um Stromschläge und Schäden am Instrument zu 
+vermeiden.
+Seien Sie bei gemessenen Spannungen über DC60V und 
+42Vrms vorsichtig, um Stromschläge zu verhindern.
+Bevor Sie die Rückabdeckung des Instruments anbringen, ist 
+die Benutzung des Instruments strengstens verboten; andern -
+falls besteht die Gefahr eines Stromschlags.
+Die gemessenen Signale dürfen den festgelegten Grenzwert 
+nicht überschreiten, um Stromschläge und Schäden am Instru-
+ment zu vermeiden.
+Es ist n icht erlaubt, den Strom zum Testen von Anschlüssen 
+oder Spannungen im Strombereich zu verwenden.
+Für die korrekte Nutzung des Instruments lesen Sie bitte den 
+gesamten Text dieses Handbuchs sorgfältig durch, insbe -
+sondere die „Sicherheitsanweisungen“.
+44
+Sicherheitsan-
+weisungen
+
+===== PAGE 47 =====
+ 
+Im Inneren des Instruments befindet sich eine selbstheilende 
+Sicherung. Ändern Sie nicht die interne Verkabelung des 
+Instruments, um Beschädigungen des Instruments und 
+Gefahren für die Sicherheit zu vermeiden. 
+Wenn das Batteriesymbol auf dem LCD rot angezeigt wird, 
+sollte die Batterie rechtzeitig ersetzt werden, um die Mess -
+genauigkeit sicherzustellen.
+Betreiben Sie das Instrument nicht in einer Umgebung mit 
+hoher Temperatur oder hoher Luftfeuchtigkeit. Lagern Sie das 
+Instrument insbesondere nicht in einer feuchten Umgebung, 
+da sich die Leistung des Instruments verschlechtern kann, 
+wenn es Feuchtigkeit ausgesetzt wird.
+Reinigen Sie das Gehäuse des Instruments mit einem feucht -
+en Tuch und einem milden Reinigungsmittel. Verwenden Sie 
+keine scheuernden Mittel oder Lösungsmittel.
+45
+
+===== PAGE 48 =====
+46
+Das Automobil-Diagnose-Multimeter ist ein tragbares, neuar -
+tiges Diagnose-Oszilloskop-Multimeter, das digitale Oszillo -
+skop-, digitale Multimeter-, Automobilstromkreis- und Automo -
+bilsignalprüfungen integriert und mit der eingebetteten 
+digitalen Steuerungstechnologie entwickelt wurde.
+Der Multimeter-Modus kann AC/DC-Spannungen und -Ströme, 
+Widerstände, Durchlassspannung von Dioden, Ein-/Ausschal -
+tungen und Frequenzen messen.
+Der Oszilloskop-Modus ist ein vollständiges intelligentes 
+Messsystem, das die Signalaufnahme, Datenabtastung, 
+Datenverarbeitung und automatische Suche umfasst, mit einer 
+Bandbreite des Wellenformtests von 200 kHz. Mit einer 
+variablen Abtastfrequenz können langsam veränderliche 
+Signale gemessen werden. Er ist geeignet für die Messung 
+und Beobachtung verschiedener Signale im Automobilkreis 
+während der Fahrzeugüberholung, einschließlich des Motor -
+treibsignals und der Motorstromspannung von Fahrzeugen mit 
+neuer Energie, Zündimpulssignalen von Benzinmotoren, 
+Nockenwellensignalen, Kurbelwellensignalen, Raddrehzahl -
+sensorsignalen, Sauerstoffsensorsignalen und mehr.
+Die Fahrzeugstromkreisprüfung kann die Niederspannung -
+skreise online testen, auf hohe Spannung oder Leitungsleck -
+age hinweisen und die Versorgungsspannung ausgeben. Sie 
+kann auch die Spannung ausgeben, um Teile des Fahrzeugs 
+zu testen, oder die Spannung senken, um Teile des Fahrze -
+ugs, wie zum Beispiel Lichter, zu betreiben. Sie überprüft die 
+Batteriespannung beim Starten eines benzinbetriebenen 
+Fahrzeugs und beurteilt, ob das Fahrzeugstartsystem und die 
+Batterie in gutem Zustand sind.
+Der analoge Signal-Ausgang kann für die ECU-Prüfung des 
+Fahrzeugs verwendet werden und simuliert Rechteck- und 
+Sinuswellen sowie den Einspritzsignal, um die Einspritzdüse 
+anzusteuern. Er überprüft die Datensignale der K-Leitung und 
+des CAN-Bus-Signals im Fahrzeug.
+Jede andere Verwendung gilt als über den vorgesehenen 
+Zweck der Ausrüstung hinausgehend und ist untersagt.
+Produkteinführung
+Überblick ●
+●
+●
+●
+●
+●
+
+===== PAGE 49 =====
+47
+Das LCD ist ein 2,8-Zoll-Farbbildschirm mit einer Auflösung 
+von 320*240.
+Eingangsimpedanz für die Spannungsmessung: Sie beträgt 
+2~3MΩ bei Spannungen unter 160V und 10MΩ bei Spannun -
+gen über 160V. Die maximale Eingangsspannung beträgt 
+1000Vpp; Die analoge Bandbreite beträgt 200KHz; Der Span -
+nungsbereich wird automatisch umgeschaltet.
+Die 1 0A-Buchsen-Sicherung für die Strommessung ist eine 
+15A-Selbstheilungssicherung, und der maximal messbare 
+Strom beträgt 20A; Die mA/uA-Buchsen-Sicherung für die 
+Strommessung ist eine 0,5A-Selbstheilungssicherung, und 
+der maximal messbare Strom beträgt 200mA.
+Betriebstemperatur: 0~40°C(32~104°F), Luftfeuchtigkeit: ≤75%.
+Lagertemperatur: -10~50°C(14~122°F), Luftfeuchtigkeit: ≤70%.
+Höhe: 2000m
+●
+●
+●
+●
+●
+●
+Die Multimeter-Funktion und die Oszilloskop-Funktion sind im 
+Instrument integriert. Beim Messen des Spannungssignals mit 
+einer Sonde wechseln Sie mit der [Fn] -Taste zur Oszillo -
+skop-Funktion, um die Nutzung und Beobachtung der Signalwel-
+lenform zu erleichtern.
+Zusammeng-
+esetzter 
+Indikator
+
+===== PAGE 50 =====
+48
+Produktstruktur
+Anzeige Stromversorgungsanzeige
+A B
+Taste 10A-StromeingangC D
+mA/uA-Messeingang COM-MesseingangE F
+Dioden-, Spannungs-,
+Widerstands-,
+Frequenzmesseingang
+BeleuchtungslampeG H
+DB15-SchnittstelleI
+A
+B
+I
+C
+D
+E F
+H
+G
+Strukturdi-
+agramm
+
+===== PAGE 51 =====
+49
+A
+HOLD Pause/Halten I Messtaste.B
+Auswahl der Funktionspunkte.C
+ESC Rücktaste.D
+Fn Messmodus-Umschalttaste.
+E OK Eingabetaste.
+F
+F2 Funktionstasten, durch die Testfunktion 
+definiert.G
+ZERO / F1 Funktionstaste, schnelles Zurücksetzen 
+oder durch die Testfunktion definiert.H
+Zum Ein- und Ausschalten der 
+Beleuchtung drücken.I
+Drücken zum Einschalten, drücken Sie 
+etwa 0,3 Sekunden, um das Gerät 
+auszuschalten, und halten Sie die Taste 3 
+Sekunden lang gedrückt, um das Gerät 
+zurückzusetzen.
+A
+B
+C
+D
+E
+H
+I
+G
+F
+Tasten-
+funktion
+Einschalt-
+taste
+Richtung-
+staste
+Beleuch-
+tungstaste
+
+===== PAGE 52 =====
+50
+Kabelnummer
+ Kabelnummer
+Nr. Verteilkopf-
+Nr.Name Funktionen
+C01
+C01 - 1
+Mehrfunktions-
+Detektionsleitung
+DC-Anschluss, 
+verbunden mit der 
+Batterieklemmenleitung
+C02
+C03Zündpuls-
+Signalkabel 
+Messung des 
+Hochvolt-
+Leitungssignals
+C05Brücke (Schwarz)
+C06Brücke (Grün)
+C07Brücke (GelbĎ
+C04 C04 - 1
+DC-Anschluss, 
+verbunden mit dem 
+Batterieklemmenkabel
+C04 - 2 Sondenanschluss
+C01 - 2 Anschlüsse für 
+Injektor-Test und 
+Automobilrelais-Test
+C01 - K K-Leitungssignalleitung
+C01 - CAN+ CAN+-Signalleitung
+C01 - CAN- CAN--Signalleitung
+C01 - GND Erdungskabel
+C01 - SIN Sinuswellsignalleitung
+C01 - S1 5V-Signalleitung
+C01 - S2 Rechteck-Signalleitung
+KFZ-Schaltung -
+serkennungska-
+bel
+Batterieklem-
+menkabel
+
+===== PAGE 53 =====
+RotSchwarz
+51
+Bedienungsanleitung
+Das Gerät ist mit einem Netzschalter und einer automatischen 
+Schlafmodus-Funktion ausgestattet. Die automatische Schlaf -
+zeit kann auf 1-30 Minuten eingestellt werden. Der Tastenton 
+des Geräts kann ein- und ausgeschaltet werden, der Warnton 
+kann jedoch nicht deaktiviert werden. Die Helligkeit des 
+Bildschirms kann eingestellt werden. Die Helligkeit kann je 
+nach tatsächlichem Betriebsumfeld angepasst werden, und 
+durch eine angemessene Reduzierung der Helligkeit kann die 
+Batterielebensdauer verlängert werden.
+Die Hilfefunktion des Geräts bietet eine kurze Betriebsbesch -
+reibung.
+Das Gerät ist je nach Verkaufsgebiet in einer oder mehreren 
+Sprachen konfiguriert. Bitte wenden Sie sich an Ihren örtlichen 
+Händler, um Informationen zu den verfügbaren Sprachen zu 
+erhalten.
+Nach d em Einschalten der Stromversorgung verwenden Sie 
+die [Hoch/Runter/Links/Rechts]  Richtungstasten, um die 
+aktuelle Option zu verschieben, und drücken Sie [OK], um den 
+Funktionselementen zuzugreifen.
+●
+●
+●
+●
+Funktionale 
+Bedienricht-
+linien
+Stecken Sie die rote Sonde in die „V“-Buchse und die 
+schwarze Sonde in die „COM“-Buchse;
+●Spannung-
+smessung
+
+===== PAGE 54 =====
+Voltage （DC）
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+<F2>PULL DOWN
+0.00V
+52
+Stecken Sie die rote Sonde in die „V“-Buchse und die 
+schwarze Sonde in die „COM“-Buchse. Das Gerät verfügt 
+nicht über eine spezielle BNC-Schnittstelle. Das Oszilloskop 
+wird als erweiterte Funktion zur Spannungsignalerfassung 
+verwendet, was die Bedienung für den Benutzer erheblich 
+erleichtert und sich besonders gut für die Fahrzeugwartung 
+eignet.
+●
+Der aktuell gemessene Wert wird angezeigt. Wenn die Span -
+nung schwankt, drücken Sie die [HOLD] -Taste, um den 
+Anzeigestatus beizubehalten. Wenn kein Spannungssignal 
+vorhanden ist und der angezeigte Wert ungleich null ist, 
+können Sie die rote und schwarze Sonde kurzschließen und 
+gleichzeitig die [F1] -Taste drücken, um eine schnelle Nullung 
+durchzuführen. Die [F2] -Taste wird verwendet, um die Induk -
+tionsspannung am Messpunkt zu entfernen. Drücken Sie die 
+[Fn]-Taste, um in den AC-Spannungsmessmodus und den 
+Oszilloskopmodus zu wechseln, um die Signalwellenform zu 
+beobachten. Im Spannungsmess- oder Oszilloskopmodus 
+wird der Bereich automatisch umgeschaltet, und das maximal 
+messbare Spannungssignal beträgt 1000V. 
+Im Spannungsmessmodus gibt die Sonde nur ein Signal ein, 
+aber kein Impuls-Signal, wodurch keine Störung am Mess -
+punkt auftritt.
+●
+●
+Oszilloskop
+Geben Sie das Funktionselement ein, das wie unten gezeigt 
+angezeigt wird:
+●
+
+===== PAGE 55 =====
+5V/di v 1mS
+0V
+U:  0.00V        MIN:  0.00V        MAX:  0.00V
+Trig. +00
+53
+Anzeige der aktuellen Signalwellenform, 5V/Raster - Anzeige 
+des Spannungsskalenwertes, während der Messung können 
+Sie die [Hoch]- und [Runter]-Tasten drücken, um den Wert zu 
+ändern; 1ms - Scan-Zeitwert; während der Messung können 
+Sie die [Links]- und [Rechts]-Tasten drücken, um den Wert zu 
+ändern; Trigger+01 - zeigt den Korrekturwert des Triggerpe -
+gels an, der durch Drücken von [F1 / F2] geändert werden 
+kann. Der Triggerpegel ist der automatisch berechnete Durch -
+schnittswert der aktuellen Wellenform. Ein positiver Wert der 
+Triggerkorrektur zeigt eine Erhöhung des Triggerpegel-Korrek-
+turwertes an, ein negativer Wert zeigt eine Verringerung des 
+Triggerpegel-Korrekturwertes an.
+Drücken Sie die [HOLD] -Taste, um die Anzeige der Wellen -
+form anzuhalten. Wenn die Wellenform angehalten wird, 
+können die [Hoch / Runter / Links / Rechts] -Tasten für die 
+Steuerung der Links- und Rechtsbewegung der Wellenform 
+●
+●
+Geben Sie das Funktionselement ein, das wie unten angezeigt 
+wird:
+●
+RotSchwarz
+
+===== PAGE 56 =====
+Ampere(DC) mA(Green)
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+<F2>20A/mA
+0.0mA
+Unter 200 mA Über 200 mA
+Rot
+Schwarz
+Rot
+Schwarz
+54
+verwendet werden, um den Vergleich und die Beobachtung 
+der Wellenform zu erleichtern.
+Im Proz ess der Spannungsignalmessung ändert das Gerät 
+automatisch den Bereich, und das maximal messbare Span -
+nungssignal beträgt 1000V;
+●
+Geben Sie das Funktionselement ein, das wie unten gezeigt 
+angezeigt wird:
+●
+Messen Sie den Strom unter 200 mA, indem Sie die rote 
+Sonde in die grüne „mAuA“-Buchse und die schwarze Sonde 
+in die „COM“-Buchse stecken.
+Messen Sie den Strom über 200 mA, indem Sie die rote Sonde 
+in die gelbe „A“-Buchse und die schwarze Sonde in die 
+„COM“-Buchse stecken.
+●
+Der aktuelle Messwert wird angezeigt. Wenn der Strom 
+schwankt, drücken Sie die [HOLD]-Taste, um den Anzeigesta-
+tus beizubehalten. Wenn kein Stromsignal vorhanden ist, der 
+angezeigte Wert jedoch nicht null ist, können die rote und 
+●
+●
+Strom-
+messung
+
+===== PAGE 57 =====
+RotSchwarz
+Ampere(DC) 10A(Yellow)
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+<F2>20A/mA
+0.00A
+55
+●
+Stecken Sie die rote Sonde in die 
+„Ω“-Buchse und die schwarze 
+Sonde in die „COM“-Buchse;
+●
+schwarze Sonde kurzgeschlossen werden, und gleichzeitig die 
+[F1]-Taste gedrückt werden, um die Schnellnullung 
+durchzuführen. Die [F2]-Taste wird verwendet, um die Messung 
+des großen Stroms umzuschalten, und die [Fn] -Taste wird 
+verwendet, um zwischen Gleichstrom- und Wechselstrom -
+messungen zu wechseln.
+Drücken Sie die [F2] -Taste, um in den Modus zur Erkennung 
+von Hochstrom zu wechseln, wie unten gezeigt:
+● Im Hochstrommodus beträgt der maximal messbare Strom 
+20A und der maximal messbare Dauerstrom liegt bei 10A. Es 
+befindet sich eine 15A 30V Selbstheilungssicherung im 
+Inneren, die das Gerät vor Beschädigungen durch übermäßi -
+gen Strom bei der Fahrzeugdiagnose schützt. Allerdings kann 
+die Strommessung in einem 220V / 380V Starkstromkreis 
+keine Schäden durch übermäßigen Strom verhindern und darf 
+den messbaren Strombereich während des Einsatzes nicht 
+überschreiten.
+Widerstands-
+messung
+
+===== PAGE 58 =====
+56
+Geben Sie das Funktionselement ein, das wie unten gezeigt 
+angezeigt wird:
+●
+Resistance
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+Diode：        .     V
+0.00Ω
+Diode/Short
+<HOLD>Hold
+<Fn>Function Mode
+<F1>Zero
+Resistance：        .     Ω
+0.00V
+● Das Messgerät zeigt die Widerstands- und Diodenmessung als 
+Zwei-in-Eins-Funktion an. Drücken Sie die [Fn] -Taste, um den 
+Anzeigemodus zu wechseln. Beim Messen des Widerstands 
+kann der Widerstand als Hauptanzeige eingestellt werden; 
+beim Messen der Diode kann die Diode als Hauptanzeige 
+eingestellt werden; wie in der folgenden Abbildung gezeigt:
+● Der angezeigte Widerstandswert ist der Widerstandswert bei 
+der Widerstandsmessung, und der angezeigte Spannung -
+swert ist der Spannungsabfallwert bei der Diodenmessung. 
+Schließen Sie die rote und schwarze Sonde an und drücken 
+Sie die [F1] -Taste zur Nullstellung. Wenn der Widerstand 
+extrem niedrig ist, gibt das Gerät ein akustisches Signal aus.
+Stecken Sie das spezielle Kabel für den Automobilschaltungst-
+est in die multifunktionale Schnittstelle (oben auf dem Gerät), 
+verbinden Sie die Batterieklemme, klemmen Sie die rote 
+Klemme an die Pluspolplatte der Autobatterie und die 
+schwarze Klemme an die Minuspolplatte der Autobatterie. 
+Verwenden Sie die Sonde, um den Automobilschaltkreis zu 
+überprüfen. Während des Überprüfungsprozesses sendet die 
+Sonde ein Tests signal, um den Stromverlust des Schaltkreis -
+es zu erkennen.
+●Automo-
+bilschaltung-
+stest
+
+===== PAGE 59 =====
+Voltage(DC)
+<HOLD>Hold
+Supply voltage:  12.50V
+<UP>SHORT TO B+
+<F1>Zero
+<DOWN>SHORT TO B-
+0.00V
+Rot
+Red
+Schwarz
+C04 - 1C04 - 2
+C04
+C02
+57
+Rufen Sie den Funktionspunkt auf, der wie unten gezeigt 
+angezeigt wird:
+●
+●
+●
+●
+●
+Die Batterie anschließen, um die Stromversorgung zu gewäh- 
+rleisten; das Instrument erhält die externe Stromversorgung.
+Das Instrument zeigt den aktuellen Spannungswert der Sonde 
+und den Spannungswert der Stromzange an.
+Stecken Sie die Sonde in den COM-Anschluss des Instruments; 
+wenn die Spannung null anzeigt, ist alles in Ordnung; wenn nicht 
+null, drücken Sie die [F1]-Taste, um auf null zu setzen.
+Überprüfen Sie den Stromkreis am Fahrzeug mit einer Sonde 
+und zeigen Sie die aktuelle Erkennungsspannung an. Wenn 
+die Spannung ein ständig wechselndes Signal ist, drücken Sie 
+die [Fn]-Taste, um in den Oszilloskopmodus zu wechseln und 
+zu beobachten; wenn die ermittelte Spannung unter 0,7 V liegt, 
+erkennt das Instrument automatisch einen Kurzschluss; wenn 
+Testsignal
+
+===== PAGE 60 =====
+12.40V
+Voltage(DC)
+<HOLD>Hold
+Supply voltage:  12.50V
+<UP>SHORT TO B+
+<F1>Zero
+<DOWN>SHORT TO B-
+0.00V
+Voltage(DC)
+<HOLD>Hold
+Supply voltage:  12.50V
+<UP>SHORT TO B+
+<F1>Zero
+<DOWN>SHORT TO B-
+58
+Wenn die ermittelte Spannung sehr hoch und nahe an der 
+Stromversorgungsspannung liegt, zeigt das Instrument eine 
+Zahl auf rotem Hintergrund mit einem akustischen Signal an, 
+was darauf hinweist, dass die Spannung im Stromkreis hoch 
+ist und es sich möglicherweise um eine Stromversorgungslinie 
+handelt. Wenn es sich um eine isolierte Leitung handelt, 
+bedeutet dies, dass die Leitung zur Stromversorgung hin leckt, 
+wie in der folgenden Abbildung dargestellt:
+Funktion der Stromversorgung prüfen: Drücken Sie die 
+[hoch]-Funktionstaste, und die Sonde gibt die 
+Versorgungsspannung aus.
+Funktion der Erdung prüfen: Drücken Sie die [runter] -Funk-
+tionstaste, und die Sonde wird kurzgeschlossen mit dem 
+Minuspol der Stromversorgung.
+Testfunktion von Automobil-Elektronikgeräten: Das Instrument 
+gibt einen Versorgungsspannungswert über die Sonde aus, 
+um die Automobil-Elektronikgeräte in Betrieb zu setzen. Es 
+wird beurteilt, ob die Geräte beschädigt sind, indem man 
+beobachtet, ob sie funktionieren, oder indem man das 
+●
+●
+●
+●
+eine Anzeige mit blauem Hintergrund und ein akustisches 
+Signal angezeigt werden, bedeutet dies, dass der Widerstand 
+des Stromkreises gegen Masse niedriger als 10 KΩ ist. Wenn 
+der Stromkreis isoliert gegen Masse ist, bedeutet dies, dass 
+der Stromkreis einen Kurzschluss aufweist, wie in der folgen -
+den Abbildung dargestellt:
+
+===== PAGE 61 =====
+RotSchwarz
+C01 - 1
+C01
+C02
+59
+Geben Sie das Funktionselement ein, wie unten angezeigt:●
+Stecken Sie die Multifunktions-Detektionsleitung in die Multi -
+funktionsschnittstelle (oben am Gerät) ein, verbinden Sie die 
+Batterieklemmenleitung, klemmen Sie die rote Klemme an die 
+Pluspol der Autobatterie und die schwarze Klemme an den 
+Minuspol der Autobatterie, und schalten Sie den Motor des 
+Fahrzeugs aus.
+●
+Automobil-Elektronikgerät durch Kurzschluss der speziellen 
+Sonde an den Minuspol betreibt und dann beurteilt, ob das 
+Gerät beschädigt ist, indem man beobachtet, ob es funktion -
+iert. Zum Beispiel, überprüfen Sie, ob der Blinker intakt ist und 
+verwenden Sie die Sonde, um den aktuellen Spannungswert 
+der beiden Leitungen der Lampe zu messen. Wenn beide 
+Leitungen eine Spannung nahe null haben, verbinden Sie die 
+Sonde mit einer Leitung, drücken Sie die Hoch-Taste des 
+Instruments und beobachten Sie, ob die Lampe leuchtet. 
+Wenn die Lampe nicht leuchtet, ersetzen Sie sie durch eine 
+andere Leitung. Wenn die Lampe normal ist, wird eine Leitung 
+die Lampe bei Stromversorgung einschalten. Wenn beide 
+Leitungen die Lampe bei Stromversorgung nicht einschalten 
+können, ist die Lampe beschädigt.
+Startprüfung 
+des Fahrzeugs
+
+===== PAGE 62 =====
+CRANKING TEST
+CURRENT： 12.27V
+START
+MINIMUM VOL TAGE：
+MIN VALUE > 9.6V
+12.27V
+PLEASE START THE ENGINE AND
+WAIT 15 SECONDS.
+CRANKING TEST
+CURRENT： 13.87V
+START
+MINIMUM VOL TAGE：
+MIN VALUE > 9.6V
+10.20V
+NORMAL
+60
+Starten Sie jetzt den Motor und warten Sie 15 Sekunden, wie 
+unten angezeigt:
+●
+Das Instrument kann den Injektor direkt zur Prüfung ansteuern 
+und auch das Echtzeit-Injektorsignal des Fahrzeugs erfassen.
+Stecken Sie die Multifunktions-Detektionsleitung in die Multi -
+funktionsschnittstelle (oben am Gerät) ein, verbinden Sie die 
+Batterieklemmenleitung, klemmen Sie die rote Klemme an die 
+Plusplatte und die schwarze Klemme an die Minusplatte, und 
+schließen Sie den entfernten Injektor an die Multifunktionslei -
+tung an, wie in der folgenden Abbildung dargestellt:
+●
+●
+Während des Fahrzeugstartvorgangs wird die Mindestbatter -
+iespannung ermittelt. Liegt diese über 9,6 V, ist der Zustand 
+normal. Wenn die niedrigste Spannung unter 9,6 V liegt, weist 
+dies auf eine niedrige Spannung hin. Mögliche Ursachen für 
+eine niedrige Spannung sind Batterieversagen, hoher mecha -
+nischer Strom usw. Es ist erforderlich, die entsprechenden 
+Komponenten weiter zu überprüfen, wobei die Batterieversage 
+die wichtigste Ursache darstellt.
+●
+Injektorprü-
+fung
+
+===== PAGE 63 =====
+INJECTOR TEST
+SIMULATE ENGINE SPEED
+1000 RPM
+PRESS <OK> TO OUTPUT
+<Fn> to signal check
+C01 - 2
+RotSchwarz
+C01 - 1
+C01
+C02
+61
+Geben Sie das Funktionselement ein, wie unten angezeigt:●
+Beim ersten Betreten der Funktionalität gibt es kein Steuer -
+ungssignal, daher drücken Sie [OK], um das Injektorsteuer -
+ungssignal auszugeben. Es kann den elektromagnetischen 
+Injektor testen, einschließlich GDI-Injektoren. Wenn der 
+120V-Injektor nicht angesteuert werden kann, ist möglicher -
+weise ein leichtes Geräusch zu hören.
+Drücken Sie [OK] , um das Arbeiten des Injektors zu stoppen 
+oder zu starten.
+Die Simulationsgeschwindigkeit kann mit den Tasten [hoch / 
+runter / links / rechts] angepasst werden. Bei allen 
+Geschwindigkeiten ist das analoge Steuersignal ein 3 ms 
+Niedrigspannungspuls.
+Das Injektorsteuersignal hat eine Pulsbreite von 3 ms.
+●
+●
+●
+●
+
+===== PAGE 64 =====
+62
+●
+●
+Stecken Sie die Multifunktions-Detektionsleitung in die Multi -
+funktionsschnittstelle (oben am Gerät) ein, verbinden Sie die 
+Batterieklemmenleitung, klemmen Sie die rote Klemme an die 
+Plusplatte der Batterie und die schwarze Klemme an die 
+Minusplatte der Batterie. Die rote Klemme der C01-2-Übertra -
+gungsleitung wird an der Unterseite einer Spule des Relais 
+befestigt, die schwarze Klemme wird an der Unterseite der 
+anderen Spule des Relais befestigt. Stecken Sie die rote 
+Sonde in den Ω-Anschluss und die schwarze Sonde in den 
+COM-Anschluss.
+●Automobilre-
+laisprüfung
+Drücken Sie die [Fn] -Taste, um in den Oszilloskop-Anzeige -
+modus zu wechseln. Stecken Sie die rote Sonde in den V-An -
+schluss und verbinden Sie den Einspritzdüsen-Pin mit der 
+roten Sonde, um das Arbeitswellenform der Einspritzdüse zu 
+beobachten. Zu diesem Zeitpunkt laufen sowohl die Kraftstof -
+feinspritzung als auch die Oszilloskop-Funktion gleichzeitig.
+Ohne den Kraftstoffinjektor anzuschließen, drücken Sie die 
+[Fn]-Taste, um in den Oszilloskop-Anzeigemodus zu 
+wechseln, um auch die Betriebswellenform des Kraftstoffinjek -
+tors während des Fahrzeugbetriebs zu überprüfen. Es ist 
+notwendig, die rote Sonde in den V-Anschluss und die 
+schwarze Sonde in den COM-Anschluss einzustecken. Die 
+schwarze Sonde sollte die Karosseriemasse oder die 
+Batterie-Negative berühren, und die rote Sonde sollte den 
+Anschlussdraht des Kraftstoffinjektors berühren.
+
+===== PAGE 65 =====
+RELAY TEST
+OUTPUT STATUS
+OFF
+.       Ω Contact Resistance:
+PRESS <OK> TO OUTPUT
+C01 - 2
+C01 - 1
+RotSchwarz
+Rot
+Schwarz
+C01
+C02
+63
+Geben Sie das Funktionselement ein, wie unten angezeigt:●
+Drücken Sie [OK] , um das Relaissteuerungssignal auszuge -
+ben, das der Batteriespannung entspricht. Wir können das 
+Ein-/Ausschaltgeräusch des Relais hören. Beim Kontaktieren 
+der Kontaktstifte des Automobilrelais mit der roten und schwarzen 
+Sonde können wir den Widerstand für Ein/Aus des Kontakts 
+beobachten und die Bedingungen des Relais überprüfen.
+Fahrzeuge mit einer 12V-Batterie können 12V-Auto-Relais 
+testen, und eine 24V-Batterie kann 24V-Auto-Relais testen. 
+Bitte verwenden Sie es nicht zum Testen von Relais mit 
+anderen Betriebsspannungen. Insbesondere sollten Sie keine 
+12V-Batterie verwenden, um Relais unter 6V zu testen, oder 
+eine 24V-Batterie, um 12V-Schalter zu testen; Normalerweise 
+verwendet ein Fahrzeug mit einer 12V-Batterie ein 12V-Relais, 
+und ein Fahrzeug mit einer 24V-Batterie verwendet ein 
+24V-Relais.
+●
+●
+
+===== PAGE 66 =====
+64
+Das Instrument gibt grundlegende Rechteck- und Sinuswellen-
+signale aus. Wenn andere Signal-Simulationen erforderlich 
+sind, kontaktieren Sie den Hersteller, um maßgeschneiderte 
+Nicht-Standardprodukte anzufordern.
+Das unabhängige Ausgangssignal des Instruments ist eine 
+Rechteckwelle nahe 5V und eine Sinuswelle nahe 5Vpp. Wenn 
+eine 12V-Rechteckwelle erzeugt werden muss, ist es erforder-
+lich, die Batterie für die Stromversorgung anzuschließen.
+Stecken Sie die Multifunktions-Detektionsleitung in die Multi -
+funktionsschnittstelle (oben am Gerät) ein. Wenn das 
+12V-Rechteckwellensignal erforderlich ist, verbinden Sie die 
+Batterieklemmenleitung und schließen Sie sie an die Batterie 
+an.
+●
+●
+●
+Analogsignal-
+prüfung
+RotSchwarz
+C01 - K
+C01 - SIN
+C01 - S2
+C01 - S1
+C01 - 1
+C01
+C02
+Ausgangssignal:  
+„Rechteckwelle“ wird als Signalleitung identifiziert, um das 
+12V-Rechteckwellensignal auszugeben.
+„K-Leitung“ wird als Signalleitung identifiziert, um das 
+5V-Rechteckwellensignal auszugeben.
+●
+●
+●
+
+===== PAGE 67 =====
+65
+Geben Sie das Funktionselement ein, wie unten angezeigt:●
+„Sinuswelle“ wird als Signalleitung identifiziert, um das 
+Sinuswellensignal auszugeben.
+„5V-Signal“ wird als Signalleitung identifiziert, um ein 
+0V~4,5V Spitzentäler-Sinuswellensignal auszugeben.
+„Erdungslinie“ wird als Erdungslinie identifiziert, die mit dem 
+Anwendungssystem verbunden wird.
+●
+Ausgangssignal-Frequenz
+1 Hz~10 kHz    Duty Cycle: 10%~90%
+●
+●
+●
+Beim ersten Betreten der Funktionalitätsschnittstelle erfolgt 
+keine analoge Signal-Ausgabe. Drücken Sie [OK], um das 
+Signal auszugeben.
+Drücken Sie die Tasten [oben / unten / links / rechts], um die 
+analoge Frequenz anzupassen, und drücken Sie [F1 / F2], um 
+den Duty Cycle des Rechtecksignals anzupassen.
+Drücken Sie [OK] , um das Signal auszugeben oder die 
+Ausgabe zu stoppen.
+Drücken Sie die [Fn] -Taste, um in den synchronen Oszillo -
+skop-Modus zur Beobachtung zu wechseln, stecken Sie die 
+rote Sonde in den V-Anschluss. Berühren Sie die Signalaus -
+gangsleitung, um die analoge Signalwellenform zu beobacht -
+en.
+Wenn das analoge Signal über 6000 Hz liegt, ist der Oszillo -
+skop-Modus nicht verfügbar.
+●
+●
+●
+●
+●
+Stecken Sie das Zündimpuls-Signalerkennungskabel in die 
+Multifunktionsschnittstelle (oben am Gerät) ein.
+Halten Sie den Sensorkopf (oberer gelber Bereich) nahe an die 
+Zündung des Motorzylinders.
+●
+●
+Zündimpuls- 
+Signalmessung
+SINE/SQUARE WAVE OUTPUT
+1000 Hzfrequency：
+50 %duty cycle：
+<Fn> to signal check (f<6000)
+PRESS <OK> TO OUTPUT
+<F1><F2> set duty cycle
+
+===== PAGE 68 =====
+66
+C03
+5V/di v 100uS
+0V
+SENSOR:        Min:  0.00V       Max:  0.00V
+0 RPM   4STROKE
+Drücken Sie die [nach oben / nach unten] -Tasten, um die 
+Amplitude des Wellenformsignals anzupassen.
+Drücken Sie die [nach links / nach rechts] -Tasten, um den 
+Zeitwert anzupassen.
+Drücken Sie [F1] , um den Motorkolben- und Zündtyp auszu -
+wählen, der zur Berechnung der Motordrehzahl verwendet 
+wird. Die Option „Verteiler“ repräsentiert das Hochspannungs-
+signal am Verteiler des alten Motors, die Option „2-Takt“ 
+repräsentiert das Zylinderzündimpuls-Signal des Zweitaktmo -
+tors, und die Option „4-Takt“ repräsentiert das Zündim -
+puls-Signal des Viertaktmotors;
+Der angezeigte Drehzahlwert ist der aus dem Zündimpuls-Sig-
+nal des Einzelzylinders berechnete Motordrehzahlwert. 
+Während des Tests sollte der Sensorkopf nahe an einem 
+Zünddraht oder einer Zündspule eines Zylinders positioniert 
+werden und nicht nahe an zwei oder mehr Zündimpuls-Sig -
+●
+●
+●
+●
+Geben Sie das Funktionselement ein, das wie unten angezeigt 
+wird:
+●
+
+===== PAGE 69 =====
+67
+nalkabeln. Wenn mehrere Zündkabel zusammen angeordnet 
+sind, kann für die Messung die Position in der Nähe der Zünd -
+kerze gewählt werden.
+Stecken Sie die Multifunktions-Detektionsleitung in die Multi -
+funktionsschnittstelle (oben am Gerät) ein. Die „K-Lei -
+tung“-Identifikationsleitung verbindet das Verlängerungskabel 
+und die Sonde; die „Erdungskabel“-Identifikationsleitung 
+verbindet das Verlängerungskabel und die Sonde; die 
+Erdungssonde wird mit dem Erdungskabelende des Fahrzeug-
+stromkreises (zum Beispiel dem 5. Pin des Standard-OBD-II) 
+verbunden, und die K-Leitung-Sonde wird mit dem K-Lei -
+tungs-Bus im Fahrzeugstromkreis verbunden. Beachten Sie 
+die Unterscheidung der K-Leitungen im Fahrzeugstromkreis. 
+Zum Beispiel ist der 7. Pin des Standard-OBD-II die K-Leitung, 
+und es gibt mehrere K-Leitungen im Auto zur Verbindung 
+verschiedener Niedriggeschwindigkeits-Elektronik im Fahrze -
+ug.
+●K-Leitungs-
+daten
+C01 - K
+C01 - 
+GND
+C01
+Das Instrument bietet die Prüfkapazität für 5V-Signalleitungen 
+und 12V-Signalleitungen. Beim Anschluss an die 5V-Signallei -
+tung beträgt das Signal auf der K-Leitung 5V, und beim 
+Anschluss an die 12V-Signalleitung beträgt das Signal auf der 
+K-Leitung 12V.
+●
+
+===== PAGE 70 =====
+68
+K Line Date:        BPS 10400
+<F1>Clear       <Fn><LEFT><RIGHT>set BPS
+82 19 F0 A8 01 34 BF FO 19 E8
+01 00 04 FF FF FF FF 01 04 FF
+00 00 00 02 02 FF FF 0C 02 FF
+FF 0D 01 FF 1C 01 FF 1F 02 FF
+FF 20 04 FF FF FF FF 21 02 FF
+FF 30 01 FF 31 02 FF FF 40 04
+Das In strument kann die K-Leitung Baudrate 1200 / 2400 / 
+4800 / 9600 / 10400 / 19200 / 38400 / 57600 / 115200 testen. 
+Falls die vom Benutzer benötigte Baudrate nicht vorhanden ist, 
+kontaktieren Sie bitte den Hersteller, um maßgeschneiderte 
+Nicht-Standardprodukte anzufordern.
+Geben Sie das Funktionselement ein, wie unten angezeigt:
+●
+●
+Drücken Sie [F1], um die aktuellen Anzeigedaten zu löschen.
+Drücken Sie [HOLD], um den aktuellen Anzeigestand zu 
+halten. Im Haltezustand drücken Sie die Tasten [oben / unten], 
+um vor- und zurückzublättern und die empfangenen Daten 
+anzuzeigen.
+Drücken Sie die Tasten [links / rechts] im Empfangszustand, 
+um die Baudrate der Kommunikation zu ändern.
+●
+●
+●
+Stecken Sie die Multifunktions-Detektionsleitung in die Multi -
+funktionsschnittstelle (oben am Gerät) ein. Die „CAN+“-Identi-
+fikationsleitung verbindet das Verlängerungskabel und die 
+Sonde; die „CAN-“-Identifikationsleitung verbindet das 
+Verlängerungskabel und die Sonde; die „Erdungskabel“-Iden-
+tifikationsleitung verbindet das Verlängerungskabel und die 
+Sonde; die Erdungssonde wird mit dem Erdungskabelende 
+des Fahrzeugstromkreises (zum Beispiel dem 5. Pin des 
+Standard-OBD-II) verbunden; die CAN+-Leitungssonde wird 
+mit dem Bus CANH im Fahrzeugstromkreis verbunden; die 
+CAN-- Leitungssonde wird mit dem Bus CANL im Fahrzeug -
+stromkreis verbunden. Beachten Sie die Unterscheidung der 
+CAN-Leitungen im Fahrzeugstromkreis. Zum Beispiel ist der 
+6. Pin des Standard-OBD-II die CANH-Leitung und der 14. Pin 
+die CANL-Leitung. Im Auto gibt es auch mehrere CAN-Busse 
+zur Verbindung der verschiedenen elektronischen Steuergeräte 
+im Fahrzeug.
+●CAN-Bus-
+Daten
+
+===== PAGE 71 =====
+69
+C01 - CAN+
+C01 - CAN-
+C01 - GND
+C01
+Das Instrument kann die CAN-Bus-Baudrate 500K / 250K / 
+125K / 100K / 83,33K / 50K / 33,33K testen. Falls die vom 
+Benutzer benötigte Baudrate nicht vorhanden ist, kontaktieren 
+Sie bitte den Hersteller, um maßgeschneiderte Nicht-Stan -
+dardprodukte anzufordern.
+Geben Sie das Funktionselement ein, wie unten angezeigt:
+●
+●
+●
+●
+● Drücken Sie [F1], um die aktuellen Anzeigedaten zu löschen.
+Drücken Sie [HOLD], um den aktuellen Anzeigestand zu 
+halten. Im Haltezustand drücken Sie die Tasten [oben / unten], 
+um vor- und zurückzublättern und die empfangenen Daten 
+anzuzeigen.
+Drücken Sie die Tasten [links / rechts] im Empfangszustand, 
+um die Baudrate der Kommunikation zu ändern.
+CANBUS Date:    BPS 500000
+ID1: 7ﬀ    MASK: 7ﬀ
+ID2: 7ﬀ    MASK: 7ﬀ
+<F1>Clear       <Fn><LEFT><RIGHT>set BPS
+01 00 04 FF FF FF FF 01 04 FF
+00 00 00 02 02 FF FF 0C 02 FF
+FF 0D 01 FF 1C 01 FF 1F 02 FF
+FF 20 04 FF FF FF FF 21 02 FF
+FF 30 01 FF 31 02 FF FF 40 04
+
+===== PAGE 72 =====
+70
+RotSchwarz
+Stecken Sie die rote Sonde in die „V“-Buchse und die 
+schwarze Sonde in die „COM“-Buchse.
+Die rote Sonde wird an das Signal, das getestet werden soll, 
+angeschlossen, und die schwarze Sonde wird an die Erdung -
+slinie der zu testenden Signalquelle angeschlossen.
+●
+●
+Frequenz-
+messung
+Die gemessene Signalspannungsamplitude beträgt den maxi -
+malen Spannungswert von 1000V. 
+Die gemessene Signalfrequenz liegt zwischen 1Hz und 1MHz. 
+Geben Sie das Funktionselement ein, das wie unten angezeigt 
+wird:
+●
+●
+●
+FREQUENCY METER
+<Fn> to signal check
+50 Hz
+● Es wird die aktuell erfasste Frequenz angezeigt. Aufgrund des 
+hohen Eingangsimpedanz des Instruments wird ein induz -
+iertes Störsignal angezeigt, wenn es nicht an das zu 
+messende Signal angeschlossen ist. Es sollte während der 
+Messung mit der effektiven Signalquelle verbunden werden, 
+und die Signalquelle sollte eine Spannung Vpp von mehr als 
+1V haben.
+
+===== PAGE 73 =====
+Andere Probleme
+Das Gerät kann die Anwendungssoftware mit einer MicroSD- 
+Karte aktualisieren. Kopieren Sie die aktualisierte Datei auf die 
+SD-Karte, setzen Sie die SD-Karte in das Gerät ein und starten 
+Sie das Gerät neu. Wenn das Gerät eine verfügbare Upgrade- 
+Datei erkennt, wird diese auf dem Bildschirm angezeigt und Sie 
+können direkt [OK] drücken. Falls nur die Datendatei aktualis -
+iert werden muss, wird die entsprechende Datei nach dem 
+Einschalten automatisch eingelesen.
+Die Update-Datei wird vom Hersteller des Geräts veröffentlicht 
+und ist für den Benutzer über den Vertriebspartner zugänglich.
+●
+●
+Software-
+Upgrade
+Das Gerät verfügt über eine eindeutige Identifikationsnummer, 
+die vom Benutzer nicht geändert werden kann. Der Hersteller 
+bestätigt die Legalität des Geräts anhand der eindeutigen 
+Identifikationsnummer und kann den After-Sales-Service 
+basierend auf der Geräteidentifikationsnummer bereitstellen.
+●Ausrüstungs-
+identifikation-
+snummer
+71
+
+===== PAGE 74 =====
+72
+  
+ 
+ 
+ 
+ 
+Achten Sie darauf, das Produkt nicht mit rauen Oberflächen 
+zu reiben oder zu reiben, insbesondere die Blechschale .
+Überprüfen Sie häufig die Teile des Produkts, die befestigt 
+und verbunden werden müssen, und befestigen Sie sie recht -
+zeitig im Falle von Lockerheit, um den sicheren Betrieb des 
+Produkts zu gewährleisten. Die äußeren und inneren Teile 
+des Produkts, die mit verschiedenen chemischen Medien in 
+Kontakt kommen, müssen einer Korrosionsschutzbehandlung 
+wie Entrosten und Lackieren unterzogen werden, um die 
+Korrosionsbeständigkeit des Produkts zu verbessern und die 
+Lebensdauer des Produkts zu verlängern.
+Beachten Sie die Sicherheitsbetriebsverfahren, überlasten 
+Sie das Produkt nicht, die Sicherheitsschutzeinrichtungen 
+des Produkts sind vollständig und zuverlässig, und die 
+unsicheren Faktoren werden rechtzeitig beseitigt. Der Kreis -
+lauf ist gründlich zu inspizieren und die alternden Drähte 
+rechtzeitig zu ersetzen.
+Reinigen und ersetzen Sie die Ölpumpe, den Ölfilter und 
+andere Verbrauchsmaterialien regelmäßig; Vermeiden Sie 
+beim Einstellen des Passspiels verschiedener Teile und beim 
+Austausch verschlissener (beschädigter) Teile den Kontakt 
+des Produkts mit korrosiven Flüssigkeitsobjekten.
+Lagern Sie das Produkt bei Nichtgebrauch an einem trock -
+enen Ort. Lagern Sie das Produkt nicht an einem heißen, 
+feuchten oder unbelüfteten Ort.
+  
+●   
+●   
+●  
+   
+●   
+●   
+Wartungsservice
+Wartungs
+Die autool Produkte, die Sie besitzen, bestehen aus langlebigen 
+Materialien und halten sich an den Produktionsprozess der 
+Exzellenz. Jedes Produkt hat 35-Prozesse und 12-Qualitätskon -
+trollen durchlaufen, bevor es die Fabrik verlässt, um sicherzustel-
+len, dass jedes Produkt ausgezeichnete Qualität und Leistung 
+hat. Daher lohnt es sich Ihre regelmäßige Wartung, damit Ihr 
+Autool-Produkt lange stabil arbeitet.
+Wartung um die Produktleistung und das Aussehen aufrechtzu -
+erhalten, empfehlen wir Ihnen, die folgenden Produktwartungs -
+richtlinien sorgfältig zu lesen:
+
+===== PAGE 75 =====
+73
+Garantie
+  
+ 
+Reparieren oder ersetzen Sie das Produkt kostenlos entspre -
+chend den spezifischen Fehlerbedingungen .
+Wir garantieren, dass alle ersetzten Teile, Zubehör oder 
+Produkte brandneu sind. 
+Wenn das Produkt innerhalb von 90 Tagen ausfällt, nachdem 
+der Kunde das Produkt erhalten hat, stellen wir Video und 
+Bilder zur Verfügung. Wenn das Produkt länger als 90-Tage 
+erhalten wird, trägt der Kunde die entsprechenden Kosten, 
+und wir stellen dem Kunden Ersatzteile zum kostenlosen 
+Austausch zur Verfügung.
+Kauf von AUTOOL-Produkten über informelle Kanäle.
+Schäden, die durch Verwendung und Wartung verursacht 
+werden, die nicht den Anforderungen des Produkthandbuchs 
+entsprechen.
+Die AUTOOL-Maschine hat Anspruch auf eine 3-jährige Garan -
+tie ab dem Tag des Eingangs beim Kunden. Das darin enthaltene 
+Zubehör hat eine einjährige Gewährleistungsfrist ab dem Tag 
+des Eingangs beim Kunden.
+Bei AUTOOL sind wir stolz auf unser exquisites Design und 
+exzellenten Service. Gerne stellen wir Ihnen weitere Unterstützu-
+ng oder Dienstleistungen zur Verfügung.
+Alle in dieser Bedienungsanleitung enthaltenen Informationen, 
+Abbildungen und technischen Daten beruhen auf den zum 
+Zeitpunkt der Veröffentlichung verfügbaren neuesten Informa -
+tionen. Der Hersteller behält sich das Recht vor, diese Bedienung-
+sanleitung und das Gerät selbst ohne vorherige Ankündigung zu 
+ändern.
+   
+●   
+●   
+●   
+●  
+●   
+Garantie-
+methode
+Die folgenden Bedingungen sind nicht von der kosten -
+losen Garantie abgedeckt
+Haftung-
+sauss-
+chluss
+
+===== PAGE 76 =====
+74
+Wenn Sie mit den von der autorisierten Online-Shopping-Plat-
+tform und den autorisierten Offline-Händlern gekauften 
+AUTOOL-Produkten nicht zufrieden sind, können Sie die 
+Produkte innerhalb von sieben Tagen nach Erhalt gemäß den 
+globalen AUTOOL - Verkaufsbedingungen zurücksenden. 
+Oder tauschen Sie andere gleichwertige Produkte innerhalb 
+von 30 Tagen ab dem Datum der Produktlieferung um.
+Die zurückgegebenen und umgetauschten Produkte müssen 
+sich in einem vollständig marktfähigen Zustand befinden und 
+den entsprechenden Verkaufsaufträgen, allen relevanten 
+Zubehörteilen und Papierrechnungen (falls vorhanden) beige-
+fügt werden.
+AUTOOL prüft die zurückgegebenen Waren, um sicherzustel-
+len, dass sie in gutem Zustand sind und die Bedingungen 
+erfüllen. Einzelheiten zu den Bedingungen entnehmen Sie 
+bitte den globalen Verkaufsbedingungen von AUTOOL. Alle 
+Artikel, die die Inspektion nicht bestehen, werden an Sie 
+zurückgeschickt und Sie erhalten keine Rückerstattung .
+Sie können Produkte über das Kundendienstzentrum oder 
+autorisierte AUTOOL-Händler austauschen. Das Prinzip der 
+Rückgabe und des Umtauschs besteht darin, Waren 
+zurückzugeben und auszutauschen, wo sie gekauft wurden. 
+Sollten Sie Schwierigkeiten oder Hindernisse bei der Rück -
+sendung oder dem Umtausch von Waren haben, wenden Sie 
+sich bitte an das AUTOOL- Kundendienstzentrum. Bei Rück -
+sendung oder Umtausch von Waren über das Kundendienstz-
+entrum empfehlen wir Ihnen, dies auf folgende Weise zu tun .
+●   
+ 
+●    
+●   
+●   
+Rückgabe- und Umtauschservice
+Rückkehr
+Aufruf für 
+Chinagebiet
+E-mail
+Facebook
+YouTube
+400-032-0988 
++86 0755 23304822
+aftersale@autooltech.com
+https://www.facebook.com/autool.vip
+https://www.youtube.com/c/autooltech
+Aufruf für Über-
+seegebiete
+
+===== PAGE 77 =====
+75
+EU-KONFORMITÄTSERKLÄRUNG
+Wir als Hersteller erklären, dass das bezeichnete Produkt:
+Auto-Diagnose-Multimeter (DM303)
+Entspricht den Anforderungen der:
+EMV-Richtlinie 2014/30/EU
+RoHS-Richtlinie 2011/65/EU + 2015/863 + 2017/2102
+Angewandte Normen:
+EN IEC 55014-1:2021, EN IEC 61000-3-2:2019+A1:2021, EN 
+61000-3-3:2013+A2:2021, EN IEC 55014-2:2021
+IEC 62321-3-1:2013, IEC 62321-7-1:2015, IEC 62321-4: 2013+A1:2017, IEC 
+62321-7-2:2017, IEC 62321-5: 2013, IEC 62321-6:2015, IEC 62321-8:2017
+Zertifikatsnummer: HS202408077210E, HS202408077213E
+Prüfbericht-Nr.: HS202408077210-1ER, HS202408077213-1ER
+Hersteller
+Shenzhen AUTOOL Technology Co., Ltd.
+Stock, Werkstatt 2, Hezhou Anle Industrial Park, Gemeinde
+Hezhou, Hangcheng Straße, Bao'an Bezirk, Shenzhen, China
+E-Mail: aftersale@autooltech.com
+COMPANY NAME: XDH Tech
+ADRESS: 2 Rue Coysevox Bureau 3, Lyon, France
+E-MaiL: xdh.tech@outlook.com
+CONTACT PERSON: Dinghao Xue

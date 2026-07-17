@@ -1,0 +1,4 @@
+==== v4.0.1b dm303_firmware/DM303-V4.0.1-beta/DM303V4.0.1-beta.bin ====
+SHA256 source is checked by validation reports.
+
+-- relay/range and mode-switch helper: 0x0801f080-0x0801f340

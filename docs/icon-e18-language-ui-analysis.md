@@ -31,18 +31,22 @@ table and function dispatch target are confirmed.
 - The old Spanish language-name string `España` is changed in place to
   `Melayu ` at firmware offset `0x25bf8`; the byte length is preserved.
 - `system/TEXT_SP.DAT` is replaced with Malay text.
-- `system/icon-SP.dat` is replaced with Malay graphical labels.
-- Main navmenu icon BMP files are restored byte-for-byte from the official
-  V4.0 backup to remove the bad dark-theme experiment.
+- `system/icon-SP.dat` is replaced with Malay graphical labels and tinted with
+  the safe dark RGB565 palette.
+- Main navmenu icon BMP files are generated from the official V4.0 backup with
+  direct RGB565 pixel writes. BMP headers, masks, dimensions, compression mode,
+  and file sizes are preserved.
+- The current dark-theme pass preserves vendor gradient/anti-alias levels as
+  deep-blue variants instead of flattening them to one color.
 - Malay graphical labels use short uppercase text to match the vendor icon
   style, for example `VOLTAN`, `ARUS`, `DATA CAN`, and `DATA K/LIN`.
 
 ## Final package hashes
 
 ```text
-f09f9f43a156b62e90c708c858986ae57f6baa2102a307f5830999b0557249da  DM303V4.0.1-beta.bin
-7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  system/TEXT_MS.DAT
-7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd  system/TEXT_SP.DAT
-cd47c7e59f38488d6ffd10617a5d90ab5c79791535a3f75d70fbaaae42c7c4b3  system/icon-SP.dat
-ddf12753b3238ac02a064a1596a6030e27a328fc5d710d538d0ea5989fee8ced  system/LOGO-1.bmp
+57204ff3219fe2bbb06df116ce6ffd87593605c66b1e0fd40b803f61d08dcab9  DM303V4.0.1-beta.bin
+d4a93b1ae0ef215fad8277e768beaa6169bd8b34b2f0f208823791fcec4150ae  system/TEXT_MS.DAT
+d4a93b1ae0ef215fad8277e768beaa6169bd8b34b2f0f208823791fcec4150ae  system/TEXT_SP.DAT
+3ff19be55a946a99613c46e5501b586fa8202d43a02a1af0f2d5f22f179c8e8d  system/icon-SP.dat
+a847c346837164d25e882f0f10bb47815b43e9f381b130e2870447b20d6845a3  system/LOGO-1.bmp
 ```

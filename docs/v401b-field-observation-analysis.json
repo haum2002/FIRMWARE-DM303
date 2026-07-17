@@ -1,0 +1,218 @@
+{
+  "rows": 15,
+  "overall_status": "FAIL",
+  "groups": [
+    {
+      "mode": "ammeter_green",
+      "range": "AC",
+      "unit": "A",
+      "status": "FAIL",
+      "issues": [
+        "FAIL blank_events 1 > 0"
+      ],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": null,
+      "blank_events": 1
+    },
+    {
+      "mode": "ammeter_green",
+      "range": "AC_to_DC",
+      "unit": "A",
+      "status": "FAIL",
+      "issues": [
+        "FAIL latency max 3e+04 ms > 2000 ms",
+        "FAIL blank_events 1 > 0"
+      ],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": 30000.0,
+      "max_latency_ms": 30000.0,
+      "max_noise_pp": null,
+      "blank_events": 1
+    },
+    {
+      "mode": "ammeter_green",
+      "range": "DC",
+      "unit": "A",
+      "status": "FAIL",
+      "issues": [
+        "FAIL blank_events 1 > 0"
+      ],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": null,
+      "blank_events": 1
+    },
+    {
+      "mode": "ammeter_green",
+      "range": "DC_to_AC",
+      "unit": "A",
+      "status": "PASS",
+      "issues": [],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": 1000.0,
+      "max_latency_ms": 1000.0,
+      "max_noise_pp": null,
+      "blank_events": 0
+    },
+    {
+      "mode": "cranking",
+      "range": "open",
+      "unit": "V",
+      "status": "REVIEW",
+      "issues": [
+        "REVIEW cranking open-input observed 2.88 V; verify with short-to-negative and known source"
+      ],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": null,
+      "blank_events": null
+    },
+    {
+      "mode": "firmware_exp14",
+      "range": "field_result",
+      "unit": "status",
+      "status": "FAIL",
+      "issues": [
+        "FAIL blank_events 1 > 0"
+      ],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": null,
+      "blank_events": 1
+    },
+    {
+      "mode": "ignition",
+      "range": "0.1V_12.5us",
+      "unit": "V",
+      "status": "PASS",
+      "issues": [],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": 0.11,
+      "blank_events": 0
+    },
+    {
+      "mode": "ohmmeter",
+      "range": "open",
+      "unit": "ohm",
+      "status": "FAIL",
+      "issues": [
+        "FAIL blank_events 1 > 0"
+      ],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": null,
+      "blank_events": 1
+    },
+    {
+      "mode": "oscilloscope",
+      "range": "0.1Vdiv_12.5us",
+      "unit": "V",
+      "status": "PASS",
+      "issues": [],
+      "points": 2,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": 0.1,
+      "blank_events": 0
+    },
+    {
+      "mode": "signal_generator",
+      "range": "wave_output",
+      "unit": "V",
+      "status": "PASS",
+      "issues": [],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": null,
+      "blank_events": 0
+    },
+    {
+      "mode": "voltmeter",
+      "range": "AC",
+      "unit": "V",
+      "status": "PASS",
+      "issues": [],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": null,
+      "blank_events": 0
+    },
+    {
+      "mode": "voltmeter",
+      "range": "AC_zero",
+      "unit": "V",
+      "status": "PASS",
+      "issues": [],
+      "points": 1,
+      "mean_error": 0.003,
+      "max_abs_error": 0.003,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": 0.002,
+      "blank_events": 0
+    },
+    {
+      "mode": "voltmeter",
+      "range": "DC",
+      "unit": "V",
+      "status": "PASS",
+      "issues": [],
+      "points": 1,
+      "mean_error": null,
+      "max_abs_error": null,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": null,
+      "blank_events": 0
+    },
+    {
+      "mode": "voltmeter",
+      "range": "DC_zero",
+      "unit": "V",
+      "status": "PASS",
+      "issues": [],
+      "points": 1,
+      "mean_error": 0.0,
+      "max_abs_error": 0.0,
+      "mean_latency_ms": null,
+      "max_latency_ms": null,
+      "max_noise_pp": null,
+      "blank_events": 0
+    }
+  ],
+  "cranking_diagnosis": [
+    "Cranking open input is high without a matching short/source test: treat as floating/leakage evidence, not as a valid battery reading."
+  ]
+}

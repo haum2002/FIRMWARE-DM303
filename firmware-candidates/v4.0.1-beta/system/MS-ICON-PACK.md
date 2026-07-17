@@ -35,3 +35,7 @@ Status: Malay graphical label pack for the reused SP language slot.
 
 - Template SHA-256: `96f2b294c7fad14a527eb96f1a8f09f7e0f33e2f02f7f43af305c9fa2df57394`
 - Output SHA-256: `cd47c7e59f38488d6ffd10617a5d90ab5c79791535a3f75d70fbaaae42c7c4b3`
+## Safe dark tint
+
+- Applied by `tools/dm303_make_dark_menu_assets.py` after the Malay label pack is generated.
+- Final dark Malay label SHA-256: `4b3e3c593d3e935905d6dc7bb6494973042cd7ff4a6a76245f308de828941ba8`

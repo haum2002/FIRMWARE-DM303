@@ -9,7 +9,9 @@ V4.0.1 beta timing/profile change is worth testing on the device.
 from __future__ import annotations
 
 import argparse
+import contextlib
 import hashlib
+import io
 import re
 import struct
 from dataclasses import dataclass
@@ -21,8 +23,9 @@ LOAD_BASE = 0x08010000
 DEFAULT_IMAGES = {
     "v3.16": Path("backup/DM303 V3.16-read only/DM303V316.bin"),
     "v4.0": Path("backup/DM303 V4.0-read only/DM303V4.004.bin"),
-    "v4.0.1b": Path("dm303_firmware/DM303-V4.0.1-beta/DM303V4.0.1-beta.bin"),
+    "v4.0.1f": Path("dm303_firmware/DM303-V4.0.1-beta/DM303V4.0.1-beta.bin"),
 }
+DEFAULT_REPORT = Path("docs/v316-v401-v401f-comparison-report.md")
 
 KNOWN_POINTS = {
     "v3.16": {
@@ -45,7 +48,7 @@ KNOWN_POINTS = {
             "post_switch": 0x0F192,
         },
     },
-    "v4.0.1b": {
+    "v4.0.1f": {
         "selector": 0x0F0F2,
         "helper": 0x0F0AC,
         "mode_routine": 0x0F19A,
@@ -99,6 +102,12 @@ def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def write_text_lf(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(text)
+
+
 def extract_version_strings(buf: bytes) -> list[tuple[int, str]]:
     results: list[tuple[int, str]] = []
     pattern = re.compile(rb"[ -~]{6,}")
@@ -145,7 +154,7 @@ def load_images(paths: dict[str, Path]) -> list[ImageInfo]:
 
 
 def print_summary(images: list[ImageInfo]) -> None:
-    print("# DM303 V3.16 / V4.0 / V4.0.1b comparison")
+    print("# DM303 V3.16 / V4.0 / V4.0.1f comparison")
     print()
     print("Read-only comparison; no firmware image is modified.")
     print()
@@ -198,8 +207,8 @@ def print_summary(images: list[ImageInfo]) -> None:
     print()
     print("- V3.16 and official V4.0 use the same observed selector waits: `2/3/10` ticks.")
     print("- If V3.16 switches DC/AC smoothly, the improvement is probably not from longer relay waits.")
-    print("- Current V4.0.1b may be a comparison profile (`2/3/10`) or force-enhanced profile (`8/12/100`); use the table above, not memory, to identify it.")
-    print("- Long-delay profiles are diagnostic/stability-first mitigations, not proven analog math or True RMS fixes.")
+    print("- Current V4.0.1f should be `stability-exp18-resource` with original helper behavior, official/V3.16 `2/3/10` timing, complete `DM30XDB1.dat` resources, fail-fast/error-route stream recovery, low byte-IO routed through a bounded `0x0fa0` failure-return wrapper, command 0x40/0x48 retry clamp `0x60`, stream cleanup that clears stale flag bits `0` and `1`, a guarded mode/range entry wrapper that clears the same stale bits before relay/range switching, stale-busy stream early-return bypass, and two current-switch long-gate caps.")
+    print("- Old long-delay or wrapper profiles are diagnostic comparisons, not proven analog math or True RMS fixes.")
     print("- Do not blindly port V3.16 behavior: the user observed weaker battery, ohmmeter, and continuity stability there.")
 
 
@@ -207,7 +216,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--v316", type=Path, default=DEFAULT_IMAGES["v3.16"])
     parser.add_argument("--v40", type=Path, default=DEFAULT_IMAGES["v4.0"])
-    parser.add_argument("--v401", type=Path, default=DEFAULT_IMAGES["v4.0.1b"])
+    parser.add_argument("--v401", type=Path, default=DEFAULT_IMAGES["v4.0.1f"])
+    parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     return parser.parse_args()
 
 
@@ -217,10 +227,19 @@ def main() -> int:
         {
             "v3.16": args.v316,
             "v4.0": args.v40,
-            "v4.0.1b": args.v401,
+            "v4.0.1f": args.v401,
         }
     )
-    print_summary(images)
+    if args.report:
+        buffer = io.StringIO()
+        with contextlib.redirect_stdout(buffer):
+            print_summary(images)
+        text = buffer.getvalue()
+        write_text_lf(args.report, text)
+        print(text, end="")
+        print(f"\nreport={args.report}")
+    else:
+        print_summary(images)
     return 0
 
 

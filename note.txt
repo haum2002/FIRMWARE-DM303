@@ -1,100 +1,210 @@
-📜 Perjalanan Pembangunan Firmware DM303 V4.0.2-beta Enhanced
-Tarikh: 2024
-Status: Dokumentasi Teknikal & Post-Mortem
-Versi Sasaran: V4.0.2-beta (Force Enhanced Stability)
-Repositori: haum2002/FIRMWARE-DM303
-Cawangan: modifikasi-firmware-dm303-untuk-stabilitas-maksimal-edbc9
-1. 🎯 Objektif Utama
-Pengguna menghadapi masalah kritikal pada firmware rasmi dan modifikasi terdahulu (V4.0.1b):
-Ketidakstabilan Sistem: Hang, freeze, dan restart rawak.
-Gangguan Luar (EMI/Noise): Bacaan tidak stabil apabila diletakkan berhampiran pengecas telefon atau sumber elektromagnet.
-Fungsi Lampu Suluh Terhad: Hanya ON/OFF, tiada kawalan kecerahan (3 peringkat).
-UI/UX Lemah: Navigasi menu perlu tekan berkali-kali, tiada paparan jam/tarikh, dan tema gelap yang menyakitkan mata.
-Tiada Bahasa Melayu: Walaupun resource ada, ia tidak diaktifkan.
-Matlamat V4.0.2-beta: Mencipta firmware "Force Enhanced" yang membetulkan enjin pengukuran, menambah ciri requested, dan memastikan ketahanan terhadap gangguan luar tanpa menyentuh Bootloader/Updater.
-2. 🔍 Fasa Analisis & Reverse Engineering (Deep Dive)
-2.1 Analisis Binary Asal (V4.0.1-beta)
-Menggunakan alat disassembly ARM (Ghidra/IDA Pro logic), kami memeriksa struktur binary DM303V4.0.1-beta.bin.
-Penemuan Kritikal:
-Interrupt Vector Table Corrupt: Entrri untuk HardFault, MemManage, BusFault, dan UsageFault menunjuk ke alamat 0x08017555 yang mengandungi kod NOP atau data sampah. Ini menyebabkan sistem "hang" sepenuhnya apabila berlaku ralat kecil, bukannya melakukan reset selamat.
-SysTick Handler Lemah: Penjadualan butang (button debounce) bergantung pada timer yang tidak konsisten, menyebabkan latensi input dan kegagalan mengesan "Long Press".
-DMA State Machine: Tiada mekanisme pemulihan (recovery) apabila DMA terhenti akibat noise elektromagnetik. Data ADC menjadi "stuck" pada nilai terakhir.
-PWM Controller: Fungsi lampu suluh hanya menulis nilai tetap (0 atau Max) ke register PWM, tiada logik tahap kecerahan.
-2.2 Hipotesis Punca Gangguan (EMI)
-Analisis menunjukkan tiada digital filtering pada aliran data ADC sebelum dipaparkan. Isyarat noise frekuensi tinggi dari pengecas telefon terus masuk ke buffer paparan, menyebabkan bacaan bergegar liar.
-3. ⚠️ Insiden Kegagalan Total (The Brick Incident)
-3.1 Percubaan Pertama: "Patch Full V3" (GAGAL)
-Dalam usaha mempercepatkan proses, satu percubaan dibuat untuk menerapkan semua patch sekaligus (Fault Handler + Button Logic + UI + EMI Filter) secara langsung ke dalam binary tanpa pengesahan berperingkat.
-Simptom Kegagalan:
-Peranti mati serta-merta selepas flash.
-Skrin blank (tiada logo boot).
-Butang tidak memberi respons langsung.
-Peranti menjadi "Brick" (Bata).
-3.2 Analisis Punca Kecelakaan (Post-Mortem)
-Siasatan mendalam mendapati tiga kesalahan fatal dalam pendekatan pertama:
-Offset Address Drift: Patch button handler ditulis pada offset yang salah (tersilap kira due to alignment), menindih kod penting bagi inisialisasi LCD.
-Watchdog Timer Agresif: Watchdog diaktifkan tetapi kod "kick" (reset timer) tidak dimasukkan ke dalam loop utama baharu, menyebabkan sistem reset berulang kali sehingga nampak hang.
-Stack Overflow: Kod tambahan untuk filter EMI terlalu besar untuk ruang stack yang diperuntukkan, menyebabkan corruption memori semasa boot.
-Pelajaran: Pendekatan "Big Bang" (semua sekali gus) adalah berbahaya untuk embedded system. Perlu pendekatan Modular & Berperingkat.
-4. 🛠️ Fasa Pemulihan & Semula (Recovery)
-4.1 Tindakan Segera
-Pengguna berjaya memulihkan peranti dengan memasang semula firmware asal V4.0.1-beta melalui SD Card Recovery Mode.
-Sistem kembali stabil seperti sedia kala.
-4.2 Strategi Baru: Pendekatan Bertingkat
-Untuk V4.0.2-beta yang sebenar, strategi diubah kepada:
-Fasa 1 (Kestabilan Asas): Betulkan Vector Table & Fault Handlers sahaja. Pastikan sistem boleh recover dari error.
-Fasa 2 (Enjin Pengukuran): Masukkan filter EMI dan DMA recovery. Uji dengan sumber noise.
-Fasa 3 (Input & Output): Implementasi lampu 3-peringkat dan navigasi "Hold-to-Scroll".
-Fasa 4 (UI & Bahasa): Aktifkan Bahasa Melayu, Jam RTC, dan fine-tune tema gelap.
-5. 🧪 Pelan Pelaksanaan Teknikal V4.0.2-beta (Final Blueprint)
-Berikut adalah spesifikasi teknikal tepat untuk membina firmware ini tanpa risiko brick.
-5.1 Patch 1: Fault Handler Recovery (Wajib)
-Lokasi: 0x08000000 + Offset Vector Table.
-Tindakan: Ganti alamat handler corrupt dengan fungsi assembly kecil yang melakukan NVIC_SystemReset().
-Kod Assembly (Contoh):
-assembly
-1234
-5.2 Patch 2: Anti-Noise & EMI Filter (Enjin)
-Lokasi: Fungsi pembacaan ADC (ADC_Read_Channel).
-Algoritma: Gantikan bacaan tunggal dengan Moving Average Filter (N=16) + Median Outlier Rejection.
-Logik: Jika varians > threshold, abaikan bacaan dan guna nilai sebelumnya (Hold Last Value) selama 200ms.
-DMA Recovery: Tambah checks if (DMA_GetFlagStatus() == ERROR) { DMA_Cmd(DISABLE); DMA_Init(); DMA_Cmd(ENABLE); }.
-5.3 Patch 3: Lampu Suluh 3-Peringkat & Navigasi
-Logic Butang:
-Press < 500ms: Tukar state lampu (OFF -> 25% -> 50% -> 100% -> OFF).
-Press > 1500ms (Menu Nav): Scroll pantas dalam menu (Auto-repeat setiap 300ms).
-PWM Duty Cycle:
-Tahap 1: 64 (25%)
-Tahap 2: 128 (50%)
-Tahap 3: 255 (100%)
-Storage: Simpan tahap kecerahan terakhir di EEPROM address 0x0801F000 (simulated) supaya ingatan kekal bila off.
-5.4 Patch 4: UI & Bahasa
-Tema Gelap: Ubah palet warna hex dari #000000 (Hitam pekat) ke #1A1A1A (Kelabu gelap) untuk kurangkan kontras menyakitkan mata.
-Bahasa Melayu: Aktifkan pointer string table 0x08012345 ke set ms_MY.
-RTC Header: Suntik kod bacaan RTC (HAL_RTC_GetTime) ke fungsi UI_DrawHeader().
-6. 📂 Struktur Fail & Deliverables
-Memandangkan sekatan akses submodule GitHub, deliverables disediakan dalam format berikut:
-tools/build_v402_beta.py: Skrip Python autonomi yang:
-Membaca DM303V4.0.1-beta.bin.
-Melakukan patch byte-level berdasarkan offset yang disahkan.
-Menghasilkan DM303V4.0.2-beta.bin.
-Mengira SHA256 checksum.
-firmware-candidates/v4.0.2-beta/: Folder tempat hasil build disimpan secara lokal.
-DM303-V4.0.2-beta/: Folder siap untuk disalin ke SD Card (mengandungi .bin dan README).
-7. 🛡️ Garis Panduan Keselamatan (Compliance)
-✅ BOOTLOADER: TIDAK DISentuh. Alamat 0x08000000 - 0x08004000 dibiarkan original.
-✅ UPDATE FUNCTION: Kod update firmware dibiarkan original untuk mencegah brick kekal.
-✅ VALIDASI: Setiap patch divalidasi dengan checksum sebelum写入 (write).
-✅ BACKUP: Sentiasa simpan salinan DM303V4.0.1-beta.bin asli sebelum sebarang operasi.
-8. 🚀 Langkah Seterusnya untuk Pengguna
-Untuk mendapatkan firmware V4.0.2-beta ini dengan selamat:
-Pastikan anda mempunyai fail asal DM303V4.0.1-beta.bin.
-Jalankan skrip pembina (build_v402_beta.py) yang disediakan dalam repo ini.
-bash
-1
-Semak output log untuk pastikan "Patch Applied Successfully".
-Salin fail .bin baharu ke SD Card dan lakukan flash.
-Uji ketahanan dengan meletakkan peranti berhampiran sumber noise (pengecas telefon).
-Penutup:
-Dokumentasi ini mencatat bahawa walaupun terdapat kegagalan awal akibat kesilapan offset, pendekatan reverse engineering yang teliti kini telah menghasilkan peta jalan yang jelas dan selamat untuk V4.0.2-beta. Kestabilan adalah keutamaan mutlak.
-Dibina oleh AI Assistant mengikuti prinsip VIBE_CODING.md.
+DM303 firmware work memory - corrected 2026-07-15
+
+This note replaces earlier overconfident notes. Treat this as the current
+working memory for the project.
+
+Current user position
+---------------------
+- User has NOT tested the newest package and does not want to test another
+  risky build.
+- User later reported that `V4.0.1h` produced full failure and must not be used
+  as a base for continuing feature work.
+- User reports that later modified builds gave poor results, UI smear, missing
+  or incomplete Malay UI, no real measurement improvement, and loss of trust.
+- User remembers the closest acceptable modified build as an earlier V4.0.1b,
+  before V4.0.1c.
+
+Hard truth
+----------
+- Do not claim the firmware is stable, accurate, low-latency, EMI-resistant, or
+  True RMS improved unless the exact build has passed device-side tests.
+- Do not claim ADC/True RMS/math/noise fixes unless the exact code path and
+  calibration data are proven.
+- Do not claim Malay UI, dark theme, clock/date, battery percent, or flashlight
+  changes are complete unless they are visible on the device.
+- No firmware package is accepted for flash right now.
+- `V4.0.1h` is failed/quarantined unless a repair profile explicitly rebuilds
+  it from official V4.0 with the failed resource/UI changes removed.
+
+Best baseline found so far
+--------------------------
+- The closest earlier V4.0.1b profile is `stream-recovery-exp14`.
+- Hash:
+  `57204ff3219fe2bbb06df116ce6ffd87593605c66b1e0fd40b803f61d08dcab9`
+- It is the last V4.0.1b profile before V4.0.1c.
+- It is NOT proven fixed. Field notes still show ammeter green AC->DC latency
+  around 30 seconds and blank/freeze symptoms.
+
+What likely went wrong
+----------------------
+- Later builds mixed measurement-code patches, UI resources, language resources,
+  logo/icon changes, and boot-delay changes. This made failures hard to isolate.
+- Some text/resource changes were not layout-compatible with the vendor files.
+- UI/resource restoration fixed smear symptoms but did not improve measurement,
+  which means measurement failure is probably elsewhere.
+- User correctly identified another packaging problem: several failed versions
+  did not pull the SD-card `system` files accurately.
+- Audit confirms `firmware-candidates/v4.0.1-beta/system` is only a partial
+  overlay, with 28 official files missing and 37 official files changed. It
+  must not be used as a complete SD-card `system` folder.
+- Audit confirms `dm303_firmware/DM303-V4.0.1-beta/system` is contaminated
+  compared with official V4.0, with 37 changed official files and extra
+  generated resources.
+
+Evidence that must guide the next step
+--------------------------------------
+- Backup V3.16 switches DC/AC more smoothly but has its own weaknesses.
+- Backup V4.0 is the official baseline for V4.x.
+- Manual says green mA/uA current path is below 200 mA and protected by a 0.5 A
+  self-recovery fuse.
+- Hardware photos show relays, protection parts, analog support ICs, external
+  SPI flash, CR1220, and separate current-path circuitry.
+- Reading and battery icon disappearing together suggests shared acquisition or
+  status refresh failure, not only a display drawing issue.
+
+Rules before any new flash candidate
+------------------------------------
+1. Build from official `backup/DM303 V4.0-read only/DM303V4.004.bin`.
+2. Keep UI resources official until measurement behavior is isolated.
+3. Do not include dark theme, logo changes, Malay slot changes, boot-logo delay,
+   or exp15 aggressive gates in the measurement baseline.
+4. Produce the build under analysis or firmware-candidates first, not directly
+   in `dm303_firmware/DM303-V4.0.1-beta`.
+5. Provide exact SHA-256, byte diff, expected offsets, rejected offsets, and
+   validation output before asking the user to consider flashing.
+6. Mark the package as HOLD unless the user explicitly accepts the risk.
+
+Current safe next direction
+---------------------------
+- `v401h-repair-a` was built and the user reported no change. That result is
+  expected in hindsight because repair-a still left two state-2 `0x3a98`
+  current-switch guards unchanged at offsets `0x15934` and `0x1595c`.
+- `v401h-repair-b` is now staged as HOLD-only:
+  official V4.0 source + selected exp14/exp16 recovery core + visible V4.0.1h
+  marker + two additional state-2 current-switch latency caps.
+- Repair-b changes `0x15934` and `0x1595c` from `43 f6 98 21`
+  (`movw r1,#0x3a98`) to `40 f2 dc 51` (`movw r1,#0x05dc`), using a
+  vendor-adjacent settle value already present in the same timing cluster.
+- Repair-b still removes the failed V4.0.1h Malay slot/resource, dark UI/icon
+  pack, boot-logo delay, and exp15 aggressive gates from the repair baseline.
+- `v401h-repair-c` is now staged as HOLD-only measurement candidate:
+  repair-b latency/state recovery plus moderate relay/mux settle timing.
+- Repair-c visible marker is `V4.0.1i`; firmware SHA-256 is
+  `70b98735978f711c2203c0b907927aded22eb91ca03fdc601ebdfb33f56b117d`.
+- Repair-c changes selector waits in `0x0801f0f2` from `2/3/10` ticks to
+  `5/8/50` ticks at offsets `0x0f10a`, `0x0f146`, and `0x0f192`. This targets
+  zeroing/noise immediately after physical relay/mux switching, not ADC math.
+- User reported repair-c failed: noise became higher, ammeter AC to DC remained
+  slow, and text smear/calit above letters remained visible.
+- `v401h-repair-d` is now staged as HOLD-only corrective candidate:
+  repair-c relay/mux settle is rolled back to official `2/3/10`, the risky
+  UI/render fail-stop fall-through at `0x0c6c8` is excluded, and four immediate
+  mode/range skip branches are NOPed to test the latency path directly.
+- Repair-d visible marker is `V4.0.1j`; firmware SHA-256 is
+  `0d0899258a5167e34e56485aeb7a72d74211dd9c40ec2faa5e9412fe8107b41c`.
+- Further audit showed the remaining broad runtime fall-through at `0x09ca0`
+  also sits after a validation check. `v401h-repair-e` is now staged as the
+  cleanest UI-safe measurement candidate: all broad runtime fail-stop
+  fall-through patches are removed, while measurement-specific stream recovery,
+  current-switch caps, and immediate mode/range gates remain.
+- Repair-e visible marker is `V4.0.1k`; firmware SHA-256 is
+  `75dffe2bbe1ed3193c3073f39d018c888f4a684440e17647645bd18d7ef40216`.
+- Latest field feedback after the repair line still reports higher noise,
+  ammeter AC -> DC latency, and text smear/calit above text. Treat the
+  remaining stream/IO recovery patches in repair-e as suspect; do not promote
+  repair-e as the current candidate.
+- `v401h-repair-f` is now staged as the cleanest rollback/isolation candidate:
+  official fault vectors, official runtime fail-stop loops, official stream/IO,
+  official command retry/state clear, official relay settle, official UI
+  resources, no Malay/dark/logo/boot-delay staging, and only the AC/DC
+  current-switch timing cluster patches.
+- Repair-f visible marker is `V4.0.1l`; firmware SHA-256 is
+  `a324b9dfc0647601a7775685f15d17185da01d8443b1b2cd67aa7ea7709d4de3`.
+- Repair-f strict gate passed:
+  `measurement_candidate_gate=ok`,
+  `official_v4_system_resources=match`,
+  `ui_render_stream_io_relay_boot_windows=official`.
+- Full constant scan then found another mode/range helper cluster at
+  `0x08024b0e` and `0x08024b36`. Both still use `0x3a98` state-2 guards and
+  the cluster calls `0x0801f19a`, so Repair-f may still miss part of the
+  ammeter AC -> DC latency path.
+- `v401h-repair-g` is now staged as the current expanded latency-isolation
+  candidate: Repair-f plus those two earlier guards lowered to `0x05dc`.
+- Repair-g visible marker is `V4.0.1m`; firmware SHA-256 is
+  `a84dda5e7f3d675d0985bde4c431a0d86c21d063d7c2dfd56a68726690566c7d`.
+- Repair-g strict gate passed:
+  `measurement_candidate_gate=ok`,
+  `official_v4_system_resources=match`,
+  `ui_render_stream_io_relay_boot_windows=official`.
+- UI/resource failure was confirmed in the package line that reached
+  `V4.0.1h`: `dm303_firmware/DM303-V4.0.1-beta` still carried modified
+  icon/logo/SP/Malay assets and stream/IO recovery bytes. User field feedback
+  reported higher noise, ammeter AC -> DC still slow, and text smear/calit.
+- `v401h-repair-h` mapped function `0x0802d194` to the ammeter screen by UI
+  text (`AC`, `20A(Yellow)`, `mA(Green)`) and lowered two local state-2 guards
+  at `0x1d1a4` and `0x1d1c0` from `0x3a98` to `0x05dc`.
+- `v401h-repair-i` is now the current controlled repair candidate:
+  Repair-H plus one ammeter-local acquisition-window change at `0x1d1da`,
+  reducing `movs r0,#0xf0` (240 samples) to `movs r0,#0x40` (64 samples).
+  This targets the measured ~30 second AC -> DC blank in ammeter without
+  reintroducing stream/IO wrappers, relay-settle changes, Malay/dark resources,
+  logo changes, or boot-delay changes.
+- Repair-i visible marker is `V4.0.1o`; firmware SHA-256 is
+  `11d8f9ba7ba956e0da5f9fc5c6634e851a6aafeaa11bc4fc0a94dcf2a2e63953`.
+- Repair-i strict gates passed:
+  `repair_candidate_check=ok`,
+  `measurement_candidate_gate=ok`,
+  `preflash_check=ok`,
+  `official_v4_system_resources=match`,
+  `ui_render_stream_io_relay_boot_windows=official`.
+- The final flash folder has been rebuilt from
+  `firmware-candidates/v4.0.1h-repair-i/sd-root` and now contains 69 files:
+  official V4.0 `system` resources plus `DM30XDB1.dat`. `TEXT_MS.DAT`,
+  dark/Malay icon packs, beta logo changes, and the failed SP replacement are
+  intentionally absent from this repair package.
+- `v401h-repair-i-ui-ms` / visible `V4.0.1p` is staged separately for the UI
+  requirement. It reuses the SP slot as `Melayu`, uses the official SP
+  773-entry layout, replaces 137 Malay entries with zero too-long skips, and
+  applies dark nav/menu assets by direct RGB565 tinting only. Its SD-root is
+  `firmware-candidates/v4.0.1h-repair-i-ui-ms/sd-root`; validation passed with
+  `ui_overlay_candidate_check=ok`. It is not promoted to
+  `dm303_firmware/DM303-V4.0.1-beta` because `V4.0.1o` must first prove whether
+  the calit/noise issue is gone with official resources.
+- Repair SD-root packages must be built only with
+  `tools/dm303_build_repair_sdroot.py`, which copies the full official
+  `backup/DM303 V4.0-read only/system` folder and then adds `DM30XDB1.dat`.
+- Repair SD-root packages must pass `tools/dm303_repair_candidate_check.py`
+  with `official_v4_system_resources=match`.
+- Do not promote it as successful.
+- Do not promise it fixes stability, accuracy, or latency before testing.
+
+2026-07-17 update - combined UI/Malay package promoted to final folder (HOLD)
+------------------------------------------------------------------------------
+- User requested one deliverable combining the measurement baseline with the
+  Malay UI and dark theme. Per the recorded rules this is kept as a SEPARATE
+  final folder so the clean measurement baseline stays untouched:
+  `dm303_firmware/DM303-V4.0.1p-ms-beta/` (profile `v401h-repair-i-ui-ms`,
+  visible marker `V4.0.1p`).
+- It is byte-identical to the already-validated
+  `firmware-candidates/v4.0.1h-repair-i-ui-ms/sd-root`.
+- Firmware differs from `V4.0.1o` (repair-i) in exactly 8 bytes: version
+  marker `o`->`p` at `0x02cae`/`0x02cbe`, and language-menu name
+  `Esp`/`ña` -> `Mel`/`yu ` at `0x25bf8`-`0x25bfe`. All repair-i measurement
+  patch bytes are unchanged.
+- Language-slot finding: official firmware has 14 fixed language slots
+  (CFT/CN/EN/FR/GE/IT/JP/Kr/NL/PL/PO/Pt/RU/SP). There is no spare slot and no
+  dynamic scan for extra `TEXT_*.DAT` files, so add-without-replace is not
+  byte-safe; enlarging the hardcoded table means overwriting executable code
+  (see `docs/v402-qwen-audit.md`, offset `0x05210` mistake). The overlay
+  therefore reuses the SP slot; Spanish is restorable by flashing the official
+  V4.0 package or the repair-i package.
+- `v401h-repair-i-ui-ms` is now registered in `tools/dm303_preflash_check.py`
+  (delegates to the ui-overlay validators), so the package passes the full
+  gate chain: `ui_overlay_candidate_check=ok` and `preflash_check=ok`
+  (69 files, `ui_ms_system_resources=official_v4_plus_malay_dark_overlay`).
+- Both final packages remain HOLD. Nothing is proven on-device. Flash order
+  guidance stays: test `V4.0.1o` first (clean measurement baseline, official
+  resources); only if calit/noise are gone, test `V4.0.1p` for Malay/dark UI.
+- No new measurement patches were added on top of repair-i. The repair-c/d/e
+  failures showed that adding speculative stream/IO/relay patches without
+  device feedback makes failures un-isolatable.

@@ -34,8 +34,8 @@ STATIC_TRANSLATIONS: dict[int, str] = {
     12: "Uji Butang",
     13: "Nota:papar butang ditekan.",
     14: "Tekan <ESC> dua kali untuk ",
-    15: "keluar ujian.                 ",
-    16: "<ESC> keluar",
+    15: "keluar ujian.                ",
+    16: "ESC keluar ",
     17: "Butang:",
     20: "Voltan(AC)",
     21: "Voltan(DC)",
@@ -52,7 +52,7 @@ STATIC_TRANSLATIONS: dict[int, str] = {
     34: "Rintangan ",
     35: " Diod:              ",
     36: "Diod/Rint. Rendah",
-    37: " Rintangan:            ",
+    37: " Rint.:          ",
     38: " <HOLD> Tahan       <F1> Sifar    ",
     39: "Trig.",
     40: "div",
@@ -60,7 +60,7 @@ STATIC_TRANSLATIONS: dict[int, str] = {
     42: "Ukur Frekuensi",
     43: "<Fn> kesan isyarat(f<6000)",
     45: "<Fn> ke kesan isyarat",
-    46: "Rintangan Sentuh:          ",
+    46: "Rint. Sentuh:    ",
     47: "Output sinus/petak",
     48: "Frekuensi:        Hz",
     49: "Duty Cycle:       % ",
@@ -78,10 +78,10 @@ STATIC_TRANSLATIONS: dict[int, str] = {
     61: "Tetapan Sistem",
     62: "Tetapan Asas",
     63: "Tetapan Masa",
-    64: "Bahasa  ",
+    64: "Bahasa ",
     65: "Bunyi",
-    66: "Kecerahan ",
-    67: "Tentukur voltan dengan probe.",
+    66: "Cerah ",
+    67: "Tentukur voltan dg probe.",
     68: "Sambung probe ke bateri.",
     69: " <UP> <Down> Laras nilai sebenar",
     70: " <ESC> Keluar          <OK> SIMPAN",
@@ -342,7 +342,9 @@ def build_translations(lengths: dict[int, int]) -> dict[int, str]:
         "mod pemantauan, hidupkan enjin, kemudian baca keputusan. Voltan minimum "
         "melebihi 9.6V semasa mula adalah normal. Jika lebih rendah, semak punca "
         "seperti bateri uzur, arus starter terlalu tinggi, atau bateri tidak "
-        "cukup cas. Ganti bateri jika sudah uzur."
+        "cukup cas. Ganti bateri jika sudah uzur. Jika kabel/klip tidak "
+        "disambung, bacaan boleh terapung akibat input terbuka dan tidak boleh "
+        "dianggap sebagai voltan bateri sebenar."
     )
     injector = (
         "Fungsi ini untuk pacu dan uji isyarat penyuntik bahan api. Sambungkan "

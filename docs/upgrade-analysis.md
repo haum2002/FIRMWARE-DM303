@@ -44,12 +44,28 @@ ke handler ini, device boleh kelihatan hang kerana handler tidak pernah return.
 Selepas pengguna mengesahkan fallback sebelumnya berpunca daripada susunan fail
 SD card, patch anti-freeze dimasukkan semula. Dapatan fizikal V3.16 kemudian
 menunjukkan DC -> AC -> DC boleh lancar walaupun selector timing sama seperti
-V4.0 rasmi, iaitu `2/3/10` ticks. Build semasa kini menggunakan profil
-`force-enhanced-exp4`: laluan exception/default tetap diarahkan kepada
-permintaan reset sistem, tiga fail-stop runtime keluar/return daripada loop
-kekal, relay/range settling dipanjangkan kepada `8/12/100`, helper mode-switch
-`0x0801f0ac` dibalut untuk memanggil `selector(1, flag)` seperti laluan V3.16
-non-sub-mode-4, dan load resource `LOGO-1.bmp` melalui wrapper delay 200 ticks.
+V4.0 rasmi, iaitu `2/3/10` ticks. Semakan disassembly seterusnya membetulkan
+andaian lama: helper V3.16 dan V4.0 mempunyai bentuk kawalan yang sama pada
+laluan relevan, jadi wrapper helper eksperimen tidak dijadikan default lagi.
+
+Build semasa kini menggunakan profil `stream-recovery-exp15`: laluan
+exception/default tetap diarahkan kepada permintaan reset sistem, tiga
+fail-stop runtime keluar/return daripada loop kekal, relay/range timing
+dikekalkan pada `2/3/10`, helper mode-switch `0x0801f0ac` dikekalkan seperti
+V4.0 rasmi, empat retry loop stream/status bacaan dibuat fail-fast selepas
+helper bawah sudah timeout, helper byte-IO bawah dihala kepada wrapper bounded
+`0x0fa0` yang pulang `0xff` jika ready flag tidak muncul, dua retry command
+tinggi dikurangkan daripada `0x95`/`0x87` kepada `0x60`, kegagalan busy command
+`0x40` dihala ke laluan error/clear sedia ada, stream error cleanup
+membersihkan bit `0` dan `1` daripada `0x2000022c`, entry mode/range
+`0x0801f19a` melalui wrapper stale-state clear sebelum relay/range switching,
+stream/status `0x080196b2` memaksa transaction segar apabila stale busy gate
+masih set, dua long current/meter switch gate `0x0802585e` dan `0x08025888`
+diccap daripada `0x3e80` kepada `0x0640`, dan load resource `LOGO-1.bmp`
+melalui wrapper delay 200 ticks. Exp15 ditambah selepas exp14 diuji tanpa
+penambahbaikan nyata; ia menandakan versi dalaman sebagai `V4.0.1c`, membuang
+empat elapsed-time skip branch sebelum panggilan mode/range, dan bypass tiga
+stale bit0 early-error gate dalam stream helper.
 
 Ini belum menyelesaikan semua punca bacaan tidak stabil seperti DMA/state
 acquisition, filtering, kalibrasi ADC, atau display-update blocking. Ia ialah
@@ -72,17 +88,44 @@ Perubahan yang dibuat:
   `SCB_AIRCR SYSRESETREQ`.
 - Fail-stop runtime pada offset `0x09ca0`, `0x0c6c8`, dan `0x2c4ea`
   ditukar supaya fall-through/return dan tidak loop selama-lamanya.
-- Delay dalam calon relay/range selector `0x0801f0f2` dipanjangkan:
-  offset `0x0f10a` daripada `2` ke `8`, offset `0x0f146` daripada `3` ke
-  `12`, dan offset `0x0f192` daripada `10` ke `100`.
+- Delay dalam calon relay/range selector `0x0801f0f2` tidak dipanjangkan dalam
+  profil semasa; ia kekal pada nilai rasmi/V3.16 `2/3/10` ticks.
+- Helper mode-switch `0x0801f0ac` tidak dibalut dalam profil semasa; ia kekal
+  seperti V4.0 rasmi.
+- Retry loop stream/status pada offset `0x09570`, `0x09758`, dan `0x097be`
+  tidak lagi mengulang tanpa had apabila helper bawah sudah timeout tetapi
+  busy/valid flag masih tersangkut. Laluan ini kini keluar daripada retry supaya
+  UI/status refresh boleh berjalan semula.
+- Cabang busy command `0x40` pada offset `0x09706` kini dihala ke blok
+  error/clear sedia ada di `0x080197a2`, bukan fall-through normal.
+- Helper byte-IO bawah `0x08016a06` kini bercabang daripada offset `0x06a06`
+  kepada wrapper bounded di `0x08016a50`. Wrapper ini mengekalkan panggilan
+  SPI1 status/write/read, menunggu ready flag sehingga bajet `0x0fa0`, dan
+  pulang `0xff` jika timeout supaya upper stream recovery dapat bertindak.
+- Stream error cleanup pada `0x080197e6` kini membersihkan bit `0` dan `1`
+  daripada `0x2000022c`.
+- Entry mode/range pada `0x0801f19a` kini bercabang ke wrapper `0x0803d606`
+  yang menjalankan prologue asal, membersihkan bit stale `0` dan `1`, kemudian
+  kembali ke fungsi asal sebelum relay/range switching diteruskan.
+- Stream/status pada `0x080196be` kini bercabang terus ke body transaction
+  normal supaya stale busy bit tidak menyebabkan early-return kosong.
+- Dua compare long switch gate pada `0x0802585e` dan `0x08025888` dicap
+  daripada `0x3e80` kepada `0x0640` untuk mengurangkan blank AC -> DC ammeter
+  sekitar 30 saat.
+- Empat elapsed-time skip branch sebelum panggilan mode/range pada
+  `0x08025812`, `0x08025838`, `0x08025862`, dan `0x0802588c` diganti dengan
+  NOP supaya transition AC/DC yang sudah dikesan boleh memanggil mode/range
+  segera.
+- Tiga stream helper pada `0x08019818`, `0x080198b4`, dan `0x08019950`
+  bypass stale bit0 early-error gate dan meneruskan helper body normal.
 - String versi di offset `0x02ca0` dan `0x02cb0` mengekalkan identiti model
-  asal dan ditukar kepada `MT100MM V4.0.1b` / `BT100MM V4.0.1b`.
+  asal dan ditukar kepada `MT100MM V4.0.1c` / `BT100MM V4.0.1c`.
 - Bootloader/updater dan prosedur SD upgrade tidak dipatch.
 
 Hash candidate:
 
 ```text
-b2c86842c8149f6b66648285e4cbec61f7699fd4ac2ec424725a784cd484a992  DM303V4.0.1-beta.bin
+3a2db571a4c783d0df2a454ec13d8d38a3a22a0e6ad7cc9993a0afa1edd7f3a0  DM303V4.0.1-beta.bin
 ```
 
 Dalam folder flash akhir, fail root juga kekal bernama
@@ -111,7 +154,7 @@ Validasi semasa:
 - 781 entri diterjemah atau diwrap semula.
 - `TEXT_MS.DAT` boleh rebuild byte-identical.
 - Tiada aksara bukan ASCII untuk mengurangkan risiko font/rendering.
-- SHA-256: `7f30177d74a396baf31514297723d31b9c4a6961531b2cd84b0758e8eb70d3fd`
+- SHA-256: `d4a93b1ae0ef215fad8277e768beaa6169bd8b34b2f0f208823791fcec4150ae`
 
 Bahasa Melayu ditambah sebagai resource staging dan dioverlay ke folder akhir
 sebagai fail tambahan `system/TEXT_MS.DAT`. Slot bahasa SP sedia ada turut
@@ -121,29 +164,31 @@ sekitar `0x08035be4` belum mempunyai spare slot yang disahkan.
 
 ## UI navmenu
 
-Tema tuned dark navmenu dibuat pada lapisan resource:
+Navmenu kini menggunakan tema gelap selamat pada lapisan resource:
 
 - Source asset: `backup/DM303 V4.0-read only/system/icon-*.bmp`
 - Staging: `firmware-candidates/v4.0.1-beta/system/icon-*.bmp`
 - Final: `dm303_firmware/DM303-V4.0.1-beta/system/icon-*.bmp`
-- 34 ikon BMP menu final ditukar kepada palet charcoal-blue rata berdasarkan
-  arah tema gelap sebelumnya.
-- Penjana menukar background biru vendor kepada satu tona charcoal-blue,
-  menormalkan foreground putih/kuning, dan mengelak gradient shadow.
-- Ikon dan label asal tidak diskala semula atau diblur, jadi bentuk asal
-  dikekalkan.
-- Border satu warna ditambah di dalam setiap aset `92x92`.
-- Header BMP, dimensi `92x92`, row layout, dan saiz fail dikekalkan.
+- 34 ikon BMP menu final dijana daripada backup V4.0 rasmi dengan penulisan
+  piksel RGB565 terus, tanpa encoder imej, resize, compression, atau rewrite
+  header.
+- Header BMP, mask RGB565, dimensi `92x92`, row layout, bit depth, compression
+  mode `BI_BITFIELDS`, dan saiz fail `17000` byte dikekalkan.
+- Palet final menggunakan gradasi deep navy vendor-preserving, text
+  `#E2EEF4`, dan amber `#EEC642`/`#F8DA60`.
+- `system/icon-SP.dat` Melayu turut ditint dengan palet yang sama dan kekal 17
+  frame, `78336` byte.
 - Laporan: `firmware-candidates/v4.0.1-beta/DARK-MENU-ASSETS.md`
 
 Logo beta juga dibuat pada lapisan resource:
 
-- Source artwork: `assets/logo/dm303-v401-beta-logo-source.bmp`
+- Source artwork: `C:\Users\Administrator\Downloads\image_(1).bmp`
 - Template firmware: `backup/DM303 V4.0-read only/system/LOGO-1.bmp`
 - Staging: `firmware-candidates/v4.0.1-beta/system/LOGO-1.bmp`
 - Final: `dm303_firmware/DM303-V4.0.1-beta/system/LOGO-1.bmp`
-- Artwork `image_(1).bmp` daripada pengguna ditukar ke layout firmware
-  `LOGO-1.bmp`.
+- Artwork `image_(1).bmp` daripada pengguna dibaca terus daripada payload BMP
+  dan ditukar ke layout firmware `LOGO-1.bmp` tanpa image encoder, resampling,
+  compression, dithering, atau scaling.
 - Header BMP, dimensi `320x240`, row layout, bit depth, dan saiz fail
   dikekalkan.
 
@@ -161,6 +206,7 @@ Skrip gabungan:
 
 ```powershell
 python tools/dm303_merge_final_package.py
+python tools/dm303_validate_final_package.py
 ```
 
 Peraturan gabungan:
@@ -172,13 +218,23 @@ Peraturan gabungan:
 - Nama root firmware akhir ialah `DM303V4.0.1-beta.bin`.
 - `DM303V4.004.bin` asal dibuang daripada folder akhir.
 - Kandungan `DM303V4.0.1-beta.bin` akhir mempunyai hash
-  `b2c86842c8149f6b66648285e4cbec61f7699fd4ac2ec424725a784cd484a992`.
-- Resource `system/` akhir diambil daripada rujukan V4.0 rasmi; 34 ikon
-  navmenu tuned dark dan `LOGO-1.bmp` beta daripada staging dioverlay.
+  `3a2db571a4c783d0df2a454ec13d8d38a3a22a0e6ad7cc9993a0afa1edd7f3a0`.
+- Resource `system/` akhir diambil daripada rujukan V4.0 rasmi; `TEXT_MS.DAT`,
+  `TEXT_SP.DAT`, `icon-SP.dat`, 34 ikon BMP gelap, dan `LOGO-1.bmp` beta
+  daripada staging dioverlay.
 - `system/TEXT_MS.DAT` dioverlay sebagai resource tambahan Bahasa Melayu.
 - `system/TEXT_SP.DAT` diganti dengan resource Melayu untuk menggantikan
   pilihan SP pada device.
+- `system/icon-SP.dat` diganti dengan label Melayu bertema gelap; SHA-256:
+  `3ff19be55a946a99613c46e5501b586fa8202d43a02a1af0f2d5f22f179c8e8d`.
 - Nested tree tidak sah seperti `system/system/` ditolak.
+- Validator akhir `tools/dm303_validate_final_package.py` menyemak hash
+  firmware/resource, byte patch `stream-recovery-exp15`, layout RGB565
+  `LOGO-1.bmp`, layout semua 34 ikon BMP gelap, saiz `icon-SP.dat`, dan
+  ketiadaan nested `system/system/`.
+- Pre-flash checker `tools/dm303_preflash_check.py` boleh digunakan pada folder
+  akhir atau root SD card sebenar untuk mengesan kesilapan salin fail ke dalam
+  folder tambahan sebelum device mencuba update.
 
 ## Pembetulan selepas ujian device menolak upgrade
 
@@ -190,17 +246,24 @@ updater menyemak identiti model sebelum flash, perubahan itu boleh menyebabkan
 fail dianggap bukan firmware yang sesuai.
 
 Patch seterusnya masih mengekalkan prefix model dan hanya menaikkan versi
-kepada bentuk yang muat dalam slot 16-byte: `MT100MM V4.0.1b` dan
-`BT100MM V4.0.1b`. Build minimal dan build navmenu gelap sudah diterima oleh
+kepada bentuk yang muat dalam slot 16-byte. Build semasa menggunakan marker
+diagnostik `MT100MM V4.0.1c` dan `BT100MM V4.0.1c`. Build minimal dan build resource beta sudah diterima oleh
 device. Selepas pengguna mengesahkan masalah fallback lama berpunca daripada
 fail firmware diletakkan dalam folder SD card, profil `anti-freeze-exp1`
 dimasukkan semula dan pernah dikembangkan kepada `force-stable-exp2` untuk
 eksperimen settling relay/range. Dapatan V3.16 kemudian menunjukkan delay
 panjang bukan punca tunggal, tetapi pemerhatian terbaru masih menunjukkan
 blank/freeze selepas spike/overload. Build semasa dinaikkan kepada
-`force-enhanced-exp4` untuk ujian stability-first: wrapper mode-switch V3.16,
-settling `8/12/100`, dan boot-logo delay 200 ticks. Bahasa Melayu resource
-sudah disertakan, tetapi menu Bahasa Melayu add-only masih belum diaktifkan.
+`stream-recovery-exp15`: helper V4.0 asal, timing rasmi `2/3/10`, fault
+recovery, fail-fast pada retry loop stream/status bacaan, timeout byte-IO bawah
+wrapper bounded `0x0fa0` dengan pulangan `0xff` pada timeout, clamp retry
+command `0x40`/`0x48` kepada `0x60`, command `0x40` busy-failure route ke
+error/clear, stream/status stale-bit clear, mode/range stale-state clear,
+stream transaction forced past stale-busy early-return, current-switch long
+gate cap, immediate mode/range switch gates, stale bit0 helper bypass,
+Bahasa Melayu, dan boot-logo delay 200 ticks. Bahasa Melayu
+resource sudah disertakan, dan slot Sepanyol lama dinamakan semula `Melayu`;
+menu Bahasa Melayu add-only masih belum diaktifkan.
 
 Laporan akhir:
 
@@ -208,11 +271,27 @@ Laporan akhir:
 - `firmware-candidates/v4.0.1-beta/FINAL-PACKAGE-SHA256.txt`
 - `CHECKSUMS-SHA256.txt`
 
+## Dapatan cranking dan kemungkinan hardware
+
+Pemerhatian terbaru menunjukkan mode cranking boleh memaparkan voltan masa
+nyata sekitar `2.88 V` ketika bateri internal nominal `3.7 V` dan indikator
+bateri masih sekitar `3/4` bar. Ini belum membuktikan firmware salah membaca
+bateri internal. Mode cranking direka untuk input bateri kenderaan; jika
+kabel/klip tidak disambung, channel input boleh terapung dan mendapat ghost
+voltage daripada bias/leakage/rail internal.
+
+Resource Melayu cranking kini ditambah nota bahawa bacaan tanpa sambungan boleh
+terapung dan tidak boleh dianggap sebagai voltan bateri sebenar. Firmware tidak
+menolak `2.88 V` secara fixed-offset kerana tindakan itu akan merosakkan ujian
+cranking sebenar pada bateri kenderaan yang lemah. Laluan diagnosis penuh
+berada di `docs/power-rail-cranking-analysis.md`.
+
 ## Dapatan set fail
 
 - Perbandingan dengan `backup/DM303 V4.0-read only` mengesahkan set final
-  dibina daripada rujukan V4.0 rasmi, dengan firmware utama dan 34 ikon menu
-  gelap yang berbeza.
+  dibina daripada rujukan V4.0 rasmi, dengan perbezaan terkawal pada firmware
+  utama, `TEXT_MS.DAT`, `TEXT_SP.DAT`, `icon-SP.dat`, 34 ikon BMP navmenu
+  bertema gelap, dan `LOGO-1.bmp`.
 - Perbandingan dengan `backup/DM303 V3.16-read only` menunjukkan aset bersama
   kebanyakannya sama, tetapi firmware utama berbeza.
 - `backup/SD-file_DM303_update_US240104-read only` ialah set update lain yang
@@ -242,16 +321,25 @@ Jana firmware candidate:
 python tools/dm303_v401_beta_patch.py
 ```
 
-Jana tema gelap ikon navmenu:
+Jana label ikon Melayu, kemudian tint tema gelap:
 
 ```powershell
+powershell -ExecutionPolicy Bypass -File tools/dm303_make_ms_icon_pack.ps1
 python tools/dm303_make_dark_menu_assets.py
+```
+
+Jana logo beta:
+
+```powershell
+python tools/dm303_make_beta_logo.py --source "C:\Users\Administrator\Downloads\image_(1).bmp"
 ```
 
 Gabungkan ke folder akhir:
 
 ```powershell
 python tools/dm303_merge_final_package.py
+python tools/dm303_validate_final_package.py
+python tools/dm303_preflash_check.py --root dm303_firmware\DM303-V4.0.1-beta
 ```
 
 Sahkan firmware akhir:

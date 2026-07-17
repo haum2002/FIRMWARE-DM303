@@ -1,0 +1,10 @@
+mode,range,unit,reference,observed,latency_ms,noise_high,noise_low,noise_pp,blank_events,samples,notes
+voltmeter,DC,V,,,,,,,,,"Fill reference and observed from a known DC source"
+voltmeter,AC,V,,,,,,,,,"Fill from known AC RMS source"
+ammeter_green,DC,A,,,,,,,,,"Use safe current-limited dummy load only"
+ammeter_green,AC,A,,,,,,,,,"Use safe isolated/current-limited source only"
+ohmmeter,open,ohm,,,,,,,,,"Open probes; record false beep as blank_events if useful"
+oscilloscope,0.1Vdiv_12.5us,V,,,,,,,,,"Fill noise_high/noise_low, for example 0.07 and -0.03"
+cranking,open,V,,,,,,,,,"Open input; value may float"
+cranking,short_to_negative,V,0,,,,,,,,"Short to correct negative clamp"
+cranking,known_limited_source,V,,,,,,,,,"Use current-limited source; never inject into current jack"

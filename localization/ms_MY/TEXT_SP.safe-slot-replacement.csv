@@ -1,0 +1,138 @@
+index,status,text,source_limit,encoded_length
+1,replaced,Memuat......,12,12
+2,replaced,Tekan mana-mana butang,29,22
+3,replaced,ON ,8,3
+4,replaced,OFF,8,3
+5,replaced,Manual,17,6
+6,replaced,MAKLUMAT VERSI,24,14
+7,replaced,Hardware: ,10,10
+8,replaced,Software: ,10,10
+9,replaced,ID Alat:,14,8
+10,replaced,Tekan mana-mana butang,29,22
+11,replaced,Semak paparan,25,13
+12,replaced,Uji Butang,16,10
+13,replaced,Nota:papar butang ditekan.,32,26
+14,replaced,Tekan <ESC> dua kali untuk ,30,27
+15,replaced,keluar ujian.                ,29,29
+16,replaced,ESC keluar ,11,11
+17,replaced,Butang:,19,7
+20,replaced,Voltan(AC),10,10
+21,replaced,Voltan(DC),10,10
+22,replaced,   Min:       V     Maks:      V  ,35,34
+23,replaced, <HOLD> Tahan       <F1> Sifar    ,35,34
+24,replaced, <Fn> Mod Fungsi                  ,36,34
+25,replaced,Rint. PD ,9,9
+26,replaced,TAHAN,5,5
+29,replaced,20A(Kuning),13,11
+30,replaced,mA(Hijau) ,13,10
+31,replaced,   Min:       A     Maks:      A  ,35,34
+32,replaced, <HOLD> Tahan        <F1> Sifar   ,35,34
+33,replaced, <Fn> Mod Fungsi   <F2> 20A/mA    ,35,34
+34,replaced,Rintangan ,11,10
+35,replaced, Diod:              ,20,20
+36,replaced,Diod/Rint. Rendah,22,17
+37,replaced, Rint.:          ,17,17
+38,replaced, <HOLD> Tahan       <F1> Sifar    ,34,34
+39,replaced,Trig.,5,5
+40,replaced,div,3,3
+41,replaced,U:      V Min:      V Maks:     V,33,33
+42,replaced,Ukur Frekuensi,23,14
+43,replaced,<Fn> kesan isyarat(f<6000),34,26
+45,replaced,<Fn> ke kesan isyarat,35,21
+46,replaced,Rint. Sentuh:    ,17,17
+47,replaced,Output sinus/petak,28,18
+48,replaced,Frekuensi:        Hz,26,20
+49,replaced,Duty Cycle:       % ,26,20
+50,replaced,<F1><F2> Tetap Duty Cycle,29,25
+51,replaced,Sensor:   Min:      V Maks:     V,33,33
+52,replaced,rpm 2Lejang,12,11
+53,replaced,rpm 4Lejang,12,11
+54,replaced,Distributor ,12,12
+55,replaced,Data K/Lin: ,16,12
+56,replaced,<F1>Padam <Fn><LEFT><RIGHT> BPS,34,31
+57,replaced,Data CANBUS: ,14,13
+58,replaced,<F1>Padam <Fn><LEFT><RIGHT> BPS,34,31
+59,replaced, <Fn> Mod Fungsi     ,23,21
+60,replaced,Tetapan Kalendar/Masa,35,21
+61,replaced,Tetapan Sistem,26,14
+62,replaced,Tetapan Asas,22,12
+63,replaced,Tetapan Masa,24,12
+64,replaced,Bahasa ,7,7
+65,replaced,Bunyi,15,5
+66,replaced,Cerah ,6,6
+67,replaced,Tentukur voltan dg probe.,26,25
+68,replaced,Sambung probe ke bateri.,34,24
+69,replaced, <UP> <Down> Laras nilai sebenar,34,32
+70,replaced, <ESC> Keluar          <OK> SIMPAN,34,34
+71,replaced,Masa tidur,16,10
+72,replaced, min ,5,5
+73,replaced, Tekan <OK> untuk terus ,34,24
+74,replaced,Voltan Bekal:       V,33,21
+75,replaced, <UP>Pintas B+ <DOWN>Pintas B-,31,30
+76,replaced,Sambungan salah!!,28,17
+77,replaced,Tentukur Voltan Bateri,30,22
+78,replaced,Sambung bateri kenderaan!,26,25
+79,replaced,Tentukur arus(mA) ,28,18
+80,replaced,Sambung ke isyarat arus(mA)!,29,28
+81,replaced,Tentukur Voltan Litar Kenderaan,35,31
+82,replaced,Sambung ke isyarat voltan!,26,26
+83,replaced,Tentukur arus(A) ,23,17
+84,replaced,Sambung ke isyarat arus(A)!,28,27
+87,replaced,Huraian Fungsi,20,14
+88,replaced,Bocor Kunci Jauh(3V),22,20
+89,replaced,Voltan:      ,13,13
+90,replaced,Output Isyarat Voltan,32,21
+91,replaced,(Terminal: C01-S1),32,18
+92,replaced,(Terminal: C01-S2),34,18
+93,replaced,gelombang petak:     ,32,21
+94,replaced,Laras Voltan:        ,33,21
+95,replaced,<F1><F2> Tetap Frekuensi,33,24
+159,replaced,PILIHAN BAHASA,29,14
+160,replaced,Hidupkan enjin dan,22,18
+161,replaced,biar 15 saat           ,30,23
+162,replaced,Ujian Mula,31,10
+163,replaced,hidupkan enjin,16,14
+164,replaced,Voltan min > 9.6V,23,17
+165,replaced,Voltan min > 19.2V,25,18
+166,replaced,Ujian Penyuntik,28,15
+167,replaced,Ujian Relay Auto,28,16
+168,replaced,RPM Enjin Simulasi,28,18
+169,replaced, Tekan <OK> output ,25,19
+170,replaced, Tekan <OK> henti  ,26,19
+171,replaced,Status Output,26,13
+172,replaced,Voltan masa nyata:,26,18
+173,replaced,Voltan Minimum:,25,15
+174,replaced,       Normal      ,30,19
+175,replaced,Voltan rendah.,32,14
+176,replaced,Ujian Litar Kenderaan,31,21
+177,replaced,1.Skrin Mula ,32,13
+178,replaced,2.Ukur Voltan,33,13
+179,replaced,3.Ukur Arus,31,11
+180,replaced,4.Ukur Rintangan,31,16
+181,replaced,5.Osiloskop,24,11
+182,replaced,6.Kesan litar auto,27,18
+183,replaced,7.Ujian cranking bateri,25,23
+184,replaced,8.Uji injektor,26,14
+185,replaced,9.Uji relay,26,11
+186,replaced,10.Uji isyarat analog,26,21
+187,replaced,11.Ujian nadi nyalaan,25,21
+188,replaced,12.Kesan Data K/Lin,30,19
+189,replaced,13.Kesan Data CAN,26,17
+190,replaced,14.Ukur Frekuensi,34,17
+191,replaced,1.Skrin Mula ,34,13
+192,replaced,2.Ukur Voltan,34,13
+193,replaced,3.Ukur Arus,35,11
+194,replaced,4.Ukur Rintangan,34,16
+195,replaced,5.Osiloskop,35,11
+196,replaced,6.Ujian nadi nyalaan,34,20
+197,replaced,7.Ukur Frekuensi,35,16
+198,replaced,1.Skrin Mula ,34,13
+199,replaced,2.Ukur Voltan,36,13
+200,replaced,3.Ukur Arus,35,11
+201,replaced,4.Ukur Rintangan,34,16
+202,replaced,5.Osiloskop,34,11
+203,replaced,6.Ujian isyarat voltan,35,22
+204,replaced,7.Uji isyarat analog,34,20
+205,replaced,1.Skrin Mula,35,12
+536,replaced,1.Skrin Mula,36,12
+675,replaced,1.Skrin Mula,35,12
