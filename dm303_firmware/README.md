@@ -94,3 +94,37 @@ python tools/dm303_preflash_check.py --root dm303_firmware\DM303-V4.0.1p-ms-beta
 
 Status: HOLD, not device-tested. Recommended flash order: prove `V4.0.1o`
 first; only if calit/noise are gone, test `V4.0.1p` for the Malay/dark UI.
+
+## Third Package: DM303-V4.0.1q-beta (HOLD)
+
+Single-change AC/DC switch-window candidate from the three-way vendor
+comparison (`docs/v313-v316-v40-switching-comparison-2026-07-17.md`):
+
+```text
+dm303_firmware/DM303-V4.0.1q-beta/
+```
+
+Profile: `v401h-repair-j`, visible marker `V4.0.1q`.
+
+Firmware hash:
+
+```text
+ecd7b5dc85158467ce9e2ffc8b71fd1523c934383c7d1e6677b7bd0f79e34642  DM303-V4.0.1q-beta/DM303V4.0.1-beta.bin
+```
+
+- Official V4.0 + exactly 8 patched bytes: the ammeter AC<->DC switch-state
+  acquisition windows at `0x1df0c` (600 -> 240) and `0x1df40` (360 -> 240),
+  using the vendor's own 240-sample normal-update constant
+  (`movw r0,#0xf0`, flag-safe).
+- V3.13/V3.16 share V4.0's guard structure and switch smoothly, so the
+  repair-i guard caps are deliberately absent; everything else is official.
+- Expected effect if the analysis holds: post-switch blank ~30 s -> ~12 s.
+  Not proven on-device yet.
+
+Validation:
+
+```powershell
+python tools/dm303_repair_candidate_check.py --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
+python tools/dm303_measurement_candidate_gate.py --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
+python tools/dm303_preflash_check.py --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
+```

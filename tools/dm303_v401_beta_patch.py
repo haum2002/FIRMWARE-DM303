@@ -530,6 +530,27 @@ PROFILES = {
         "boot_logo_delay": False,
         "description": "experimental UI overlay candidate: repair-i measurement bytes plus Melayu SP-slot name and safe SP-layout Malay text staging",
     },
+    "v401h-repair-j": {
+        "fault_reset": False,
+        "runtime_patches": False,
+        "relay_settle_profile": None,
+        "mode_switch_profile": None,
+        "stream_recovery_profile": None,
+        "low_io_timeout_profile": None,
+        "low_io_wrapper_profile": None,
+        "command_retry_profile": None,
+        "stream_state_clear_profile": None,
+        "mode_state_clear_profile": None,
+        "stream_busy_gate_profile": None,
+        "current_switch_latency_profile": "cap-acdc-switch-state-windows-240",
+        "instant_switch_profile": None,
+        "stale_error_gate_profile": None,
+        "version_patch_profile": "visible-repair-j",
+        "language_name_patch": False,
+        "stage_text_resources": False,
+        "boot_logo_delay": False,
+        "description": "single-change AC/DC switch-window candidate: official V4.0 plus the two AC/DC switch-state acquisition windows (600/360) lowered to the vendor's own 240; evidence in docs/v313-v316-v40-switching-comparison-2026-07-17.md",
+    },
 }
 
 ORIGINAL_FAULT_BLOCK = bytes.fromhex("fe e7 " * 10)
@@ -609,6 +630,10 @@ VERSION_PATCHES_BY_PROFILE = {
     "visible-repair-i-ui-ms": {
         0x02CA0: b"MT100MM V4.0.1p\x00",
         0x02CB0: b"BT100MM V4.0.1p\x00",
+    },
+    "visible-repair-j": {
+        0x02CA0: b"MT100MM V4.0.1q\x00",
+        0x02CB0: b"BT100MM V4.0.1q\x00",
     },
 }
 
@@ -1095,6 +1120,29 @@ CURRENT_SWITCH_LATENCY_PATCHES = {
             "v401h-repair-i: reduce ammeter AC/20A/mA acquisition window from 240 samples to 64 samples to lower AC->DC blank latency",
         ),
     },
+    "cap-acdc-switch-state-windows-240": {
+        # Repair-j: single-change candidate from the three-way vendor
+        # comparison (docs/v313-v316-v40-switching-comparison-2026-07-17.md).
+        # V3.13/V3.16 share V4.0's 0x3a98 guards and switch smoothly, so the
+        # repair-a..i guard caps were never the cause. In V4.0 the ammeter
+        # AC<->DC switch-state handler (state 0x2d) overwrites the acquisition
+        # window with 600 (0x258) or 360 (0x168) polled samples on every
+        # switch; 600 samples at the collapsed poll cadence matches the
+        # reported ~30 s blank. Lower both to the vendor's own normal-update
+        # window of 240 (0xf0) samples. Encoding: mov.w r0,#imm (no flags)
+        # -> movw r0,#0xf0 (no flags), so the following `str r0,[sp,#0x10]`
+        # and flag state are unaffected.
+        0x1DF0C: (
+            bytes.fromhex("4f f4 16 70"),
+            bytes.fromhex("40 f2 f0 00"),
+            "v401h-repair-j: lower AC->DC switch-state acquisition window from 600 samples (0x258) to vendor's 240 (0xf0)",
+        ),
+        0x1DF40: (
+            bytes.fromhex("4f f4 b4 70"),
+            bytes.fromhex("40 f2 f0 00"),
+            "v401h-repair-j: lower DC->AC switch-state acquisition window from 360 samples (0x168) to vendor's 240 (0xf0)",
+        ),
+    },
 }
 
 INSTANT_SWITCH_PATCHES = {
@@ -1465,6 +1513,16 @@ def write_report(
             "keeping stream/IO wrappers, relay order, ADC scaling constants, "
             "and UI resources official."
         )
+    elif current_switch_latency_profile == "cap-acdc-switch-state-windows-240":
+        current_latency_scope = (
+            "- Single-change candidate: the ammeter AC<->DC switch-state "
+            "handler's acquisition windows (600/360 polled samples at "
+            "`0x1df0c`/`0x1df40`) are lowered to the vendor's own 240-sample "
+            "normal-update window. Three-way vendor comparison showed V3.13 "
+            "and V3.16 share V4.0's 0x3a98 guards and switch smoothly, so "
+            "the repair-a..i guard caps are absent here; everything else in "
+            "the firmware is official V4.0."
+        )
     else:
         current_latency_scope = "- Long meter/current transition guards are kept unchanged."
     if instant_switch_profile == "force-mode-call-immediate":
@@ -1512,6 +1570,8 @@ def write_report(
         version_scope = "- Version strings are marked `V4.0.1o` as a visible repair-i clean ammeter-latency flash marker."
     elif version_patch_profile == "visible-repair-i-ui-ms":
         version_scope = "- Version strings are marked `V4.0.1p` as a visible repair-i UI/Melayu overlay flash marker."
+    elif version_patch_profile == "visible-repair-j":
+        version_scope = "- Version strings are marked `V4.0.1q` as a visible repair-j AC/DC switch-window flash marker."
     else:
         version_scope = "- Version strings are marked `V4.0.1b`."
     boot_scope = (

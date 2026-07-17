@@ -1,0 +1,215 @@
+0801e29a: 10 b5          push {r4, lr}
+0801e29c: 04 46          mov r4, r0
+0801e29e: 27 48          ldr r0, [pc, #0x9c]
+0801e2a0: 00 78          ldrb r0, [r0]
+0801e2a2: 00 28          cmp r0, #0
+0801e2a4: 7a d1          bne #0x801e39c
+0801e2a6: 26 48          ldr r0, [pc, #0x98]
+0801e2a8: 00 88          ldrh r0, [r0]
+0801e2aa: 04 28          cmp r0, #4
+0801e2ac: 68 d1          bne #0x801e380
+0801e2ae: 64 b9          cbnz r4, #0x801e2ca
+0801e2b0: 01 21          movs r1, #1
+0801e2b2: 02 20          movs r0, #2
+0801e2b4: ff f7 7a ff    bl #0x801e1ac
+0801e2b8: 00 21          movs r1, #0
+0801e2ba: 01 20          movs r0, #1
+0801e2bc: ff f7 76 ff    bl #0x801e1ac
+0801e2c0: 01 21          movs r1, #1
+0801e2c2: 03 20          movs r0, #3
+0801e2c4: ff f7 72 ff    bl #0x801e1ac
+0801e2c8: b7 e0          b #0x801e43a
+0801e2ca: 01 2c          cmp r4, #1
+0801e2cc: 3a d1          bne #0x801e344
+0801e2ce: 01 21          movs r1, #1
+0801e2d0: 08 46          mov r0, r1
+0801e2d2: ff f7 6b ff    bl #0x801e1ac
+0801e2d6: 01 21          movs r1, #1
+0801e2d8: 02 20          movs r0, #2
+0801e2da: ff f7 67 ff    bl #0x801e1ac
+0801e2de: 01 21          movs r1, #1
+0801e2e0: 03 20          movs r0, #3
+0801e2e2: ff f7 63 ff    bl #0x801e1ac
+0801e2e6: a8 e0          b #0x801e43a
+0801e2e8: 50 02          lsls r0, r2, #9
+0801e2ea: 00 20          movs r0, #0
+0801e2ec: 54 02          lsls r4, r2, #9
+0801e2ee: 00 20          movs r0, #0
+0801e2f0: 8c 02          lsls r4, r1, #0xa
+0801e2f2: 00 20          movs r0, #0
+0801e2f4: 88 02          lsls r0, r1, #0xa
+0801e2f6: 00 20          movs r0, #0
+0801e2f8: 90 02          lsls r0, r2, #0xa
+0801e2fa: 00 20          movs r0, #0
+0801e2fc: cc 00          lsls r4, r1, #3
+0801e2fe: 00 20          movs r0, #0
+0801e300: cd 00          lsls r5, r1, #3
+0801e302: 00 20          movs r0, #0
+0801e304: 80 02          lsls r0, r0, #0xa
+0801e306: 00 20          movs r0, #0
+0801e308: 3e 01          lsls r6, r7, #4
+0801e30a: 00 20          movs r0, #0
+0801e30c: c6 00          lsls r6, r0, #3
+0801e30e: 00 20          movs r0, #0
+0801e310: 94 02          lsls r4, r2, #0xa
+0801e312: 00 20          movs r0, #0
+0801e314: 53 00          lsls r3, r2, #1
+0801e316: 00 00          movs r0, r0
+0801e318: 20 20          movs r0, #0x20
+0801e31a: 20 20          movs r0, #0x20
+0801e31c: 20 20          movs r0, #0x20
+0801e31e: 20 20          movs r0, #0x20
+0801e320: 00 00          movs r0, r0
+0801e322: 00 00          movs r0, r0
+0801e324: 4f 01          lsls r7, r1, #5
+0801e326: 00 20          movs r0, #0
+0801e328: a0 00          lsls r0, r4, #2
+0801e32a: 01 00          movs r1, r0
+0801e32c: 46 01          lsls r6, r0, #5
+0801e32e: 00 20          movs r0, #0
+0801e330: 00 0c          lsrs r0, r0, #0x10
+0801e332: 01 40          ands r1, r0
+0801e334: 00 14          asrs r0, r0, #0x10
+0801e336: 01 40          ands r1, r0
+0801e338: 00 08          lsrs r0, r0, #0x20
+0801e33a: 01 40          ands r1, r0
+0801e33c: 6e 01          lsls r6, r5, #5
+0801e33e: 00 20          movs r0, #0
+0801e340: 90 00          lsls r0, r2, #2
+0801e342: 00 20          movs r0, #0
+0801e344: 02 2c          cmp r4, #2
+0801e346: 0c d1          bne #0x801e362
+0801e348: 00 21          movs r1, #0
+0801e34a: 02 20          movs r0, #2
+0801e34c: ff f7 2e ff    bl #0x801e1ac
+0801e350: 01 21          movs r1, #1
+0801e352: 08 46          mov r0, r1
+0801e354: ff f7 2a ff    bl #0x801e1ac
+0801e358: 01 21          movs r1, #1
+0801e35a: 03 20          movs r0, #3
+0801e35c: ff f7 26 ff    bl #0x801e1ac
+0801e360: 6b e0          b #0x801e43a
+0801e362: 03 2c          cmp r4, #3
+0801e364: 69 d1          bne #0x801e43a
+0801e366: 00 21          movs r1, #0
+0801e368: 03 20          movs r0, #3
+0801e36a: ff f7 1f ff    bl #0x801e1ac
+0801e36e: 00 21          movs r1, #0
+0801e370: 02 20          movs r0, #2
+0801e372: ff f7 1b ff    bl #0x801e1ac
+0801e376: 01 21          movs r1, #1
+0801e378: 08 46          mov r0, r1
+0801e37a: ff f7 17 ff    bl #0x801e1ac
+0801e37e: 5c e0          b #0x801e43a
+0801e380: 6c b9          cbnz r4, #0x801e39e
+0801e382: 00 21          movs r1, #0
+0801e384: 02 20          movs r0, #2
+0801e386: ff f7 11 ff    bl #0x801e1ac
+0801e38a: 00 21          movs r1, #0
+0801e38c: 01 20          movs r0, #1
+0801e38e: ff f7 0d ff    bl #0x801e1ac
+0801e392: 01 21          movs r1, #1
+0801e394: 03 20          movs r0, #3
+0801e396: ff f7 09 ff    bl #0x801e1ac
+0801e39a: 4e e0          b #0x801e43a
+0801e39c: 2c e0          b #0x801e3f8
+0801e39e: 01 2c          cmp r4, #1
+0801e3a0: 0c d1          bne #0x801e3bc
+0801e3a2: 01 21          movs r1, #1
+0801e3a4: 08 46          mov r0, r1
+0801e3a6: ff f7 01 ff    bl #0x801e1ac
+0801e3aa: 00 21          movs r1, #0
+0801e3ac: 02 20          movs r0, #2
+0801e3ae: ff f7 fd fe    bl #0x801e1ac
+0801e3b2: 01 21          movs r1, #1
+0801e3b4: 03 20          movs r0, #3
+0801e3b6: ff f7 f9 fe    bl #0x801e1ac
+0801e3ba: 3e e0          b #0x801e43a
+0801e3bc: 02 2c          cmp r4, #2
+0801e3be: 0c d1          bne #0x801e3da
+0801e3c0: 01 21          movs r1, #1
+0801e3c2: 02 20          movs r0, #2
+0801e3c4: ff f7 f2 fe    bl #0x801e1ac
+0801e3c8: 00 21          movs r1, #0
+0801e3ca: 01 20          movs r0, #1
+0801e3cc: ff f7 ee fe    bl #0x801e1ac
+0801e3d0: 01 21          movs r1, #1
+0801e3d2: 03 20          movs r0, #3
+0801e3d4: ff f7 ea fe    bl #0x801e1ac
+0801e3d8: 2f e0          b #0x801e43a
+0801e3da: 03 2c          cmp r4, #3
+0801e3dc: 2d d1          bne #0x801e43a
+0801e3de: 00 21          movs r1, #0
+0801e3e0: 03 20          movs r0, #3
+0801e3e2: ff f7 e3 fe    bl #0x801e1ac
+0801e3e6: 01 21          movs r1, #1
+0801e3e8: 02 20          movs r0, #2
+0801e3ea: ff f7 df fe    bl #0x801e1ac
+0801e3ee: 00 21          movs r1, #0
+0801e3f0: 01 20          movs r0, #1
+0801e3f2: ff f7 db fe    bl #0x801e1ac
+0801e3f6: 20 e0          b #0x801e43a
+0801e3f8: fe 48          ldr r0, [pc, #0x3f8]
+0801e3fa: 00 78          ldrb r0, [r0]
+0801e3fc: 01 28          cmp r0, #1
+0801e3fe: 1c d1          bne #0x801e43a
+0801e400: fd 48          ldr r0, [pc, #0x3f4]
+0801e402: 00 88          ldrh r0, [r0]
+0801e404: 04 28          cmp r0, #4
+0801e406: 0b d1          bne #0x801e420
+0801e408: 02 2c          cmp r4, #2
+0801e40a: 03 d1          bne #0x801e414
+0801e40c: 01 20          movs r0, #1
+0801e40e: ff f7 21 ff    bl #0x801e254
+0801e412: 12 e0          b #0x801e43a
+0801e414: 03 2c          cmp r4, #3
+0801e416: 10 d1          bne #0x801e43a
+0801e418: 00 20          movs r0, #0
+0801e41a: ff f7 1b ff    bl #0x801e254
+0801e41e: 0c e0          b #0x801e43a
+0801e420: 02 2c          cmp r4, #2
+0801e422: 04 d1          bne #0x801e42e
+0801e424: 01 21          movs r1, #1
+0801e426: 08 46          mov r0, r1
+0801e428: ff f7 c0 fe    bl #0x801e1ac
+0801e42c: 05 e0          b #0x801e43a
+0801e42e: 03 2c          cmp r4, #3
+0801e430: 03 d1          bne #0x801e43a
+0801e432: 00 21          movs r1, #0
+0801e434: 01 20          movs r0, #1
+0801e436: ff f7 b9 fe    bl #0x801e1ac
+0801e43a: 10 bd          pop {r4, pc}
+0801e43c: 10 b5          push {r4, lr}
+0801e43e: 04 46          mov r4, r0
+0801e440: 01 2c          cmp r4, #1
+0801e442: 08 d1          bne #0x801e456
+0801e444: 02 21          movs r1, #2
+0801e446: ed 48          ldr r0, [pc, #0x3b4]
+0801e448: 1f f0 17 ff    bl #0x803e27a
+0801e44c: a1 02          lsls r1, r4, #0xa
+0801e44e: ec 48          ldr r0, [pc, #0x3b0]
+0801e450: 1f f0 17 ff    bl #0x803e282
+0801e454: 08 e0          b #0x801e468
+0801e456: 02 21          movs r1, #2
+0801e458: e8 48          ldr r0, [pc, #0x3a0]
+0801e45a: 1f f0 12 ff    bl #0x803e282
+0801e45e: 4f f4 80 61    mov.w r1, #0x400
+0801e462: e7 48          ldr r0, [pc, #0x39c]
+0801e464: 1f f0 09 ff    bl #0x803e27a
+0801e468: 6e 20          movs r0, #0x6e
+0801e46a: f8 f7 6c ff    bl #0x8017346
+0801e46e: 02 21          movs r1, #2
+0801e470: e2 48          ldr r0, [pc, #0x388]
+0801e472: 1f f0 06 ff    bl #0x803e282
+0801e476: 4f f4 80 61    mov.w r1, #0x400
+0801e47a: e1 48          ldr r0, [pc, #0x384]
+0801e47c: 1f f0 01 ff    bl #0x803e282
+0801e480: 10 bd          pop {r4, pc}
+0801e482: 2d e9 f0 47    push.w {r4, r5, r6, r7, r8, sb, sl, lr}
+0801e486: 4f f0 01 08    mov.w r8, #1
+0801e48a: 00 20          movs r0, #0
+0801e48c: f7 f7 fe fd    bl #0x801608c
+0801e490: 09 20          movs r0, #9
+0801e492: f4 f7 4e fc    bl #0x8012d32
+0801e496: 07 22          movs r2, #7
+0801e498: 4f f4 80 71    mov.w r1, #0x100

@@ -75,6 +75,12 @@ EXPECTED_DIFF_RANGES = {
         (0x1D1C0, 0x1D1C4),
         (0x1D1DA, 0x1D1DB),
     ],
+    "v401h-repair-j": [
+        (0x02CAC, 0x02CAF),
+        (0x02CBC, 0x02CBF),
+        (0x1DF0C, 0x1DF10),
+        (0x1DF40, 0x1DF44),
+    ],
 }
 
 MUST_MATCH_OFFICIAL = {

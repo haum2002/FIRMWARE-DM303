@@ -1,0 +1,49 @@
+08017ed8: 10 b5          push {r4, lr}
+08017eda: 86 b0          sub sp, #0x18
+08017edc: 01 21          movs r1, #1
+08017ede: 08 46          mov r0, r1
+08017ee0: 21 f0 6b fe    bl #0x8039bba
+08017ee4: 00 21          movs r1, #0
+08017ee6: 4f f0 80 40    mov.w r0, #0x40000000
+08017eea: 23 f0 76 fa    bl #0x803b3da
+08017eee: ed 48          ldr r0, [pc, #0x3b4]
+08017ef0: 00 68          ldr r0, [r0]
+08017ef2: b0 f5 00 4f    cmp.w r0, #0x8000
+08017ef6: 0a d9          bls #0x8017f0e
+08017ef8: ea 48          ldr r0, [pc, #0x3a8]
+08017efa: 00 68          ldr r0, [r0]
+08017efc: 44 09          lsrs r4, r0, #5
+08017efe: a0 b2          uxth r0, r4
+08017f00: ad f8 0c 00    strh.w r0, [sp, #0xc]
+08017f04: 40 f2 3f 20    movw r0, #0x23f
+08017f08: ad f8 08 00    strh.w r0, [sp, #8]
+08017f0c: 40 e0          b #0x8017f90
+08017f0e: e5 48          ldr r0, [pc, #0x394]
+08017f10: 00 68          ldr r0, [r0]
+08017f12: 85 28          cmp r0, #0x85
+08017f14: 07 d1          bne #0x8017f26
+08017f16: 40 f2 b1 40    movw r0, #0x4b1
+08017f1a: ad f8 0c 00    strh.w r0, [sp, #0xc]
+08017f1e: 01 20          movs r0, #1
+08017f20: ad f8 08 00    strh.w r0, [sp, #8]
+08017f24: 34 e0          b #0x8017f90
+08017f26: df 48          ldr r0, [pc, #0x37c]
+08017f28: 00 68          ldr r0, [r0]
+08017f2a: 35 28          cmp r0, #0x35
+08017f2c: 07 d1          bne #0x8017f3e
+08017f2e: 4f f4 f0 70    mov.w r0, #0x1e0
+08017f32: ad f8 0c 00    strh.w r0, [sp, #0xc]
+08017f36: 01 20          movs r0, #1
+08017f38: ad f8 08 00    strh.w r0, [sp, #8]
+08017f3c: 28 e0          b #0x8017f90
+08017f3e: d9 48          ldr r0, [pc, #0x364]
+08017f40: 00 68          ldr r0, [r0]
+08017f42: 1a 28          cmp r0, #0x1a
+08017f44: 06 d1          bne #0x8017f54
+08017f46: f0 20          movs r0, #0xf0
+08017f48: ad f8 0c 00    strh.w r0, [sp, #0xc]
+08017f4c: 01 20          movs r0, #1
+08017f4e: ad f8 08 00    strh.w r0, [sp, #8]
+08017f52: 1d e0          b #0x8017f90
+08017f54: d3 48          ldr r0, [pc, #0x34c]
+08017f56: 00 68          ldr r0, [r0]

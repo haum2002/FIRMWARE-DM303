@@ -250,3 +250,37 @@ Current safe next direction
   acquisition-window theory is disproved on-device. No new speculative
   measurement patches added; next step is a deeper sampling/math audit and
   V3.16-vs-V4.0 switching-path comparison, as single-change HOLD candidates.
+
+2026-07-17 three-way vendor comparison -> v401h-repair-j (V4.0.1q)
+-------------------------------------------------------------------
+- Full three-way analysis V3.13 (US240104 update, first time analyzed) vs
+  V3.16 vs V4.0: `docs/v313-v316-v40-switching-comparison-2026-07-17.md`.
+- Key result: V3.13/V3.16 share V4.0's identical `0x3a98` guards and switch
+  smoothly, so the repair-a..i guard caps were never the cause. V4.0
+  redesigned acquisition: V3.x streams ADC-EOC ISR samples into a shared
+  600-entry ring (screens just consume it); V4.0 polls DRDY synchronously
+  per screen. In V4.0's ammeter AC<->DC switch-state handler (state `0x2d`)
+  the acquisition window is overwritten with 600 samples at `0x1df0c`
+  (`mov.w r0,#0x258`) or 360 at `0x1df40` (`mov.w r0,#0x168`) on every
+  switch; 600 polled samples match the reported ~30 s blank.
+- `v401h-repair-j` is built as a strict single-change candidate: official
+  V4.0 + both windows lowered to the vendor's own 240 (`movw r0,#0xf0`,
+  `40 f2 f0 00`, flag-safe, 4-byte in-place). NO repair-i guard caps, NOPs,
+  cmp changes, or 64-sample window. Visible marker `V4.0.1q`, firmware
+  SHA-256 `ecd7b5dc85158467ce9e2ffc8b71fd1523c934383c7d1e6677b7bd0f79e34642`.
+- Profile registered in `dm303_v401_beta_patch.py`,
+  `dm303_repair_candidate_check.py`, and `dm303_measurement_candidate_gate.py`.
+  Gates: `repair_candidate_check=ok`, `measurement_candidate_gate=ok`
+  (diff ranges only 0x02cac-0x02cae, 0x02cbc-0x02cbe, 0x1df0c-0x1df0f,
+  0x1df40-0x1df43), `preflash_check=ok`,
+  `official_v4_system_resources=match`.
+- Promoted to `dm303_firmware/DM303-V4.0.1q-beta/` on explicit user request
+  to test on-device. Expected effect if the analysis holds: post-switch
+  blank ~30 s -> ~12 s (not V3.x-instant; the ISR-ring architecture cannot
+  be restored by byte patching). If the asymmetry AC->DC vs DC->AC is not
+  5:3 before patching, or normal updates are also slow, the next suspect is
+  the 10-tick AFE re-kick at `0x0802d48c`-`0x0802d4b4` (see report section
+  e). NOT proven on-device yet.
+- `DM30XDB1.dat` verdict: pure UI sprite pack (34x 92x92 RGB565 BMP + small
+  icons + one 320x240 screen); referenced by all three firmwares; cannot
+  affect measurement.

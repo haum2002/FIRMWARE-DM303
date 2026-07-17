@@ -113,3 +113,34 @@ Build ini belum membuktikan ADC, True RMS, EMI filter, calibration math, atau
 noise analog sudah diperbaiki. Jika `V4.0.1o` masih menunjukkan latency/blank
 yang sama, laluan seterusnya ialah audit sampling/math yang lebih dalam dan
 ujian rail/reference/relay/input current berdasarkan bukti hardware.
+
+## Pakej Measurement Baharu (V4.0.1q) — HOLD
+
+```text
+dm303_firmware/DM303-V4.0.1q-beta/
+```
+
+Profile: `v401h-repair-j`, marker pada device `V4.0.1q`.
+
+SHA-256 firmware:
+
+```text
+ecd7b5dc85158467ce9e2ffc8b71fd1523c934383c7d1e6677b7bd0f79e34642
+```
+
+Berdasarkan perbandingan tiga firmware vendor (V3.13/V3.16/V4.0,
+`docs/v313-v316-v40-switching-comparison-2026-07-17.md`): punca sebenar blank
+~30 saat AC<->DC ialah tetingkap sampel 600/360 yang ditetapkan oleh handler
+state tukar V4.0. Patch ini menurunkan kedua-duanya kepada 240 (konstanta
+rasmi vendor sendiri) — hanya 8 bait, segala-galanya yang lain kekal rasmi.
+Jangkaan jika analisis tepat: blank ~30 s -> ~12 s.
+
+Validasi:
+
+```powershell
+python tools/dm303_measurement_candidate_gate.py --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
+python tools/dm303_preflash_check.py --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
+```
+
+Status: **HOLD** — belum diuji pada device. Ini ialah calon measurement yang
+paling disokong bukti vendor setakat ini.

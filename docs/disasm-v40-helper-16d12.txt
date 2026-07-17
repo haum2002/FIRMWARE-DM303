@@ -1,0 +1,51 @@
+08016d12: 70 b5          push {r4, r5, r6, lr}
+08016d14: 04 46          mov r4, r0
+08016d16: 0d 46          mov r5, r1
+08016d18: 02 20          movs r0, #2
+08016d1a: ff f7 c6 ff    bl #0x8016caa
+08016d1e: 45 ea 04 10    orr.w r0, r5, r4, lsl #4
+08016d22: c3 b2          uxtb r3, r0
+08016d24: 9d 48          ldr r0, [pc, #0x274]
+08016d26: 02 78          ldrb r2, [r0]
+08016d28: 9a 48          ldr r0, [pc, #0x268]
+08016d2a: 01 78          ldrb r1, [r0]
+08016d2c: 02 20          movs r0, #2
+08016d2e: ff f7 7e ff    bl #0x8016c2e
+08016d32: 70 bd          pop {r4, r5, r6, pc}
+08016d34: 10 b5          push {r4, lr}
+08016d36: 04 46          mov r4, r0
+08016d38: 02 20          movs r0, #2
+08016d3a: ff f7 b6 ff    bl #0x8016caa
+08016d3e: 97 48          ldr r0, [pc, #0x25c]
+08016d40: 00 78          ldrb r0, [r0]
+08016d42: 00 f0 c0 00    and r0, r0, #0xc0
+08016d46: 40 ea 04 02    orr.w r2, r0, r4
+08016d4a: 95 48          ldr r0, [pc, #0x254]
+08016d4c: 03 78          ldrb r3, [r0]
+08016d4e: 91 48          ldr r0, [pc, #0x244]
+08016d50: 01 78          ldrb r1, [r0]
+08016d52: 02 20          movs r0, #2
+08016d54: ff f7 6b ff    bl #0x8016c2e
+08016d58: 10 bd          pop {r4, pc}
+08016d5a: 70 b5          push {r4, r5, r6, lr}
+08016d5c: 04 46          mov r4, r0
+08016d5e: 0d 46          mov r5, r1
+08016d60: 02 20          movs r0, #2
+08016d62: ff f7 a2 ff    bl #0x8016caa
+08016d66: 8d 48          ldr r0, [pc, #0x234]
+08016d68: 00 78          ldrb r0, [r0]
+08016d6a: 00 f0 3f 00    and r0, r0, #0x3f
+08016d6e: 40 ea c4 10    orr.w r0, r0, r4, lsl #7
+08016d72: 40 ea 85 10    orr.w r0, r0, r5, lsl #6
+08016d76: c2 b2          uxtb r2, r0
+08016d78: 89 48          ldr r0, [pc, #0x224]
+08016d7a: 03 78          ldrb r3, [r0]
+08016d7c: 85 48          ldr r0, [pc, #0x214]
+08016d7e: 01 78          ldrb r1, [r0]
+08016d80: 02 20          movs r0, #2
+08016d82: ff f7 54 ff    bl #0x8016c2e
+08016d86: 70 bd          pop {r4, r5, r6, pc}
+08016d88: 10 b5          push {r4, lr}
+08016d8a: 04 46          mov r4, r0
+08016d8c: 02 20          movs r0, #2
+08016d8e: ff f7 8c ff    bl #0x8016caa
