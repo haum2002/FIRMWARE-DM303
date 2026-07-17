@@ -208,3 +208,21 @@ Current safe next direction
 - No new measurement patches were added on top of repair-i. The repair-c/d/e
   failures showed that adding speculative stream/IO/relay patches without
   device feedback makes failures un-isolatable.
+
+2026-07-17 final independent audit - PASSED
+-------------------------------------------
+- `analysis/final-audit-2026-07-17.py` re-derived every expectation from the
+  official V4.0 backup without importing the project checkers. Result: all
+  checks ok for both final packages.
+- Confirmed by fresh Thumb-2 decode: all six guard patches are
+  `movw rd,#0x3a98` (15000) -> `movw rd,#0x05dc` (1500) with the register
+  unchanged; `0x1d1da` is `movs r0,#0xf0` (240) -> `movs r0,#0x40` (64); the
+  four NOPs replaced `bls` branches (`05 d9`, `34 d9`, `06 d9`, `05 d9`); the
+  two `cmp.w r0` immediates changed `7a 5f` -> `c8 6f`. Fail-stop vectors at
+  `0x09ca0`/`0x0c6c8`/`0x2c4ea` are byte-identical to official in all builds.
+- ui-ms firmware differs from repair-i in exactly 8 bytes (marker + Melayu
+  menu name). TEXT_SP.DAT: 773 entries, 137 Malay translations applied, 134
+  byte-differing (3 translations are identical to the official Spanish text:
+  `Hardware: `, `Software: `, `div`), zero replacements longer than their
+  official slots. All 34 overlay BMPs keep the official RGB565 layout.
+- All five project gates re-run after the audit: ok.
