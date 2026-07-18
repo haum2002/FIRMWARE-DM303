@@ -284,3 +284,43 @@ Current safe next direction
 - `DM30XDB1.dat` verdict: pure UI sprite pack (34x 92x92 RGB565 BMP + small
   icons + one 320x240 screen); referenced by all three firmwares; cannot
   affect measurement.
+
+2026-07-18 combined package v401h-repair-j-ui-ms (V4.0.1r)
+----------------------------------------------------------
+- New profile `v401h-repair-j-ui-ms` combines the repair-j measurement
+  baseline (V4.0.1q: AC/DC switch-state acquisition windows 600/360 -> 240 at
+  `0x1df0c`/`0x1df40`, measurement bytes untouched) with the V4.0.1p Melayu/
+  dark overlay (full-Malay TEXT_SP.DAT `f955f4c8...`, dark icon-SP.dat
+  `4b3e3c59...`, 34 RGB565 BMPs, `Melayu` slot name). Marker `V4.0.1r`,
+  firmware SHA-256
+  `e75f8cbd8657c9a72f84ce454d5fc43298aead48c4053df00946eae3f99faf8c`.
+- Firmware diff vs official V4.0 is exactly 20 bytes in 6 ranges:
+  `0x02cac-0x02cae`, `0x02cbc-0x02cbe`, `0x1df0c-0x1df0f`, `0x1df40-0x1df43`,
+  `0x25bf8-0x25bfa`, `0x25bfc-0x25bfe`. The 7-byte name patch
+  (`0x25bf8`-`0x25bfe`) shows as two ranges because byte `0x25bfb` is `0x61`
+  ('a') in both "Espan~a" and "Melayu ". Delta vs repair-j firmware: 8 bytes
+  (2 marker + 6 name), mirroring the repair-i -> repair-i-ui-ms delta.
+- Tooling: profile registered in `dm303_v401_beta_patch.py`,
+  `dm303_repair_candidate_check.py`, `dm303_measurement_candidate_gate.py`
+  (EXPECTED_DIFF_RANGES + new `--firmware-only` mode for overlay packages),
+  `dm303_ui_overlay_candidate_check.py` (now per-profile via `--profile`),
+  `dm303_preflash_check.py` (both UI profiles delegate to the overlay
+  checker). `dm303_build_ui_overlay_sdroot.py` now expects the full-Malay
+  TEXT_SP (`f955f4c8...`); the repair-i-ui-ms staging folder was aligned to
+  the same file so both candidates rebuild their shipped sd-roots.
+- Gates on candidate AND promoted folder: `ui_overlay_candidate_check=ok`,
+  `measurement_candidate_gate=ok` (exact 6-range diff, all
+  MUST_MATCH_OFFICIAL windows official), `preflash_check=ok`. Independent
+  audit `analysis/final-audit-2026-07-18.py` PASSED for all four final
+  packages (V4.0.1o/p/q/r). Docs:
+  `docs/v401r-combined-package-2026-07-18.md`.
+- Promoted to `dm303_firmware/DM303-V4.0.1r-beta/`. Status: HOLD, not
+  proven on-device. Suggested order: prove `V4.0.1q` measurement first; if
+  effective, `V4.0.1r` gives the same measurement with the Malay/dark UI.
+- Housekeeping same day: restored the V4.0.2 quarantine label
+  (`DM303-V4.0.2-beta/README-UNSAFE.md`) and added the equivalent label to
+  `DM303-V4.0.2-beta-FINAL/README-UNSAFE.md`; STALE banners added to
+  `docs/beginner-flash-notes.md`, `firmware-candidates/v4.0.1-beta/README.md`,
+  and `analysis/v401b-profile-matrix/tmp-build/QUARANTINE-NOTE.md`;
+  `localization/ms_MY/README.md` now records the full-translation build
+  chain.

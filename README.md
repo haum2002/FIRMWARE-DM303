@@ -144,3 +144,40 @@ python tools/dm303_preflash_check.py --root dm303_firmware\DM303-V4.0.1q-beta --
 
 Status: **HOLD** — belum diuji pada device. Ini ialah calon measurement yang
 paling disokong bukti vendor setakat ini.
+
+## Pakej Gabungan Baharu (V4.0.1r) — HOLD
+
+```text
+dm303_firmware/DM303-V4.0.1r-beta/
+```
+
+Profile: `v401h-repair-j-ui-ms`, marker pada device `V4.0.1r`.
+
+SHA-256 firmware:
+
+```text
+e75f8cbd8657c9a72f84ce454d5fc43298aead48c4053df00946eae3f99faf8c
+```
+
+Gabungan dua garis yang telah digatekan: asas measurement `v401h-repair-j`
+(V4.0.1q — tetingkap suis AC/DC 600/360 -> 240, bait measurement TIDAK
+diubah) + overlay UI Melayu penuh/tema gelap yang sama seperti V4.0.1p
+(`TEXT_SP.DAT` 757/773 entri Melayu, 34 BMP RGB565 gelap, `icon-SP.dat`
+gelap, nama slot bahasa `Melayu`). Diff firmware vs rasmi V4.0 hanya 20 bait
+dalam 6 julat: marker `V4.0.1r` (`0x02cac-0x02cae`, `0x02cbc-0x02cbe`),
+tetingkap suis (`0x1df0c-0x1df0f`, `0x1df40-0x1df43`), dan nama bahasa
+(`0x25bf8-0x25bfa`, `0x25bfc-0x25bfe` — bait `0x25bfb` kebetulan sama, 'a').
+Dokumentasi penuh: `docs/v401r-combined-package-2026-07-18.md`.
+
+Validasi:
+
+```powershell
+python tools/dm303_ui_overlay_candidate_check.py --root dm303_firmware\DM303-V4.0.1r-beta --profile v401h-repair-j-ui-ms
+python tools/dm303_measurement_candidate_gate.py --root dm303_firmware\DM303-V4.0.1r-beta --profile v401h-repair-j-ui-ms --firmware-only
+python tools/dm303_preflash_check.py --root dm303_firmware\DM303-V4.0.1r-beta --profile v401h-repair-j-ui-ms
+python analysis/final-audit-2026-07-18.py
+```
+
+Status: **HOLD** — belum diuji pada device. Susunan ujian yang disyorkan:
+`V4.0.1q` dahulu (buktikan tetingkap suis memendekkan blank); jika berkesan,
+`V4.0.1r` memberi measurement yang sama dengan UI Melayu/tema gelap.

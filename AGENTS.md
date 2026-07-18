@@ -45,7 +45,7 @@ Hardware/firmware facts established by analysis (see `docs/`):
 
 ## 2. Current Status (read before any work)
 
-There are **two final packages**, both **HOLD** (nothing is proven on-device):
+There are **four final packages**, all **HOLD** (nothing is proven on-device):
 
 1. `dm303_firmware/DM303-V4.0.1-beta/` — profile `v401h-repair-i`, visible
    device marker `V4.0.1o`, firmware SHA-256
@@ -62,12 +62,27 @@ There are **two final packages**, both **HOLD** (nothing is proven on-device):
    baseline stays untouched. Byte-identical copy of
    `firmware-candidates/v4.0.1h-repair-i-ui-ms/sd-root`: the full repair-i
    measurement baseline + Malay UI (SP slot renamed `Melayu`, `TEXT_SP.DAT`
-   rebuilt on the official 773-entry layout with 137 Malay entries, none
+   rebuilt on the official 773-entry layout with 757 Malay entries, none
    longer than their official slots) + dark theme (34 overlay BMPs, direct
    RGB565 tinting only; background `#0A233B`, text `#EFF7FA`, amber
    `#FFCC48`). Firmware differs from `V4.0.1o` in exactly 8 bytes: version
    marker at `0x02cae`/`0x02cbe` and language-menu name at
    `0x25bf8`–`0x25bfe`.
+3. `dm303_firmware/DM303-V4.0.1q-beta/` — profile `v401h-repair-j`, visible
+   marker `V4.0.1q`, firmware SHA-256
+   `ecd7b5dc85158467ce9e2ffc8b71fd1523c934383c7d1e6677b7bd0f79e34642`.
+   Single-change AC/DC switch-window candidate: official V4.0 + the two
+   ammeter AC/DC switch-state acquisition windows (600/360 samples) lowered
+   to the vendor's own 240 at `0x1df0c`/`0x1df40`
+   (`movw r0,#0xf0`). Official system resources plus `DM30XDB1.dat`.
+4. `dm303_firmware/DM303-V4.0.1r-beta/` — profile `v401h-repair-j-ui-ms`,
+   visible marker `V4.0.1r`, firmware SHA-256
+   `e75f8cbd8657c9a72f84ce454d5fc43298aead48c4053df00946eae3f99faf8c`.
+   Promoted 2026-07-18. Combines the repair-j measurement baseline
+   (measurement bytes untouched) with the same Melayu/dark overlay as
+   `V4.0.1p`. Firmware differs from `V4.0.1q` in exactly 8 bytes (marker +
+   language name); diff vs official V4.0 is 20 bytes in 6 ranges. See
+   `docs/v401r-combined-package-2026-07-18.md`.
 
 Other status facts:
 
@@ -76,12 +91,14 @@ Other status facts:
 - Failed repair line history (repair-c/d/e) is recorded in `note.txt`; those
   experiments showed that mixing speculative stream/IO/relay patches with
   measurement patches makes failures un-isolatable.
-- An independent re-derivation audit, `analysis/final-audit-2026-07-17.py`,
-  passed all checks for both final packages on 2026-07-17 (fresh Thumb-2
-  decode of every patch, independent of the project checkers).
+- An independent re-derivation audit, `analysis/final-audit-2026-07-18.py`,
+  passed all checks for all four final packages on 2026-07-18 (fresh Thumb-2
+  decode of every patch, independent of the project checkers); it supersedes
+  `analysis/final-audit-2026-07-17.py` (two packages).
 - Recommended flash order: test `V4.0.1o` first (clean measurement baseline,
-  official resources); only if calit/noise are gone, test `V4.0.1p` for the
-  Malay/dark UI.
+  official resources); `V4.0.1q` for the switch-window theory; only if a
+  measurement baseline is proven, use `V4.0.1p`/`V4.0.1r` for the Malay/dark
+  UI on the corresponding baseline.
 - **Nothing here is proven on-device.** Never claim stability, accuracy,
   latency, EMI, True RMS, or UI fixes unless that exact build passed
   device-side tests. Packages stay on HOLD until the user explicitly accepts
@@ -102,7 +119,7 @@ Other status facts:
 | `hardware_photos/` | PCB teardown photos used for the hardware analysis doc. |
 | `dm303_deep_analysis/` | Scratch directory (currently empty). |
 | `note.txt` | Authoritative working memory: field feedback, failed-build history, hard rules. Keep it updated when status changes. |
-| `CHECKSUMS-SHA256.txt` | SHA-256 manifest of every file in both current final packages (69 files × 2 = 138 entries). Regenerate when a final package changes. |
+| `CHECKSUMS-SHA256.txt` | SHA-256 manifest of every file in all four current final packages (69 files × 4 = 276 entries). Regenerate when a final package changes. |
 | `README.md` | Current package status and validation commands (Bahasa Melayu). |
 | `VIBE_CODING.md` | Generic AI-assisted development playbook (Bahasa Melayu); process guidance, not project architecture. |
 
@@ -171,8 +188,24 @@ python tools/dm303_preflash_check.py          --root dm303_firmware\DM303-V4.0.1
 Malay/dark overlay package (`DM303-V4.0.1p-ms-beta`):
 
 ```powershell
-python tools/dm303_ui_overlay_candidate_check.py --root dm303_firmware\DM303-V4.0.1p-ms-beta
+python tools/dm303_ui_overlay_candidate_check.py --root dm303_firmware\DM303-V4.0.1p-ms-beta --profile v401h-repair-i-ui-ms
 python tools/dm303_preflash_check.py             --root dm303_firmware\DM303-V4.0.1p-ms-beta --profile v401h-repair-i-ui-ms
+```
+
+Repair-j package (`DM303-V4.0.1q-beta`):
+
+```powershell
+python tools/dm303_repair_candidate_check.py     --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
+python tools/dm303_measurement_candidate_gate.py --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
+python tools/dm303_preflash_check.py             --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
+```
+
+Combined repair-j + Malay/dark package (`DM303-V4.0.1r-beta`):
+
+```powershell
+python tools/dm303_ui_overlay_candidate_check.py --root dm303_firmware\DM303-V4.0.1r-beta --profile v401h-repair-j-ui-ms
+python tools/dm303_measurement_candidate_gate.py --root dm303_firmware\DM303-V4.0.1r-beta --profile v401h-repair-j-ui-ms --firmware-only
+python tools/dm303_preflash_check.py             --root dm303_firmware\DM303-V4.0.1r-beta --profile v401h-repair-j-ui-ms
 ```
 
 - `dm303_repair_candidate_check.py` — profile SHA-256 + expected patched
@@ -181,14 +214,15 @@ python tools/dm303_preflash_check.py             --root dm303_firmware\DM303-V4.
   candidate differs from official V4.0 **only** in the approved ranges for the
   profile (UI/render/stream/IO/relay/boot areas must be official).
 - `dm303_preflash_check.py` — final package or actual SD-card layout check;
-  rejects the dangerous "folder copied inside the SD card" layout. The
-  `v401h-repair-i-ui-ms` profile is registered here and delegates to the
-  ui-overlay validators. Against a real card:
+  rejects the dangerous "folder copied inside the SD card" layout. Both UI
+  overlay profiles (`v401h-repair-i-ui-ms`, `v401h-repair-j-ui-ms`) are
+  registered here and delegate to the ui-overlay validators. Against a real
+  card:
   `python tools/dm303_preflash_check.py --root E:\ --profile v401h-repair-i --allow-sd-extras`.
 - Legacy packages: `tools/dm303_validate_final_package.py`.
-- Independent cross-check: `analysis/final-audit-2026-07-17.py` re-derives
+- Independent cross-check: `analysis/final-audit-2026-07-18.py` re-derives
   every expectation from the official V4.0 backup without importing the
-  project checkers.
+  project checkers (covers V4.0.1o/p/q/r; supersedes the 2026-07-17 audit).
 
 ### 5.4 Analysis/probing tools (all read-only)
 

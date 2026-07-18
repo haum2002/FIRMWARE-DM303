@@ -1,3 +1,5 @@
+> **LAPU (2026-07-18): Folder staging ini merujuk profil `stability-exp20-ms-safe` (`V4.0.1h`) yang telah GAGAL/dikuarantin. Rujuk `README.md` root untuk status pakej semasa.**
+
 # DM303 V4.0.1 Beta Staging
 
 Final flash package:

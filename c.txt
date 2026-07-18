@@ -1,0 +1,20 @@
+semua telah berubah total. sila lakukan semakan semula
+
+/github /skill/github /skill /musepool /goal/ kenalpasti dengan benar dan tepat. muka kesemua 'code' dan fail .txt dan .md, memahami dan mematuhi semua arahan untuk memulakan kerja modifikasi. folder 'backup' tidak di benarkan di sentuh untuk melakukan sebarang perubahan atau modifikasi, folder berkenaan hanya di benarkan untuk di gunakan sebagai panduan atau perbandingan antara frimware. folder lain atau folder dan sistem luar yang tidak berkaitan anda di larang usik dan melakukan apa-apa. kebebasan penuh berpandukan arahan sedia ada yang di benarkan adalah isi kandung folder "DM303-4.0(1)".
+
+setelah lakukan analisis, anda perlu mencari cara dalam setiap celah yang ada. kemudian lakukan modifikasi secara penuh dan tepat tampa memberikan peluang 'brick' berlaku. lakukan segala apa cara untuk menyelesaikan tugas tanpa bertanya dan memastikan berkali-kali sehingga arahan selesai dan di pastikan Berjaya sepenuhnya. *dengan keras anda di wajibkan mematuhi VIBE_CODING.md sepenuhnya* dan fail .md serta .txt (sekiranya ada) untuk mengelakkan perkara yang tidak di inginkan. dengan tegas juga anda di larang menggunakan menggunakan token untuk perkara berulang perkara gagal berulang, di larang keras untuk menggunakan token secara melampau untuk melakukan sesuatu proses yang jika di lihat dapat di kuragkan. tiken dan Langkah perlu di lakukan secara penuh efisien.
+
+arahan modifikasi:
+1. menambah kestabilan
+2. menambah ketangkasan
+3. mengambah ketepatan
+4. masukkan Bahasa melayu (cuba lakukan tanpa menggantikan Bahasa sedia ada)
+5. masukkan tema gelap (menggunakan palet warna yang tepat)
+6. menyelesaikan masalah bug/hang/freeze/etc...
+7. sambung lakukan seperti yang tercatat dan jangan ulang kesalahan yang sama
+8. sajikan firmware sudah jelas dan pasti Berjaya tanpa adanya kendali
+9. gunakan firmware di dalam folder backup untuk mendapatkan perkara penting dan membandingkan kerosakkan firmware modifikasi jika ada
+10. folder backup di larang daripada di sentuk untuk di modifikasi atau menambahkan sebarang sesuatu
+11. folder backup merubakan folder di mana berkumpulnya firmware vendor yang sah
+12. upload dan kemas kini GitHub setelah memastikan semua stabil (ripo main) dan perkara yang di lakukan (ripo analysis)
+13. kemas kini folder projek dan memastikan perkara tidak penting di bersihkan dengan tepat

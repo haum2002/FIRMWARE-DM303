@@ -1,3 +1,5 @@
+> **LAPU (2026-07-18): Dokumen ini merujuk build `V4.0.1h` yang telah GAGAL/dikuarantin. Rujuk `README.md` root untuk status pakej semasa.**
+
 # DM303 V4.0.1 beta beginner flash notes
 
 Build semasa ialah pembetulan resource Melayu/SP selepas `V4.0.1g` gagal.

@@ -128,3 +128,48 @@ python tools/dm303_repair_candidate_check.py --root dm303_firmware\DM303-V4.0.1q
 python tools/dm303_measurement_candidate_gate.py --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
 python tools/dm303_preflash_check.py --root dm303_firmware\DM303-V4.0.1q-beta --profile v401h-repair-j
 ```
+
+## Fourth Package: DM303-V4.0.1r-beta (HOLD)
+
+Combined package: repair-j measurement baseline + full Melayu/dark UI overlay:
+
+```text
+dm303_firmware/DM303-V4.0.1r-beta/
+```
+
+Profile: `v401h-repair-j-ui-ms`, visible marker `V4.0.1r`.
+
+Firmware hash:
+
+```text
+e75f8cbd8657c9a72f84ce454d5fc43298aead48c4053df00946eae3f99faf8c  DM303-V4.0.1r-beta/DM303V4.0.1-beta.bin
+```
+
+- Byte-identical copy of `firmware-candidates/v4.0.1h-repair-j-ui-ms/sd-root`.
+- Firmware differs from repair-j (V4.0.1q) in exactly 8 bytes: version marker
+  (`0x02cae`, `0x02cbe`) and the `Español` -> `Melayu` menu name
+  (`0x25bf8`-`0x25bfe`). Every repair-j measurement byte is unchanged: the
+  only measurement change vs official remains the two AC/DC switch-state
+  acquisition windows 600/360 -> 240 at `0x1df0c`/`0x1df40`.
+- Same overlay resources as V4.0.1p: full-Malay `TEXT_SP.DAT` (757/773
+  entries, official size/offset table) SHA-256
+  `f955f4c83a57ac26150536a377f29b40c5d64fc5ceb2991e2c5fb7ef6c147fd9`, dark
+  `icon-SP.dat` SHA-256
+  `4b3e3c593d3e935905d6dc7bb6494973042cd7ff4a6a76245f308de828941ba8`, and the
+  34 dark RGB565 BMPs (palette unchanged). All other system resources are
+  official V4.0 plus `DM30XDB1.dat`.
+- Spanish is sacrificed (no spare language slot exists); it is restorable by
+  flashing official V4.0 or the `V4.0.1q` package.
+- Full write-up: `docs/v401r-combined-package-2026-07-18.md`.
+
+Validation:
+
+```powershell
+python tools/dm303_ui_overlay_candidate_check.py --root dm303_firmware\DM303-V4.0.1r-beta --profile v401h-repair-j-ui-ms
+python tools/dm303_measurement_candidate_gate.py --root dm303_firmware\DM303-V4.0.1r-beta --profile v401h-repair-j-ui-ms --firmware-only
+python tools/dm303_preflash_check.py --root dm303_firmware\DM303-V4.0.1r-beta --profile v401h-repair-j-ui-ms
+```
+
+Status: HOLD, not device-tested. Recommended flash order: prove `V4.0.1q`
+first; only if the switch-window change shortens the blank on-device, use
+`V4.0.1r` for the same measurement with the Malay/dark UI.
