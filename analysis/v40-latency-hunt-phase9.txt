@@ -1,0 +1,242 @@
+
+============================================================================
+0x0802603a full dump (to 0x08026340)
+============================================================================
+0802603a: 07b5       push {r0, r1, r2, lr}
+0802603c: adf5226d   sub.w sp, sp, #0xa20
+08026040: 40f2dc50   movw r0, #0x5dc
+08026044: 2090       str r0, [sp, #0x80]
+08026046: 4ff49660   mov.w r0, #0x4b0
+0802604a: 1f90       str r0, [sp, #0x7c]
+0802604c: 0020       movs r0, #0
+0802604e: 1e90       str r0, [sp, #0x78]
+08026050: 1890       str r0, [sp, #0x60]
+08026052: 1790       str r0, [sp, #0x5c]
+08026054: 0120       movs r0, #1
+08026056: 1090       str r0, [sp, #0x40]
+08026058: 8c20       movs r0, #0x8c
+0802605a: 0f90       str r0, [sp, #0x3c]
+0802605c: 5020       movs r0, #0x50
+0802605e: 0e90       str r0, [sp, #0x38]
+08026060: 6420       movs r0, #0x64
+08026062: 0c90       str r0, [sp, #0x30]
+08026064: 0120       movs r0, #1
+08026066: 0990       str r0, [sp, #0x24]
+08026068: b148       ldr r0, [pc, #0x2c4] ; lit@0x8026330=0x200000a8
+0802606a: 0088       ldrh r0, [r0]
+0802606c: 0428       cmp r0, #4
+0802606e: 5dd1       bne #0x802612c
+08026070: b048       ldr r0, [pc, #0x2c0] ; lit@0x8026334=0x200001b0
+08026072: 90ed000a   vldr s0, [r0]
+08026076: f7ee000a   vmov.f32 s1, #1.000000e+00
+0802607a: 20ee200a   vmul.f32 s0, s0, s1
+0802607e: dfedae0a   vldr s1, [pc, #0x2b8]
+08026082: 20ee200a   vmul.f32 s0, s0, s1
+08026086: 9fedad1a   vldr s2, [pc, #0x2b4]
+0802608a: c0ee010a   vdiv.f32 s1, s0, s2
+0802608e: b2ee061a   vmov.f32 s2, #1.100000e+01
+08026092: 80ee810a   vdiv.f32 s0, s1, s2
+08026096: 8ded080a   vstr s0, [sp, #0x20]
+0802609a: 9ded080a   vldr s0, [sp, #0x20]
+0802609e: bceec00a   vcvt.u32.f32 s0, s0
+080260a2: 8ded160a   vstr s0, [sp, #0x58]
+080260a6: 90ed000a   vldr s0, [r0]
+080260aa: f7ee000a   vmov.f32 s1, #1.000000e+00
+080260ae: 20ee200a   vmul.f32 s0, s0, s1
+080260b2: dfeda10a   vldr s1, [pc, #0x284]
+080260b6: 20ee200a   vmul.f32 s0, s0, s1
+080260ba: dfeda00a   vldr s1, [pc, #0x280]
+080260be: 80ee201a   vdiv.f32 s2, s0, s1
+080260c2: 8ded081a   vstr s2, [sp, #0x20]
+080260c6: 9ded080a   vldr s0, [sp, #0x20]
+080260ca: bceec00a   vcvt.u32.f32 s0, s0
+080260ce: 8ded150a   vstr s0, [sp, #0x54]
+080260d2: d0ed000a   vldr s1, [r0]
+080260d6: b7ee000a   vmov.f32 s0, #1.000000e+00
+080260da: 20ee800a   vmul.f32 s0, s1, s0
+080260de: dfed960a   vldr s1, [pc, #0x258]
+080260e2: 20ee200a   vmul.f32 s0, s0, s1
+080260e6: f3ee040a   vmov.f32 s1, #2.000000e+01
+080260ea: 80ee201a   vdiv.f32 s2, s0, s1
+080260ee: 8ded081a   vstr s2, [sp, #0x20]
+080260f2: 9ded080a   vldr s0, [sp, #0x20]
+080260f6: bceec00a   vcvt.u32.f32 s0, s0
+080260fa: 8ded140a   vstr s0, [sp, #0x50]
+080260fe: 90ed000a   vldr s0, [r0]
+08026102: f7ee000a   vmov.f32 s1, #1.000000e+00
+08026106: 20ee200a   vmul.f32 s0, s0, s1
+0802610a: dfed8d0a   vldr s1, [pc, #0x234]
+0802610e: 20ee200a   vmul.f32 s0, s0, s1
+08026112: f3ee040a   vmov.f32 s1, #2.000000e+01
+08026116: 80ee201a   vdiv.f32 s2, s0, s1
+0802611a: 8ded081a   vstr s2, [sp, #0x20]
+0802611e: 9ded080a   vldr s0, [sp, #0x20]
+08026122: bceec00a   vcvt.u32.f32 s0, s0
+08026126: 8ded130a   vstr s0, [sp, #0x4c]
+0802612a: aee0       b #0x802628a
+0802612c: 8148       ldr r0, [pc, #0x204] ; lit@0x8026334=0x200001b0
+0802612e: 90ed000a   vldr s0, [r0]
+08026132: f7ee000a   vmov.f32 s1, #1.000000e+00
+08026136: 20ee200a   vmul.f32 s0, s0, s1
+0802613a: dfed820a   vldr s1, [pc, #0x208]
+0802613e: 60ee200a   vmul.f32 s1, s0, s1
+08026142: 9fed811a   vldr s2, [pc, #0x204]
+08026146: 80ee810a   vdiv.f32 s0, s1, s2
+0802614a: 8ded080a   vstr s0, [sp, #0x20]
+0802614e: 9ded080a   vldr s0, [sp, #0x20]
+08026152: bceec00a   vcvt.u32.f32 s0, s0
+08026156: 8ded160a   vstr s0, [sp, #0x58]
+0802615a: 90ed000a   vldr s0, [r0]
+0802615e: f7ee000a   vmov.f32 s1, #1.000000e+00
+08026162: 20ee200a   vmul.f32 s0, s0, s1
+08026166: 8ded010a   vstr s0, [sp, #4]
+0802616a: 0198       ldr r0, [sp, #4]
+0802616c: 16f05efc   bl #0x803ca2c
+08026170: 9fed760b   vldr d0, [pc, #0x1d8]
+08026174: 53ec102b   vmov r2, r3, d0
+08026178: cde90201   strd r0, r1, [sp, #8]
+0802617c: 9ded020b   vldr d0, [sp, #8]
+08026180: 51ec100b   vmov r0, r1, d0
+08026184: 16f054fb   bl #0x803c830
+08026188: 9fed720b   vldr d0, [pc, #0x1c8]
+0802618c: 53ec102b   vmov r2, r3, d0
+08026190: cde90401   strd r0, r1, [sp, #0x10]
+08026194: 9ded040b   vldr d0, [sp, #0x10]
+08026198: 51ec100b   vmov r0, r1, d0
+0802619c: 16f0dcf9   bl #0x803c558
+080261a0: cde90601   strd r0, r1, [sp, #0x18]
+080261a4: 9ded060b   vldr d0, [sp, #0x18]
+080261a8: 51ec100b   vmov r0, r1, d0
+080261ac: 16f0a2f9   bl #0x803c4f4
+080261b0: 0890       str r0, [sp, #0x20]
+080261b2: 9ded080a   vldr s0, [sp, #0x20]
+080261b6: bceec00a   vcvt.u32.f32 s0, s0
+080261ba: 8ded150a   vstr s0, [sp, #0x54]
+080261be: 5d48       ldr r0, [pc, #0x174] ; lit@0x8026334=0x200001b0
+080261c0: 90ed000a   vldr s0, [r0]
+080261c4: f7ee000a   vmov.f32 s1, #1.000000e+00
+080261c8: 20ee200a   vmul.f32 s0, s0, s1
+080261cc: 8ded010a   vstr s0, [sp, #4]
+080261d0: 0198       ldr r0, [sp, #4]
+080261d2: 16f02bfc   bl #0x803ca2c
+080261d6: 9fed610b   vldr d0, [pc, #0x184]
+080261da: 53ec102b   vmov r2, r3, d0
+080261de: cde90201   strd r0, r1, [sp, #8]
+080261e2: 9ded020b   vldr d0, [sp, #8]
+080261e6: 51ec100b   vmov r0, r1, d0
+080261ea: 16f021fb   bl #0x803c830
+080261ee: 9fed5d0b   vldr d0, [pc, #0x174]
+080261f2: 53ec102b   vmov r2, r3, d0
+080261f6: cde90401   strd r0, r1, [sp, #0x10]
+080261fa: 9ded040b   vldr d0, [sp, #0x10]
+080261fe: 51ec100b   vmov r0, r1, d0
+08026202: 16f0a9f9   bl #0x803c558
+08026206: cde90601   strd r0, r1, [sp, #0x18]
+0802620a: 9ded060b   vldr d0, [sp, #0x18]
+0802620e: 51ec100b   vmov r0, r1, d0
+08026212: 16f06ff9   bl #0x803c4f4
+08026216: 0890       str r0, [sp, #0x20]
+08026218: 9ded080a   vldr s0, [sp, #0x20]
+0802621c: bceec00a   vcvt.u32.f32 s0, s0
+08026220: 8ded140a   vstr s0, [sp, #0x50]
+08026224: 4348       ldr r0, [pc, #0x10c] ; lit@0x8026334=0x200001b0
+08026226: d0ed000a   vldr s1, [r0]
+0802622a: b7ee000a   vmov.f32 s0, #1.000000e+00
+0802622e: 20ee800a   vmul.f32 s0, s1, s0
+08026232: 8ded010a   vstr s0, [sp, #4]
+08026236: 0198       ldr r0, [sp, #4]
+08026238: 16f0f8fb   bl #0x803ca2c
+0802623c: 9fed4b0b   vldr d0, [pc, #0x12c]
+08026240: 53ec102b   vmov r2, r3, d0
+08026244: cde90201   strd r0, r1, [sp, #8]
+08026248: 9ded020b   vldr d0, [sp, #8]
+0802624c: 51ec100b   vmov r0, r1, d0
+08026250: 16f0eefa   bl #0x803c830
+08026254: 9fed430b   vldr d0, [pc, #0x10c]
+08026258: 53ec102b   vmov r2, r3, d0
+0802625c: cde90401   strd r0, r1, [sp, #0x10]
+08026260: 9ded040b   vldr d0, [sp, #0x10]
+08026264: 51ec100b   vmov r0, r1, d0
+08026268: 16f076f9   bl #0x803c558
+0802626c: cde90601   strd r0, r1, [sp, #0x18]
+08026270: 9ded060b   vldr d0, [sp, #0x18]
+08026274: 51ec100b   vmov r0, r1, d0
+08026278: 16f03cf9   bl #0x803c4f4
+0802627c: 0890       str r0, [sp, #0x20]
+0802627e: 9ded080a   vldr s0, [sp, #0x20]
+08026282: bceec00a   vcvt.u32.f32 s0, s0
+08026286: 8ded130a   vstr s0, [sp, #0x4c]
+0802628a: ddf8280a   ldr.w r0, [sp, #0xa28]
+0802628e: eff71fff   bl #0x80160d0
+08026292: 8c20       movs r0, #0x8c
+08026294: 1f49       ldr r1, [pc, #0x7c] ; lit@0x8026314=0x20000176
+08026296: 0880       strh r0, [r1]
+08026298: 5020       movs r0, #0x50
+0802629a: 1c49       ldr r1, [pc, #0x70] ; lit@0x802630c=0x20000178
+0802629c: 0880       strh r0, [r1]
+0802629e: 3220       movs r0, #0x32
+080262a0: 1a90       str r0, [sp, #0x68]
+080262a2: 42f2ac60   movw r0, #0x26ac
+080262a6: 2090       str r0, [sp, #0x80]
+080262a8: 0020       movs r0, #0
+080262aa: 1f90       str r0, [sp, #0x7c]
+080262ac: 8520       movs r0, #0x85
+080262ae: 1d49       ldr r1, [pc, #0x74] ; lit@0x8026324=0x2000010c
+080262b0: 0860       str r0, [r1]
+080262b2: f9f703fe   bl #0x801febc
+080262b6: 0a90       str r0, [sp, #0x28]
+080262b8: 0020       movs r0, #0
+080262ba: 2e49       ldr r1, [pc, #0xb8] ; lit@0x8026374=0x20000172
+080262bc: 0870       strb r0, [r1]
+080262be: 2e48       ldr r0, [pc, #0xb8] ; lit@0x8026378=0x20000170
+080262c0: 0078       ldrb r0, [r0]
+080262c2: 10b9       cbnz r0, #0x80262ca
+080262c4: 0120       movs r0, #1
+080262c6: 2c49       ldr r1, [pc, #0xb0] ; lit@0x8026378=0x20000170
+080262c8: 0870       strb r0, [r1]
+080262ca: 2b48       ldr r0, [pc, #0xac] ; lit@0x8026378=0x20000170
+080262cc: 0078       ldrb r0, [r0]
+080262ce: f8f764ff   bl #0x801f19a
+080262d2: 0021       movs r1, #0
+080262d4: 0846       mov r0, r1
+080262d6: f8f70cff   bl #0x801f0f2
+080262da: 0020       movs r0, #0
+080262dc: f2f7b6ff   bl #0x801924c
+080262e0: f1f7fafd   bl #0x8017ed8
+080262e4: 0020       movs r0, #0
+080262e6: 0849       ldr r1, [pc, #0x20] ; lit@0x8026308=0x20000102
+080262e8: 0880       strh r0, [r1]
+080262ea: 0649       ldr r1, [pc, #0x18] ; lit@0x8026304=0x20000100
+080262ec: 0880       strh r0, [r1]
+080262ee: 0f49       ldr r1, [pc, #0x3c] ; lit@0x802632c=0x200000ec
+080262f0: ddf8200a   ldr.w r0, [sp, #0xa20]
+080262f4: 0870       strb r0, [r1]
+080262f6: 00bf       nop 
+080262f8: 0348       ldr r0, [pc, #0xc] ; lit@0x8026308=0x20000102
+080262fa: 0088       ldrh r0, [r0]
+080262fc: b0f5967f   cmp.w r0, #0x12c
+08026300: fadb       blt #0x80262f8
+08026302: 3be0       b #0x802637c
+08026304: 0001       lsls r0, r0, #4
+08026306: 0020       movs r0, #0
+08026308: 0201       lsls r2, r0, #4
+0802630a: 0020       movs r0, #0
+0802630c: 7801       lsls r0, r7, #5
+0802630e: 0020       movs r0, #0
+08026310: 4c38       subs r0, #0x4c
+08026312: 0208       lsrs r2, r0, #0x20
+08026314: 7601       lsls r6, r6, #5
+08026316: 0020       movs r0, #0
+
+============================================================================
+callers of bank-1 AFE helpers 0x08016d88 / 0x08016dae / 0x08016dd6
+============================================================================
+bl -> 0x8016d88 (0): 
+bl -> 0x8016dae (0): 
+bl -> 0x8016dd6 (0): 
+
+============================================================================
+readers/writers of 0x20000090 (checksum-enable flag)
+============================================================================
+pool @0x8016f98
+pool @0x801723c

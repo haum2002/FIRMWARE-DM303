@@ -1,0 +1,73 @@
+# DM303 V4.0 latency hunt — pass 2: literals, tick/delay units, 0x0802603a body
+import struct
+from pathlib import Path
+from capstone import Cs, CS_ARCH_ARM, CS_MODE_THUMB, CS_MODE_LITTLE_ENDIAN
+
+ROOT = Path(__file__).resolve().parent.parent
+V40 = ROOT / "backup" / "DM303 V4.0-read only" / "DM303V4.004.bin"
+BASE = 0x08010000
+img = V40.read_bytes()
+md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_LITTLE_ENDIAN)
+
+def w32(addr):
+    off = addr - BASE
+    return struct.unpack_from("<I", img, off)[0]
+
+def dump(title, start, end):
+    print(f"\n===== {title} {start:#x}-{end:#x} =====")
+    data = img[start - BASE:end - BASE]
+    for ins in md.disasm(data, start):
+        print(f"{ins.address:08x}: {ins.bytes.hex():<9} {ins.mnemonic} {ins.op_str}")
+
+# ---- literal pool values used by helpers ----
+print("== literal words ==")
+for a in (0x080182a4, 0x080182a8, 0x080182ac, 0x080182b0, 0x080182b4,
+          0x080182b8, 0x080182bc, 0x080182c0, 0x080182c4,
+          0x08017e08,
+          0x0802d840, 0x0802d844, 0x0802d848, 0x0802d84c,
+          0x0802d850, 0x0802d854, 0x0802d858, 0x0802d85c,
+          0x0802d860, 0x0802d864, 0x0802d868, 0x0802d86c,
+          0x0802d870, 0x0802d874, 0x0802d878, 0x0802d87c,
+          0x0802d880, 0x0802d884, 0x0802d888, 0x0802d88c,
+          0x0802d890, 0x0802d894, 0x0802d898, 0x0802d89c,
+          0x0802d8a0, 0x0802d8a4, 0x0802d8a8, 0x0802d8ac,
+          0x0802d8b0, 0x0802d8b4, 0x0802d8b8, 0x0802d8bc,
+          0x0802d8c0, 0x0802d8c4, 0x0802d8c8, 0x0802d8cc,
+          0x0802d8d0, 0x0802d8d4, 0x0802d8d8, 0x0802d8dc,
+          0x0802d8e0, 0x0802d8e4, 0x0802d8e8, 0x0802d8ec,
+          0x0802d8f0, 0x0802d8f4, 0x0802d8f8, 0x0802d8fc,
+          0x0802d900, 0x0802d904, 0x0802d908, 0x0802d90c,
+          0x0802d910, 0x0802d914, 0x0802d918, 0x0802d91c,
+          0x0802d920, 0x0802d924, 0x0802d928, 0x0802d92c,
+          0x0802d930, 0x0802d934, 0x0802d938, 0x0802d93c,
+          0x0802d940, 0x0802d944, 0x0802d948, 0x0802d94c,
+          0x0802d950, 0x0802d954, 0x0802d958, 0x0802d95c,
+          0x0802d960, 0x0802d964, 0x0802d968, 0x0802d96c,
+          0x0802d970, 0x0802d974, 0x0802d978, 0x0802d97c,
+          0x0802d980, 0x0802d984, 0x0802d988, 0x0802d98c,
+          0x0802d990, 0x0802d994, 0x0802d998, 0x0802d99c,
+          0x0802d9a0, 0x0802d9a4, 0x0802d9a8, 0x0802d9ac,
+          0x0802d9b0, 0x0802d9b4, 0x0802d9b8, 0x0802d9bc,
+          0x0802d9c0, 0x0802d9c4, 0x0802d9c8, 0x0802d9cc,
+          0x0802d9d0, 0x0802d9d4, 0x0802d9d8, 0x0802d9dc,
+          0x0802d9e0, 0x0802d9e4, 0x0802d9e8, 0x0802d9ec,
+          0x0802d9f0, 0x0802d9f4, 0x0802d9f8, 0x0802d9fc,
+          0x0802da00, 0x0802da04, 0x0802da08, 0x0802da0c,
+          0x0802da10, 0x0802da14, 0x0802da18, 0x0802da1c,
+          0x0802da20, 0x0802da24, 0x0802da28, 0x0802da2c,
+          0x0802da30, 0x0802da34, 0x0802da38, 0x0802da3c,
+          0x0802da40, 0x0802da44, 0x0802da48, 0x0802da4c,
+          0x0802da50, 0x0802da54, 0x0802da58, 0x0802da5c,
+          0x0802da60, 0x0802da64, 0x0802da68, 0x0802da6c,
+          0x0802da70, 0x0802da74, 0x0802da78, 0x0802da7c,
+          0x0802da80, 0x0802da84, 0x0802da88, 0x0802da8c,
+          0x0802da90, 0x0802da94, 0x0802da98, 0x0802da9c,
+          0x0802daa0, 0x0802daa4, 0x0802daa8, 0x0802daac,
+          0x0802dab0, 0x0802dab4, 0x0802dab8, 0x0802dabc):
+    if a - BASE + 4 <= len(img):
+        print(f"  {a:#x}: {w32(a):#010x}")
+
+# ---- delay primitives 0x08016b60 / 0x08016b94 / 0x08016be4 ----
+dump("delay/uS helpers 0x08016b60-0x08016c2e", 0x08016b60, 0x08016c2e)
+# ---- 0x0802603a full body ----
+dump("fn 0x0802603a full", 0x0802603a, 0x08026600)
