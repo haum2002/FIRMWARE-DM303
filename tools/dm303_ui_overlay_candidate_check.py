@@ -12,35 +12,70 @@ from pathlib import Path
 SOURCE = Path("backup/DM303 V4.0-read only/DM303V4.004.bin")
 OFFICIAL_SYSTEM = Path("backup/DM303 V4.0-read only/system")
 FIRMWARE_NAME = "DM303V4.0.1-beta.bin"
-EXPECTED_FIRMWARE_SHA256 = "a26edd279ae15a68c3f819b1e2dac10d91043a45f6faac64aa0bdfa504f38878"
 EXPECTED_SAFE_SP_SHA256 = "f955f4c83a57ac26150536a377f29b40c5d64fc5ceb2991e2c5fb7ef6c147fd9"
 EXPECTED_DARK_ICON_SP_SHA256 = "4b3e3c593d3e935905d6dc7bb6494973042cd7ff4a6a76245f308de828941ba8"
 EXPECTED_DM30XDB1_SHA256 = "846fea603bbd4233ff930cb97fbf4d5be3ad21c9abe3b8cc38fdba9781e1fd79"
 
-EXPECTED_BYTES = {
-    0x02CA0: b"MT100MM V4.0.1p\x00",
-    0x02CB0: b"BT100MM V4.0.1p\x00",
-    0x25BF8: b"Melayu ",
-    0x09CA0: bytes.fromhex("fe e7"),
-    0x0C6C8: bytes.fromhex("fe e7"),
-    0x2C4EA: bytes.fromhex("fe e7"),
-    0x06A06: bytes.fromhex("70 b5 05 46"),
-    0x096BE: bytes.fromhex("10 b1"),
-    0x097E8: bytes.fromhex("01"),
-    0x0F19A: bytes.fromhex("10 b5 04 46"),
-    0x14B0E: bytes.fromhex("40 f2 dc 50"),
-    0x14B36: bytes.fromhex("40 f2 dc 50"),
-    0x15812: bytes.fromhex("00 bf"),
-    0x15838: bytes.fromhex("00 bf"),
-    0x1585E: bytes.fromhex("b0 f5 c8 6f"),
-    0x15862: bytes.fromhex("00 bf"),
-    0x15888: bytes.fromhex("b0 f5 c8 6f"),
-    0x1588C: bytes.fromhex("00 bf"),
-    0x15934: bytes.fromhex("40 f2 dc 51"),
-    0x1595C: bytes.fromhex("40 f2 dc 51"),
-    0x1D1A4: bytes.fromhex("40 f2 dc 50"),
-    0x1D1C0: bytes.fromhex("40 f2 dc 50"),
-    0x1D1DA: bytes.fromhex("40 20"),
+EXPECTED_FIRMWARE_SHA256_BY_PROFILE = {
+    "v401h-repair-i-ui-ms": "a26edd279ae15a68c3f819b1e2dac10d91043a45f6faac64aa0bdfa504f38878",
+    "v401h-repair-j-ui-ms": "e75f8cbd8657c9a72f84ce454d5fc43298aead48c4053df00946eae3f99faf8c",
+}
+
+EXPECTED_BYTES_BY_PROFILE = {
+    "v401h-repair-i-ui-ms": {
+        0x02CA0: b"MT100MM V4.0.1p\x00",
+        0x02CB0: b"BT100MM V4.0.1p\x00",
+        0x25BF8: b"Melayu ",
+        0x09CA0: bytes.fromhex("fe e7"),
+        0x0C6C8: bytes.fromhex("fe e7"),
+        0x2C4EA: bytes.fromhex("fe e7"),
+        0x06A06: bytes.fromhex("70 b5 05 46"),
+        0x096BE: bytes.fromhex("10 b1"),
+        0x097E8: bytes.fromhex("01"),
+        0x0F19A: bytes.fromhex("10 b5 04 46"),
+        0x14B0E: bytes.fromhex("40 f2 dc 50"),
+        0x14B36: bytes.fromhex("40 f2 dc 50"),
+        0x15812: bytes.fromhex("00 bf"),
+        0x15838: bytes.fromhex("00 bf"),
+        0x1585E: bytes.fromhex("b0 f5 c8 6f"),
+        0x15862: bytes.fromhex("00 bf"),
+        0x15888: bytes.fromhex("b0 f5 c8 6f"),
+        0x1588C: bytes.fromhex("00 bf"),
+        0x15934: bytes.fromhex("40 f2 dc 51"),
+        0x1595C: bytes.fromhex("40 f2 dc 51"),
+        0x1D1A4: bytes.fromhex("40 f2 dc 50"),
+        0x1D1C0: bytes.fromhex("40 f2 dc 50"),
+        0x1D1DA: bytes.fromhex("40 20"),
+    },
+    # repair-j measurement bytes: official guards/branches/cmp kept, only the
+    # two AC/DC switch-state acquisition windows lowered to movw r0,#0xf0 (240).
+    "v401h-repair-j-ui-ms": {
+        0x02CA0: b"MT100MM V4.0.1r\x00",
+        0x02CB0: b"BT100MM V4.0.1r\x00",
+        0x25BF8: b"Melayu ",
+        0x09CA0: bytes.fromhex("fe e7"),
+        0x0C6C8: bytes.fromhex("fe e7"),
+        0x2C4EA: bytes.fromhex("fe e7"),
+        0x06A06: bytes.fromhex("70 b5 05 46"),
+        0x096BE: bytes.fromhex("10 b1"),
+        0x097E8: bytes.fromhex("01"),
+        0x0F19A: bytes.fromhex("10 b5 04 46"),
+        0x14B0E: bytes.fromhex("43 f6 98 20"),
+        0x14B36: bytes.fromhex("43 f6 98 20"),
+        0x15812: bytes.fromhex("05 d9"),
+        0x15838: bytes.fromhex("34 d9"),
+        0x1585E: bytes.fromhex("b0 f5 7a 5f"),
+        0x15862: bytes.fromhex("06 d9"),
+        0x15888: bytes.fromhex("b0 f5 7a 5f"),
+        0x1588C: bytes.fromhex("05 d9"),
+        0x15934: bytes.fromhex("43 f6 98 21"),
+        0x1595C: bytes.fromhex("43 f6 98 21"),
+        0x1D1A4: bytes.fromhex("43 f6 98 20"),
+        0x1D1C0: bytes.fromhex("43 f6 98 20"),
+        0x1D1DA: bytes.fromhex("f0 20"),
+        0x1DF0C: bytes.fromhex("40 f2 f0 00"),
+        0x1DF40: bytes.fromhex("40 f2 f0 00"),
+    },
 }
 
 OVERLAY_FILES = {"TEXT_SP.DAT", "icon-SP.dat"}
@@ -76,15 +111,15 @@ def validate_layout(root: Path) -> None:
         fail(f"unexpected root entries: {extras}")
 
 
-def validate_firmware(root: Path) -> None:
+def validate_firmware(root: Path, profile: str = "v401h-repair-i-ui-ms") -> None:
     firmware = root / FIRMWARE_NAME
     if firmware.stat().st_size != 203260:
         fail(f"unexpected firmware size: {firmware.stat().st_size}")
     digest = sha256_file(firmware)
-    if digest != EXPECTED_FIRMWARE_SHA256:
+    if digest != EXPECTED_FIRMWARE_SHA256_BY_PROFILE[profile]:
         fail(f"unexpected firmware hash: {digest}")
     data = firmware.read_bytes()
-    for offset, expected in EXPECTED_BYTES.items():
+    for offset, expected in EXPECTED_BYTES_BY_PROFILE[profile].items():
         actual = data[offset : offset + len(expected)]
         if actual != expected:
             fail(f"byte mismatch at 0x{offset:05x}: expected {expected.hex(' ')}, got {actual.hex(' ')}")
@@ -147,6 +182,11 @@ def validate_system(root: Path) -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, required=True)
+    parser.add_argument(
+        "--profile",
+        choices=sorted(EXPECTED_FIRMWARE_SHA256_BY_PROFILE),
+        default="v401h-repair-i-ui-ms",
+    )
     return parser.parse_args()
 
 
@@ -154,11 +194,11 @@ def main() -> int:
     args = parse_args()
     root = args.root.resolve()
     validate_layout(root)
-    validate_firmware(root)
+    validate_firmware(root, args.profile)
     validate_system(root)
     print("ui_overlay_candidate_check=ok")
     print(f"root={root}")
-    print("profile=v401h-repair-i-ui-ms")
+    print(f"profile={args.profile}")
     print(f"firmware_sha256={sha256_file(root / FIRMWARE_NAME)}")
     print(f"text_sp_sha256={sha256_file(root / 'system' / 'TEXT_SP.DAT')}")
     print(f"icon_sp_sha256={sha256_file(root / 'system' / 'icon-SP.dat')}")

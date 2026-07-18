@@ -47,12 +47,12 @@ from dm303_repair_candidate_check import (
     validate_official_system as validate_repair_official_system,
 )
 from dm303_ui_overlay_candidate_check import (
-    EXPECTED_FIRMWARE_SHA256 as UI_MS_FIRMWARE_SHA256,
+    EXPECTED_FIRMWARE_SHA256_BY_PROFILE as UI_MS_FIRMWARE_SHA256_BY_PROFILE,
     validate_firmware as validate_ui_ms_firmware,
     validate_system as validate_ui_ms_system,
 )
 
-UI_MS_PROFILE = "v401h-repair-i-ui-ms"
+UI_MS_PROFILES = set(UI_MS_FIRMWARE_SHA256_BY_PROFILE)
 
 
 DEFAULT_ROOT = Path("dm303_firmware/DM303-V4.0.1-beta")
@@ -315,7 +315,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--root", type=Path, default=DEFAULT_ROOT, help="final package folder or SD-card root")
     parser.add_argument(
         "--profile",
-        choices=sorted(set(EXPECTED_CANDIDATE_SHA256_BY_PROFILE) | set(REPAIR_EXPECTED) | {UI_MS_PROFILE}),
+        choices=sorted(set(EXPECTED_CANDIDATE_SHA256_BY_PROFILE) | set(REPAIR_EXPECTED) | UI_MS_PROFILES),
         default="stability-exp20-ms-safe",
         help="expected firmware profile",
     )
@@ -331,7 +331,7 @@ def main() -> int:
     args = parse_args()
     root = args.root.resolve()
     validate_root_layout(root, args.allow_sd_extras)
-    if args.profile in REPAIR_EXPECTED:
+    if args.profile in REPAIR_EXPECTED and args.profile not in UI_MS_PROFILES:
         validate_repair_profile(root, args.profile)
         firmware_hash = sha256_file(root / "DM303V4.0.1-beta.bin")
         files = [path for path in root.rglob("*") if path.is_file()]
@@ -345,8 +345,8 @@ def main() -> int:
         print("copy_rule=copy the contents of this root directly to the SD card root")
         return 0
 
-    if args.profile == UI_MS_PROFILE:
-        validate_ui_ms_firmware(root)
+    if args.profile in UI_MS_PROFILES:
+        validate_ui_ms_firmware(root, args.profile)
         validate_ui_ms_system(root)
         files = [path for path in root.rglob("*") if path.is_file()]
         print("preflash_check=ok")

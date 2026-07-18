@@ -551,6 +551,28 @@ PROFILES = {
         "boot_logo_delay": False,
         "description": "single-change AC/DC switch-window candidate: official V4.0 plus the two AC/DC switch-state acquisition windows (600/360) lowered to the vendor's own 240; evidence in docs/v313-v316-v40-switching-comparison-2026-07-17.md",
     },
+    "v401h-repair-j-ui-ms": {
+        "fault_reset": False,
+        "runtime_patches": False,
+        "relay_settle_profile": None,
+        "mode_switch_profile": None,
+        "stream_recovery_profile": None,
+        "low_io_timeout_profile": None,
+        "low_io_wrapper_profile": None,
+        "command_retry_profile": None,
+        "stream_state_clear_profile": None,
+        "mode_state_clear_profile": None,
+        "stream_busy_gate_profile": None,
+        "current_switch_latency_profile": "cap-acdc-switch-state-windows-240",
+        "instant_switch_profile": None,
+        "stale_error_gate_profile": None,
+        "version_patch_profile": "visible-repair-j-ui-ms",
+        "language_name_patch": True,
+        "stage_text_resources": True,
+        "sp_text_source": "safe-sp-layout",
+        "boot_logo_delay": False,
+        "description": "combined candidate: repair-j measurement bytes (AC/DC switch windows 240) plus Melayu SP-slot name and safe SP-layout Malay text staging; measurement bytes identical to v401h-repair-j",
+    },
 }
 
 ORIGINAL_FAULT_BLOCK = bytes.fromhex("fe e7 " * 10)
@@ -634,6 +656,10 @@ VERSION_PATCHES_BY_PROFILE = {
     "visible-repair-j": {
         0x02CA0: b"MT100MM V4.0.1q\x00",
         0x02CB0: b"BT100MM V4.0.1q\x00",
+    },
+    "visible-repair-j-ui-ms": {
+        0x02CA0: b"MT100MM V4.0.1r\x00",
+        0x02CB0: b"BT100MM V4.0.1r\x00",
     },
 }
 

@@ -23,7 +23,9 @@ OFFICIAL_README = BACKUP_V4 / "readme.txt"
 DM30XDB1_SOURCE = WORKSPACE / "backup" / "SD-file_DM303_update_US240104-read only" / "system" / "DM30xDB1.dat"
 FIRMWARE_NAME = "DM303V4.0.1-beta.bin"
 EXPECTED_DM30XDB1_SHA256 = "846fea603bbd4233ff930cb97fbf4d5be3ad21c9abe3b8cc38fdba9781e1fd79"
-EXPECTED_SAFE_SP_SHA256 = "96bde6bca8036d2a6d0647b85db76135fa4ef1f222db70860381c66aefaed76e"
+# Full-Malay SP-slot rebuild (757/773 entries translated, official size and
+# offset table preserved); see docs/v401p-full-malay-text-rebuild-2026-07-17.md.
+EXPECTED_SAFE_SP_SHA256 = "f955f4c83a57ac26150536a377f29b40c5d64fc5ceb2991e2c5fb7ef6c147fd9"
 EXPECTED_DARK_ICON_SP_SHA256 = "4b3e3c593d3e935905d6dc7bb6494973042cd7ff4a6a76245f308de828941ba8"
 
 

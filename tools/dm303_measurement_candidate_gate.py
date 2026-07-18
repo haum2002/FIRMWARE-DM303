@@ -81,6 +81,17 @@ EXPECTED_DIFF_RANGES = {
         (0x1DF0C, 0x1DF10),
         (0x1DF40, 0x1DF44),
     ],
+    # repair-j measurement bytes + V4.0.1r marker + Melayu language-slot name.
+    # The name patch occupies 0x25bf8-0x25bfe but byte 0x25bfb is 0x61 ('a')
+    # in both "Espa\xc3\xb1a" and "Melayu ", so the diff splits into two ranges.
+    "v401h-repair-j-ui-ms": [
+        (0x02CAC, 0x02CAF),
+        (0x02CBC, 0x02CBF),
+        (0x1DF0C, 0x1DF10),
+        (0x1DF40, 0x1DF44),
+        (0x25BF8, 0x25BFB),
+        (0x25BFC, 0x25BFF),
+    ],
 }
 
 MUST_MATCH_OFFICIAL = {
@@ -153,6 +164,13 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--profile", choices=sorted(EXPECTED_DIFF_RANGES), required=True)
+    parser.add_argument(
+        "--firmware-only",
+        action="store_true",
+        help="skip SD-root layout and official-system checks; validate only the "
+        "firmware bytes (exact diff vs official plus official windows). Needed "
+        "for UI-overlay packages whose system folder intentionally differs.",
+    )
     return parser.parse_args()
 
 
@@ -163,9 +181,12 @@ def main() -> int:
     if args.profile not in EXPECTED:
         fail(f"profile is not known to repair checker: {args.profile}")
 
-    validate_layout(root)
+    if not args.firmware_only:
+        validate_layout(root)
+        validate_official_system(root)
+    elif not firmware.is_file():
+        fail(f"missing firmware file: {firmware}")
     validate_firmware(root, args.profile)
-    validate_official_system(root)
 
     source = SOURCE.read_bytes()
     candidate = firmware.read_bytes()
@@ -175,8 +196,10 @@ def main() -> int:
     print("measurement_candidate_gate=ok")
     print(f"root={root}")
     print(f"profile={args.profile}")
+    print(f"firmware_only={args.firmware_only}")
     print(f"diff_ranges={format_ranges(ranges)}")
-    print("official_system_resources=match")
+    if not args.firmware_only:
+        print("official_system_resources=match")
     print("ui_render_stream_io_relay_boot_windows=official")
     return 0
 
